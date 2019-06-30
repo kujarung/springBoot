@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MumanApplication<muman>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "muscle.school.muman.MumanApplication",
+            "projectName": "muman",
+            "args": ""
+        }
+    ]
+}
