@@ -29,4 +29,9 @@ public class MainController {
         }       
         return "main";
     }
+
+    @RequestMapping(value = "/intro", method=RequestMethod.GET)
+    public String intro() {
+        return "intro";
+    }
 }

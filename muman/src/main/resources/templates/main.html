@@ -3,8 +3,18 @@
     <head> 
         <meta charset="UTF-8" /> 
         <title>Hello Thymeleaf</title> 
+        <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" /> 
     </head> 
     <body> 
+        <div class="wrap">
+            <header th:replace="common/header"></header>
+            <hr>
+            <footer th:replace="common/footer"></footer>
+        </div>
         <h1>Hello Thymeleaf</h1> 
+        <a href="/intro">회사소개</a>
+        <a href="/ceoIntro">회사소개</a>
+        <a href="/login">로그인</a>
+        <a href="/mypage">로그인</a>
     </body> 
 </html>
