@@ -1,4 +1,4 @@
-package muscle.school.muman.main.controller;
+package muscle.school.muman.schedule.controller;
 
 import java.util.List;
 
@@ -9,28 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import muscle.school.muman.main.service.MainService;
-import muscle.school.muman.main.vo.MemberVO;
 
 
 
 @Controller
 @EnableAutoConfiguration
-public class MainController {
+public class ScheduleController {
 
     @Autowired
     MainService service;
 
-    @RequestMapping(value = "/", method=RequestMethod.GET)
+    //스케쥴 등록
+    @RequestMapping(value = "/regSchedule", method=RequestMethod.GET)
     public String main() throws Exception {
-        List<MemberVO> list = service.selectMemberList();
-        for(int i=0; i<list.size(); i++){
-            System.out.println("name : " + list.get(i).getName());
-        }       
+
         return "main";
     }
 
-    @RequestMapping(value = "/intro", method=RequestMethod.GET)
-    public String intro() {
-        return "intro";
+    //스케쥴 확인
+    @RequestMapping(value = "/checkSchedule", method=RequestMethod.GET)
+    public String checkSchedule() {
+        return "checkSchedule";
     }
 }
