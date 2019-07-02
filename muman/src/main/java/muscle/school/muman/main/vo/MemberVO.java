@@ -1,4 +1,4 @@
-package muscle.school.muman.main.service;
+package muscle.school.muman.main.vo;
 
 public class MemberVO {
     private String name;
