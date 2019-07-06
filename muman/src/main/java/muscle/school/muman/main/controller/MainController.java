@@ -26,7 +26,7 @@ public class MainController {
         for(int i=0; i<list.size(); i++){
             System.out.println("name : " + list.get(i).getName());
         }       
-        return "main";
+        return "index";
     }
 
     @RequestMapping(value = "/intro", method=RequestMethod.GET)

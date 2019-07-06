@@ -1,6 +1,5 @@
 package muscle.school.muman.schedule.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,15 +19,15 @@ public class ScheduleController {
     MainService service;
 
     //스케쥴 등록
-    @RequestMapping(value = "/regSchedule", method=RequestMethod.GET)
+    @RequestMapping(value = "/course_Schedule/regSchedule", method=RequestMethod.GET)
     public String main() throws Exception {
 
-        return "main";
+        return "course_Schedule/regSchedule";
     }
 
     //스케쥴 확인
-    @RequestMapping(value = "/checkSchedule", method=RequestMethod.GET)
+    @RequestMapping(value = "/course_Schedule/checkSchedule", method=RequestMethod.GET)
     public String checkSchedule() {
-        return "checkSchedule";
+        return "course_Schedule/checkSchedule";
     }
 }

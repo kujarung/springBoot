@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      defaultDate: '2019-06-12',
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectMirror: true,
@@ -26,7 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
-      ]
+        { // this object will be "parsed" into an Event Object
+          title: 'The Title', // a property!
+          start: '2019-07-06', // a property!
+          end: '2019-07-12' // a property! ** see important note below about 'end' **
+        },
+      ],
+      eventClick: function(info) { //만들어진 이벤트를 클릭 했을 시
+        console.log(info.event.start + "" + info.event.end + "" + info.event.title );
+      }
+
     });
 
     calendar.render();

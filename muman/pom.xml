@@ -11,6 +11,7 @@
 	<groupId>muscle.school</groupId>
 	<artifactId>muman</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>muman</name>
 	<description>Demo project for Spring Boot</description>
 
