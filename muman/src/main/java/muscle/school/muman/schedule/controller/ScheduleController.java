@@ -19,15 +19,15 @@ public class ScheduleController {
     MainService service;
 
     //스케쥴 등록
-    @RequestMapping(value = "/course_Schedule/regSchedule", method=RequestMethod.GET)
+    @RequestMapping(value = "/course_schedule/regSchedule", method=RequestMethod.GET)
     public String main() throws Exception {
 
-        return "course_Schedule/regSchedule";
+        return "course_schedule/regSchedule";
     }
 
     //스케쥴 확인
-    @RequestMapping(value = "/course_Schedule/checkSchedule", method=RequestMethod.GET)
+    @RequestMapping(value = "/course_schedule/checkSchedule", method=RequestMethod.GET)
     public String checkSchedule() {
-        return "course_Schedule/checkSchedule";
+        return "course_schedule/checkSchedule";
     }
 }

@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
       ],
       eventClick: function(info) { //만들어진 이벤트를 클릭 했을 시
         console.log(info.event.start + "" + info.event.end + "" + info.event.title );
-      }
-
+      },
+      locale : "kr",
     });
 
     calendar.render();
