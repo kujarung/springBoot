@@ -1,6 +1,42 @@
-<h1>운동 일지</h1>
-<h2>제목</h2>
-<h2>날짜</h2>
-<h2>훈련 이름(ex PTP)</h2>
+<head>
+    <head th:replace="common/sub/head"></head>
+    <script th:src="@{../calendar/regJs/regSchedule.js}"></script>
+</head>
 
-<h3>훈련 내용</h3>
+<div class="wrap mw-1280 col-center col-12">
+    <h1>운동 일지</h1>
+    
+    <h2>제목</h2>
+    <div class="form-group"> 
+        <label class="sr-only" for="ex_title">Email address</label> 
+        <input type="email" class="form-control" id="ex_title" name="ex_title">
+    </div> 
+    
+    <h2>날짜</h2>
+    <div class="input-group date">
+        <input type="text" class="form-control" name="ex_day"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    </div>
+
+    <h2>훈련 이름(ex PTP)</h2>
+    <div class="form-group"> 
+        <label class="sr-only" for="ex_title">Email address</label> 
+        <input type="email" class="form-control" id="ex_title" name="ex_title">
+    </div>
+
+    <h3>훈련 내용</h3>
+    <div class="form-inline">
+        <div class="form-group"> 
+            <div class="">스쿼트</div>
+            <label class="" for="exampleInputEmail2">스쿼트</label> 
+            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+        </div> 
+
+        <div class="form-group"> 
+            <div class="">밴치프레스</div>
+            <label class="sr-only" for="exampleInputPassword2"></label> 
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password"> 
+        </div>
+    </div>
+    
+
+</div>

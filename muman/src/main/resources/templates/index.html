@@ -1,24 +1,21 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-        <meta charset="UTF-8" /> 
-        <title>Hello Thymeleaf</title> 
-        <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" /> 
-        <script th:src="@{js/main.js}"></script>
+        <title>Main</title> 
+        <head th:replace="common/main/head"></head>
     </head> 
     <body> 
         <div class="wrap">
-            <header th:replace="common/header"></header>
+            <header th:replace="common/main/header"></header>
             <hr>
-            <footer th:replace="common/footer"></footer>
+            <footer th:replace="common/main/footer"></footer>
         </div>
         <h1>Muscle School Main</h1> 
-        <a href="/intro">회사소개</a>
-        <a href="/ceoIntro">트레이너소개</a>
         <a href="/register/member">인원 등록</a>
         <a href="/register/regStudent">수업 입과</a>
         <a href="/course_schedule/regSchedule">수업 등록</a>
         <a href="/course_schedule/checkSchedule">수업 확인</a>
+        <a href="/exercise/exerciseRecord">운동 일지</a>
         <a href="/exercise/exerciseRecord">운동 일지</a>
         sfkml
     </body> 

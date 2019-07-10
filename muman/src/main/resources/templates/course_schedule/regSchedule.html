@@ -1,30 +1,89 @@
-<div class="">
-    <h1>수업 등록</h1>
-</div>
-<div class="">
-    <div class="">
-        수업명
-    </div>
-    <input>
-</div>
+<head>
+    <head th:replace="common/sub/head"></head>
+    <script th:src="@{../calendar/regJs/regSchedule.js}"></script>
+</head>
 
-<div class="">
-    <div class="">
-        시작일
-    </div>
-    <input>
-</div>
+<div class="col-12 col-center mw-1280 wrap">
+    <form action="" id="reg_course_form">
+        
+        <div class="">
+            <h1>수업 등록</h1>
+        </div>
 
-<div class="">
-    <div class="">
-        끝나는 날
-    </div>
-    <input>
-</div>
+        <div class="">
+            <div class="">
+                수업명
+            </div>
+            <input type="text" class="form-control" name="course_title">
+        </div>
 
-<div class="">
-    <div class="">
-        요일
-    </div>
-    <input>
+        <div class="form-group">
+            <div class="">
+                수업내용
+            </div>  
+            <textarea class="form-control rounded-0" name="contents"></textarea>
+        </div>
+
+
+        <div class="form-group">
+            <div class="">
+                시작하는 시간
+            </div>
+            <label for="startTimeH">시간</label>
+            <input type="text" class="form-control datepicker" name="startTimeH">
+            <label for="startTimeM">분</label>
+            <input type="text" class="form-control datepicker" name="startTimeM">
+            <input type="hidden" class="form-control datepicker" name="startTime">
+        </div>
+        
+        <div class="form-group">
+            <label for="endTimeH">시간</label>
+            <input type="text" class="form-control datepicker" name="endTimeH">
+            <label for="endTimeM">분</label>
+            <input type="text" class="form-control datepicker" name="endTimeM">
+            <input type="hidden" class="form-control datepicker" name="endTime">
+
+        </div>
+            
+        <div class="input-group date">
+            <label for="startDate">시작 시간</label>
+            <input type="text" class="form-control" name="startDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
+        
+        <div class="input-group date">
+            <label for="endDate">끝나는 시간</label>
+            <input type="text" class="form-control" name="endDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
+
+        <p><strong>Checkbox</strong></p>
+        <div class="">
+            <input type="hidden" name="week_total">
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="mon" value="mon" name="week">
+                <label class="custom-control-label" for="mon">월</label>
+            </div>
+
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="thse" value="thse" name="week">
+                <label class="custom-control-label" for="thse">화</label>
+            </div>
+
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="wed" value="wed" name="week">
+                <label class="custom-control-label" for="wed">수</label>
+            </div>
+
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="thur" value="thur" name="week">
+                <label class="custom-control-label" for="thur">목</label>
+            </div>
+
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="fri" value="fri" name="week">
+                <label class="custom-control-label" for="fri">금</label>
+            </div>
+        </div>
+
+        <button id="reg_course_submit" type="button" class="btn btn-primary">등록하기</button>
+    </form>
 </div>
