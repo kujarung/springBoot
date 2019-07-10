@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="muscle.school.muman.schedule.dao.ScheduleDao">
+        
+    <insert id="insertCourse" parameterType="map">
+        INSERT INTO course 
+        VALUES
+        (
+            (SELECT MAX(COURSE_SEQ) FROM course AS seq ) + 1 ,
+            #{start_date},
+            #{end_date},
+            #{title},
+            #{contents},
+            #{week},
+            #{start_time},
+            #{end_time}
+        )
+    </insert>
+</mapper>
