@@ -1,6 +1,7 @@
 package muscle.school.muman.schedule.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,10 @@ public class ScheduleService {
 		System.out.println( request.getParameter("startTime")  );
 		System.out.println( request.getParameter("endTime")  );
 		dao.insertCourse(params);
+	}
+
+	public List<Map<String, Object>> SelectListCheckSchedule() {
+		dao.SelectListCheckSchedule();
 	}
 
 }

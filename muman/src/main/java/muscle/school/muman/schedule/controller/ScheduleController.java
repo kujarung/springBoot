@@ -1,10 +1,16 @@
 package muscle.school.muman.schedule.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,7 +32,11 @@ public class ScheduleController {
 
     //스케쥴 확인
     @RequestMapping(value = "/course_schedule/checkSchedule", method=RequestMethod.GET)
-    public String checkSchedule() {
+    public String checkSchedule(Model model) {
+        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
+        Date time = new Date();
+        List<Map<String,Object>> list = service.SelectListCheckSchedule();
+        model.addAttribute("", list);
         return "course_schedule/checkSchedule";
     }
 
