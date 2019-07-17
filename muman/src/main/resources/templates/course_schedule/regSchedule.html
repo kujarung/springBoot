@@ -1,6 +1,5 @@
 <head>
     <head th:replace="common/sub/head"></head>
-    <script th:src="@{../calendar/regJs/regSchedule.js}"></script>
 </head>
 
 <div class="col-12 col-center mw-1280 wrap">
@@ -45,14 +44,14 @@
 
         </div>
             
-        <div class="input-group date">
+        <div class="input-group">
             <label for="startDate">시작 시간</label>
-            <input type="text" class="form-control" name="startDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input type="text" class="form-control date" name="startDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
         </div>
         
-        <div class="input-group date">
+        <div class="input-group">
             <label for="endDate">끝나는 시간</label>
-            <input type="text" class="form-control" name="endDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input type="text" class="form-control date" name="endDate"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
         </div>
 
         <p><strong>Checkbox</strong></p>

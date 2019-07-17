@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="muscle.school.muman.exercise.dao.ExerciseDao">
+    
+    <select id="selectExMasterSeq" resultType="int">
+    	SELECT IFNULL(MAX( ex_seq ),0) + 1 SEQ FROM EXCERCISE_MASTER
+    </select>
+    
+    <insert id="insertExData" parameterType="map">
+    	INSERT INTO EXCERCISE_MASTER(member_seq, ex_seq, ex_date, ex_title)
+		VALUES
+		(
+			#{member_seq}, #{ex_seq}, #{ex_date}, #{ex_title}
+		)
+    </insert>
+    
+    <insert id="insertExContent" parameterType="map">
+		INSERT INTO EXCERCISE_CONTENT(member_seq, ex_seq, ex_set, ex_cate, ex_weight, ex_times, ex_real_yn)
+		VALUES
+		(
+			 #{member_seq}, #{ex_seq}, #{ex_set}, #{ex_cate}, #{weight}, #{times}, #{real_yn}
+		)
+    </insert>
+    
+</mapper>

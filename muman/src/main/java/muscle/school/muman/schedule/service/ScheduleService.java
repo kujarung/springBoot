@@ -41,7 +41,7 @@ public class ScheduleService {
 	}
 
 	public List<Map<String, Object>> SelectListCheckSchedule() {
-		dao.SelectListCheckSchedule();
+		return dao.SelectListCheckSchedule();
 	}
 
 }

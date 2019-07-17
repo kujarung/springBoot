@@ -36,7 +36,7 @@ public class ScheduleController {
         SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
         Date time = new Date();
         List<Map<String,Object>> list = service.SelectListCheckSchedule();
-        model.addAttribute("", list);
+        model.addAttribute("list", list);
         return "course_schedule/checkSchedule";
     }
 

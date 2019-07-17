@@ -6,10 +6,10 @@
 <mapper namespace="muscle.school.muman.schedule.dao.ScheduleDao">
         
     <insert id="insertCourse" parameterType="map">
-        INSERT INTO course 
+        INSERT INTO COURSE
         VALUES
         (
-            (SELECT MAX(COURSE_SEQ) FROM course AS seq ) + 1 ,
+            (SELECT MAX(COURSE_SEQ) FROM COURSE AS SEQ ) + 1 ,
             #{start_date},
             #{end_date},
             #{title},
@@ -19,4 +19,8 @@
             #{end_time}
         )
     </insert>
+    
+    <select id="SelectListCheckSchedule" parameterType="map" resultType="map">
+    	SELECT * FROM COURSE
+    </select>
 </mapper>

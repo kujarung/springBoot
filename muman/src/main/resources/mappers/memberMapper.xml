@@ -6,7 +6,9 @@
 <mapper namespace="muscle.school.muman.main.dao.MainDao">
         
     <select id="selectMemberList" parameterType="muscle.school.muman.main.vo.MemberVO" resultType="muscle.school.muman.main.vo.MemberVO">
-        select * from member
+        SELECT * FROM MEMBER
     </select>
+    
+    
     
 </mapper>

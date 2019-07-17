@@ -1,32 +1,22 @@
-<html xmlns:th="http://www.thymeleaf.org"</html></html>
-  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-
 <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.min.js" integrity="sha256-sEFM2aY87nr5kcE4F+RtMBkKxBqHEc2ueHGNptOA5XI=" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
 <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-
 <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
 <link rel="stylesheet" type="text/css" th:href="@{../css/sub.css}"/> 
-
 <link th:href="@{../calendar/defualt/core/main.css}" rel='stylesheet' />
 <link th:href="@{../calendar/defualt/daygrid/main.css}" rel='stylesheet' />
 <link th:href="@{../calendar/defualt/timegrid/main.css}" rel='stylesheet' />
-
 <script th:src="@{../calendar/defualt/core/main.js}"></script>
 <script th:src="@{../calendar/defualt/interaction/main.js}"></script>
 <script th:src="@{../calendar/defualt/daygrid/main.js}"></script>
 <script th:src="@{../calendar/defualt/timegrid/main.js}"></script>
-
+<script th:src="@{../calendar/regJs/regSchedule.js}"></script>
 <script th:src="@{../calendar/customize/customize.js}"></script>
 <link th:href="@{../calendar/customize/customize.css}" rel='stylesheet' />
+<script th:src=@{../excercise/excercise.js}></script>
 
 <script>
     jQuery.browser = {};
@@ -44,7 +34,7 @@
 
 $(function(){
 
-    $('.input-group.date').datepicker({
+    $('.input-group > .date').datepicker({
 
         calendarWeeks: false,
 
