@@ -1,87 +1,53 @@
-<head>
-    <head th:replace="common/sub/head"></head>
-    <script th:src="@{../calendar/regJs/regSchedule.js}"></script>
-</head>
-
-<div class="wrap mw-1280 col-center col-12">
-    <form id="ex_submit" method="post">
-	    <div>
-		    <h1>운동 일지</h1>
-	    </div>
-		    
-	    <div>
-	        <h2>날짜</h2>
-		    <div class="input-group">
-		        <input type="text" class="form-control date" name="ex_date" placeholder="공백 시 오늘 날짜"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-		    </div>
-	    </div>
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>수업 소개</title> 
+        <head th:replace="common/sub/head"></head>
+    </head> 
+    <body>
+        <div class="wrapper">
+            <header th:replace="common/header"></header>
+			<div id="excercise_main" class="col-12">
+				<div class="col-12 mw-1200 col-center h-100 show-table">
+					<div class="col-12 pr15 pl15 h-100 show-tablecell vm tc fn">
+						<div class="col-4">
+							<a class="col-12" href="">
+								<div class="col-12 h-100">
+									<img src="../img/check_ex.jpg" alt="">
+								</div>
+								<div class="">
+									측정 결과 등록
+								</div>
+							</a>
+						</div>
+						
+						<div class="col-4">
+							<a class="col-12" href="">
+								<div class="col-12 h-100">
+									<img src="../img/write.jpg" alt="">
+								</div>
+								<div class="" >
+									일지 작성
+								</div>
+							</a>
+						</div>
 		
-		<div>
-		    <h2>훈련 이름(ex PTP)</h2>
-		    <div class="form-group"> 
-		        <label class="sr-only" for="ex_title">Email address</label> 
-		        <input type="email" class="form-control" id="ex_title" name="ex_title">
-		    </div>
-		</div>
-		
-		<div style="overflow:hidden">
-			<div style="float:left; width:100%;">
-				<h3>훈련 내용</h3>
-			    <div class="" style="float:left; width:100%;">
-			        <div class="" style="float:left; width:50%;"> 
-			            <label class="" for="exampleInputEmail2"></label> 
-			            <input type="text" class="" name="ex_cate0" placeholder="운동 이름 ex)백스쿼트">
-			            <input type="checkbox" name="ex_cate2_fail">
-			        </div> 
-			
-			        <div class="" style="float:left; width:50%;"> 
-			            <label class="sr-only" for="exampleInputPassword2"></label> 
-			            <input type="text" class="" name="ex_cate1" placeholder="운동 이름 ex)벤치 프레스"> 
-			            <input type="checkbox" name="ex_cate1_fail">
-			        </div>
-			    </div>
+						<div class="col-4">
+							<a class="col-12" href="">
+								<div class="col-12 h-100">
+									<img src="../img/check.jpg" alt="">
+								</div>
+								<div class="">
+									일지 확인
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
-	
-		    
-		    <div class="" style="float:left;width:100%;">
-		    	<h4>무게 및 갯수</h4>
-		    	<div class="" id="ex_con" style="float:left; width:100%;">
-			   		<div class="" id="ex_row0" style="float:left; width:50%;">
-			   			<div id="inner_ex_row0">
-			   				<input type="text" class="" name="ex_weight0" placeholder="무게" style="display:inline;width:50px;">
-							<input type="text" class="" name="ex_times0" placeholder="횟수" style="display:inline;width:50px;">
-							<select name="ex_real_yn0" style="display:inline; width:40px;">
-								  <option value="n">예</option>
-								  <option value="y">본</option>
-							</select>
-							<div class="btn_box">
-								<a href="javascript:void(0)" onclick="ex.addRowBtn(this)">추가</a>
-							</div>
-			   			</div>
-			        </div> 
-			        
-				   	
-			   		<div class="" id="ex_row1" style="float:left; width:50%;"> 
-				   		<div id="inner_ex_row1">
-				   			<input type="text" class=""  name="ex_weight1" placeholder="무게" style="display:inline;width:50px;">
-							<input type="text" class=""  name="ex_times1" placeholder="횟수" style="display:inline;width:50px;">
-							<select name="ex_real_yn1" style="display:inline;width:40px;">
-								  <option value="n">예</option>
-								  <option value="y">본</option>
-							</select>
-							<div class="btn_box">
-								<a href="javascript:void(0)" onclick="ex.addRowBtn(this)">추가</a>
-							</div>
-				   		</div>
-			        </div> 
-		        </div>
-		    </div>
-		</div>
-		<input type="hidden" name="jsonData">
-		<button id="reg_excercise_record" type="button" class="btn btn-primary" onclick="ex.onSubmit()" style="float:left;">등록하기</button>
-	</form>
-</div>
+            <footer th:replace="common/footer"></footer>
+        </div>
 
-<style>
-	.btn_box{display:inline;}
-</style>
+    </body>
+
+</html>

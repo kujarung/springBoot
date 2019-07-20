@@ -33,4 +33,9 @@ public class MainController {
     public String intro() {
         return "intro";
     }
+
+    @RequestMapping(value = "/intro_course", method=RequestMethod.GET)
+    public String intro_course() {
+        return "intro_course/intro_course";
+    }
 }

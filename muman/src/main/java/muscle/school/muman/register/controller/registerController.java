@@ -15,13 +15,14 @@ public class registerController {
     @Autowired
     MainService service;
 
-    //
+    //수강생 등록
     @RequestMapping(value = "/register/regStudent", method=RequestMethod.GET)
     public String registerStudent() throws Exception {
 
         return "register/regStudent";
     }
 
+    //회원 등록
     @RequestMapping(value = "/register/member", method=RequestMethod.GET)
     public String registerMember() throws Exception {
 

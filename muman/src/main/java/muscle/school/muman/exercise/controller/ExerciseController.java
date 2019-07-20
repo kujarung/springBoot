@@ -26,7 +26,6 @@ public class ExerciseController {
         return "exercise/exerciseChoice";
     }
     
-    
     //운동 일지 작성
     @RequestMapping(value = "/exercise/exerciseRecord", method=RequestMethod.GET)
     public String exerciseRecord() throws Exception {
@@ -43,7 +42,7 @@ public class ExerciseController {
     @RequestMapping(value ="/exercise/regExData",  method=RequestMethod.POST)
     public String regExData(HttpServletRequest request) throws JSONException {
     	service.insertExData(request);
-    	return "/";
+    	return "exercise/exerciseConfirm";
     }
 }
 

@@ -1,0 +1,46 @@
+/*header*/
+.wrapper .log_con {position: absolute; top: 0; z-index: 5;}
+.wrapper .logo_con:before{ content: ""; display: inline-block;  width: 1px; height: 100%;  margin-right: 0; vertical-align: middle;}
+.wrapper .left_logo{float: left;}
+.wrapper .left_logo h1{width: 120px; height: 60px;}
+.wrapper .right_utill_con {float: right; vertical-align: middle; padding-top: 30px;}
+.wrapper .right_utill_con ul > li {color: #fff; font-size:18px; font-size:1.8rem; line-height:24px; line-height:2.4rem; display:none; margin-right:20px; vertical-align:top;}
+.wrapper .right_utill_con ul > li:last-child{margin-right:0px;}
+.wrapper .right_utill_con ul.sub_menu_ul {height:0px; opacity: 0;}
+.wrapper .right_utill_con ul.sub_menu_ul  li  {font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; color: #fff; display: block;}
+.wrapper .right_utill_con ul.sub_menu_ul  li:hover{color:#FF9E1B;}
+
+/*모바일 메뉴*/
+#moblie_menu {display:block; padding-right:30px; padding-top:20px;}
+#moblie_menu span{  position: absolute;  display: block;  width: 41px;  height: 3px;  top: 50%;  margin-top: -1.5px;  background-color: #fff;}
+#moblie_menu span:before{    position: absolute;  display: block;  height: 3px;  background-color: #fff;  content: "";  width: 29px;  top: -10px;}
+#moblie_menu span:after{    position: absolute;  display: block;  height: 3px;  background-color: #fff;  content: "";  width: 18px;  bottom: -10px;  }
+.gnb_wrap li > a {font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem; color: #fff;  display: block;  padding-bottom: 20px;  margin-bottom: 20px;}
+.click_header_wrap .header_fixed_menu_box {  background-color: #1b1b1b;  margin-bottom: 32px;  padding-left: 40px;  padding-right: 40px;  padding-top: 16px;  padding-bottom: 15px;  }
+.click_header_wrap .member_menu_wrap {  display: inline-block;  vertical-align: middle;  margin-top: 1px;  float: none;  }
+.click_header_wrap .member_menu_wrap > div {font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;    color: #fff;  float: none;  vertical-align: middle;  }
+.mobile_logo_con{padding-right: 15px; padding-left: 15px; padding-top: 30px; margin-bottom: 30px;}
+.mobile_logo_con .left_logo{float: left;}
+.mobile_logo_con .right_btn_con{width: 40px; height: 40px; float: right; padding-top: 20px; cursor: pointer;}
+.click_header_wrap{  position: fixed !important;  right: -100%;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
+.click_header_wrap > div {  overflow-y: scroll;  width: 100%;  height: 100%;  margin-right: 0px;  background-color: #000;  }
+.click_header_wrap.active {  position: fixed;  right: 0%;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
+
+@media all and (min-width: 768px) {
+    .third_card_con .arr_btn{display:none;}
+    .arr_btn {position: absolute;top: 50%; width: 40px;height: 40px; z-index: 3;cursor: pointer; display:block;}
+    .arr_btn.right { right: calc((100% - 480px) / 2 + 15px);}
+    .arr_btn.left { left: calc((100% - 480px) / 2 + 15px);}
+
+    /**/
+    .wrapper .right_utill_con{padding-top:35px;}
+    .wrapper .right_utill_con ul > li{display:inline-block;}
+    #moblie_menu{display:none;}
+    .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet:hover{background: #fff; opacity: 1; transition: all 0.2s}
+    .wrapper .right_utill_con ul > li > a:hover{transition: color 0.2s ease; color:#FF9E1B;}
+}
+
+@media all and (min-width: 992px) {
+    .arr_btn.right { right: calc((100% - 980px) / 2 + 15px);}
+    .arr_btn.left { left: calc((100% - 980px) / 2 + 15px);}
+}
