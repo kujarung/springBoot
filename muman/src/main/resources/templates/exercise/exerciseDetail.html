@@ -1,0 +1,10 @@
+<head>
+    <head th:replace="common/sub/head"></head>
+</head>
+
+<div class="wrap col-12">
+	<div th:each="detail : ${detail}"  th:object="${detail}">
+		<span th:text="${detail.ex_cate}"></span>
+		<span th:text="${detail.ex_cate}"></span>
+	</div>
+</div>

@@ -1,12 +1,18 @@
 <head>
     <head th:replace="common/sub/head"></head>
-    <script th:src="@{../calendar/regJs/regSchedule.js}"></script>
 </head>
 
+<span class="" th:each="list : ${list}"  th:object="${list}">
+	<small class="label pull-right bg-green" th:text="${list.ex_seq}"></small>
+</span>
+
 <div class="wrap col-12">
-    <h1>운동 일지</h1>
-    <h2>제목</h2>
-    <h2>날짜</h2>
-    <h2>훈련 이름(ex PTP)</h2>
-    <h3>훈련 내용</h3>
+	<div th:each="list : ${list}"  th:object="${list}">
+		<a th:href="@{/exercise/exerciseConfirmDetail(ex_seq=${list.ex_seq})}">
+			<div>
+				<span th:text="${list.ex_title}"></span>
+				<span th:text="${list.ex_date}"></span>
+			</div>
+		</a>
+	</div>
 </div>
