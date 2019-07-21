@@ -61,13 +61,17 @@ public class ExerciseService {
     	}
 	}
 
-	public List<Map<String, Object>> serchExData(int memberSeq) {
+	public List<Map<String, Object>> ExDataList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return dao.serchExData(memberSeq);
+		return dao.serchExData(params);
 	}
 
 	public List<Map<String, Object>> serchExDetail(int ex_seq) {
 		return dao.serchExDetail(ex_seq);
+	}
+
+	public int countTotalCnt() {
+		return dao.countTotalCnt();
 	}
 
     

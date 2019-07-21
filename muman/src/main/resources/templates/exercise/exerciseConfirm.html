@@ -2,17 +2,34 @@
     <head th:replace="common/sub/head"></head>
 </head>
 
-<span class="" th:each="list : ${list}"  th:object="${list}">
-	<small class="label pull-right bg-green" th:text="${list.ex_seq}"></small>
-</span>
-
 <div class="wrap col-12">
 	<div th:each="list : ${list}"  th:object="${list}">
 		<a th:href="@{/exercise/exerciseConfirmDetail(ex_seq=${list.ex_seq})}">
 			<div>
+				<span th:text="${list.no}"></span>
 				<span th:text="${list.ex_title}"></span>
 				<span th:text="${list.ex_date}"></span>
 			</div>
 		</a>
 	</div>
+</div>
+
+<div>
+	<div>
+		<a th:href="@{/exercise/exerciseConfirm(currentPage=${paging.prev})}">
+			이전
+		</a>
+	</div>
+	<div>
+    <th:block th:each="num: ${#numbers.sequence( {paging.firstPage}, {paging.lastPage})}">
+        <a th:text="${num}" th:href="@{/exercise/exerciseConfirm(currentPage=${num} ) }">
+        </a>
+    </th:block>
+	</div>
+	<div>
+		<a th:href="@{/exercise/exerciseConfirm(currentPage=${paging.next})}">
+			다음
+		</a>
+	</div>
+		
 </div>

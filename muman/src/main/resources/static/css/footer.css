@@ -1,4 +1,4 @@
-.footer_wrap{padding-top:50px; padding-bottom:50px;  background-color:black; }
+.footer_wrap{padding-top:50px; padding-bottom:50px;  background-color:#4e4e4e; }
 .footer_wrap .contact_us {display:inline-block;font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; letter-spacing: -0.01em; font-weight: 500; color:#fff; }
 .footer_wrap .footer_menu_con{overflow: hidden; padding-bottom:76px; border-bottom:2px solid rgba(110, 110, 110, 0.5); margin-bottom:82px;}
 .footer_wrap .footer_menu_con > li{display:block; width:16.66%; float:left;}
@@ -27,5 +27,4 @@
     .footer_wrap .footer_util_list_con{text-align: left;}
     .footer_wrap .footer_copy{text-align: left;}
     .footer_wrap .footer_addr{text-align: left;}
-    .footer_wrap{padding-top: 84px; padding-bottom: 115px;}
 }

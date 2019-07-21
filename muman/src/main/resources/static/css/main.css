@@ -25,7 +25,7 @@ svg {fill: rgba(255, 255, 255, 1);stroke: rgba(255, 255, 255, 1);stroke-width: 1
 .arr_btn.left {transform: translateY(-50%); left: calc((100% - 480px) / 2 + 15px);}
 
 /*intro_teacher_con*/
-.intro_teacher_con {padding:100px 0px; background-repeat: no-repeat; background-position: right top;  background-size:cover; z-index: -2;}
+.intro_teacher_con {padding:100px 0px; background-repeat: no-repeat; background-position: left top;  background-size:cover; z-index: -2;}
 .intro_teacher_con .teacher_img_con > img {height: 200px; border-radius: 50%;}
 .intro_teacher_con_dim{height: 100%; width: 100%; background-color: rgba(0,0,0,0.5); position: absolute; top: 0; left: 0; z-index: -1;}
 .intro_teacher_con_content_002{max-width: 620px; padding-top: 50px; padding-bottom: 50px;}
@@ -61,9 +61,9 @@ svg {fill: rgba(255, 255, 255, 1);stroke: rgba(255, 255, 255, 1);stroke-width: 1
 
 /*why_con*/
 .why_ms_wrap {padding:120px 0px;}
-.why_ms_wrap .why_ms_text {font-size:35px; line-height:45px; text-align: left; margin-bottom: 120px; letter-spacing: -0.025rem; font-weight: bold;}
+.why_ms_wrap .why_ms_text {font-size:35px; line-height:45px; text-align: left; margin-bottom: 120px; letter-spacing: -0.025rem; font-weight: bold; color:#fff;}
 .text_con .text_title {font-size:20px; text-align: center; margin-bottom: 20px; font-weight: bold; color: #ea9643;}
-.text_con .text_desc {font-size:15px; text-align: center; font-weight: bold;}
+.text_con .text_desc {font-size:15px; text-align: center; font-weight: bold; color:#fff;}
 .why_img_con {margin-bottom: 30px;}
 .why_img_con > img {height:200px;}
 .emp{font-size:18px; font-weight: bold;  margin-bottom: 13px;}

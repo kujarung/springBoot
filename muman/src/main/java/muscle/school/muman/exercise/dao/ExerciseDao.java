@@ -12,8 +12,9 @@ public interface ExerciseDao {
 	void insertExData( Map<String, Object> param);
 	void insertExContent( Map<String, Object> param);
 	int selectExMasterSeq();
-	List<Map<String, Object>> serchExData(int memberSeq);
+	List<Map<String, Object>> serchExData(Map<String, Object> params);
 	List<Map<String, Object>> serchExDetail(int ex_seq);
+	int countTotalCnt();
  
     
 }
