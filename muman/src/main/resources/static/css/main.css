@@ -25,8 +25,8 @@ svg {fill: rgba(255, 255, 255, 1);stroke: rgba(255, 255, 255, 1);stroke-width: 1
 .arr_btn.left {transform: translateY(-50%); left: calc((100% - 480px) / 2 + 15px);}
 
 /*intro_teacher_con*/
-.intro_teacher_con {padding:100px 0px; background-repeat: no-repeat; background-position: left top;  background-size:cover; z-index: -2;}
-.intro_teacher_con .teacher_img_con > img {height: 200px; border-radius: 50%;}
+.intro_teacher_con {padding:100px 0px; background-repeat: no-repeat; background-position: right;  background-size:cover; z-index: -2;}
+.intro_teacher_con .teacher_img_con > img {height: 200px; border-radius: 50px;}
 .intro_teacher_con_dim{height: 100%; width: 100%; background-color: rgba(0,0,0,0.5); position: absolute; top: 0; left: 0; z-index: -1;}
 .intro_teacher_con_content_002{max-width: 620px; padding-top: 50px; padding-bottom: 50px;}
 .intro_teacher_con .line{border-bottom: 2px solid #7c7c7d; width: 100%; position: relative;}
