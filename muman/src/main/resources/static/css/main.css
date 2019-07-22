@@ -65,7 +65,7 @@ svg {fill: rgba(255, 255, 255, 1);stroke: rgba(255, 255, 255, 1);stroke-width: 1
 .text_con .text_title {font-size:20px; text-align: center; margin-bottom: 20px; font-weight: bold; color: #ea9643;}
 .text_con .text_desc {font-size:15px; text-align: center; font-weight: bold; color:#fff;}
 .why_img_con {margin-bottom: 30px;}
-.why_img_con > img {height:200px;}
+.why_img_con > img {height:200px; border-radius: 20px;}
 .emp{font-size:18px; font-weight: bold;  margin-bottom: 13px;}
 
 

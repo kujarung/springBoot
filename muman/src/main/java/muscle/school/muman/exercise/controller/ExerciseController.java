@@ -1,5 +1,6 @@
 package muscle.school.muman.exercise.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,17 +38,32 @@ public class ExerciseController {
     }
 
     //운동 일지 리스트 출력
-    @RequestMapping(value = "/exercise/exerciseConfirm", method=RequestMethod.GET)
+    @SuppressWarnings("null")
+	@RequestMapping(value = "/exercise/exerciseConfirm", method=RequestMethod.GET)
     public String exerciseConfirm(Model model, @RequestParam int currentPage) throws Exception {
         int memberSeq = 1;
         Map<String, Object> params = new HashMap<>();
         params.put("member_seq", memberSeq);
         params.put("current_page", currentPage);
         List<Map<String, Object>> list = service.ExDataList(params);
+        List<Map<String, Object>> deatilList = null;
+        List<Map<String, Object>> deatilResultList = new ArrayList<>();
+        for(int i=0;i<list.size();i++) {
+        	int serchVal = Integer.parseInt( list.get(i).get("ex_seq").toString() );
+        	deatilList = service.serchExDetail(serchVal);
+        	for(int j=0;j<deatilList.size();j++) {
+                System.out.println(deatilList.get(j) );
+        		deatilResultList.add( deatilList.get(j) );
+        	}
+        }
+        
         int totalPage = service.countTotalCnt();
+        //페이징 처리
         Map<String, Object> pagingInfo = calcPaging(totalPage, currentPage, 5);
         
         model.addAttribute("list", list);
+        model.addAttribute("deatilList", deatilResultList);
+        //페이징 처리
         model.addAttribute("paging", pagingInfo);
         return "exercise/exerciseConfirm";
     }
