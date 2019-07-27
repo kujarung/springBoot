@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/sub.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/common_style.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/wevenResponsive.css"/>
+    <script type="text/javascript" src="../js/swiper/swiper.min.js"></script>
+    <link rel="stylesheet" href="../js/swiper/swiper.min.css">
+    <!--jquery-->
+    <script type="text/javascript" src="../js/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/rollingEvent.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="col-12">
+        <div class="col-12 log_con">
+            <div class="col-12 mw-1200 col-center">
+                <div class="col-12 pt30 pr30 pl30 pr-sm-0 pl-sm-0">
+                    <div class="left_logo">
+                        <!--왼쪽 로고-->
+                        <!--img는 width값과 height가 고정 되어 있으므로 크기 변경 시 css변경 필요-->
+                        <!--반대로 어떠한 이미지를 넣어도 고정 값으로 변함-->
+                        <h1>
+                            <a href="/">
+                                <img src="../img/main_logo.png" alt="main_logo">
+                            </a>
+                        </h1>
+                    </div>
+
+                    <div class="right_utill_con">
+                        <!--메뉴 쪽, 추가 메뉴 필요시 li a 를 추가 하면 됨-->
+                        <ul class="col-12 ul_utill">
+                            <li class="">
+                                <a href="intro_teacher.html">
+                                    강사소개
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    수업 소개
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="">
+                                    신청 안내
+                                </a>
+                            </li>
+                            <li id="moblie_menu">
+                                <span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--모바일 시에 메뉴-->
+        <div id="moblie_menu_wrap" class="col-12 click_header_wrap">
+            <div class="col-12">
+                <div class="col-12 mobile_logo_con">
+                    <div class="left_logo">\
+                        <img src="../img/logo_girl.png" alt="" style="width:200px;">
+                    </div>
+                    <div id="x_btn" class="right_btn_con close_btn">
+                        <img src="../img/x_btn.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col-12 header_fixed_menu_box">
+                    <div class="member_menu_wrap">
+                        <div class="col-0 mr40">
+                            <a href="/" target="_blank" class="btn_style_0">
+                                <span class="point0">근력학교</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 pr40 pl40 pr-md-0 pl-md-0">
+                    <div class="col-12 gnb_wrap">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    테스트
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    테스트
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    테스트
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-12 sub_visual_back" style='background-image: url("../img/visual_img1.jpg");'>
+            <div class="col-12 sub_dim"></div>
+            <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                <div class="col-12 h-100 fn show-table">
+                    <div class="col-12 fn show-tablecell vm tl">
+                        <div class="col-12">
+                            <div class="col-12 sub_text pb10 pt90 bold">
+                                수업 커리큘럼
+                            </div>
+                            <div class="col-12 sub_content">
+                                <span class="point_color bold">당신은 헬스를 모른다.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 sub_back">
+            <div class="col-12 mw-1200 col-center content_con">
+                <div class="col-12 pr15 pl15">
+                    <div class="col-12 time_table_con">
+                        <div class="col-12 title_font point_color mb30">
+                            근력 학교 수업 시간표
+                        </div>
+                        <div class="col-12">
+                            <table class="table_style1">
+                                <colgroup>
+                                    <col width="auto" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="12%" />
+                                    <col width="10%" />
+                                    <col width="10%" />
+                                </colgroup>
+                                <thead>
+                                <th>  </th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                                <th>토</th>
+                                <th>일</th>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>8:00 ~ 9:30</td>
+                                    <td colspan="5">수업 없음</td>
+                                    <td rowspan="7">입학반 기초 <br>& 바벨 케틀벨 수업</td>
+                                    <td rowspan="7">휴무</td>
+                                </tr>
+                                <tr>
+                                    <td>10:00 ~ 11:30</td>
+                                    <td></td>
+                                    <td>1교시</td>
+                                    <td></td>
+                                    <td>1교시</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>12:00 ~ 13:30</td>
+                                    <td>2교시</td>
+                                    <td>2교시</td>
+                                    <td>2교시</td>
+                                    <td>2교시</td>
+                                    <td>2교시</td>
+                                </tr>
+                                <tr>
+                                    <td>3:00 ~ 5:00</td>
+                                    <td>3교시</td>
+                                    <td>3교시</td>
+                                    <td>3교시</td>
+                                    <td>3교시</td>
+                                    <td>3교시</td>
+                                </tr>
+                                <tr>
+                                    <td>6:00 ~ 7:30</td>
+                                    <td>4교시</td>
+                                    <td>4교시</td>
+                                    <td>4교시</td>
+                                    <td>4교시</td>
+                                    <td>4교시</td>
+                                </tr>
+                                <tr>
+                                    <td>8:00 ~ 9:30</td>
+                                    <td>5교시</td>
+                                    <td>5교시</td>
+                                    <td>5교시</td>
+                                    <td>5교시</td>
+                                    <td>5교시</td>
+                                </tr>
+                                <tr>
+                                    <td>10:00 ~ 11:30</td>
+                                    <td>6교시</td>
+                                    <td></td>
+                                    <td>6교시</td>
+                                    <td></td>
+                                    <td>6교시</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-12 price_con">
+                        <div class="col-12 title_font point_color mb30">
+                            근력학교 등록금
+                        </div>
+                        <div class="col-12">
+                            <table class="table_style1">
+                                <colgroup>
+                                    <col width="70%" />
+                                    <col width="30%" />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>입학생필수 수강: 바벨& 케틀벨 기초 클래스</td>
+                                        <td>5시간 <span class="point_color">8만원</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            ※ 기초 클래스를 수강해야 다른 학생들과 비슷한 수준에서 수업에 참여 할 수 있습니다.<br>
+                                            ※ 기초 클래스는 평생 1회만 수강하시면 됩니다.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>주 1회 클래스</td>
+                                        <td>1개월 <span class="point_color">14만원</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>주 2회 클래스</td>
+                                        <td>1개월 <span class="point_color">24만원</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>주 3회 클래스</td>
+                                        <td>1개월 <span class="point_color">34만원</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>주 4회 클래스</td>
+                                        <td>1개월 <span class="point_color">44만원</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-12 how_to_con">
+                        <div class="col-12 title_font point_color mb30">
+                            근력학교 이용방법
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="content_con">
+                                ① 원하는 요일/교시를 고르시고<br>
+                                ② 주말 바벨&케틀벨 기초 클래스를 수료한 뒤<br>
+                                ③ 원하는 요일/교시에 등교하시면 됩니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 footer_wrap">
+            <div class="col-12 col-center mw-1200">
+                <div class="col-12 pr15 pl15">
+                    <div class="col-12 col-md-6 mb30 mb-md-0 tc tl-md">
+                        <a href="javascript:void(0)" class="show mr25">
+                            <img src="../img/logo_girl.png" alt="" style="width: 200px;">
+                        </a>
+                        <div class="col-12">
+                            <a href="javascript:void(0)" class="show mt5 contact_us">
+                                <span class="lineheight0 font_helve pr10">CONTACT US</span>
+                                <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 5.8 9.7" style="enable-background:new 0 0 5.8 9.7; width: 6px; height: 11px;" xml:space="preserve">
+                                    <style type="text/css">
+                                    .st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-miterlimit:10;}
+                                    </style>
+                                    <path class="st0" d="M-27.4-15.6"></path>
+                                    <line x1="-30.7" y1="0.2" x2="-26.5" y2="4"></line>
+                                    <polygon points="0.7,9.7 0,9 4.4,4.9 0,0.7 0.7,0 5.8,4.9 " style="fill:#fff;"></polygon>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="col-12 mb19">
+                            <ul class="footer_util_list_con">
+                                <li class="footer_util_list">
+                                    <a href="javascript:void(0)">
+                                        이용약관
+                                    </a>
+                                </li>
+                                <li class="footer_util_list">
+                                    <a href="javascript:void(0)">
+                                        개인정보취급방침
+                                    </a>
+                                </li>
+                                <li class="footer_util_list">
+                                    <a href="javascript:void(0)">
+                                        찾아오시는길
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-12 mb13" >
+                            <div class="footer_addr">
+                                서울특별시 성북구 인촌로24길 47 3층 근력학교<br>
+                                이메일  TEST@NAVER,COM
+                            </div>
+                        </div>
+                        <div class="col-12 mb91" >
+                            <div class="footer_copy font_helve">
+                                2019 COPYRIGHT BY KU. ALL RIGHTS RESERVED
+                            </div>
+                        </div>
+                        <div class="col-12 tc tl-md" >
+                            <a href="javascript:void(0)" class="go_up_btn">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40.4 20" style="enable-background:new 0 0 40.4 20; width:39px; height:21px; fill:#fff;" xml:space="preserve">
+                        <polygon points="1.3,20 0,18.5 20.3,0 40.4,18.5 39,20 20.3,2.7 "></polygon>
+                        </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+    $("#moblie_menu").on("click", function() {
+        var memnu = $("#moblie_menu_wrap");
+        if(memnu.hasClass("active")) {
+            memnu.removeClass("active");
+        } else {
+            memnu.addClass("active");
+        }
+    });
+
+    $("#x_btn").on("click", function() {
+        var memnu = $("#moblie_menu_wrap");
+        memnu.removeClass("active");
+    });
+</script>
