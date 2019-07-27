@@ -7,68 +7,69 @@
     <body>
         <div class="wrapper">
             <header th:replace="common/header"></header>
-            <div class="col-12 sub_visual_con" style="background-image:url('img/sub_visual2.png')">
-                <div class="col-12 mw-1200 col-center h-100 show-table ">
-                    <div class="col-12 pr15 pl15 vm show-tablecell fn">
-                        <div class="title point_color">
-                            수업 소개
-                        </div>
-                        <div class="content">
-                            8월 <극>성수기를 맞아 완판된 ⭐근력학교⭐
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12" style="background-color: #f7f7f7">
-                <div class="col-12 mw-1200 col-center">
-                    <div class="col-12 pr15 pl15">
-                        입학반
-                    </div>    
-                    <div class="">
-                        등록된 결제금액은 '입학반 정가 비용'입니다. <Br>
-                        정식 수업은 추가 비용이 있습니다.<Br>
-                        아래 사항들을 확인해주세요!<Br>
-                        [ 주말 입학반 인원 모집! ]<Br>
-                    </div>
-                    <div class="">
-                        ✔월 수 금 시간표 <br>
-                        ✔ 1교시 : 오전 8시 ~ 9시 30분 <br>
-                        ✔ 2교시 : 낮 12시 ~ 1시 40분 (10분 여유)<br>
-                        ✔ 3교시 : 오후 3시 30분 ~ 오후 5시 10분 (10분 여유)<br>
-                        ✔ 4교시 : 오후 6시 ~ 오후 7시 30분<br>
-                        ✔ 5교시 : 오후 8시 ~ 오후 9시 30분<br>
-                        ✔ 6교시 : 오후 10시 ~ 오후 11시 30분<br>
-                        
-                        ✔화 목 시간표 <br>
-                        ✔ 1교시 : 오전 10시 ~ 11시 30분 <br>
-                        ✔ 2교시 : 낮 12시 ~ 1시 40분 (10분 여유)<br>
-                        ✔ 3교시 : 오후 3시 30분 ~ 오후 5시 10분 (10분 여유)<br>
-                        ✔ 4교시 : 오후 6시 ~ 오후 7시 30분<br>
-                        ✔ 5교시 : 오후 8시 ~ 오후 9시 30분<br>
-                        <br>
-                        ※ 월수금/화목 1교시 시작 시간이 다릅니다!!<br>
-                        ※ 주말에는 '입학생 전용 수업'(입학반)이 있습니다.<br>
-                        ※ 한 교시는 '1시간 30분' 입니다.<br>
-                        ※ 수업을 진행하는 트레이너는 2명이고 학생은 최대 6명입니다. <br>
-                        <br>
-                        주말은 입학생만 참석하는 5시간의 입학반 수업을 진행합니다.<br>
-                    </div>
-                </div>
+            <div class="wrapper">
                 <div class="col-12">
-                    <div class="col-12">
-                        정규반
-                    </div>
-                    <div class="col-12">
-    
-                    </div>
+                    <ul class="col-12" >
+                        <li class="col-12">
+                            <div class="col-12 pallex-back">
+                                <div class="col-12 pallex" style="background-image: url('../img/pal1.jpg')">
+                                    <div class="col-12 bakimg"></div>
+                                    <div class="col-12 pallex_text_con">
+                                        <div class="col-12 pallex_text" style="color:wheat; font-size: 30px;">
+                                            이것은 테스트 입니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-12 tc">
+                            <div class="col-12 pallex-back">
+                                <div class="col-12 pallex" style="background-image: url('../img/pal2.jpg')">
+                                    <div class="col-12 bakimg"></div>
+                                    <div class="col-12 pallex_text_con">
+                                        <div class="col-12 pallex_text" style="color:wheat; font-size: 30px;">
+                                            이것은 테스트 입니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-12 tc">
+                            <div class="col-12 pallex-back">
+                                <div class="col-12 pallex" style="background-image: url('../img/pal3.jpg')">
+                                    <div class="col-12 bakimg"></div>
+                                    <div class="col-12 pallex_text_con">
+                                        <div class="col-12 pallex_text" style="color:wheat; font-size: 30px;">
+                                            이것은 테스트 입니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-
             <footer th:replace="common/footer"></footer>
         </div>
 
     </body>
 
 </html>
+
+<style>
+    .pallex-back{background-color: black; position: relative;}
+    .pallex{background-position: center; background-attachment: fixed; background-size: cover; background-repeat: no-repeat;}
+    .pallex_text_con{display:table; height: 100%;}
+    .pallex_text{display:table-cell; float: none; vertical-align: middle; text-align: center;}
+    .bakimg{opacity: 0.3; background-color: black; position: absolute;}
+</style>
+<script>
+    var viewHeight = $(window).height();
+    $("li > .pallex-back").height(viewHeight);
+    $("li .pallex").height(viewHeight);
+    $("li .bakimg").height(viewHeight);
+    $(window).scroll(function(){
+        
+    });
+
+</script>

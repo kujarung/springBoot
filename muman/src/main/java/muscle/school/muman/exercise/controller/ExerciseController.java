@@ -50,11 +50,16 @@ public class ExerciseController {
         List<Map<String, Object>> deatilResultList = new ArrayList<>();
         for(int i=0;i<list.size();i++) {
         	int serchVal = Integer.parseInt( list.get(i).get("ex_seq").toString() );
-        	deatilList = service.serchExDetail(serchVal);
-        	for(int j=0;j<deatilList.size();j++) {
-                System.out.println(deatilList.get(j) );
-        		deatilResultList.add( deatilList.get(j) );
-        	}
+            deatilList = service.serchExDetail(serchVal);
+            if(deatilList.size() ==0 ) {
+
+            } else {
+                for(int j=0;j<deatilList.size();j++) {
+                    System.out.println(deatilList.get(j).get("ex_seq") );
+                    deatilResultList.add( deatilList.get(j) );
+                }
+            }
+
         }
         
         int totalPage = service.countTotalCnt();
