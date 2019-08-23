@@ -1,6 +1,34 @@
 $(function(){
-
-	
+	$("#memberList").hide();
+	$("#findMember").on("click", function(){
+		$.ajax({
+			url:'/selectMemberList',
+			dataType: "json",
+			async: false,
+			success: function(result){
+				$("#memberList").show();
+				$("#memberList tbody").children().remove();
+				var jsonResult = result.result;
+				for(var i=0;i<Object.keys(jsonResult).length;i++) {
+					var tr = "<tr>" 
+					+ "<td>" + jsonResult[i].no + "</td>"
+					+" <td class='tb_name'>" + jsonResult[i].name + "</td>"
+					+" <td class='tb_id'>" + jsonResult[i].member_id + "</td>"
+					+" <td class='hidden tb_seq'>" + jsonResult[i].member_seq + "</td>"
+					+ "</tr>";
+					$("#memberList tbody").append(tr);
+				}
+			}
+         })
+         
+         $("#memberList td").on("click", function(){
+        	 console.log( $(this).parent().find(".tb_name").text());
+        	 $("#memberList tbody").children().remove();
+        	 $("#memberList").hide();
+        	 $('[name="member_name"]').val($(this).parent().find(".tb_name").text());
+        	 $('[name="member_seq"]').val($(this).parent().find(".tb_seq").text());
+         })
+	})
 	
 	$("#courseTimeTable td").on("click", function(){
 		if( $(this).hasClass("active")  ) {
@@ -15,6 +43,9 @@ $(function(){
 	
 	
 	$("#startTime").on("change", function(){
+		$("#courseDateList").children().remove();
+		var plusIndex = 0;
+		var plusClass = "plus" + plusIndex;
 		var dayOfWeekList = new Array;
 		$("#courseTimeTable td.active").each(function(){
 			dayOfWeekList.push ( $(this).index() );
@@ -33,8 +64,22 @@ $(function(){
 		for(var i = 0; i < resultList.length; i++) {
 			$("#courseDateList").append(  "<div class='time_list'>" + resultList[i] + "</div>"    );
 		}
-		$("#courseDateList").append("<div id='plus'>plus</div>");
-		$("#plus").datepicker({ dateFormat: 'yy-mm-dd' });
+		
+		$("#courseDateList").append("<input class='"+ plusClass +"' readonly/>");
+		$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+		$("#plusBtn").on("click" , function(){
+			$("." + plusClass).contents().unwrap().wrap( '<div></div>' )
+			$("." + plusClass).addClass("time_list");
+			$("." + plusClass).datepicker("destroy");
+			$("." + plusClass).removeClass(plusClass);
+			plusIndex++;
+			$("#courseDateList").append("<input class='"+ plusClass +"' readonly></div>");
+			$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+			$(".time_list").on("click",function() {
+				$(this).remove();
+			});
+			
+		})
 		$(".time_list").on("click",function() {
 			$(this).remove();
 		});

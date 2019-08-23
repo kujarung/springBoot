@@ -11,7 +11,7 @@
 <body>
 
 <style>
-	.time_list{display: inline; border:1px solid black; margin-right:10px;}
+	.time_list{display: inline-block; border:1px solid black; margin-right:10px; padding: 5px; vertical-align: top; font-size: 12px; font-weight: normal;height: 20px; width: 100px; line-height: 20px;}
 	.time_list:last-child {margin-right:0px;}
 </style>
 
@@ -20,9 +20,21 @@
 		<div class="col-12 pr15 pl15">
 		<form class="col-12" id="course">
 			<div class="col-12 form_con">
-				<span class="mb30">회원 이름</span> <span style="border:1px solid black">찾기</span>
-				<input name="couse_name" class="col-12">
-				<input type="hidden" name="member_seq">
+				<span class="mb30">회원 이름</span> <span style="border:1px solid black" id="findMember">찾기</span>
+				<input name="member_name" class="col-12" readonly>
+				<input name="member_seq" class="hidden">
+				<div class="col-12" id="memberList">
+					<table>
+						<thead>
+							<th>번호</th>
+							<th>이름</th>
+							<th>아이디</th>
+						</thead>
+						<tbody>
+							<tr></tr>
+						</tbody>
+					</table>
+				</div>
 			</div>	
 			
 			<div class="col-12 form_con">
@@ -109,13 +121,16 @@
 			
 			<div class="col-12">
 				<div class="col-12 mb10">수업 시작일</div>
-				<span class="col-12 mb30" id="times">주0회</span>
+				<span class="col-12 mb30" id="times">주0회<span id="number"></span></span>
 				<input name="register_start_time" id="startTime" readonly>
 				<div class="col-12 mb10">수업 마지막일</div>
 				<input name="register_end_time" id="endTime" readonly>
 				<div class="col-12">
 					<div id="courseDateList">
 						
+					</div>
+					<div>
+						<input type="button" id="plusBtn" value="추가하기"/>
 					</div>
 				</div>
 			</div>
