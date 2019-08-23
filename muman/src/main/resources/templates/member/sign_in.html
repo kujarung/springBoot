@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-        <title>회원 가입</title> 
+        <title>수업 소개</title> 
         <head th:replace="common/sub/head"></head>
     </head> 
     <body>
@@ -11,13 +11,27 @@
                 <div class="col-12 mw-1200 col-center h-100 show-table ">
                     <div class="col-12 pr15 pl15 vm show-tablecell fn">
                         <div class="title point_color">
-                            	회원 가입
+                            	수업 소개
                         </div>
                         <div class="content">
                             8월 <극>성수기를 맞아 완판된 ⭐근력학교⭐
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="col-12 sub_content">
+            	<div class="login-form">
+				    <form id="login">
+				      <input type="text" name="email" class="text-field" placeholder="아이디"><br>
+				      <input type="password" name="password" class="text-field" placeholder="비밀번호"><br>
+				      <input type="submit" value="로그인" class="submit-btn">
+				    </form>
+				
+				    <div class="links">
+				      <a href="#">비밀번호를 잊어버리셨나요?</a>
+				    </div>
+				 </div>
             </div>
 
             <footer th:replace="common/footer"></footer>

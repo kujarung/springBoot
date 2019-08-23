@@ -5,107 +5,204 @@
         <head th:replace="common/sub/head"></head>
     </head> 
     <body>
-        <div class="col-12 wrapper sub_back">
+        <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-            <div class="col-12 sub_visual_con" style="background-image:url('img/sub_visual2.png')">
-                <div class="col-12 mw-1200 col-center h-100 show-table ">
-                    <div class="col-12 pr15 pl15 vm show-tablecell fn">
-                        <div class="title point_color">
-                            	수업 소개
-                        </div>
-                        <div class="content">
-                            8월 <극>성수기를 맞아 완판된 ⭐근력학교⭐
+			
+			<div class="sub_main col-12">
+                <div class="col-12 sub_visual_back" style='background-image: url("../img/visual_img1.jpg");'>
+                    <div class="col-12 sub_dim"></div>
+                    <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                        <div class="col-12 h-100 fn show-table">
+                            <div class="col-12 fn show-tablecell vm tl">
+                                <div class="col-12">
+                                    <div class="col-12 sub_text pb10 pt90 bold">
+                                        	나의 일지 확인
+                                    </div>
+                                    <div class="col-12 sub_content">
+                                        <span class="point_color bold">지금 까지 운동한 내용을 확인해 보세요!</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-			<div class="col-12 col-center mw-1200">
-				<div class="col-12 pr15 pl15">
-					<div class="col-12">
-                        <table>
-                            <colgroup>
-                                <col width="30px">
-                                <col width="100px">
-                                <col width="100px">
-                                <col width="100px">
-                                <col width="50px">
-                                <col width="100px">
-                                <col width="100px">
-                                <col width="100px">
-                                <col width="100px">
-
-                                <col width="100px">
-                                <col width="50px">
-                                <col width="100px">
-                                <col width="100px">
-                                <col width="100px">
-                                <col width="100px">
-                            </colgroup>
-                            <thead style="color:white; font-size:1.0rem">
-                                <th>번호</th>
-                                <th>운동이름</th>
-                                <th>날짜</th>
-                                <th>운동종류</th>
-                                <th>세트</th>
-                                <th>반복</th>
-                                <th>중량</th>
-                                <th>본/예비</th>
-                            </thead>
-
-                            <tbody style="color:white; font-size:1.0rem">
-                                <tr th:each="list : ${list}"  th:object="${list}">
-                                    <td th:text="${list.no}"></td>
-                                    <td th:text="${list.ex_title}"></td>
-                                    <td th:text="${list.ex_date}"></td>
-                                    <td th:each="deatilList : ${deatilList}" th:if="${list.ex_seq} == ${deatilList.ex_seq}" th:text="${deatilList.ex_cate}"></td>
-                                    <td th:each="deatilList : ${deatilList}" th:if="${list.ex_seq} == ${deatilList.ex_seq}" th:text="${deatilList.ex_set}"></td>
-                                    <td th:each="deatilList : ${deatilList}" th:if="${list.ex_seq} == ${deatilList.ex_seq}" th:text="${deatilList.ex_times}"></td>
-                                    <td th:each="deatilList : ${deatilList}" th:if="${list.ex_seq} == ${deatilList.ex_seq}" th:text="${deatilList.ex_weight}"></td>
-                                    <td th:each="deatilList : ${deatilList}" th:if="${list.ex_seq} == ${deatilList.ex_seq}" th:text="${deatilList.ex_real_yn}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                            
-                        <div class="col-12" >
-                            <a th:href="@{/exercise/exerciseConfirmDetail(ex_seq=${list.ex_seq})}">
-                                <div style="color:#fff;">
-                                    <span ></span>
-                                    <span ></span>
-                                    <span ></span>
-                                    <div class="col-12" >
-                                        <div >
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-						
-					</div>
-				</div>
-				<div class="col-12 paging">
-					<div class="before_btn">
-						<a th:href="@{/exercise/exerciseConfirm(currentPage=${paging.prev})}">
-							이전
-						</a>
-					</div>
-
-					<div class="paging">
-						<th:block th:each="num: ${#numbers.sequence( {paging.firstPage}, {paging.lastPage})}">
-							<a th:text="${num}" th:href="@{/exercise/exerciseConfirm(currentPage=${num} ) }">
-							</a>
-						</th:block>
+				<div class="col-12 col-center mw-1200">
+					<div class="col-12 pr15 pl15">
+						<div class="col-12">
+	                        <table class="table_style1">
+	                            <colgroup>
+	                                <col width="30px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                                <col width="50px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                                <col width="100px">
+	
+	                                <col width="100px">
+	                                <col width="50px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                                <col width="100px">
+	                            </colgroup>
+	                            <thead style="color:white; font-size:1.0rem">
+	                                <th>번호</th>
+	                                <th>운동이름</th>
+	                                <th>날짜</th>
+	                                
+	                                <th>운동종류</th>
+	                                <th>세트</th>
+	                                <th>반복</th>
+	                                <th>중량</th>
+	                                <th>본/예비</th>
+	                                
+	                                <th>운동종류</th>
+	                                <th>세트</th>
+	                                <th>반복</th>
+	                                <th>중량</th>
+	                                <th>본/예비</th>
+	                            </thead>
+	
+	                            <tbody style="color:white; font-size:1.0rem">
+	<!--                                 <tr th:each="list : ${list}"  th:object="${list}">
+	                                    <td th:text="${list.no}"></td>
+	                                    <td th:text="${list.ex_title}"></td>
+	                                    <td th:text="${list.ex_date}"></td>
+	                                    
+	                                    <td th:each="" th:object="${deatilResultList}">
+	                                    	
+	                                    </td>
+	                                </tr> -->
+	                                
+	                                <tr>
+	                                	<td>1</td>
+	                               		<td>PTP</td>
+	                               		<td>2019:7:28</td>
+	                               		
+	                               		<td>스쿼트</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                               		<td>밴치</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                                </tr>
+	                                
+	                                                                <tr>
+	                                	<td>2</td>
+	                               		<td>PTP</td>
+	                               		<td>2019:7:28</td>
+	                               		
+	                               		<td>스쿼트</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                               		<td>밴치</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                                </tr>
+	                                
+	                                                                <tr>
+	                                	<td>3</td>
+	                               		<td>PTP</td>
+	                               		<td>2019:7:28</td>
+	                               		
+	                               		<td>스쿼트</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                               		<td>밴치</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                                </tr>
+	                                
+	                                                                <tr>
+	                                	<td>4</td>
+	                               		<td>PTP</td>
+	                               		<td>2019:7:28</td>
+	                               		
+	                               		<td>스쿼트</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                               		<td>밴치</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                                </tr>
+	                                
+	                                                                <tr>
+	                                	<td>5</td>
+	                               		<td>PTP</td>
+	                               		<td>2019:7:28</td>
+	                               		
+	                               		<td>스쿼트</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                               		<td>밴치</td>
+	                               		<td>3</td>
+	                               		<td>5|2|3</td>
+	                               		<td>50|70|80</td>
+	                               		<td>Y|Y|N</td>
+	                               		
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                            
+						</div>
 					</div>
 					
-					<div class="next_btn">
-						<a th:href="@{/exercise/exerciseConfirm(currentPage=${paging.next})}">
-							다음
-						</a>
+	<!-- 				<div class="col-12 paging">
+						<div class="before_btn">
+							<a th:href="@{/exercise/exerciseConfirm(currentPage=${paging.prev})}">
+								이전
+							</a>
+						</div>
+	
+						<div class="paging">
+							<th:block th:each="num: ${#numbers.sequence( {paging.firstPage}, {paging.lastPage})}">
+								<a th:text="${num}" th:href="@{/exercise/exerciseConfirm(currentPage=${num} ) }">
+								</a>
+							</th:block>
+						</div>
+						
+						<div class="next_btn">
+							<a th:href="@{/exercise/exerciseConfirm(currentPage=${paging.next})}">
+								다음
+							</a>
+						</div>
 					</div>
+					 -->
 				</div>
-			</div>
-            <footer th:replace="common/footer"></footer>
+	        </div>
+	        <footer th:replace="common/footer"></footer>
         </div>
+
 
     </body>
 

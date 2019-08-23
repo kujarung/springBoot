@@ -65,7 +65,8 @@ public class ExerciseController {
         int totalPage = service.countTotalCnt();
         //페이징 처리
         Map<String, Object> pagingInfo = calcPaging(totalPage, currentPage, 5);
-        
+        System.out.println("list : " + list);
+        System.out.println("deatilResultList : " + deatilResultList);
         model.addAttribute("list", list);
         model.addAttribute("deatilList", deatilResultList);
         //페이징 처리
@@ -94,8 +95,6 @@ public class ExerciseController {
     public String excerciseMeasure() throws Exception {
         return "exercise/excerciseMeasure";
     }
-    
-    
     
     //페이징 처리
     public Map<String, Object> calcPaging(int totalCnt, int currentPage, int pagingCnt) {

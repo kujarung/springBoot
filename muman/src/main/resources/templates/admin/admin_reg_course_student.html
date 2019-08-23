@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <head th:replace="common/sub/admin_head"></head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+
+<style>
+	.time_list{display: inline; border:1px solid black; margin-right:10px;}
+	.time_list:last-child {margin-right:0px;}
+</style>
+
+<div class="col-12 admin_sub" style="padding-top:100px;">
+	<div class="col-12 mw-1200 col-center" style="font-size:15px;">
+		<div class="col-12 pr15 pl15">
+		<form class="col-12" id="course">
+			<div class="col-12 form_con">
+				<span class="mb30">회원 이름</span> <span style="border:1px solid black">찾기</span>
+				<input name="couse_name" class="col-12">
+				<input type="hidden" name="member_seq">
+			</div>	
+			
+			<div class="col-12 form_con">
+				<span class="mb30">강좌 시간 선택</span>
+				<table class="table_style2" id="courseTimeTable">
+	               <colgroup>
+	               </colgroup>
+                      <col width="auto" />
+                      <col width="12%" />
+                      <col width="12%" />
+                      <col width="12%" />
+                      <col width="12%" />
+                      <col width="12%" />
+                   <thead>
+	                    <tr>
+		                    <th>시간</th>
+		                    <th>월</th>
+		                    <th>화</th>
+		                    <th>수</th>
+		                    <th>목</th>
+		                    <th>금</th>
+	                   </tr>
+                   </thead>
+        
+                   <tbody>
+                   
+                   <tr>
+                       <th>10:00 ~ 11:30</th>
+                       <td></td>
+                       <td>1교시</td>
+                       <td></td>
+                       <td>1교시</td>
+                       <td></td>
+                   </tr>
+                   
+                   <tr>
+                       <th>12:00 ~ 13:30</th>
+                       <td class="active">2교시(0/5)</td>
+                       <td>2교시</td>
+                       <td>2교시</td>
+                       <td>2교시</td>
+                       <td>2교시</td>
+                   </tr>
+                   
+                   <tr>
+                       <th>15:00 ~ 17:00</th>
+                       <td>3교시</td>
+                       <td>3교시</td>
+                       <td>3교시</td>
+                       <td>3교시</td>
+                       <td>3교시</td>
+                   </tr>
+                   
+                   <tr>
+                       <th>18:00 ~ 19:30</th>
+                       <td>4교시</td>
+                       <td>4교시</td>
+                       <td>4교시</td>
+                       <td>4교시</td>
+                       <td>4교시</td>
+                   </tr>
+                   
+                   <tr>
+                       <th>20:00 ~ 21:30</th>
+                       <td>5교시</td>
+                       <td>5교시</td>
+                       <td>5교시</td>
+                       <td>5교시</td>
+                       <td>5교시</td>
+                   </tr>
+                   
+                   <tr>
+                       <th>22:00 ~ 23:30</th>
+                       <td>6교시</td>
+                       <td></td>
+                       <td>6교시</td>
+                       <td></td>
+                       <td>6교시</td>
+                   </tr>
+                   
+                   </tbody>
+               </table>
+			</div>
+			
+			<div class="col-12">
+				<div class="col-12 mb10">수업 시작일</div>
+				<span class="col-12 mb30" id="times">주0회</span>
+				<input name="register_start_time" id="startTime" readonly>
+				<div class="col-12 mb10">수업 마지막일</div>
+				<input name="register_end_time" id="endTime" readonly>
+				<div class="col-12">
+					<div id="courseDateList">
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-12">
+				<input type="submit" value="저장" id="courseInsertBtn"> 
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

@@ -20,20 +20,25 @@ public class MainController {
     @Autowired
     MainService service;
 
+    //메인 화면으로 이동
     @RequestMapping(value = "/", method=RequestMethod.GET)
     public String main() throws Exception {
-        List<MemberVO> list = service.selectMemberList();
-        for(int i=0; i<list.size(); i++){
-            System.out.println("name : " + list.get(i).getName());
-        }       
         return "index";
     }
 
-    @RequestMapping(value = "/intro", method=RequestMethod.GET)
-    public String intro() {
-        return "intro";
+    //강사 소개 페이지로 이동
+    @RequestMapping(value = "/intro_teacher", method=RequestMethod.GET)
+    public String introTeacher() {
+        return "intro_teacher/intro_teacher";
     }
 
+    //학교 소개 페이지로 이동
+    @RequestMapping(value = "/intro_school", method=RequestMethod.GET)
+    public String introSchool() {
+        return "intro_school/intro_school";
+    }
+    
+    //강좌 소개 페이지로 이동
     @RequestMapping(value = "/intro_course", method=RequestMethod.GET)
     public String intro_course() {
         return "intro_course/intro_course";

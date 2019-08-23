@@ -4,47 +4,69 @@
         <title>수업 소개</title> 
         <head th:replace="common/sub/head"></head>
     </head> 
-    <body>X
-        <div class="wrapper">
+    <body>
+        <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-			<div id="excercise_main" class="col-12">
-				<div class="col-12 mw-1200 col-center h-100 show-table">
-					<div class="col-12 pr15 pl15 h-100 show-tablecell vm tc fn">
-						<div class="col-4">
-							<a class="col-12" href="/exercise/excerciseMeasure">
-								<div class="col-12 h-100">
-									<img src="../img/check_ex.jpg" alt="">
-								</div>
-								<div class="">
-									측정 결과 등록
-								</div>
-							</a>
-						</div>
-						
-						<div class="col-4">
-							<a class="col-12" href="/exercise/exerciseRecord">
-								<div class="col-12 h-100">
-									<img src="../img/write.jpg" alt="">
-								</div>
-								<div class="" >
-									일지 작성
-								</div>
-							</a>
-						</div>
-		
-						<div class="col-4">
-							<a class="col-12" href="/exercise/exerciseConfirm?currentPage=1&pagingCnt=5">
-								<div class="col-12 h-100">
-									<img src="../img/check.jpg" alt="">
-								</div>
-								<div class="">
-									일지 확인
-								</div>
-							</a>
+			<div class="sub_main col-12">
+                <div class="col-12 sub_visual_back" style='background-image: url("../img/visual_img1.jpg");'>
+                    <div class="col-12 sub_dim"></div>
+                    <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                        <div class="col-12 h-100 fn show-table">
+                            <div class="col-12 fn show-tablecell vm tl">
+                                <div class="col-12">
+                                    <div class="col-12 sub_text pb10 pt90 bold">
+                                        	나의 일지 확인
+                                    </div>
+                                    <div class="col-12 sub_content">
+                                        <span class="point_color bold">지금 까지 운동한 내용을 확인해 보세요!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              	
+				<div id="excercise_main" class="col-12">
+					<div class="col-12 mw-1200 col-center h-100 show-table">
+						<div class="col-12 pr15 pl15 h-100 show-tablecell vm tc fn">
+							<div class="col-4">
+								<a class="col-12" href="/exercise/excerciseMeasure">
+									<div class="col-12 h-100">
+										<img src="../img/check_ex.jpg" alt="">
+									</div>
+									<div class="">
+										측정 결과 등록
+									</div>
+								</a>
+							</div>
+							
+							<div class="col-4">
+								<a class="col-12" href="/exercise/exerciseRecord">
+									<div class="col-12 h-100">
+										<img src="../img/write.jpg" alt="">
+									</div>
+									<div class="" >
+										일지 작성
+									</div>
+								</a>
+							</div>
+			
+							<div class="col-4">
+								<a class="col-12" href="/exercise/exerciseConfirm?currentPage=1&pagingCnt=5">
+									<div class="col-12 h-100">
+										<img src="../img/check.jpg" alt="">
+									</div>
+									<div class="">
+										일지 확인
+									</div>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+	        </div>
+        </div>
+
             <footer th:replace="common/footer"></footer>
         </div>
 

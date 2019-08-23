@@ -22,13 +22,4 @@ public class registerController {
         return "register/regStudent";
     }
 
-    //회원 등록
-    @RequestMapping(value = "/register/member", method=RequestMethod.GET)
-    public String registerMember() throws Exception {
-
-        return "register/member";
-    }
-
-
-
 }
