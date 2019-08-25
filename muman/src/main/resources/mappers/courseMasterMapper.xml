@@ -7,9 +7,27 @@
         
     <select id="selectCourseMaterList"  resultType="map">
         SELECT 
-        	* 
+        	course_time_name, max_people, week_of_day 
         FROM 
         	COURSE_MASTER
     </select>
     
+    <select id="selectRegMemberNum" resultType="map">
+	    SELECT
+			CM.master_seq, (SELECT COUNT(CS.MEMBER_SEQ) FROM COURSE_STUDENT CS WHERE CM.master_seq = CS.master_seq) reg_member_num,
+			CM.couse_time_name, CM.course_start_time, CM.week_of_day
+		FROM 
+			COURSE_MASTER CM
+    </select>
+    <!-- 
+    <select id="selectRegMemberList" resultType="map">
+		SELECT 
+			MEM.NAME,MEM.MEMBER_ID 
+		FROM 
+			COURSE_STUDENT CS
+		LEFT JOIN MEMBER MEM ON (MEM.member_seq = CS.member_seq)
+		WHERE 
+			MASTER_SEQ = #{master_seq}
+	</select>
+	 -->
 </mapper>

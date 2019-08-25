@@ -1,5 +1,6 @@
 $(function(){
 	$("#memberList").hide();
+	//맴버 찾기 버튼 클릭 시 리스트 출력
 	$("#findMember").on("click", function(){
 		$.ajax({
 			url:'/selectMemberList',
@@ -29,6 +30,7 @@ $(function(){
         	 $('[name="member_seq"]').val($(this).parent().find(".tb_seq").text());
          })
 	})
+	
 	
 	$("#courseTimeTable td").on("click", function(){
 		if( $(this).hasClass("active")  ) {
@@ -104,7 +106,7 @@ $(function(){
 	});
 	
 
-	
+	//시작과 끝일 사이에 일치하는 요일 리스트를 구하는 함수
 	function betweenDate(startTime, endTime, dayOfWeekList) {
 		var resultList = [];
 		var cDay = 24 * 60 * 60 * 1000; //날짜 포멧팅을 위함
@@ -120,4 +122,6 @@ $(function(){
 		}
 		return resultList;
 	}
+	
+	
 })

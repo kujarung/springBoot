@@ -20,7 +20,15 @@ public class CourseMasterService {
 		
 	}
 
+	
 	public List<Map<String, Object>> selectCourseMaterList() {
 		return dao.selectCourseMaterList();
+	}
+
+
+	public List<Map<String, Object>> selectRegMemberNum() {
+		System.out.println(11);
+		System.out.println(22);
+		return dao.selectRegMemberNum();
 	}
 }

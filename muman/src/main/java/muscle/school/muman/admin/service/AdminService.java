@@ -8,4 +8,8 @@ public class AdminService {
 	public void insertMember() {
 		
 	}
+
+	public void test() {
+		System.out.println("test");
+	}
 }

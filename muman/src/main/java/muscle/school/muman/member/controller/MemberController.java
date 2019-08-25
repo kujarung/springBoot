@@ -53,12 +53,9 @@ public class MemberController {
 		System.out.println(data);
 		System.out.println("킹치웠나?");
 		try {
-			
-			
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jso = new JSONObject();
 			JSONObject result = new JSONObject();
-			
 			for(int i=0;i<data.size();i++) {
 				jso.put(String.valueOf(i),data.get(i));
 			}
