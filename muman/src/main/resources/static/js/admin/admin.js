@@ -36,7 +36,14 @@ $(function(){
 		if( $(this).hasClass("active")  ) {
 			$(this).removeClass("active");
 		} else {
-			$(this).addClass("active");
+			console.log($(this).children().eq(0).text().trim() )
+			console.log($(this))
+			if( $(this).children().eq(0).text().trim() == "강의 없음"){
+				alert("강의가 없는 날은 선택 불가능 합니다.");
+				return false;
+			} else {
+				$(this).addClass("active");
+			}
 		}
 	})
 	
@@ -45,46 +52,56 @@ $(function(){
 	
 	
 	$("#startTime").on("change", function(){
-		$("#courseDateList").children().remove();
-		var plusIndex = 0;
-		var plusClass = "plus" + plusIndex;
-		var dayOfWeekList = new Array;
-		$("#courseTimeTable td.active").each(function(){
-			dayOfWeekList.push ( $(this).index() );
-		})
-		var formatter = new Date();
-		var startTime = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
-									,$("#startTime").val().split("-")[2]);
-		formatter = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
-				,$("#startTime").val().split("-")[2]);
-		formatter.setDate( (formatter.getDate() + 30)  )
-		var endTime = formatter.getFullYear() + "-" + ("00" + (formatter.getMonth() + 1)).slice(-2) + "-" + ("00" + formatter.getDate()).slice(-2)
-		$("#endTime").val(endTime);
-		
-		/*$("#courseDateList").text( betweenDate(startTime, formatter, dayOfWeekList) );*/
-		var resultList = betweenDate(startTime, formatter, dayOfWeekList) 
-		for(var i = 0; i < resultList.length; i++) {
-			$("#courseDateList").append(  "<div class='time_list'>" + resultList[i] + "</div>"    );
-		}
-		
-		$("#courseDateList").append("<input class='"+ plusClass +"' readonly/>");
-		$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
-		$("#plusBtn").on("click" , function(){
-			$("." + plusClass).contents().unwrap().wrap( '<div></div>' )
-			$("." + plusClass).addClass("time_list");
-			$("." + plusClass).datepicker("destroy");
-			$("." + plusClass).removeClass(plusClass);
-			plusIndex++;
-			$("#courseDateList").append("<input class='"+ plusClass +"' readonly></div>");
+		if($("#courseTimeTable td.active").length == 0 ) {
+			alert("강좌를 먼저 선택하여 주세요.");
+			$("#startTime").val("");
+			return false;
+		} else {
+
+			$("#courseDateList").children().remove();
+			var plusIndex = 0;
+			var plusClass = "plus" + plusIndex;
+			var dayOfWeekList = new Array;
+			$("#courseTimeTable td.active").each(function(){
+				dayOfWeekList.push ( $(this).index() );
+			})
+			var formatter = new Date();
+			var startTime = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
+										,$("#startTime").val().split("-")[2]);
+			formatter = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
+					,$("#startTime").val().split("-")[2]);
+			formatter.setDate( (formatter.getDate() + 28)  )
+			var endTime = formatter.getFullYear() + "-" + ("00" + (formatter.getMonth() + 1)).slice(-2) + "-" + ("00" + formatter.getDate()).slice(-2)
+			$("#endTime").val(endTime);
+			
+			/*$("#courseDateList").text( betweenDate(startTime, formatter, dayOfWeekList) );*/
+			var resultList = betweenDate(startTime, formatter, dayOfWeekList) 
+			for(var i = 0; i < resultList.length; i++) {
+				$("#courseDateList").append(  "<div class='time_list'>" + resultList[i] + "</div>"    );
+			}
+			
+			$("#courseDateList").append("<input class='"+ plusClass +"' readonly/>");
 			$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+			$("#plusBtn").on("click" , function(){
+				$("." + plusClass).contents().unwrap().wrap( '<div></div>' )
+				$("." + plusClass).addClass("time_list");
+				$("." + plusClass).datepicker("destroy");
+				$("." + plusClass).removeClass(plusClass);
+				plusIndex++;
+				$("#courseDateList").append("<input class='"+ plusClass +"' readonly></div>");
+				$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+				$(".time_list").on("click",function() {
+					$(this).remove();
+					$("#number").text( "총" + $(".time_list").length + "회");
+				});
+				$("#number").text( "총" + $(".time_list").length + "회");
+			})
 			$(".time_list").on("click",function() {
 				$(this).remove();
 			});
-			
-		})
-		$(".time_list").on("click",function() {
-			$(this).remove();
-		});
+			$("#times").text("주 " + $("#courseTimeTable td.active").length + "회");
+			$("#number").text( "총" + $(".time_list").length + "회");
+		}
 	});
 	
 	
@@ -112,7 +129,8 @@ $(function(){
 		var cDay = 24 * 60 * 60 * 1000; //날짜 포멧팅을 위함
 		var differ = parseInt( (endTime - startTime) / cDay); //마지막일과 처음 차이
 		var differDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate());
-		for(var i = 1; i < differ + 1; i++) {
+		var resultDayOfWeekList = [];
+		for(var i = 0; i < differ; i++) {
 			differDate.setDate( parseInt( differDate.getDate() ) + 1 ) ;
 			for(var j = 0; j< dayOfWeekList.length; j++) {
 				if(dayOfWeekList[j] == differDate.getDay() ) {
@@ -122,6 +140,29 @@ $(function(){
 		}
 		return resultList;
 	}
+	
+	$("#courseInsertBtn").on("click", function() {
+		var isValid = true;
+		var validMsg;
+		if ( $('[name="member_name"]').val() == '' ) {
+			validMsg = "회원 이름 입력해 주세요";
+			isValid = false;
+		}
+		
+		if($("#startTime").val() == '') {
+			validMsg = "시작일을 입력해 주세요.";
+			isValid = false;
+		}
+		
+		if(!isValid) {
+			alert(validMsg);
+			return false;
+		} else {
+			$("#course").submit();
+		}
+		
+		
+	});
 	
 	
 })

@@ -18,7 +18,7 @@
 <div class="col-12 admin_sub" style="padding-top:100px;">
 	<div class="col-12 mw-1200 col-center" style="font-size:15px;">
 		<div class="col-12 pr15 pl15">
-		<form class="col-12" id="course">
+		<form class="col-12" id="course" action="/admin/insertCourseStudent">
 			<div class="col-12 form_con">
 				<span class="mb30">회원 이름</span> <span style="border:1px solid black" id="findMember">찾기</span>
 				<input name="member_name" class="col-12" readonly>
@@ -63,56 +63,66 @@
                    
                    <tr>
                        <th>10:00 ~ 11:30</th>
-                       <td></td>
-                       <td>1교시</td>
-                       <td></td>
-                       <td>1교시</td>
-                       <td></td>
+                       <td th:each="courseRegNumList : ${courseRegNumList}" th:object="${courseRegNumList}"
+                       	   th:if="${courseRegNumList.course_start_time} == 10">
+                       	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+	                       	 <span th:text=" '(' + ${courseRegNumList.reg_member_num} + '/' + ${courseRegNumList.max_people} + ')' "></span>
+                       	   </span>
+                       	   <span  th:unless="${courseRegNumList.is_use_yn} == 1">
+                       	   	 강의 없음
+                       	   </span>
+                       </td>
                    </tr>
                    
                    <tr>
                        <th>12:00 ~ 13:30</th>
-                       <td class="active">2교시(0/5)</td>
-                       <td>2교시</td>
-                       <td>2교시</td>
-                       <td>2교시</td>
-                       <td>2교시</td>
+                       <td th:each="courseRegNumList : ${courseRegNumList}" th:object="${courseRegNumList}"
+                       	   th:if="${courseRegNumList.course_start_time} == 12">
+                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+                       	  <span th:text=" '(' + ${courseRegNumList.reg_member_num} + '/' + ${courseRegNumList.max_people} + ')' "></span>
+                       </td>
                    </tr>
                    
                    <tr>
                        <th>15:00 ~ 17:00</th>
-                       <td>3교시</td>
-                       <td>3교시</td>
-                       <td>3교시</td>
-                       <td>3교시</td>
-                       <td>3교시</td>
+                         <td th:each="courseRegNumList : ${courseRegNumList}" th:object="${courseRegNumList}"
+                       	   th:if="${courseRegNumList.course_start_time} == 15">
+                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+                       	 <span th:text=" '(' + ${courseRegNumList.reg_member_num} + '/' + ${courseRegNumList.max_people} + ')' "></span>
+                       </td>
                    </tr>
                    
                    <tr>
                        <th>18:00 ~ 19:30</th>
-                       <td>4교시</td>
-                       <td>4교시</td>
-                       <td>4교시</td>
-                       <td>4교시</td>
-                       <td>4교시</td>
+                         <td th:each="courseRegNumList : ${courseRegNumList}" th:object="${courseRegNumList}"
+                       	   th:if="${courseRegNumList.course_start_time} == 18">
+                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+                       	  <span th:text=" '(' + ${courseRegNumList.reg_member_num} + '/' + ${courseRegNumList.max_people} + ')' "></span>
+                       </td>
                    </tr>
                    
                    <tr>
                        <th>20:00 ~ 21:30</th>
-                       <td>5교시</td>
-                       <td>5교시</td>
-                       <td>5교시</td>
-                       <td>5교시</td>
-                       <td>5교시</td>
+                         <td th:each="courseRegNumList : ${courseRegNumList}" th:object="${courseRegNumList}"
+                       	   th:if="${courseRegNumList.course_start_time} == 20">
+                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+                       	 <span th:text=" '(' + ${courseRegNumList.reg_member_num} + '/' + ${courseRegNumList.max_people} + ')' "></span>
+                       </td>
                    </tr>
                    
                    <tr>
                        <th>22:00 ~ 23:30</th>
-                       <td>6교시</td>
-                       <td></td>
-                       <td>6교시</td>
-                       <td></td>
-                       <td>6교시</td>
+                       <td th:each="courseRegNumList : ${courseRegNumList}" th:object="${courseRegNumList}"
+                       	   th:if="${courseRegNumList.course_start_time} == 22">
+                       	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+	                       	  <span th:text=" '(' + ${courseRegNumList.reg_member_num} + '/' + ${courseRegNumList.max_people} + ')' "></span>
+                       	   </span>
+                       	   <span  th:unless="${courseRegNumList.is_use_yn} == 1">
+                       	   	 강의 없음
+                       	   </span>
+                       </td>
                    </tr>
                    
                    </tbody>
@@ -121,7 +131,7 @@
 			
 			<div class="col-12">
 				<div class="col-12 mb10">수업 시작일</div>
-				<span class="col-12 mb30" id="times">주0회<span id="number"></span></span>
+				<span class="col-12 mb30" id="times" name="times">주0회</span><span id="number" name="number"></span>
 				<input name="register_start_time" id="startTime" readonly>
 				<div class="col-12 mb10">수업 마지막일</div>
 				<input name="register_end_time" id="endTime" readonly>
@@ -136,6 +146,7 @@
 			</div>
 			
 			<div class="col-12">
+				<input type="hidden" name="dayList">
 				<input type="submit" value="저장" id="courseInsertBtn"> 
 			</div>
 		</form>

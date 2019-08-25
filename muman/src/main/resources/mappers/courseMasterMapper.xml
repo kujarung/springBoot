@@ -14,10 +14,11 @@
     
     <select id="selectRegMemberNum" resultType="map">
 	    SELECT
-			CM.master_seq, (SELECT COUNT(CS.MEMBER_SEQ) FROM COURSE_STUDENT CS WHERE CM.master_seq = CS.master_seq) reg_member_num,
+			CM.master_seq, (SELECT COUNT(CS.MEMBER_SEQ) FROM COURSE_STUDENT CS WHERE CM.master_seq = CS.master_seq) reg_member_num, CM.max_people,CM.is_use_yn,
 			CM.couse_time_name, CM.course_start_time, CM.week_of_day
 		FROM 
 			COURSE_MASTER CM
+		ORDER BY CM.week_of_day , CM.course_start_time 
     </select>
     <!-- 
     <select id="selectRegMemberList" resultType="map">
