@@ -1,4 +1,47 @@
 $(function(){
+	
+	var setStartDate = new Date();
+	var setEndDate;
+	if(setStartDate.getDay() == 1) {
+		setStartDate = new Date();
+		setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+	} else {
+		for(var i=1; i<5;i++) {
+			if( ( setStartDate.getDay() - i) == 1  ) {
+				setStartDate.setDate((setStartDate.getDate()-i));
+				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+			} 
+		}
+	}
+	var week = setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2) + "~" + 
+	setEndDate.getFullYear() + "-" + ("00" + (setEndDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setEndDate.getDate()).slice(-2);
+	for(var i=0;i<5;i++){
+		
+	}
+	$("#courseTimeTable thead").append();
+	$("#today").text(week);
+	
+	$("#nextWeek").on("click",function() {
+		setStartDate.setDate(setStartDate.getDate() + 7 );
+		setEndDate.setDate(setEndDate.getDate() + 7);
+		console.log(setStartDate)
+		console.log(setEndDate)
+		week = setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2) 
+			   + "~" + 
+			   setEndDate.getFullYear() + "-" + ("00" + (setEndDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setEndDate.getDate()).slice(-2);
+		$("#today").text(week);
+	})
+	
+	$("#beforeWeek").on("click",function(){
+		setStartDate.setDate(setStartDate.getDate() - 7 );
+		setEndDate.setDate(setEndDate.getDate() - 7);
+		var week = setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2) + "~" + 
+		setEndDate.getFullYear() + "-" + ("00" + (setEndDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setEndDate.getDate()).slice(-2);
+		$("#today").text(week);
+		
+	})
+	
+	
 	$("#memberList").hide();
 	//맴버 찾기 버튼 클릭 시 리스트 출력
 	$("#findMember").on("click", function(){
@@ -139,6 +182,14 @@ $(function(){
 			}
 		}
 		return resultList;
+	}
+	
+	function nextWeek(startTime, endTime) {
+		
+	}
+	
+	function beforeWeek(startTime, endTime) {
+		
 	}
 	
 	$("#courseInsertBtn").on("click", function() {

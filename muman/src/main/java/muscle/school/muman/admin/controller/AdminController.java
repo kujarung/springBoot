@@ -1,6 +1,9 @@
 package muscle.school.muman.admin.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import muscle.school.muman.admin.service.AdminService;
 import muscle.school.muman.course_master.service.CourseMasterService;
@@ -32,7 +36,15 @@ public class AdminController {
 	
 	//관리자 학생 등록 페이지
 	@GetMapping("/admin/admin_reg_course_student")
-	public String adminRegCourseStudent(Model model) {
+	public String adminRegCourseStudent(Model model,@RequestParam(required=false) String standardDate) {
+		String mTime = "";
+		if(standardDate == "" || standardDate == null) {
+			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+			Date currentTime = new Date ();
+			mTime = mSimpleDateFormat.format ( currentTime );
+		} else {
+			mTime = standardDate;
+		}
 		List<Map<String,Object>> list = courseMasterService.selectRegMemberNum();
 		model.addAttribute("courseRegNumList", list);
 		System.out.println(list);

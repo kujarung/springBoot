@@ -50,8 +50,6 @@ public class MemberController {
 	@ResponseBody
 	public void selectMemberList( @RequestParam(required = false) String member_name, Model model , HttpServletResponse response) throws JSONException {
 		List< Map<String,Object> > data = memberService.selectMemberList(member_name);
-		System.out.println(data);
-		System.out.println("킹치웠나?");
 		try {
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jso = new JSONObject();
