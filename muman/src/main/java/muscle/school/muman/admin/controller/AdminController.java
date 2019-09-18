@@ -1,9 +1,10 @@
 package muscle.school.muman.admin.controller;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +38,41 @@ public class AdminController {
 	//관리자 학생 등록 페이지
 	@GetMapping("/admin/admin_reg_course_student")
 	public String adminRegCourseStudent(Model model,@RequestParam(required=false) String standardDate) {
-		String mTime = "";
-		if(standardDate == "" || standardDate == null) {
-			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyy-MM-dd");
-			Date currentTime = new Date ();
-			mTime = mSimpleDateFormat.format ( currentTime );
+		String startDate ="";
+		String endDate = "";
+        Calendar currentCalendar = Calendar.getInstance();
+        SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd");
+        if(standardDate == "" || standardDate == null) {
+		    //이번주 첫째 날짜  
+        	currentCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        	startDate = dateFmt.format(currentCalendar.getTime());
+        	//이번주 마지막 날짜  
+        	currentCalendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY); 
+        	endDate = dateFmt.format(currentCalendar.getTime()); 
 		} else {
-			mTime = standardDate;
+			Calendar newCal = Calendar.getInstance();
+	        standardDate = "2019-09-23";
+	        int mYear = Integer.parseInt( standardDate.split("-")[0].toString());
+	        int mMonth = Integer.parseInt( standardDate.split("-")[1].toString()) - 1;
+	        int mDate = Integer.parseInt( standardDate.split("-")[2].toString());
+	        newCal.set ( mYear, mMonth, mDate);
+	        newCal.getTime();
+		    //이번주 첫째 날짜  
+			newCal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+	    	startDate = dateFmt.format(newCal.getTime());
+	    	//이번주 마지막 날짜  
+	    	newCal.set(Calendar.DAY_OF_WEEK,Calendar.FRIDAY); 
+	        endDate = dateFmt.format(newCal.getTime());
 		}
-		List<Map<String,Object>> list = courseMasterService.selectRegMemberNum();
-		model.addAttribute("courseRegNumList", list);
-		System.out.println(list);
+        
+		List<Map<String,Object>> courseNumList = courseMasterService.selectRegMemberList();
+		System.out.println(startDate);
+		System.out.println(endDate);
+		List<Map<String,Object>> regNumList =    courseMasterService.selectRegNumList(startDate, endDate);
+		model.addAttribute("courseNumList", courseNumList);
+		model.addAttribute("regNumList", regNumList);
+		System.out.println(courseNumList);
+		System.out.println(regNumList);
 		return "admin/admin_reg_course_student";
 	}
 	
@@ -57,5 +82,7 @@ public class AdminController {
 		return "admin/admin_reg_course";
 	}
 	
-	
+	public String formatDate(Calendar currentCalendar) {
+		return currentCalendar.get(Calendar.DAY_OF_YEAR) + "-" + currentCalendar.get(Calendar.DAY_OF_MONTH) + "-" + currentCalendar.get(Calendar.DATE);
+	}
 }

@@ -1,4 +1,7 @@
 $(function(){
+	$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
+	$("#endTime").datepicker({ dateFormat: 'yy-mm-dd' });
+	
 	var setStartDate = new Date();
 	var setEndDate;
 	if(setStartDate.getDay() == 1) {
@@ -12,6 +15,7 @@ $(function(){
 			} 
 		}
 	}
+	
 	var week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
 	$("#courseTimeTable thead").append();
 	$("#today").text(week);
@@ -75,10 +79,8 @@ $(function(){
 		}
 	})
 	
-	$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
-	$("#endTime").datepicker({ dateFormat: 'yy-mm-dd' });
-	
-	$("#startTime").on("change", function(){
+	//시작 일자 변경 시 로식 실행
+	$("#startTime").on("change", function() {
 		if($("#courseTimeTable td.active").length == 0 ) {
 			alert("강좌를 먼저 선택하여 주세요.");
 			$("#startTime").val("");
