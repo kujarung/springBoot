@@ -12,14 +12,29 @@
         	COURSE_MASTER
     </select>
     
-    <select id="selectRegMemberNum" resultType="map">
+    <select id="selectRegMemberList" resultType="map">
 	    SELECT
 			 (SELECT COUNT(CS.MEMBER_SEQ) FROM COURSE_STUDENT CS) reg_member_num, CM.max_people,CM.is_use_yn,
-			CM.couse_time_name, CM.course_start_time, CM.week_of_day
+			CM.couse_time_name, CM.course_start_time, CM.week_of_day, CM.alias
 		FROM 
 			COURSE_MASTER CM
 		ORDER BY CM.week_of_day , CM.course_start_time 
     </select>
+    
+    <select id="selectRegNumList" resultType="map">
+		SELECT 
+			DISTINCT EX_ALIAS, (SELECT COUNT(EX_DATE) FROM EXCERCISE_MASTER WHERE EX_ALIAS = A.EX_ALIAS) DATE_NUM
+		FROM 
+			EXCERCISE_MASTER A
+		WHERE 
+			1=1
+			<if test="startDate != '' and  endDate != '' ">
+			AND
+				A.EX_DATE BETWEEN #{startDate} AND #{endDate};
+			</if>
+    </select>
+    
+    
     <!-- 
     <select id="selectRegMemberList" resultType="map">
 		SELECT 

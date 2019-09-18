@@ -1,6 +1,38 @@
 $(function(){
-	init();
+	$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
+	$("#endTime").datepicker({ dateFormat: 'yy-mm-dd' });
 	
+	var setStartDate = new Date();
+	var setEndDate;
+	if(setStartDate.getDay() == 1) {
+		setStartDate = new Date();
+		setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+	} else {
+		for(var i=1; i<5;i++) {
+			if( ( setStartDate.getDay() - i) == 1  ) {
+				setStartDate.setDate((setStartDate.getDate()-i));
+				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+			} 
+		}
+	}
+	
+	var week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+	$("#courseTimeTable thead").append();
+	$("#today").text(week);
+	
+	$("#nextWeek").on("click",function() {
+		setStartDate.setDate(setStartDate.getDate() + 7 );
+		setEndDate.setDate(setEndDate.getDate() + 7);
+		week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+		$("#today").text(week);
+	})
+	
+	$("#beforeWeek").on("click",function(){
+		setStartDate.setDate(setStartDate.getDate() - 7 );
+		setEndDate.setDate(setEndDate.getDate() - 7);
+		var week = dateForm(setStartDate) + "~" + dateForm(setEndDate); 
+		$("#today").text(week);
+	})
 	$("#memberList").hide();
 	//맴버 찾기 버튼 클릭 시 리스트 출력
 	$("#findMember").on("click", function(){
@@ -38,8 +70,6 @@ $(function(){
 		if( $(this).hasClass("active")  ) {
 			$(this).removeClass("active");
 		} else {
-			console.log($(this).children().eq(0).text().trim() )
-			console.log($(this))
 			if( $(this).children().eq(0).text().trim() == "강의 없음"){
 				alert("강의가 없는 날은 선택 불가능 합니다.");
 				return false;
@@ -49,16 +79,13 @@ $(function(){
 		}
 	})
 	
-	$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
-	$("#endTime").datepicker({ dateFormat: 'yy-mm-dd' });
-	
-	$("#startTime").on("change", function(){
+	//시작 일자 변경 시 로식 실행
+	$("#startTime").on("change", function() {
 		if($("#courseTimeTable td.active").length == 0 ) {
 			alert("강좌를 먼저 선택하여 주세요.");
 			$("#startTime").val("");
 			return false;
 		} else {
-
 			$("#courseDateList").children().remove();
 			var plusIndex = 0;
 			var plusClass = "plus" + plusIndex;
@@ -72,7 +99,7 @@ $(function(){
 			formatter = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
 					,$("#startTime").val().split("-")[2]);
 			formatter.setDate( (formatter.getDate() + 28)  )
-			var endTime = formatter.getFullYear() + "-" + ("00" + (formatter.getMonth() + 1)).slice(-2) + "-" + ("00" + formatter.getDate()).slice(-2)
+			var endTime = dateForm(formatter);
 			$("#endTime").val(endTime);
 			
 			/*$("#courseDateList").text( betweenDate(startTime, formatter, dayOfWeekList) );*/
@@ -135,13 +162,22 @@ $(function(){
 			differDate.setDate( parseInt( differDate.getDate() ) + 1 ) ;
 			for(var j = 0; j< dayOfWeekList.length; j++) {
 				if(dayOfWeekList[j] == differDate.getDay() ) {
-					resultList.push(differDate.getFullYear() + "-"  + ("00" + (differDate.getMonth() + 1)).slice(-2) + "-" + ("00" + differDate.getDate()).slice(-2) );
+					resultList.push(dateForm(differDate));
 				}
 			}
 		}
 		return resultList;
 	}
 	
+	function nextWeek(startTime, endTime) {
+		
+	}
+	
+	function beforeWeek(startTime, endTime) {
+		
+	}
+	
+	//인서트 버튼 클릭
 	$("#courseInsertBtn").on("click", function() {
 		var isValid = true;
 		var validMsg;
@@ -161,61 +197,13 @@ $(function(){
 		} else {
 			$("#course").submit();
 		}
+		
+		
 	});
 	
-	//처음 날짜 초기화를 위함
-	function init() {
-		var setStartDate = new Date();
-		var setEndDate;
-		//오늘이 월요일 시 셋팅
-		if(setStartDate.getDay() == 1) {
-			setStartDate = new Date();
-			setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
-		} else {
-			//오늘이 일요일 일시 세팅
-			if(setStartDate.getDay() == 0) {
-				setStartDate.setDate((setStartDate.getDate() - 6));
-				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
-			//나머지 셋팅
-			} else {
-				for(var i=1; i<5;i++) {
-					if( ( setStartDate.getDay() - i) == 1  ) {
-						setStartDate.setDate((setStartDate.getDate()-i));
-						setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
-					} 
-				}
-			}
-		}
-		var week = setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2) + "~" + 
-		setEndDate.getFullYear() + "-" + ("00" + (setEndDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setEndDate.getDate()).slice(-2);
-		$("#courseTimeTable thead").append();
-		$("#today").text(week);
-		//다음 버튼 클릭 시
-		$("#nextWeek").on("click",function() {
-			nextBtnClick(setStartDate, setEndDate );
-		})
-		//이전 버튼 클릭시
-		$("#beforeWeek").on("click",function(){
-			beforeBtnClick(setStartDate, setEndDate );
-		})
+	//yyy-mm-dd 형태로 변환
+	function dateForm(setStartDate){
+		return setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2)
 	}
 	
-	//다음 버튼 클릭 시
-	function nextBtnClick(setStartDate, setEndDate ) {
-		setStartDate.setDate(setStartDate.getDate() + 7 );
-		setEndDate.setDate(setEndDate.getDate() + 7);
-		week = setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2) 
-			   + "~" + 
-			   setEndDate.getFullYear() + "-" + ("00" + (setEndDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setEndDate.getDate()).slice(-2);
-		$("#today").text(week);
-	}
-	
-	//이전 버튼 클릭시
-	function beforeBtnClick(setStartDate, setEndDate ) {
-		setStartDate.setDate(setStartDate.getDate() - 7 );
-		setEndDate.setDate(setEndDate.getDate() - 7);
-		var week = setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2) + "~" + 
-		setEndDate.getFullYear() + "-" + ("00" + (setEndDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setEndDate.getDate()).slice(-2);
-		$("#today").text(week);
-	}
 })

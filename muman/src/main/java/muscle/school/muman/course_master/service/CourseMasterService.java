@@ -26,9 +26,11 @@ public class CourseMasterService {
 	}
 
 
-	public List<Map<String, Object>> selectRegMemberNum() {
-		System.out.println(11);
-		System.out.println(22);
-		return dao.selectRegMemberNum();
+	public List<Map<String, Object>> selectRegMemberList() {
+		return dao.selectRegMemberList();
+	}
+	
+	public List<Map<String, Object>> selectRegNumList(String startDate, String endDate) {
+		return dao.selectRegNumList(startDate, endDate);
 	}
 }
