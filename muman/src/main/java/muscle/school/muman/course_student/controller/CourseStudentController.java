@@ -22,7 +22,7 @@ public class CourseStudentController {
 		req.getParameter("times");
 		req.getParameter("number");
 		req.getParameter("member_seq");
-		System.out.println();
+		System.out.println(req);
 	}
 	
 	

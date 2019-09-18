@@ -42,6 +42,8 @@ public class AdminController {
 			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyy-MM-dd");
 			Date currentTime = new Date ();
 			mTime = mSimpleDateFormat.format ( currentTime );
+			
+			
 		} else {
 			mTime = standardDate;
 		}
