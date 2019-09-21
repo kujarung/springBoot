@@ -16,6 +16,7 @@ $(function(){
 		}
 	}
 	
+	console.log(setEndDate);
 	var week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
 	$("#courseTimeTable thead").append();
 	$("#today").text(week);
@@ -33,6 +34,7 @@ $(function(){
 		var week = dateForm(setStartDate) + "~" + dateForm(setEndDate); 
 		$("#today").text(week);
 	})
+	
 	$("#memberList").hide();
 	//맴버 찾기 버튼 클릭 시 리스트 출력
 	$("#findMember").on("click", function(){

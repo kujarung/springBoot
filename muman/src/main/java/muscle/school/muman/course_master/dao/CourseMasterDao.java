@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface CourseMasterDao {
 	List<Map<String, Object>> selectCourseMaterList();
 
-	List<Map<String, Object>> selectRegMemberList();
+	List<Map<String, Object>> selectRegMemberList(String startDate, String endDate);
 	
-	List<Map<String, Object>> selectRegNumList(String startDate, String endDate);
 }

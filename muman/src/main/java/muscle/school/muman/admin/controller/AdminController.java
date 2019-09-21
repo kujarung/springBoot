@@ -38,6 +38,32 @@ public class AdminController {
 	//관리자 학생 등록 페이지
 	@GetMapping("/admin/admin_reg_course_student")
 	public String adminRegCourseStudent(Model model,@RequestParam(required=false) String standardDate) {
+		//시작일과 끝일을 리턴 받음
+		String[] dateList   = todayWeek(standardDate);
+		String startDate 	= dateList[0];
+		String endDate 		= dateList[1];
+		
+		List<Map<String,Object>> courseNumList = courseMasterService.selectRegMemberList(startDate, endDate);
+		System.out.println(courseNumList);
+		model.addAttribute("courseNumList", courseNumList);
+		model.addAttribute("dateList", dateList);
+		return "admin/admin_reg_course_student";
+	}
+	
+	//관리자 강의 등록 페이지
+	@GetMapping("/admin/admin_reg_course")
+	public String adminRegCourse() {
+		return "admin/admin_reg_course";
+	}
+	
+	//yyyy-mm-dd 형태로 포메팅 하는 함수
+	public String formatDate(Calendar currentCalendar) {
+		return currentCalendar.get(Calendar.DAY_OF_YEAR) + "-" + currentCalendar.get(Calendar.DAY_OF_MONTH) + "-" + currentCalendar.get(Calendar.DATE);
+	}
+	
+	//월요일과 금요일 날을 리턴 하는 함수
+	public String[] todayWeek(String standardDate) {
+		String[] result = new String[2];
 		String startDate ="";
 		String endDate = "";
         Calendar currentCalendar = Calendar.getInstance();
@@ -64,25 +90,8 @@ public class AdminController {
 	    	newCal.set(Calendar.DAY_OF_WEEK,Calendar.FRIDAY); 
 	        endDate = dateFmt.format(newCal.getTime());
 		}
-        
-		List<Map<String,Object>> courseNumList = courseMasterService.selectRegMemberList();
-		System.out.println(startDate);
-		System.out.println(endDate);
-		List<Map<String,Object>> regNumList =    courseMasterService.selectRegNumList(startDate, endDate);
-		model.addAttribute("courseNumList", courseNumList);
-		model.addAttribute("regNumList", regNumList);
-		System.out.println(courseNumList);
-		System.out.println(regNumList);
-		return "admin/admin_reg_course_student";
-	}
-	
-	//관리자 강의 등록 페이지
-	@GetMapping("/admin/admin_reg_course")
-	public String adminRegCourse() {
-		return "admin/admin_reg_course";
-	}
-	
-	public String formatDate(Calendar currentCalendar) {
-		return currentCalendar.get(Calendar.DAY_OF_YEAR) + "-" + currentCalendar.get(Calendar.DAY_OF_MONTH) + "-" + currentCalendar.get(Calendar.DATE);
+        result[0] = startDate;
+        result[1] = endDate;
+		return result;
 	}
 }

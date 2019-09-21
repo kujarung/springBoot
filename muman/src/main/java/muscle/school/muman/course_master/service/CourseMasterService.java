@@ -19,18 +19,13 @@ public class CourseMasterService {
 	public void insertMember() {
 		
 	}
-
 	
 	public List<Map<String, Object>> selectCourseMaterList() {
 		return dao.selectCourseMaterList();
 	}
 
 
-	public List<Map<String, Object>> selectRegMemberList() {
-		return dao.selectRegMemberList();
-	}
-	
-	public List<Map<String, Object>> selectRegNumList(String startDate, String endDate) {
-		return dao.selectRegNumList(startDate, endDate);
+	public List<Map<String, Object>> selectRegMemberList(String startDate, String endDate) {
+		return dao.selectRegMemberList(startDate, endDate);
 	}
 }
