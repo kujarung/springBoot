@@ -31,7 +31,9 @@
 			CM.week_of_day , CM.course_start_time 
     </select>
     
-    
+    <select id="selectHolidayList" resultType="map">
+    	SELECT * FROM USE_HOLIDAY
+    </select>
     
 <!--     <select id="selectRegNumList" resultType="map">
 		SELECT 

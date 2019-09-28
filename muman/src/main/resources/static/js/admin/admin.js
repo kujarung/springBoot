@@ -1,22 +1,38 @@
 $(function(){
 	$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
 	$("#endTime").datepicker({ dateFormat: 'yy-mm-dd' });
-	
-	var setStartDate = new Date();
+	var currentDay = $("#todayString").val();
+	var setStartDate = today(currentDay);
 	var setEndDate;
 	if(setStartDate.getDay() == 1) {
-		setStartDate = new Date();
+		setStartDate = today(currentDay);
 		setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
 	} else {
-		for(var i=1; i<5;i++) {
+		for(var i=1; i<7;i++) {
 			if( ( setStartDate.getDay() - i) == 1  ) {
-				setStartDate.setDate((setStartDate.getDate()-i));
+				setStartDate.setDate( (setStartDate.getDate()-i));
 				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
 			} 
 		}
 	}
 	
-	console.log(setEndDate);
+	var theadTd = "";
+	var theadTdTotal = "";
+	for(var i=0;i<5;i++) {
+		var headDay = withDateNewForm(setStartDate);
+		headDay.setDate( (headDay.getDate() + i ) );
+		var kDay = korDay(headDay.getDay() );
+		var fullDay = dateForm(headDay);
+		if(fullDay == nowDay() ) {
+			theadTd = "<td class='today'>" + kDay +"(" + fullDay + ")</td>";
+			theadTdTotal = theadTdTotal + theadTd;
+		} else {
+			theadTd = "<td>" + kDay +"(" + fullDay + ")</td>";
+			theadTdTotal = theadTdTotal + theadTd;
+		}
+	}
+	theadTdTotal = "<tr><td>시간</td>" + theadTdTotal + "</tr>";
+	$("#courseTimeTable thead").append(theadTdTotal);
 	var week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
 	$("#courseTimeTable thead").append();
 	$("#today").text(week);
@@ -25,14 +41,18 @@ $(function(){
 		setStartDate.setDate(setStartDate.getDate() + 7 );
 		setEndDate.setDate(setEndDate.getDate() + 7);
 		week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
-		$("#today").text(week);
+		$("#reload").attr("action", "/admin/admin_reg_course_student");
+		$('[name="standardDate"]').val(dateForm(setStartDate));
+		$("#reload").submit();
 	})
 	
 	$("#beforeWeek").on("click",function(){
 		setStartDate.setDate(setStartDate.getDate() - 7 );
 		setEndDate.setDate(setEndDate.getDate() - 7);
 		var week = dateForm(setStartDate) + "~" + dateForm(setEndDate); 
-		$("#today").text(week);
+		$("#reload").attr("action", "/admin/admin_reg_course_student");
+		$('[name="standardDate"]').val(dateForm(setStartDate));
+		$("#reload").submit();
 	})
 	
 	$("#memberList").hide();
@@ -67,7 +87,7 @@ $(function(){
          })
 	})
 	
-	
+	//강의 선택 validation
 	$("#courseTimeTable td").on("click", function(){
 		if( $(this).hasClass("active")  ) {
 			$(this).removeClass("active");
@@ -95,11 +115,9 @@ $(function(){
 			$("#courseTimeTable td.active").each(function(){
 				dayOfWeekList.push ( $(this).index() );
 			})
-			var formatter = new Date();
-			var startTime = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
-										,$("#startTime").val().split("-")[2]);
-			formatter = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
-					,$("#startTime").val().split("-")[2]);
+			var formatter 	= new Date();
+			var startTime 	= newDateForm( $("#startTime").val());
+			formatter 		= newDateForm( $("#startTime").val() );
 			formatter.setDate( (formatter.getDate() + 28)  )
 			var endTime = dateForm(formatter);
 			$("#endTime").val(endTime);
@@ -134,18 +152,14 @@ $(function(){
 		}
 	});
 	
-	
-	
 	$("#endTime").on("change", function(){
 		var dayOfWeekList = new Array;
 		$("#courseTimeTable td.active").each(function(){
 			dayOfWeekList.push ( $(this).index() );
 		})
-		var formatter = new Date();
-		var startTime = new Date( $("#startTime").val().split("-")[0], ( $("#startTime").val().split("-")[1] - 1) 
-									,$("#startTime").val().split("-")[2]);
-		var endTime = new Date( $("#endTime").val().split("-")[0], ( $("#endTime").val().split("-")[1] - 1) 
-				,$("#endTime").val().split("-")[2]);
+		var formatter 	= new Date();
+		var startTime 	= newDateForm ($("#startTime").val() );
+		var endTime 	= newDateForm ($("#endTime").val() );
 		var resultRest = betweenDate(startTime, endTime, dayOfWeekList);
 		for(var i = 0; i < resultRest.length; i++) {
 			$("#courseDateList").innerHTML(  "<div class='time_list'>" + resultRest[i] + "</div>"    );
@@ -155,6 +169,10 @@ $(function(){
 
 	//시작과 끝일 사이에 일치하는 요일 리스트를 구하는 함수
 	function betweenDate(startTime, endTime, dayOfWeekList) {
+		/*<![CDATA[*/
+		var holidayList = "[[${holidayList}]]";
+		/*]]>*/
+		console.log(holidayList);
 		var resultList = [];
 		var cDay = 24 * 60 * 60 * 1000; //날짜 포멧팅을 위함
 		var differ = parseInt( (endTime - startTime) / cDay); //마지막일과 처음 차이
@@ -179,7 +197,7 @@ $(function(){
 		
 	}
 	
-	//인서트 버튼 클릭
+	//인서트 버튼 클릭 시 validation 체크
 	$("#courseInsertBtn").on("click", function() {
 		var isValid = true;
 		var validMsg;
@@ -199,13 +217,38 @@ $(function(){
 		} else {
 			$("#course").submit();
 		}
-		
-		
 	});
 	
 	//yyy-mm-dd 형태로 변환
-	function dateForm(setStartDate){
-		return setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2)
+	function dateForm (setStartDate){
+		return setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2);
 	}
 	
+	//오늘 날짜를 구하는 포멧터
+	function today(currentDay) {
+		return new Date(currentDay.split("-")[0], currentDay.split("-")[1] - 1, currentDay.split("-")[2]);
+	}
+	
+	//값을 가지고 일자 셋팅 시 포멧터
+	function newDateForm (value) {
+		return new Date( value.split("-")[0], ( value.split("-")[1] - 1), value.split("-")[2] );
+	}
+	
+	//date를 가지고 일자 셋팅
+	function withDateNewForm(date) {
+		return new Date(date.getFullYear(), date.getMonth(), date.getDate())
+	}
+	
+	//요일 한글 변환 포멧터
+	function korDay(day) {
+		if(day == 0) { return "일"; } else if(day == 1) { return "월"; } else if(day == 2) { return "화"; } 
+		else if(day == 3) { return "수"; } else if(day == 4) { return "목"; } else if(day == 5) { return "금"; } 
+		else if(day == 6) { return "토"; } else { return "error";}
+	}
+	
+	//오늘 날짜를 가져 오는 포멧터
+	function nowDay() {
+		var today = new Date();
+		return dateForm(today);
+	}
 })

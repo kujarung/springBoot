@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,11 +43,12 @@ public class AdminController {
 		String[] dateList   = todayWeek(standardDate);
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
-		
-		List<Map<String,Object>> courseNumList = courseMasterService.selectRegMemberList(startDate, endDate);
-		System.out.println(courseNumList);
+		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate);
+		List<Map<String,Object>> holidayList 	= courseMasterService.selectHolidayList();
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);
+		model.addAttribute("today", currentDay(standardDate));
+		model.addAttribute("holidayList" , holidayList);
 		return "admin/admin_reg_course_student";
 	}
 	
@@ -73,11 +75,10 @@ public class AdminController {
         	currentCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         	startDate = dateFmt.format(currentCalendar.getTime());
         	//이번주 마지막 날짜  
-        	currentCalendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY); 
+        	currentCalendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
         	endDate = dateFmt.format(currentCalendar.getTime()); 
 		} else {
 			Calendar newCal = Calendar.getInstance();
-	        standardDate = "2019-09-23";
 	        int mYear = Integer.parseInt( standardDate.split("-")[0].toString());
 	        int mMonth = Integer.parseInt( standardDate.split("-")[1].toString()) - 1;
 	        int mDate = Integer.parseInt( standardDate.split("-")[2].toString());
@@ -93,5 +94,17 @@ public class AdminController {
         result[0] = startDate;
         result[1] = endDate;
 		return result;
+	}
+	
+	public String currentDay(String standardDate) {
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd");
+		Calendar today =  Calendar.getInstance();
+		if(standardDate == null) {
+			return format1.format(today.getTime());
+		} else {
+			return standardDate;
+		}
+		
+		
 	}
 }

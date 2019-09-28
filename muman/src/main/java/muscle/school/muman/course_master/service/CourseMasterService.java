@@ -28,4 +28,9 @@ public class CourseMasterService {
 	public List<Map<String, Object>> selectRegMemberList(String startDate, String endDate) {
 		return dao.selectRegMemberList(startDate, endDate);
 	}
+
+	public List<Map<String, Object>> selectHolidayList() {
+		// TODO Auto-generated method stub
+		return dao.selectHolidayList();
+	}
 }

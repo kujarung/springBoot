@@ -10,5 +10,7 @@ public interface CourseMasterDao {
 	List<Map<String, Object>> selectCourseMaterList();
 
 	List<Map<String, Object>> selectRegMemberList(String startDate, String endDate);
+
+	List<Map<String, Object>> selectHolidayList();
 	
 }
