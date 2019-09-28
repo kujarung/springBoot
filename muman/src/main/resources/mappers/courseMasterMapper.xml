@@ -60,4 +60,11 @@
 			MASTER_SEQ = #{master_seq}
 	</select>
 	 -->
+	 
+	 <insert id="insertCourse">
+	 	INSERT
+	 		INTO EXCERCISE_MASTER(member_seq, ex_alias, ex_date) 
+	 	VALUES 
+	 		(#{member_seq}, #{ex_alias}, #{ex_date})
+	 </insert>
 </mapper>

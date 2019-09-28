@@ -14,4 +14,15 @@ public class CourseStudentService {
 	public void insertMember() {
 		
 	}
+
+	public void insertStudent(String member_seq, String register_start_time, String register_end_time) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void updateStudent(String member_seq, String register_start_time, String register_end_time) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
