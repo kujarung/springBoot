@@ -9,21 +9,11 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-<style>
-	.time_list{display: inline-block; border:1px solid black; margin-right:10px; padding: 5px; vertical-align: top; font-size: 12px; font-weight: normal;height: 20px; width: 200px; 
-	line-height: 20px; margin-bottom:20px;}
-	.time_list:last-child {margin-right:0px;}
-	.time_list.holiday{background-color: red;}
-</style>
-<form id="reload">
-	<input type="hidden" name="standardDate">
-</form>
 
-<input id="todayString" type="hidden" th:value = "${today}">
 <div class="col-12 admin_sub" style="padding-top:100px;">
 	<div class="col-12 mw-1200 col-center" style="font-size:15px;">
 		<div class="col-12 pr15 pl15">
-		<form class="col-12" id="course" action="/admin/insertCourseStudent">
+		<form class="col-12" id="course" action="/admin/insertCourseStudent" method="post">
 			<input type="hidden" name="dayList" id="dayList">
 			<input type="hidden" name="aliasList" id="aliasList">
 			<div class="col-12 form_con">
@@ -168,10 +158,10 @@
 			
 			<div class="col-12">
 				<div class="col-12 mb10">수업 시작일</div>
-				<span class="col-12 mb30" id="times" name="times">주0회</span><span id="number" name="number"></span>
+				<input class="col-12 mb30" id="times" name="times" value="주0회" style="border:none; display:inline-block"><span id="number">총0회</span>
 				<input name="register_start_time" id="startTime" readonly>
 				<div class="col-12 mb10">수업 마지막일</div>
-				<input name="register_end_time" id="endTime" readonly>
+				<input name="register_end_time" id="endTime" readonly style="background-color:darkgray">
 				<div class="col-12">
 					<div id="courseDateList">
 						
@@ -183,7 +173,7 @@
 			</div>
 			
 			<div class="col-12">
-				<input type="submit" value="저장" id="courseInsertBtn"> 
+				<input type="submit" value="저장" id="courseInsertBtn">
 			</div>
 		</form>
 		</div>
@@ -191,12 +181,30 @@
 </div>
 
 
+<form id="reload">
+	<input type="hidden" name="standardDate">
+</form>
+
+<input id="todayString" type="hidden" th:value = "${today}">
+
+
+
+<script>
+	$("#test").on("click", () => {
+		$.ajax({
+			url : '/test',
+			success : (result) => {
+				console.log(result);
+			}
+		})
+	})
+</script>
+
 
 <th:block>
 	<script th:inline="javascript">
 	$(function(){
 		$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
-		$("#endTime").datepicker({ dateFormat: 'yy-mm-dd' });
 		var currentDay = $("#todayString").val();
 		var setStartDate = today(currentDay);
 		var setEndDate;
@@ -387,24 +395,10 @@
 					maxLen--;
 					$("#number").text( "총" + maxLen+ "회");
 				});
-				$("#times").text("주 " + $("#courseTimeTable td.active").length + "회");
+				$("#times").val("주 " + $("#courseTimeTable td.active").length + "회");
 				$("#number").text( "총" + maxLen + "회");
 			}
 		});
-		
-		$("#endTime").on("change", function(){
-			var dayOfWeekList = new Array;
-			$("#courseTimeTable td.active").each(function(){
-				dayOfWeekList.push ( $(this).index() );
-			})
-			var startTime 	= newDateForm ($("#startTime").val() );
-			var endTime 	= newDateForm ($("#endTime").val() );
-			var resultRest = betweenDate(startTime, endTime, dayOfWeekList);
-			for(var i = 0; i < resultRest.length; i++) {
-				$("#courseDateList").innerHTML(  "<div class='time_list'>" + resultRest[i] + "</div>"    );
-			}
-		});
-		
 		
 		//인서트 버튼 클릭 시 validation 체크
 		$("#courseInsertBtn").on("click", function() {
@@ -517,7 +511,7 @@
 						}
 					} else {
 						if( $(this)[0].HOLIDAY == date ) {
-							result[0] =  true;
+							result.isHoliday =  true;
 							result.name = $(this)[0].HOLIDAY_NAME;
 						}
 					}

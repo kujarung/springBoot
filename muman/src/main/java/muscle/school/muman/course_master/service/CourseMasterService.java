@@ -41,24 +41,32 @@ public class CourseMasterService {
 	}
 
 	@Transactional 
-	public void insertCourse(String member_seq, String dayListString, String[] time_list, String aliasListString) throws ParseException {
-	    for(int i=0;i < time_list.length;i++) {
-	    	String[] dayList 	= dayListString.split("\\|");
-	    	String[] aliasList 	= aliasListString.split("\\|");
-	    	for(int j=0; j<dayList.length;j++) {
-	    		if ( Integer.parseInt(dayList[j]) == getDayOfWeek(time_list[i])  ) {
-	    			dao.insertCourse(member_seq, aliasList[j], time_list[i]);
-	    		}
-	    	}
-	    }
+	public int insertCourse(String member_seq, String dayListString, String[] time_list, String aliasListString) throws ParseException {
+	    try {
+			for(int i=0;i < time_list.length;i++) {
+		    	String[] dayList 	= dayListString.split("\\|");
+		    	String[] aliasList 	= aliasListString.split("\\|");
+		    	for(int j=0; j<dayList.length;j++) {
+		    		if ( Integer.parseInt(dayList[j]) == getDayOfWeek(time_list[i])  ) {
+		    			dao.insertCourse(member_seq, aliasList[j], time_list[i]);
+		    		}
+		    	}
+		    }
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	
 	public int getDayOfWeek(String currentDate) throws ParseException {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd") ;
-	    Date nDate = dateFormat.parse(currentDate) ;
-	    Calendar cal = Calendar.getInstance() ;
-	    cal.setTime(nDate);
-	    int dayNum = cal.get(Calendar.DAY_OF_WEEK) ;
-		return dayNum;
+		int changeYear, changeMonth, changeDate, changeDayOfWeek; 
+		Calendar cal = Calendar.getInstance();
+		changeYear = Integer.parseInt( currentDate.split("-")[0] );	
+		changeMonth= Integer.parseInt( currentDate.split("-")[1] );
+		changeDate =Integer.parseInt( currentDate.split("-")[2] );
+		cal.set( changeYear , changeMonth - 1, changeDate);
+		changeDayOfWeek = cal.get(cal.DAY_OF_WEEK) - 1;
+		return changeDayOfWeek;
 	}
 }

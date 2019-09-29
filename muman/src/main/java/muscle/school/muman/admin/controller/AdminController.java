@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import muscle.school.muman.admin.service.AdminService;
@@ -58,11 +59,6 @@ public class AdminController {
 		return "admin/admin_reg_course";
 	}
 	
-	//yyyy-mm-dd 형태로 포메팅 하는 함수
-	public String formatDate(Calendar currentCalendar) {
-		return currentCalendar.get(Calendar.DAY_OF_YEAR) + "-" + currentCalendar.get(Calendar.DAY_OF_MONTH) + "-" + currentCalendar.get(Calendar.DATE);
-	}
-	
 	//월요일과 금요일 날을 리턴 하는 함수
 	public String[] todayWeek(String standardDate) {
 		String[] result = new String[2];
@@ -104,7 +100,25 @@ public class AdminController {
 		} else {
 			return standardDate;
 		}
-		
-		
+	}
+	
+	@RequestMapping("/test")
+	public void test() {
+		System.out.println("킹치웠나?");
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal.get(cal.YEAR) );
+		System.out.println(cal.get(cal.MONTH) );
+		System.out.println(cal.get(cal.DATE) );
+		System.out.println(cal.get(cal.DAY_OF_WEEK) );
+		cal.set(2019, 11, 31);
+		System.out.println(cal.get(cal.YEAR) );
+		System.out.println(cal.get(cal.MONTH) );
+		System.out.println(cal.get(cal.DATE) );
+		System.out.println(cal.get(cal.DAY_OF_WEEK) );
+	}
+	
+	//yyyy-mm-dd 형태로 포메팅 하는 함수
+	public String formatDate(Calendar currentCalendar) {
+		return currentCalendar.get(Calendar.DAY_OF_YEAR) + "-" + currentCalendar.get(Calendar.DAY_OF_MONTH) + "-" + currentCalendar.get(Calendar.DATE);
 	}
 }

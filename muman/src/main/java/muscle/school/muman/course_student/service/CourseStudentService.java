@@ -15,7 +15,7 @@ public class CourseStudentService {
 		
 	}
 
-	public void insertStudent(String member_seq, String register_start_time, String register_end_time) {
+	public void insertStudent(String member_seq, String register_start_time, String register_end_time, int time_week) {
 		// TODO Auto-generated method stub
 		
 	}
