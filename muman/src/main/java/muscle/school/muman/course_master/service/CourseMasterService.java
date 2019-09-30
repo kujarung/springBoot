@@ -47,6 +47,11 @@ public class CourseMasterService {
 		    	String[] dayList 	= dayListString.split("\\|");
 		    	String[] aliasList 	= aliasListString.split("\\|");
 		    	for(int j=0; j<dayList.length;j++) {
+		    		System.out.println( dayList[j] );
+		    		System.out.println( time_list[i] );
+		    		System.out.println( getDayOfWeek(time_list[i])  );
+		    		System.out.println( Integer.parseInt(dayList[j])  );
+		    		
 		    		if ( Integer.parseInt(dayList[j]) == getDayOfWeek(time_list[i])  ) {
 		    			dao.insertCourse(member_seq, aliasList[j], time_list[i]);
 		    		}
