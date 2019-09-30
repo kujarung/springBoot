@@ -13,7 +13,8 @@
 			start_date, 
 			end_date, 
 			times_week, 
-			is_delay
+			is_delay,
+			alias_list_full_name
 		) 
 		VALUES 
 		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,  
@@ -21,12 +22,13 @@
 			#{start_date},
 			#{end_date},
 			#{times_week}, 
-			0
+			0,
+			#{alias_list_full_name}
 		);
 	</insert>
     
     <select id="selectCourseStudentList" resultType="map">
-    	SELECT NAME, START_DATE, END_DATE, TIMES_WEEK, IS_DELAY FROM COURSE_STUDENT CS
+    	SELECT NAME, MEMBER_SEQ, START_DATE, END_DATE, TIMES_WEEK, IS_DELAY, ALIAS_LIST_FULL_NAME FROM COURSE_STUDENT CS
 		LEFT JOIN MEMBER M ON M.MEMBER_SEQ = CS.MEMBER_SEQ
     </select>
 </mapper>

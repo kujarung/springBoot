@@ -32,7 +32,7 @@ public class CourseStudentController {
 									  @RequestParam(value = "register_end_time") String 	end_date,   @RequestParam() String[] time_list, 
 									  @RequestParam() String dayList, 			  @RequestParam() String aliasList ) throws ParseException {
 		courseMasterService.insertCourse(member_seq, dayList, time_list, aliasList);
-		courseStudentService.insertStudent(member_seq, start_date, end_date, times);
+		courseStudentService.insertStudent(member_seq, start_date, end_date, times, aliasList);
 		
 		return "redirect:index";
 	}

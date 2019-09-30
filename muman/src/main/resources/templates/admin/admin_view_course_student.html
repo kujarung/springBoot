@@ -17,7 +17,7 @@
 					<th>시작일</th>
 					<th>마감일</th>
 					<th>주 횟수</th>
-					<th>미룸 여부</th>
+					<th>Delay 사용 여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,8 +26,14 @@
 					<td th:text="${courseStudentList.NAME}"></td>
 					<td th:text="${courseStudentList.START_DATE}"></td>
 					<td th:text="${courseStudentList.END_DATE}"></td>
-					<td th:text="${courseStudentList.TIMES_WEEK}"></td>
-					<td th:text="${courseStudentList.IS_DELAY}"></td>
+					<td th:text="${courseStudentList.TIMES_WEEK} + '' + ${courseStudentList.ALIAS_LIST_FULL_NAME}"></td>
+					<td th:if="${courseStudentList.IS_DELAY} == 0">
+						Delay 미사용
+					</td>
+					<td th:unless="${courseStudentList.IS_DELAY} == 0">
+					 	Delay 사용
+					</td>
+					<td class="hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
 				</tr>
 			</tbody>
 		</table>	
