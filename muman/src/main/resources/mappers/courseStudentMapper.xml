@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="muscle.school.muman.course_student.dao.CourseStudentDao">
+   	<insert id="insertStudent">
+		INSERT INTO 
+			COURSE_STUDENT 
+		(
+			course_student_seq, 
+			member_seq, 
+			start_date, 
+			end_date, 
+			times_week, 
+			is_delay
+		) 
+		VALUES 
+		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,  
+			#{member_seq},
+			#{start_date},
+			#{end_date},
+			#{times_week}, 
+			0
+		);
+	</insert>
+    
+    <select id="selectCourseStudentList" resultType="map">
+    	SELECT NAME, START_DATE, END_DATE, TIMES_WEEK, IS_DELAY FROM COURSE_STUDENT CS
+		LEFT JOIN MEMBER M ON M.MEMBER_SEQ = CS.MEMBER_SEQ
+    </select>
+</mapper>

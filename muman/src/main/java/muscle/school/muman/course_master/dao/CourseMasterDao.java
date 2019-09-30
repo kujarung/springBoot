@@ -14,5 +14,6 @@ public interface CourseMasterDao {
 	List<Map<String, Object>> selectHolidayList();
 
 	void insertCourse(String member_seq, String ex_alias, String ex_date);
+
 	
 }

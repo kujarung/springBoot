@@ -418,6 +418,10 @@
 				alert(validMsg);
 				return false;
 			} else {
+				var times = $("#times").val();
+				times = times.slice(1, times.length);
+				times = times.slice(0,-1);
+				$("#times").val(times);
 				$("#course").submit();
 			}
 		});

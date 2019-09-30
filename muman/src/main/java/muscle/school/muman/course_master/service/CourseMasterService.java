@@ -1,10 +1,6 @@
 package muscle.school.muman.course_master.service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import muscle.school.muman.commom.service.CommonService;
 import muscle.school.muman.course_master.dao.CourseMasterDao;
 
 @Service
@@ -21,6 +18,8 @@ public class CourseMasterService {
 	
 	@Autowired
 	CourseMasterDao dao;
+	@Autowired
+	CommonService commonSerivce;
 	
 	public void insertMember() {
 		
@@ -47,12 +46,7 @@ public class CourseMasterService {
 		    	String[] dayList 	= dayListString.split("\\|");
 		    	String[] aliasList 	= aliasListString.split("\\|");
 		    	for(int j=0; j<dayList.length;j++) {
-		    		System.out.println( dayList[j] );
-		    		System.out.println( time_list[i] );
-		    		System.out.println( getDayOfWeek(time_list[i])  );
-		    		System.out.println( Integer.parseInt(dayList[j])  );
-		    		
-		    		if ( Integer.parseInt(dayList[j]) == getDayOfWeek(time_list[i])  ) {
+		    		if ( Integer.parseInt(dayList[j]) == commonSerivce.getDayOfWeek(time_list[i])  ) {
 		    			dao.insertCourse(member_seq, aliasList[j], time_list[i]);
 		    		}
 		    	}
@@ -64,14 +58,5 @@ public class CourseMasterService {
 		}
 	}
 	
-	public int getDayOfWeek(String currentDate) throws ParseException {
-		int changeYear, changeMonth, changeDate, changeDayOfWeek; 
-		Calendar cal = Calendar.getInstance();
-		changeYear = Integer.parseInt( currentDate.split("-")[0] );	
-		changeMonth= Integer.parseInt( currentDate.split("-")[1] );
-		changeDate =Integer.parseInt( currentDate.split("-")[2] );
-		cal.set( changeYear , changeMonth - 1, changeDate);
-		changeDayOfWeek = cal.get(cal.DAY_OF_WEEK) - 1;
-		return changeDayOfWeek;
-	}
+
 }

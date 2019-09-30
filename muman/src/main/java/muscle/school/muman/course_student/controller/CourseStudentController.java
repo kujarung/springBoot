@@ -28,11 +28,11 @@ public class CourseStudentController {
 	
 	@PostMapping("/admin/insertCourseStudent")
 	public String insertCourseStudent(HttpServletRequest req, 					  @RequestParam() String member_seq, 
-									  @RequestParam() String register_start_time, @RequestParam() int times,
-									  @RequestParam() String register_end_time,   @RequestParam() String[] time_list, 
+									  @RequestParam(value = "register_start_time") String 	start_date, @RequestParam() int times,
+									  @RequestParam(value = "register_end_time") String 	end_date,   @RequestParam() String[] time_list, 
 									  @RequestParam() String dayList, 			  @RequestParam() String aliasList ) throws ParseException {
 		courseMasterService.insertCourse(member_seq, dayList, time_list, aliasList);
-		courseStudentService.insertStudent(member_seq, register_start_time, register_end_time, times);
+		courseStudentService.insertStudent(member_seq, start_date, end_date, times);
 		
 		return "redirect:index";
 	}
