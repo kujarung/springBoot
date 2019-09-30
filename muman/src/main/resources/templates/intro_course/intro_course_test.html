@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>수업 소개</title> 
+        <head th:replace="common/sub/head"></head>
+    </head> 
+    <body>
+        <div class="wrapper">
+            <header th:replace="common/header"></header>
+            <div class="wrapper">
+                <div class="col-12">
+                    <ul class="col-12" >
+                        <li class="col-12">
+                            <div class="col-12 pallex-back">
+                                <div class="col-12 pallex" style="background-image: url('../img/pal1.jpg')">
+                                    <div class="col-12 bakimg"></div>
+                                    <div class="col-12 pallex_text_con">
+                                        <div class="col-12 pallex_text" style="color:wheat; font-size: 30px;">
+                                            이것은 테스트 입니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-12 tc">
+                            <div class="col-12 pallex-back">
+                                <div class="col-12 pallex" style="background-image: url('../img/pal2.jpg')">
+                                    <div class="col-12 bakimg"></div>
+                                    <div class="col-12 pallex_text_con">
+                                        <div class="col-12 pallex_text" style="color:wheat; font-size: 30px;">
+                                            이것은 테스트 입니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-12 tc">
+                            <div class="col-12 pallex-back">
+                                <div class="col-12 pallex" style="background-image: url('../img/pal3.jpg')">
+                                    <div class="col-12 bakimg"></div>
+                                    <div class="col-12 pallex_text_con">
+                                        <div class="col-12 pallex_text" style="color:wheat; font-size: 30px;">
+                                            이것은 테스트 입니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                
+            </div>
+            <footer th:replace="common/footer"></footer>
+        </div>
+
+    </body>
+
+</html>
+
+<style>
+    .pallex-back{background-color: black; position: relative;}
+    .pallex{background-position: center; background-attachment: fixed; background-size: cover; background-repeat: no-repeat;}
+    .pallex_text_con{display:table; height: 100%;}
+    .pallex_text{display:table-cell; float: none; vertical-align: middle; text-align: center;}
+    .bakimg{opacity: 0.3; background-color: black; position: absolute;}
+</style>
+<script>
+    var viewHeight = $(window).height();
+    $("li > .pallex-back").height(viewHeight);
+    $("li .pallex").height(viewHeight);
+    $("li .bakimg").height(viewHeight);
+    $(window).scroll(function(){
+
+    });
+
+</script>

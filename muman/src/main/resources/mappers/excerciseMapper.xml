@@ -25,4 +25,39 @@
 		)
     </insert>
     
+    <select id="serchExData" parameterType="map" resultType="map">
+		SELECT TBL.*
+		 FROM 
+		 (
+			SELECT 
+				@ROWNUM:=@ROWNUM+1 AS no, ex_seq, ex_date, ex_title
+			FROM (SELECT @ROWNUM:= 0 ) dummy, EXCERCISE_MASTER
+		    WHERE 
+		    1 = 1
+		    <if test="member_seq != '' ">
+	    		AND MEMBER_SEQ = #{member_seq}
+	  	    </if>
+		 ) AS TBL
+		 WHERE 
+		 	(@ROWNUM:=0)=0
+		 AND
+		 	NO BETWEEN ( ( ( #{current_page} - 1 ) * 5 ) + 1 ) AND ( ( ( #{current_page} - 1 ) * 5 ) + 5 )
+    </select>
+    
+    <select id="countTotalCnt" resultType="int">
+    	SELECT COUNT(*) FROM EXCERCISE_MASTER
+    </select>
+    
+    <select id="serchExDetail" parameterType="int" resultType="map">
+		SELECT
+			ex_seq, ex_set, ex_cate, ex_weight, ex_times, ex_real_yn 
+		FROM 
+			EXCERCISE_CONTENT
+    	WHERE
+    	1 = 1
+    	<if test="_parameter != '' ">
+	    	AND ex_seq = #{_parameter}
+	  	</if>
+    </select>
+    
 </mapper>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/uni_main.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/common_style.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/wevenResponsive.css"/>
+    <script type="text/javascript" src="../js/swiper/swiper.min.js"></script>
+    <link rel="stylesheet" href="../js/swiper/swiper.min.css">
+    <!--jquery-->
+    <script type="text/javascript" src="../js/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/rollingEvent.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="col-12">
+        <div class="col-12 log_con">
+            <div class="col-12 mw-1200 col-center">
+                <div class="col-12 pt30 pr30 pl30 pr-sm-0 pl-sm-0">
+                    <div class="left_logo">
+                        <!--왼쪽 로고-->
+                        <!--img는 width값과 height가 고정 되어 있으므로 크기 변경 시 css변경 필요-->
+                        <!--반대로 어떠한 이미지를 넣어도 고정 값으로 변함-->
+                        <h1>
+                            <a href="/">
+                                <img src="../img/main_logo.png" alt="main_logo">
+                            </a>
+                        </h1>
+                    </div>
+
+                    <div class="right_utill_con">
+                        <!--메뉴 쪽, 추가 메뉴 필요시 li a 를 추가 하면 됨-->
+                        <ul class="col-12 ul_utill">
+                            <li class="">
+                                <a href="intro_teacher.html">
+                                    입학안내
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    수업 소개
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="">
+                                    강사 소개
+                                </a>
+                            </li>
+                            <li id="moblie_menu">
+                                <span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--모바일 시에 메뉴-->
+        <div id="moblie_menu_wrap" class="col-12 click_header_wrap">
+            <div class="col-12">
+                <div class="col-12 mobile_logo_con">
+                    <div class="left_logo">\
+                        <img src="../img/logo_girl.png" alt="" style="width:200px;">
+                    </div>
+                    <div id="x_btn" class="right_btn_con close_btn">
+                        <img src="../img/x_btn.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col-12 header_fixed_menu_box">
+                    <div class="member_menu_wrap">
+                        <div class="col-0 mr40">
+                            <a href="/" target="_blank" class="btn_style_0">
+                                <span class="point0">근력학교</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 pr40 pl40 pr-md-0 pl-md-0">
+                    <div class="col-12 gnb_wrap">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    테스트
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    테스트
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    테스트
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--main visual 영역-->
+        <div class="col-12">
+            <div class="col-12 swiper-container main_visual_wrap">
+                <div class="col-12 swiper-wrapper">
+                    <div class="swiper-slide col-12">
+                        <div class="col-12 h-100 main_visual_img_wrap">
+                            <div class="main_visual_img" style="background-image: url('img/theme1_visual_bg2.jpg');">
+                                <div class="visual_dim"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-center mw-1200 h-100">
+                            <div class="col-12 h-100 pr15 pl15">
+                                <div class="col-12 h-100">
+                                    <div class="col-12 h-100 main_visual_text">
+                                        <div class="show-tablecell vm">
+                                            <div class="main_visual_text_inner">
+                                                <div class="col-12">
+                                                    <div class="col-12" >
+                                                        <!--                                                <div class="logo mb40">
+                                                                                                        <a href="javascript:void(0);">
+                                                                                                            <img src="img/big_logo.png" alt="logo">
+                                                                                                        </a>
+                                                                                                    </div>-->
+                                                    </div>
+                                                    <div class="col-12" >
+                                                        <h2 class="" style="color:#fff">
+                                                            <span class="point_color">차별화된</span> 트레이닝<br>
+                                                            유일의 하드스타일 케틀벨&바벨 교육 기관
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="h2_desc">
+                                                            다들 바벨을 잡으세요. 그리고 강해지세요.
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="btn_style_3_con">
+                                                            <a href="/intro_course" class="btn_style_3">
+                                                                수업 확인 하기
+                                                                    <span class="ml9">
+                                                        <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                                                                y="0px" viewBox="0 0 29.4 16.8" style="enable-background:new 0 0 29.4 16.8; width: 24px; height: 14px;" xml:space="preserve" >
+                                                        <style type="text/css">
+                                                            .st0{fill:#FFFFFF; stroke:#FFFFFF; stroke-width:2;stroke-linecap:square;stroke-miterlimit:10;}
+                                                        </style>
+                                                            <path class="st0" d="M-2-13"/>
+                                                            <polygon points="21,0 19.6,1.4 25.6,7.4 0,7.4 0,9.4 25.6,9.4 19.6,15.4 21,16.8 29.4,8.4" style="fill:#fff"/>
+                                                        </svg>
+                                                        </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide col-12">
+                        <div class="col-12 h-100 main_visual_img_wrap">
+                            <div class="main_visual_img" style="background-image: url('img/theme1_visual_bg3.jpg');">
+                                <div class="visual_dim"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-center mw-1200 h-100">
+                            <div class="col-12 h-100 pr15 pl15">
+                                <div class="col-12 h-100">
+                                    <div class="col-12 h-100 main_visual_text">
+                                        <div class="show-tablecell vm">
+                                            <div class="main_visual_text_inner">
+                                                <div class="col-12">
+                                                    <div class="col-12" >
+                                                        <!--                                                <div class="logo mb40">
+                                                                                                        <a href="javascript:void(0);">
+                                                                                                            <img src="img/big_logo.png" alt="logo">
+                                                                                                        </a>
+                                                                                                    </div>-->
+                                                    </div>
+                                                    <div class="col-12" >
+                                                        <h2 class="" style="color:#fff">
+                                                            <span class="point_color">차별화된</span> 트레이닝<br>
+                                                            유일의 하드스타일 케틀벨&바벨 교육 기관
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="h2_desc">
+                                                            다들 바벨을 잡으세요. 그리고 강해지세요.
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="btn_style_3_con">
+                                                            <a href="javascript:void(0);" class="btn_style_3">
+                                                                수업 확인 하기
+                                                                    <span class="ml9">
+                                                        <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                                                                y="0px" viewBox="0 0 29.4 16.8" style="enable-background:new 0 0 29.4 16.8; width: 24px; height: 14px;" xml:space="preserve" >
+                                                        <style type="text/css">
+                                                            .st0{fill:#FFFFFF; stroke:#FFFFFF; stroke-width:2;stroke-linecap:square;stroke-miterlimit:10;}
+                                                        </style>
+                                                            <path class="st0" d="M-2-13"/>
+                                                            <polygon points="21,0 19.6,1.4 25.6,7.4 0,7.4 0,9.4 25.6,9.4 19.6,15.4 21,16.8 29.4,8.4" style="fill:#fff"/>
+                                                        </svg>
+                                                        </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 visual_back" style="height:650px;">
+            <div class="col-12 h-100" style="display: table;">
+                <div class="col-12 mw-1200 pr15 pl15 col-center visual_con" style="display: table-cell; vertical-align: middle; z-index: 3;">
+                    <div class="col-12 visual_main_cont">
+                        <div class="img_box">
+                            <img src="img/muscle_white.png" alt="" style="width: 100px;">
+                        </div>
+                        <div class="img_box_des">
+                            WHO WE ARE
+                        </div>
+                        <div class="h2_title">
+                            <span class="point_color">도전하는</span> 젊음의 시작<br>
+                        </div>
+                        <div class="h2_des">여러분의 젊음과 열정을 응원합니다.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dim">
+            </div>
+        </div>
+
+        <div class="col-12 intro_teacher_con h-100" style="background-image:url('img/side_img.jpg')">
+            <div class="col-12 col-center tc over-hidden visual_block_010_content_002">
+                <div class="col-12 pr15 pl15">
+                    <div class="col-12" >
+                        <h3 class="title_font_3 mb30" style="color: #fff;">
+                            선생님 소개
+                        </h3>
+                    </div>
+                    <div class="col-12 mb77" >
+                        <div class="sub_title_font_2" style="color: #fff;">
+                            <span class="point_color">최고의 </span>  선생님들을 소개 합니다.
+                        </div>
+                    </div>
+
+                    <div class="col-12" >
+                        <div class="col-12 swiper-container slide_img_con">
+                            <div class="col-12 swiper-wrapper">
+                                <div class="col-12 swiper-slide">
+                                    <div class="col-12 mb40 teacher_img_con" >
+                                        <img class="op" src="img/people0.jpg" alt="">
+                                    </div>
+                                    <div class="col-12 mb30" >
+                                        <div class="sub_title_font_1" style="color: #fff; font-weight:bold;">
+                                            교z
+                                        </div>
+                                    </div>
+                                    <div class="col-12" >
+                                        <div class="desc_font_1" style="color: #fff; font-weight:bold;">
+                                            교장<br>
+                                            고려대학교 지리교육과<br>
+                                            Flexible Steel Level 1 Instructor Certification<br>
+                                            IPF(International Powerlifting Federation) Class 2 Instructor Certification 등<br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 swiper-slide">
+                                    <div class="col-12 mb40 teacher_img_con" >
+                                        <img class="op" src="img/people1.jpg" alt="">
+                                    </div>
+                                    <div class="col-12 mb30" >
+                                        <div class="sub_title_font_1 fontweight700" style="color: #fff;">
+                                            백승덕
+                                        </div>
+                                    </div>
+                                    <div class="col-12" >
+                                        <div class="desc_font_1 fontweight700" style="color: #fff;">
+                                            관장<br>
+                                            고려대학교 지리교육과<br>
+                                            Flexible Steel Level 1 Instructor Certification<br>
+                                            IPF(International Powerlifting Federation) Class 2 Instructor Certification 등<br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="intro_teacher_con_dim"></div>
+        </div>
+        <div class="col-12" style="background-color: #000">
+            <div class="col-12 col-center mw-1230 pr15 pl15 why_ms_wrap">
+                <div class="col-12 why_ms_con">
+                    <div class="col-12 point_color emp">
+                        About Muscle School
+                    </div>
+                    <div class="col-12 why_ms_text">
+                        지난 2년간 159명의 튜티 분들을 만나 약 5200시간을 함께 했습니다.<br>
+                        2019년 새해, 운동 학교를 오픈합니다.
+                    </div>
+
+                    <div class="col-12 mb80">
+                        <div class="col-12 col-md-6 mb-md-0 mb80 pr0 pr-md-20">
+                            <div class="col-12 why_img_con tc">
+                                <img src="img/why1.jpg" alt="">
+                            </div>
+
+                            <div class="col-12 text_con">
+                                <div class="col-12 text_title">
+                                    ✔ 근력
+                                </div>
+                                <div class="col-12 text_desc">
+                                    : "근력"은 제가 드리고 싶은 것의 핵심입니다.<br>
+                                    <br>
+                                    저는 저와 훈련한 분들이 '건+강해지고' 튼튼해지길 바랍니다.<br>
+                                    <br>
+                                    많은 분들이 '근력'과 '건강'이 무관하고,<br>
+                                    <br>
+                                    근력이 높아지면 오히려 건강을 해치고, 뻣뻣해진다는 착각을 합니다.<br>
+                                    <br>
+                                    과연 사실일까요?
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 pl0 pl-md-20">
+                            <div class="col-12 why_img_con tc">
+                                <img src="img/why2.jpg" alt="">
+                            </div>
+                            <div class="col-12 text_con">
+                                <div class="col-12 text_title">
+                                    ✔ 건강(健康)
+                                </div>
+
+                                <div class="col-12 text_desc">
+                                    오래 전, 저는<br>
+                                    <br>
+                                    '건'자는 뭔지 모르겠다 / '강'자는 '강하다'는 뜻이겠지. 라고 생각했습니다.<br>
+                                    <br>
+                                    하지만 알고 보니<br>
+                                    <br>
+                                    - '건'은 '굳세다/튼튼하다'는 뜻이었고,<br>
+                                    - '강'은 '(몸과 마음이) 편안하다'는 뜻이었습니다.<br>
+                                    <br>
+                                    즉, '건강'이란 '굳세고 튼튼함으로서 몸과 마음이 편안하다'는 말입니다.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="col-12 col-md-6 mb-md-0 mb80 pr0 pr-md-20">
+                            <div class="col-12 why_img_con tc">
+                                <img src="img/why3.jpg" alt="">
+                            </div>
+                            <div class="col-12 text_con">
+                                <div class="col-12 text_title">
+                                    ✔ 학교
+                                </div>
+
+                                <div class="col-12 text_desc">
+                                    : '학교'는 서로가 서로를 가르치고, 서로가 서로에게 배우는 공간입니다.<br>
+                                    <br>
+                                    - 저는 여러분을 '가르치고' 싶습니다.<br>
+                                    <br>
+                                    제가 배우고, 익히고, 가르쳐 온 이론과 실기를,<br>
+                                    <br>
+                                    그것을 필요로 하는 분들께 전달하고 싶습니다.<br>
+                                    <br>
+                                    그것이 '교육'이고, 그래서 이곳은 '샵'이나 '짐'이 아닌 '학교'입니다.<br>
+                                    <br>
+                                    여러분도 '교육'을 받기 위해 오시면 좋겠습니다.<br>
+                                    <br>
+                                    모르면 당하는 것이 무서운 자본주의 세상이라고 생각합니다(웃음).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 pl0 pl20">
+                            <div class="col-12 why_img_con tc">
+                                <img src="img/why4.jpg" alt="">
+                            </div>
+                            <div class="col-12 text_con">
+                                <div class="col-12 text_title">
+                                    ✔ 알러 오세요!
+                                </div>
+
+                                <div class="col-12 text_desc">
+                                    - 저는 여러분에게 '배우고' 싶습니다.<br>
+                                    <br>
+                                    모든 이론과 실기는, 그것을 타인과 나누면서 더 강해집니다.<br>
+                                    <br>
+                                    타인에게 알려주고 풀어쓰는 과정을 통해 더 깊이 이해되고<br>
+                                    <br>
+                                    별개로 여겨졌던 조각들이 퍼즐처럼 맞춰집니다.<br>
+                                    <br>
+                                    그래서 저 또한 가르치면서 배웁니다.<br>
+                                    <br>
+                                    2년간의 나눔이 없었다면 저는 지금보다 훨씬 미숙했을 것입니다.<br>
+                                    <br>
+                                    그리고 지금도 한참 미숙하기 때문에 여전히 타인과의 나눔이 필요합니다.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 footer_wrap">
+            <div class="col-12 col-center mw-1200">
+                <div class="col-12 pr15 pl15">
+                    <div class="col-12 col-md-6 mb30 mb-md-0 tc tl-md">
+                        <a href="javascript:void(0)" class="show mr25">
+                            <img src="../img/logo_girl.png" alt="" style="width: 200px;">
+                        </a>
+                        <div class="col-12">
+                            <a href="javascript:void(0)" class="show mt5 contact_us">
+                                <span class="lineheight0 font_helve pr10">CONTACT US</span>
+                                <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 5.8 9.7" style="enable-background:new 0 0 5.8 9.7; width: 6px; height: 11px;" xml:space="preserve">
+                                    <style type="text/css">
+                                    .st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-miterlimit:10;}
+                                    </style>
+                                    <path class="st0" d="M-27.4-15.6"></path>
+                                    <line x1="-30.7" y1="0.2" x2="-26.5" y2="4"></line>
+                                    <polygon points="0.7,9.7 0,9 4.4,4.9 0,0.7 0.7,0 5.8,4.9 " style="fill:#fff;"></polygon>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="col-12 mb19">
+                            <ul class="footer_util_list_con">
+                                <li class="footer_util_list">
+                                    <a href="javascript:void(0)">
+                                        이용약관
+                                    </a>
+                                </li>
+                                <li class="footer_util_list">
+                                    <a href="javascript:void(0)">
+                                        개인정보취급방침
+                                    </a>
+                                </li>
+                                <li class="footer_util_list">
+                                    <a href="javascript:void(0)">
+                                        찾아오시는길
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-12 mb13" >
+                            <div class="footer_addr">
+                                서울특별시 성북구 인촌로24길 47 3층 근력학교<br>
+                                이메일  TEST@NAVER,COM
+                            </div>
+                        </div>
+                        <div class="col-12 mb91" >
+                            <div class="footer_copy font_helve">
+                                2019 COPYRIGHT BY KU. ALL RIGHTS RESERVED
+                            </div>
+                        </div>
+                        <div class="col-12 tc tl-md" >
+                            <a href="javascript:void(0)" class="go_up_btn">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40.4 20" style="enable-background:new 0 0 40.4 20; width:39px; height:21px; fill:#fff;" xml:space="preserve">
+                        <polygon points="1.3,20 0,18.5 20.3,0 40.4,18.5 39,20 20.3,2.7 "></polygon>
+                        </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+    $("#moblie_menu").on("click", function() {
+        var memnu = $("#moblie_menu_wrap");
+        if(memnu.hasClass("active")) {
+            memnu.removeClass("active");
+        } else {
+            memnu.addClass("active");
+        }
+    });
+
+    $("#x_btn").on("click", function() {
+        var memnu = $("#moblie_menu_wrap");
+        memnu.removeClass("active");
+    });
+
+
+</script>

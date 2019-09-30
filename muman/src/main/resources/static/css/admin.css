@@ -1,0 +1,10 @@
+.form_con {margin-bottom:30px;}
+.today{background-color: #8b8b8b}
+.un_use{background-color: darkgray}
+.table_style2{}
+
+.time_list{display: inline-block; border:1px solid black; margin-right:10px; padding: 5px; 
+		   vertical-align: top; font-size: 12px; font-weight: normal;height: 20px; width: 200px; 
+		   line-height: 20px; margin-bottom:20px;}
+.time_list:last-child {margin-right:0px;}
+.time_list.holiday{background-color: red;}

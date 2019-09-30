@@ -1,0 +1,48 @@
+<head>
+    <head th:replace="common/sub/head"></head>
+</head>
+
+
+<table>
+	<thead>
+		
+	</thead>
+	
+	<tbody>
+		
+	</tbody>
+</table>
+
+<div class="wrap col-12">
+	<div th:each="detail: ${ detail }">
+	<table class="col-12 col-md-6">
+		<tbody>
+			<tr>
+				<th>운동 종류</th>
+				<td th:text="${detail.ex_cate}"></td>
+			</tr>
+			
+			<tr>
+				<th>총 운동한 횟수</th>
+				<td th:text="${detail.ex_set}"></td>
+			</tr>
+			
+			<tr>
+				<th>세트 당 한 수</th>
+				<td th:text="${detail.ex_times}"></td>
+			</tr>
+			
+			<tr>
+				<th>세트 당 무게</th>
+				<td th:text="${detail.ex_weight}"></td>
+			</tr>
+			
+			<tr>
+				<th>세트 당 본세트 유무</th>
+				<td th:text="${detail.ex_real_yn}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	</div>
+</div>

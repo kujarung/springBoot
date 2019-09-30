@@ -2,6 +2,7 @@ package muscle.school.muman.exercise.service;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +59,19 @@ public class ExerciseService {
     		exContentParam.put("member_seq", 1);
 			dao.insertExContent(exContentParam);
     	}
+	}
+
+	public List<Map<String, Object>> ExDataList(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.serchExData(params);
+	}
+
+	public List<Map<String, Object>> serchExDetail(int ex_seq) {
+		return dao.serchExDetail(ex_seq);
+	}
+
+	public int countTotalCnt() {
+		return dao.countTotalCnt();
 	}
 
     

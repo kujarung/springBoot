@@ -3,12 +3,18 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="muscle.school.muman.main.dao.MainDao">
+<mapper namespace="muscle.school.muman.member.dao.MemberDao">
         
-    <select id="selectMemberList" parameterType="muscle.school.muman.main.vo.MemberVO" resultType="muscle.school.muman.main.vo.MemberVO">
-        SELECT * FROM MEMBER
+    <select id="selectMemberList" resultType="map">        	
+         SELECT TBL.*
+		 FROM 
+		 (
+			SELECT 
+				@ROWNUM:=@ROWNUM+1 AS no, name,member_id,member_seq
+			FROM (SELECT @ROWNUM:= 0 ) dummy, MEMBER
+		 ) AS TBL
+		 WHERE 
+		 	(@ROWNUM:=0)=0
     </select>
-    
-    
     
 </mapper>
