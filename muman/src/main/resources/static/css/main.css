@@ -66,6 +66,7 @@ svg {fill: rgba(255, 255, 255, 1);stroke: rgba(255, 255, 255, 1);stroke-width: 1
 .text_title_font {font-size:20px; text-align: center; margin-bottom: 20px; font-weight: bold; color: #ea9643;}
 .text_desc_font {font-size:15px; text-align: center; font-weight: bold; color:#fff;}
 .why_img_con {margin-bottom: 30px;}
+.why_img_con:hover > img {transform:scale(1.5); transition:0.3s}
 .why_img_con > img {height:200px; border-radius: 20px;}
 .emp{font-size:18px; font-weight: bold;  margin-bottom: 13px;}
 
@@ -80,7 +81,6 @@ svg {fill: rgba(255, 255, 255, 1);stroke: rgba(255, 255, 255, 1);stroke-width: 1
 
 @media all and (min-width:992px){
     .main_visual_wrap h2{font-size:60px; font-size:6.0rem; line-height:75px; line-height:7.5rem;}
-    .why_img_con > img {height:400px;}
     .arr_btn {position: absolute;top: 50%; width: 40px;height: 40px; z-index: 3;cursor: pointer; }
     .arr_btn.right {right: calc((100% - 992px) / 2 + 15px);}
     .arr_btn.left {left: calc((100% - 992px) / 2 + 15px);}

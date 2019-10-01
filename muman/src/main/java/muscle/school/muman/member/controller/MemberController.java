@@ -25,7 +25,7 @@ import muscle.school.muman.member.service.MemberService;
 public class MemberController {
 	
 	@Autowired
-	MemberService memberService;
+	MemberService service;
 	
 	//회원 가입 페이지
 	@GetMapping("/sign_up")
@@ -36,6 +36,7 @@ public class MemberController {
 	//로그인 페이지
 	@GetMapping("/sign_in")
 	public String sign_in() {
+		
 		return "member/sign_in";
 	}
 		
@@ -45,12 +46,26 @@ public class MemberController {
 		
 	}
 	
+	//회원 가입 admin
+	@PostMapping("/admin/insertMember")
+	public String insertAdminMember(
+			@RequestParam(required=false) String name,
+			@RequestParam(required=false) String id,
+			@RequestParam(required=false) String pass) {
+		service.insertMember(name, id, pass);
+		
+		return "redirect:/admin/index";
+		
+	}
+	
 	//회원 리스트 출력
 	@GetMapping("/selectMemberList")
 	@ResponseBody
 	public void selectMemberList( @RequestParam(required = false) String member_name, Model model , HttpServletResponse response) throws JSONException {
-		List< Map<String,Object> > data = memberService.selectMemberList(member_name);
+		List< Map<String,Object> > data = service.selectMemberList(member_name);
 		try {
+			response.setContentType("text/html;charset=UTF-8"); 
+
 			JSONArray jsonArray = new JSONArray();
 			JSONObject jso = new JSONObject();
 			JSONObject result = new JSONObject();

@@ -70,12 +70,13 @@ public class AdminController {
 		return "admin/admin_reg_course";
 	}
 	
-	
-	
-	
+	//관리자 회원 등록 페이지
+	@GetMapping("/admin/admin_reg_member")
+	public String adminRegMember() {
+		return "admin/admin_reg_member";
+	}	
 
 	
-
 	
 	@RequestMapping("/test")
 	public void test() {

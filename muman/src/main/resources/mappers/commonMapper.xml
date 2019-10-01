@@ -7,5 +7,13 @@
 	<update id="nextCourseStudentSeq">
 		UPDATE GENERATE_SEQ SET COURSE_STUDENT_SEQ = COURSE_STUDENT_SEQ + 1;
 	</update>
+	<update id="nextMemberSeq">
+		UPDATE 
+			GENERATE_SEQ 
+		SET 
+			MEMBER_SEQ = MEMBER_SEQ + 1;
+	</update>
+	
+	
     
 </mapper>

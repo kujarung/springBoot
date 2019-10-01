@@ -17,4 +17,27 @@
 		 	(@ROWNUM:=0)=0
     </select>
     
+    <insert id="insertMember">
+    	INSERT INTO MEMBER
+    	(
+	    	member_seq, 
+	    	name, 
+	    	member_id, 
+	    	member_pass, 
+	    	force_yn, 
+	    	reg_date, 
+	    	authority
+    	)
+    	VALUES
+    	(
+    		IFNULL( (SELECT MAX(member_seq) + 1 FROM GENERATE_SEQ) , 1 ),
+    		#{name},
+    		#{id},
+    		#{pass},
+    		1,
+    		SYSDATE(),
+    		2
+    	)
+    	
+    </insert>
 </mapper>

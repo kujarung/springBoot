@@ -10,5 +10,7 @@ public interface CommonDao {
 
 	void nextCourseStudentSeq();
 
+	void nextMemberSeq();
+
 	
 }
