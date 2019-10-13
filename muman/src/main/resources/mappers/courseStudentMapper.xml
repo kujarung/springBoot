@@ -14,7 +14,10 @@
 			end_date, 
 			times_week, 
 			is_delay,
-			alias_list_full_name
+			alias_list_full_name,
+			price,
+			price_date,
+			price_type
 		) 
 		VALUES 
 		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,  
@@ -23,7 +26,10 @@
 			#{end_date},
 			#{times_week}, 
 			0,
-			#{alias_list_full_name}
+			#{alias_list_full_name},
+			#{price},
+			#{price_date},
+			#{price_type}
 		);
 	</insert>
     
@@ -34,7 +40,8 @@
     	SELECT
     		( SELECT COUNT(course_student_seq) FROM COURSE_STUDENT ) AS TOTAL_CNT, 
     		@ROWNUM:=@ROWNUM+1 AS NO,
-    		M.NAME, M.MEMBER_SEQ, CS.START_DATE, CS.END_DATE, CS.TIMES_WEEK, CS.IS_DELAY, CS.ALIAS_LIST_FULL_NAME 
+    		M.NAME, M.MEMBER_SEQ, CS.START_DATE, CS.END_DATE, CS.TIMES_WEEK, CS.IS_DELAY, CS.ALIAS_LIST_FULL_NAME,
+    		CS.PRICE, CS.PRICE_DATE, CS.PRICE_TYPE 
     	FROM 
     		(SELECT @ROWNUM:= 0 ) dummy, COURSE_STUDENT CS
 		LEFT JOIN 

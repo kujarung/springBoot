@@ -25,7 +25,7 @@ public class CourseStudentService {
 		
 	}
 
-	public void insertStudent(String member_seq, String start_date, String end_date, int times_week, String aliasList) {
+	public void insertStudent(String member_seq, String start_date, String end_date, int times_week, String aliasList, String price, String price_date, String price_type) {
 		String alias_list_full_name= "";
 		String [] tempAliasList = aliasList.split("\\|");
 		for(int i=0; i< tempAliasList.length;i++) {
@@ -38,7 +38,7 @@ public class CourseStudentService {
 			}
 		}
 		alias_list_full_name = "(" + alias_list_full_name + ")";
-		dao.insertStudent(member_seq, start_date, end_date, times_week, alias_list_full_name);
+		dao.insertStudent(member_seq, start_date, end_date, times_week, alias_list_full_name, price, price_date, price_type);
 		commonDao.nextCourseStudentSeq();
 		
 	}

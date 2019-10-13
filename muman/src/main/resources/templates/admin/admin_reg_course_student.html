@@ -267,7 +267,7 @@
        				<div class="col-12 reg_con">
 	                <div class="reg_title">가격(변경 가능) </div>
 	                <div class="reg_left_input">
-                    	<input class="fl type2" id="price" value="" style="width:200px;">
+                    	<input class="fl type2" name="price" id="price" value="" style="width:200px;">
 	                    <div class="check_btn" style="float:left;">
 	                        <div class="check_text">
 	                            	만원
@@ -279,11 +279,11 @@
 				<div class="col-12 reg_con">
 	                <div class="reg_title">결제 방식</div>
 	                <div class="reg_left_select">
-					<select>
-						<option>계좌이체</option>
-						<option>카드</option>
-						<option>탈잉 + 계좌이체</option>
-						<option>탈잉 + 카드</option>
+					<select name="price_type">
+						<option value="1">계좌이체</option>
+						<option value="2">카드</option>
+						<option value="3">탈잉 + 계좌이체</option>
+						<option value="4">탈잉 + 카드</option>
 					</select>
 	                </div>
 	            </div>
@@ -335,7 +335,7 @@
 <input id="todayString" type="hidden" th:value = "${today}">
 
 
-
+<!-- 
 <script>
 	$("#test").on("click", () => {
 		$.ajax({
@@ -346,7 +346,7 @@
 		})
 	})
 </script>
-
+ -->
 
 <th:block>
 	<script th:inline="javascript">

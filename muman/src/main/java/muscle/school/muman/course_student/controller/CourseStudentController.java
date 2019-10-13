@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,12 +28,15 @@ public class CourseStudentController {
 	CourseStudentService courseStudentService;
 	
 	@PostMapping("/admin/insertCourseStudent")
+	@Transactional
 	public String insertCourseStudent(HttpServletRequest req, 					  @RequestParam() String member_seq, 
 									  @RequestParam(value = "register_start_time") String 	start_date, @RequestParam() int times,
 									  @RequestParam(value = "register_end_time") String 	end_date,   @RequestParam() String[] time_list, 
-									  @RequestParam() String dayList, 			  @RequestParam() String aliasList ) throws ParseException {
+									  @RequestParam() String dayList, 			  @RequestParam() String aliasList, 
+									  @RequestParam() String price_date, 			  @RequestParam() String price, @RequestParam() String price_type
+			) throws ParseException {
 		courseMasterService.insertCourse(member_seq, dayList, time_list, aliasList);
-		courseStudentService.insertStudent(member_seq, start_date, end_date, times, aliasList);
+		courseStudentService.insertStudent(member_seq, start_date, end_date, times, aliasList, price, price_date, price_type);
 		
 		return "redirect:admin_view_course_student";
 	}

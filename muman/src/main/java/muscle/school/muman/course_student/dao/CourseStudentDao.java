@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseStudentDao {
 
-	void insertStudent(String member_seq, String start_date, String end_date, int times_week, String alias_list_full_name);
+	void insertStudent(String member_seq, String start_date, String end_date, int times_week, String alias_list_full_name, String price, String price_date, String price_type);
 
 	List<Map<String, Object>> selectCourseStudentList(int currentPage);
 	

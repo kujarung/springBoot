@@ -50,7 +50,7 @@
 		           
 		           <div class="col-12 paging_con">
 						<div class="before_btn">
-							<a th:href="@{/admin/admin_view_course_student(currentPage=${pagingInfo.prev})}">
+							<a th:href="@{/admin/admin_veiw_member(currentPage=${pagingInfo.prev})}">
 								이전
 							</a>
 						</div>
@@ -58,12 +58,12 @@
 						<div class="paging">
 							<th:block th:each="num: ${#numbers.sequence( {pagingInfo.firstPage}, {pagingInfo.lastPage})}">
 								<th:block th:if= "${num} == ${currentPage}">
-									<a class="paging_cnt current" th:text="${num}" th:href="@{/admin/admin_view_course_student(currentPage=${num} ) }">
+									<a class="paging_cnt current" th:text="${num}" th:href="@{/admin/admin_veiw_member(currentPage=${num} ) }">
 									</a>
 								</th:block>
 								
 								<th:block th:unless= "${num} == ${currentPage}">
-									<a class="paging_cnt" th:text="${num}" th:href="@{/admin/admin_view_course_student(currentPage=${num} ) }">
+									<a class="paging_cnt" th:text="${num}" th:href="@{/admin/admin_veiw_member(currentPage=${num} ) }">
 									</a>
 								</th:block>
 								
@@ -71,7 +71,7 @@
 						</div>
 						
 						<div class="next_btn">
-							<a th:href="@{/admin/admin_view_course_student(currentPage=${pagingInfo.next})}">
+							<a th:href="@{/admin/admin_veiw_member(currentPage=${pagingInfo.next})}">
 								다음
 							</a>
 						</div>
