@@ -10,7 +10,7 @@
 		 FROM 
 		 (
 			SELECT 
-				@ROWNUM:=@ROWNUM+1 AS no, name,member_id,member_seq
+				@ROWNUM:=@ROWNUM+1 AS no, name,member_id,member_seq, member_etc
 			FROM (SELECT @ROWNUM:= 0 ) dummy, MEMBER
 		 ) AS TBL
 		 WHERE 

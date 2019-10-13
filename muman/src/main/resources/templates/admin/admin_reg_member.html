@@ -3,30 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <head th:replace="common/admin/admin_head"></head>
 </head>
 <body>
-	<h1>회원 등록</h1>
-	<form action="/admin/insertMember" method="post">
-		<div>이름</div>
-		<div>
-			<input name="name">
-		</div>
-		<div>아이디</div>
-		<div>
-			<input name="id">
-		</div>
-		<div>비밀번호</div>
-		<div>
-			<input name="pass">
-		</div>
-		<div>
-			<input type="submit" value="저장">
-		</div>	
-	</form>
 
+	<div th:replace="common/admin/admin_gnb"></div>
 	
+	<div class="col-12 right_body">
+		<div class="col-12 inner_con">
+		<div class="step_title">
+	        	회원 등록
+	    </div>
+		<form action="/admin/insertMember" method="post">
+			<div>이름</div>
+			<div>
+				<input name="name">
+			</div>
+			<div>아이디</div>
+			<div>
+				<input name="id">
+			</div>
+			<div>비밀번호</div>
+			<div>
+				<input name="pass">
+			</div>
+			<div>지점 선택</div>
+			<div>
+				<select>
+					<option>고려대점</option>
+					<option>한양대점</option>
+				</select>
+			</div>
+			<div>특이 사항</div>
+			<div>
+				<input name="member_etc">
+			</div>
+			<div>
+				<input type="submit" value="저장">
+			</div>	
+		</form>
+		</div>
+	</div>
 </body>
 </html>
