@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface MemberDao {
 	List<Map<String, Object>> selectMemberList(String member_name);
 
-	void insertMember(String name, String id, String pass);
+	void insertMember(String name, String id, String pass, String branch, String member_etc, String pnum);
 }

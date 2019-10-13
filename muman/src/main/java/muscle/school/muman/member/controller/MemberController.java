@@ -51,10 +51,14 @@ public class MemberController {
 	public String insertAdminMember(
 			@RequestParam(required=false) String name,
 			@RequestParam(required=false) String id,
-			@RequestParam(required=false) String pass) {
-		service.insertMember(name, id, pass);
+			@RequestParam(required=false) String pass,
+			@RequestParam(required=false) String branch,
+			@RequestParam(required=false) String member_etc,
+			@RequestParam(required=false) String pnum
+			) {
+		service.insertMember(name, id, pass, branch, member_etc, pnum);
 		
-		return "redirect:/admin/index";
+		return "redirect:admin/admin_veiw_member";
 		
 	}
 	

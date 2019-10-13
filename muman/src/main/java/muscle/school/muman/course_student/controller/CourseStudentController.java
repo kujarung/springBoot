@@ -34,7 +34,7 @@ public class CourseStudentController {
 		courseMasterService.insertCourse(member_seq, dayList, time_list, aliasList);
 		courseStudentService.insertStudent(member_seq, start_date, end_date, times, aliasList);
 		
-		return "redirect:index";
+		return "redirect:admin_view_course_student";
 	}
 	
 	

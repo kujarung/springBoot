@@ -19,8 +19,8 @@ public class MemberService {
     @Autowired
     CommonDao commonDao;
 	
-	public void insertMember(String name, String id, String pass) {
-		dao.insertMember(name, id, pass);
+	public void insertMember(String name, String id, String pass, String branch, String member_etc, String pnum) {
+		dao.insertMember(name, id, pass, branch, member_etc, pnum);
 		commonDao.nextMemberSeq();
 	}
 

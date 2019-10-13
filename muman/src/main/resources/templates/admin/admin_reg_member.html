@@ -10,39 +10,78 @@
 	<div th:replace="common/admin/admin_gnb"></div>
 	
 	<div class="col-12 right_body">
-		<div class="col-12 inner_con">
-		<div class="step_title">
-	        	회원 등록
-	    </div>
-		<form action="/admin/insertMember" method="post">
-			<div>이름</div>
-			<div>
-				<input name="name">
-			</div>
-			<div>아이디</div>
-			<div>
-				<input name="id">
-			</div>
-			<div>비밀번호</div>
-			<div>
-				<input name="pass">
-			</div>
-			<div>지점 선택</div>
-			<div>
-				<select>
-					<option>고려대점</option>
-					<option>한양대점</option>
-				</select>
-			</div>
-			<div>특이 사항</div>
-			<div>
-				<input name="member_etc">
-			</div>
-			<div>
-				<input type="submit" value="저장">
-			</div>	
-		</form>
-		</div>
-	</div>
+   
+    <div class="col-12  mw-768 col-center pt80">
+        <div class="step_title">
+            회원 등록
+        </div>
+
+        <form class="col-12 reg_member_con" action="/admin/insertMember" method="post" id="mbmer_insert">
+            <div class="col-12 reg_con">
+                <div class="reg_title">이름</div>
+                <div class="reg_left_input">
+                    <input name="name" required>
+                </div>
+            </div>
+
+            <disv class="col-12 reg_con">
+                <div class="reg_title">아이디</div>
+                <div class="reg_left_input">
+                    <input class="type_2" name="id">
+                    <div class="check_btn">
+                        <div class="check_text">
+                            	중복확인
+                        </div>
+                    </div>
+                </div>
+            </disv>
+
+            <div class="col-12 reg_con">
+                <div class="reg_title">비밀번호</div>
+                <div class="reg_left_input">
+                    <input name="pass" type="password" required>
+                </div>
+            </div>
+
+            <div class="col-12 reg_con">
+                <div class="reg_title">지점선택</div>
+                <div class="reg_left_select">
+                    <select name="branch">
+                        <option>고려대점</option>
+                        <option>한양대점</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 reg_con">
+                <div class="reg_title">전화 번호</div>
+                <div class="reg_left_input">
+                    <input name="pnum" placeholder="- 빼고 입력해 주세요 ex)01099999999" required>
+                </div>
+            </div>
+
+            <div class="col-12 reg_con">
+                <div class="reg_title">특이 사항</div>
+                <div class="reg_left_input">
+                    <input name="member_etc" required>
+                </div>
+            </div>
+        </form>
+
+        <div class="col-12 tc">
+            <div class="step_btn_con type_2">
+                <a class="step_btn left go_step2" style="display:block" id="reg_insert">
+                    	추가하기
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$("#reg_insert").on("click", function(){
+		$("#mbmer_insert").submit();
+	})
+</script>
 </body>
 </html>

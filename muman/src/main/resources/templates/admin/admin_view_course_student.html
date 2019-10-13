@@ -26,9 +26,10 @@
 							<th>Delay 사용 여부</th>
 						</tr>
 					</thead>
+					
 					<tbody>
 						<tr th:each="courseStudentList : ${courseStudentList}" th:object="${courseStudentList}">
-							<td>1</td>
+							<td th:text="${courseStudentList.NO}"></td>
 							<td th:text="${courseStudentList.NAME}"></td>
 							<td th:text="${courseStudentList.START_DATE}"></td>
 							<td th:text="${courseStudentList.END_DATE}"></td>
@@ -42,6 +43,7 @@
 							<td class="hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
 						</tr>
 					</tbody>
+					
 				</table>	
 				
 				<div class="col-12">

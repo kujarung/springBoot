@@ -23,13 +23,13 @@ import muscle.school.muman.member.service.MemberService;
 public class AdminController {
 	
 	@Autowired
-	AdminService  adminService;
+	AdminService adminService;
 	@Autowired
 	CourseMasterService courseMasterService;
 	@Autowired
 	MemberService memberService;
 	@Autowired
-	CommonService  commonService;
+	CommonService commonService;
 	@Autowired
 	CourseStudentService courseStudentService;
 	
@@ -76,6 +76,13 @@ public class AdminController {
 		return "admin/admin_reg_member";
 	}	
 
+	//관리자 회원 리스트 페이지
+	@GetMapping("/admin/admin_veiw_member")
+	public String admin_veiw_member(Model model, String member_name) {
+		List< Map<String,Object> > data = memberService.selectMemberList(member_name);
+		model.addAttribute("memberList", data);
+		return "admin/admin_veiw_member";
+	}	
 	
 	
 	@RequestMapping("/test")

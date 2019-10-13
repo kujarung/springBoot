@@ -28,11 +28,18 @@
 	</insert>
     
     <select id="selectCourseStudentList" resultType="map">
+    	SELECT TBL.*
+		FROM 
+		(
     	SELECT 
+    		@ROWNUM:=@ROWNUM+1 AS NO,
     		M.NAME, M.MEMBER_SEQ, CS.START_DATE, CS.END_DATE, CS.TIMES_WEEK, CS.IS_DELAY, CS.ALIAS_LIST_FULL_NAME 
     	FROM 
-    		COURSE_STUDENT CS
+    		(SELECT @ROWNUM:= 0 ) dummy, COURSE_STUDENT CS
 		LEFT JOIN 
 			MEMBER M ON M.MEMBER_SEQ = CS.MEMBER_SEQ
+		) TBL
+		 WHERE 
+	 		(@ROWNUM:=0)=0	
     </select>
 </mapper>

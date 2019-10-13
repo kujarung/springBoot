@@ -10,7 +10,7 @@
 		 FROM 
 		 (
 			SELECT 
-				@ROWNUM:=@ROWNUM+1 AS no, name,member_id,member_seq, member_etc
+				@ROWNUM:=@ROWNUM+1 AS no, name, member_id, member_seq, member_etc, branch, pnum
 			FROM (SELECT @ROWNUM:= 0 ) dummy, MEMBER
 		 ) AS TBL
 		 WHERE 
@@ -26,7 +26,10 @@
 	    	member_pass, 
 	    	force_yn, 
 	    	reg_date, 
-	    	authority
+	    	authority,
+	    	member_etc,
+	    	branch,
+	    	pnum
     	)
     	VALUES
     	(
@@ -36,7 +39,10 @@
     		#{pass},
     		1,
     		SYSDATE(),
-    		2
+    		2,
+    		#{member_etc},
+    		#{branch},
+    		#{pnum}
     	)
     	
     </insert>

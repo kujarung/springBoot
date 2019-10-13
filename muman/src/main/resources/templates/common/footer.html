@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="col-12 tc tl-md" >
-                    <a href="javascript:void(0)" class="go_up_btn">
+                    <a href="javascript:void(0)" class="go_up_btn" id="goBtn">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40.4 20" style="enable-background:new 0 0 40.4 20; width:39px; height:21px; fill:#fff;" xml:space="preserve">
                 <polygon points="1.3,20 0,18.5 20.3,0 40.4,18.5 39,20 20.3,2.7 "></polygon>
                 </svg>
@@ -69,3 +69,22 @@
         </div>
     </div>
 </div>
+<style>
+	#goBtn{transition:all 0.5s;}
+</style>
+<script>
+$( "#book" ).animate({
+    opacity: 0.25,
+    left: "50px"
+}, 5000, () => {
+    // Animation complete.
+});
+
+
+
+	$("#goBtn").on("click", function(){
+		$('html, body').animate({
+            scrollTop : 0
+        }, 800);
+	})
+</script>

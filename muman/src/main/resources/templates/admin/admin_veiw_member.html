@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <head th:replace="common/admin/admin_head"></head>
+</head>
+<body>
+
+	<div th:replace="common/admin/admin_gnb"></div>
+	
+	<div class="col-12 right_body">
+	   <div class="col-12 inner_con" id="first_con">
+				<div class="step_title">
+	                	회원 확인
+	            </div>
+				
+				<input name="member_name" class="col-12 hidden" readonly>
+				<input name="member_seq" class="hidden">			
+				<div class="col-12">
+					<table class="table_style_3">
+		               <colgroup>
+		                   <col width = "10%">
+		                   <col width = "15%">
+		                   <col width = "15%">
+		                   <col width = "auto">
+		                   <col width = "10%">
+		                   <col width = "10%">
+		               </colgroup>
+		               <thead>
+		                   <th>번호</th>
+		                   <th>이름</th>
+		                   <th>아이디</th>
+		                   <th>특이사항</th>
+		                   <th>지점</th>
+		                   <th>핸드폰 번호</th>
+		               </thead>
+		
+		               <tbody>
+							<tr th:each="memberList : ${memberList}" th:object="${memberList}">
+								<td th:text="${memberList.no}"></td>
+								<td th:text="${memberList.name}"></td>
+								<td th:text="${memberList.member_id}"></td>
+								<td th:text="${memberList.member_etc}"></td>
+								<td th:text="${memberList.branch}"></td>
+								<td th:text="${memberList.pnum}"></td>
+								
+							</tr>
+		               </tbody>
+		           </table>
+				</div>
+			</div>
+			
+			<div class="step_btn_con right">
+                <div class="step_btn left go_step2" id="insert">
+                    	추가하기
+                </div>
+            </div>
+	</div>
+
+<script>
+	$("#reg_insert").on("click", function(){
+		$("#mbmer_insert").submit();
+	})
+	
+	$("#insert").on("click", function(){
+		location.href = "/admin/admin_reg_member"
+	})
+</script>
+</body>
+</html>
