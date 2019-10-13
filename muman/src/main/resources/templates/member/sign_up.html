@@ -12,7 +12,7 @@
             	<div class="login_dim"></div>
             	<div class="col-12  mw-768 col-center h-100">
 					<div class="col-12 reg_form">
-						<form class="col-12 front_reg_con" action="/admin/insertMember" method="post" id="mbmer_insert" style="z-index: 3">
+						<form class="col-12 front_reg_con" action="/insertMember" method="post" id="mbmer_insert" style="z-index: 3">
 				            <div class="col-12 reg_main_title mb30">
 				            	회원 가입
 				        	</div>
@@ -21,7 +21,7 @@
 					            <div class="col-12 reg_con">
 					                <div class="reg_title">이름</div>
 					                <div class="reg_left_input">
-					                    <input name="name" required="">
+					                    <input name="name" required="required">
 					                </div>
 					            </div>
 					
@@ -40,14 +40,14 @@
 					            <div class="col-12 reg_con">
 					                <div class="reg_title">비밀번호</div>
 					                <div class="reg_left_input">
-					                    <input name="pass" type="password" required="">
+					                    <input name="pass" type="password" required="required">
 					                </div>
 					            </div>
 		
 					            <div class="col-12 reg_con">
 					                <div class="reg_title">비밀번호 확인</div>
 					                <div class="reg_left_input">
-					                    <input name="pass_check" type="password" required="">
+					                    <input name="pass_check" type="password" required="required">
 					                </div>
 					            </div>
 					            
@@ -65,34 +65,41 @@
 					            <div class="col-12 reg_con">
 					                <div class="reg_title">전화 번호</div>
 					                <div class="reg_left_input">
-					                    <input name="pnum" placeholder="- 빼고 입력해 주세요 ex)01099999999" required="">
+					                    <input name="pnum" placeholder="- 빼고 입력해 주세요 ex)01099999999" required="required">
 					                </div>
 					            </div>
 					
 					            <div class="col-12 reg_con">
 					                <div class="reg_title">특이 사항</div>
 					                <div class="reg_left_input">
-					                    <input name="member_etc" required="">
+					                    <input name="member_etc" required="required">
 					                </div>
 					            </div>
 				            </div>
 				            
 				            <div class="col-12 mb20">
 	 					    	<div class="login_submit">
-							    	<div class="login_submit_style" style="display:block" id="loginBtn">
+							    	<div class="login_submit_style" style="display:block" id="regBtn">
 							        	회원가입
 							        </div>
 							    </div>
 					    	</div>
 			        	</form>
-			        	
-
-			        
 					</div>
-			        
 		    	</div>
             </div>
+            <input id="error" type="hidden" th:value = "${error}">
+            <script type="text/javascript" th:inline="javascript"> 
+            $("#regBtn").on("click", function(){
+            	$("#mbmer_insert").submit();
+            })	
+            /*<![CDATA[*/
 
+            var error = /*[[${error}]]*/;
+            console.log(error);
+
+        	/*]]>*/
+            </script>
     </body>
 
 </html>

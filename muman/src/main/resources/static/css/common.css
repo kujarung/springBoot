@@ -48,3 +48,14 @@ font-weight: bold; color: #fff;}
 .reg_con .reg_left_select {width:calc(100% - 160px); display: inline-block; vertical-align: middle; text-align: left;}
 .reg_con .reg_left_select select{padding: 5px; width: 160px; color: black; font-size:15px; font-size:1.5rem; 
 line-height:21px; line-height:2.1rem; outline: none; border:none;}
+
+/* 페이징 처리 */
+.paging_con {font-size:15px; text-align: center;}
+.paging_con .before_btn {color:#ea9643; display:inline-block; margin-right:10px;}
+.paging_con .next_btn {color:#ea9643; display:inline-block; margin-left:10px;}
+.paging_con .paging {display:inline-block;}
+.paging_cnt:first-child{margin-left:0px;}
+.paging_cnt:last-child{margin-right:0px;}
+.paging_cnt {font-size:15px; margin-right:5px; margin-left:5px;}
+.paging_cnt.current{color:#ea9643;}
+.paging_cnt:hover{ color:#ea9643; }

@@ -48,9 +48,9 @@ public class CourseStudentService {
 		
 	}
 
-	public List<Map<String, Object>> selectCourseStudentList() {
+	public List<Map<String, Object>> selectCourseStudentList(int currentPage) {
 		// TODO Auto-generated method stub
-		return dao.selectCourseStudentList();
+		return dao.selectCourseStudentList(currentPage);
 	}
 	
 }

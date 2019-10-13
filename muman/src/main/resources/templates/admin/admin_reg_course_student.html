@@ -20,7 +20,7 @@
 			<input name="member_name" class="col-12 hidden" readonly>
 			<input name="member_seq" class="hidden">			
 			<div class="col-12" id="memberList">
-				<table class="table_style_3">
+				<table class="table_style_3 mb30">
 	               <colgroup>
 	                   <col width = "10%">
 	                   <col width = "15%">
@@ -40,6 +40,20 @@
 	
 	               </tbody>
 	           </table>
+	           
+	           <div class="col-12 paging_con">
+					<div class="before_btn">
+
+					</div>
+
+					<div class="paging">
+
+					</div>
+					
+					<div class="next_btn">
+
+					</div>
+				</div>
 			</div>
 			
 			<div class="step_btn_con right">
@@ -462,6 +476,9 @@
 				$("#memberList").show();
 				$("#memberList tbody").children().remove();
 				var jsonResult = result.result;
+				console.log(jsonResult);
+				console.log(result.totalCnt);
+				console.log(result.pagingInfo);
 				for(var i=0;i<Object.keys(jsonResult).length;i++) {
 					var tr = "<tr>" 
 					+ "<td>" + jsonResult[i].no + "</td>"

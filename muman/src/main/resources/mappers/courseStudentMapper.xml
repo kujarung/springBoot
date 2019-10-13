@@ -31,7 +31,8 @@
     	SELECT TBL.*
 		FROM 
 		(
-    	SELECT 
+    	SELECT
+    		( SELECT COUNT(course_student_seq) FROM COURSE_STUDENT ) AS TOTAL_CNT, 
     		@ROWNUM:=@ROWNUM+1 AS NO,
     		M.NAME, M.MEMBER_SEQ, CS.START_DATE, CS.END_DATE, CS.TIMES_WEEK, CS.IS_DELAY, CS.ALIAS_LIST_FULL_NAME 
     	FROM 
@@ -41,5 +42,7 @@
 		) TBL
 		 WHERE 
 	 		(@ROWNUM:=0)=0	
+	 	AND
+	 	    NO BETWEEN ( ( ( #{current_page} - 1 ) * 10 ) + 1 ) AND ( ( ( #{current_page} - 1 ) * 10 ) + 10 )
     </select>
 </mapper>
