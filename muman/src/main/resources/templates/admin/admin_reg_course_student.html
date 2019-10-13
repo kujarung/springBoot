@@ -211,7 +211,7 @@
 		            <div class="col-12 reg_con">
 		                <div class="reg_title">수업 마지막일</div>
 		                <div class="reg_left_input">
-		                    <input name="register_end_time" id="endTime" readonly style="background-color:darkgray">
+		                    <input name="register_end_time" id="endTime" readonly style="background-color:#ea9643; color:white;">
 		                </div>
 		            </div>
 	            </div>
@@ -253,7 +253,7 @@
        				<div class="col-12 reg_con">
 	                <div class="reg_title">가격(변경 가능) </div>
 	                <div class="reg_left_input">
-                    	<input class="fl type2" id="price" value="">
+                    	<input class="fl type2" id="price" value="" style="width:200px;">
 	                    <div class="check_btn" style="float:left;">
 	                        <div class="check_text">
 	                            	만원
@@ -283,15 +283,15 @@
 	            
 	            <div class="col-12 reg_con">
 	                <div class="reg_title">수업 총 횟수</div>
-	                <div class="reg_left_input" style="width: 200px;" >
+	                <div class="reg_left_input">
 	                    <input id="number" readonly ></span>
 	                </div>
 	            </div>
 	            
 	            <div class="col-12 reg_con">
 	                <div class="reg_title">결제 일자</div>
-	                <div class="reg_left_input" style="width: 200px;" >
-	                    <input id="number" readonly ></span>
+	                <div class="reg_left_input">
+	                    <input id="price_date" name="price_date" readonly ></span>
 	                </div>
 	            </div>
 	            
@@ -346,28 +346,49 @@
 	        })
 
 	        $(".go_step2").on("click",function(){
-	            $("#first_con").css("right","100%");
-	            $("#second_con").css("right","0%");
-	            $("#third_con").css("right","-100%");
-	            $("#fourth_con").css("right","-200%");
+	        	if( $("#memberList tr.active").length > 0 ) {
+		            $("#first_con").css("right","100%");
+		            $("#second_con").css("right","0%");
+		            $("#third_con").css("right","-100%");
+		            $("#fourth_con").css("right","-200%");
+	        	} else {
+	        		alert("회원을 선택해 주세요.");
+	        		return false;
+	        	}              
+
 	        })
 
 	        $(".go_step3").on("click",function(){
-	            $("#first_con").css("right","200%");
-	            $("#second_con").css("right","100%");
-	            $("#third_con").css("right","0%");
-	            $("#fourth_con").css("right","-100%");
+	        	if($("#courseTimeTable td.active").length == 0 ) {
+	        		alert("시간을 선택해 주세요.")
+	        		return false;
+	        	} else {
+		            $("#first_con").css("right","200%");
+		            $("#second_con").css("right","100%");
+		            $("#third_con").css("right","0%");
+		            $("#fourth_con").css("right","-100%");
+	        	}
+
 	        })
 	        $(".go_step4").on("click",function(){
-	            $("#first_con").css("right","300%");
-	            $("#second_con").css("right","200%");
-	            $("#third_con").css("right","100%");
-	            $("#fourth_con").css("right","0%");
+	        	if( $("#startTime").val() == "") {
+	        		alert("시작 시간을 선택해 주세요");
+	        		$("#startTime").focus();
+	        		return false;
+	        	} else {
+		            $("#first_con").css("right","300%");
+		            $("#second_con").css("right","200%");
+		            $("#third_con").css("right","100%");
+		            $("#fourth_con").css("right","0%");
+	        	}
+
 	        })
 	    })
 		
 		$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
-		var currentDay = $("#todayString").val();
+	    $("#price_date").datepicker({ dateFormat: 'yy-mm-dd' });
+		
+	    var currentDay = $("#todayString").val();
 		var setStartDate = today(currentDay);
 		var setEndDate;
 		console.log( setStartDate.getDay() );
@@ -482,94 +503,88 @@
 				}
 			}
 		})
-		
+
 		
 		//시작 일자 변경 시 로식 실행
 		$("#startTime").on("change", function() {
-			if($("#courseTimeTable td.active").length == 0 ) {
-				alert("시간을 먼저 선택하여 주세요.");
-				$("#startTime").val("");
-				return false;
-			} else {
-				$("#courseDateList").children().remove();
-				var plusIndex = 0;
-				var plusClass = "plus" + plusIndex;
-				var dayOfWeekList 	= [];
-				var aliasString = "";
-				var indexString = "";
-				
-				$("#courseTimeTable td.active").each(function(){
-					var tempObj 	= new Array();
-					tempObj.index 	= ( $(this).index() );
-					tempObj.alias 	= ( $(this).find(".alias_num").text());
-					if(indexString == "" ) {
-						indexString = $(this).index();
-						aliasString = $(this).find(".alias_num").text()
-					} else {
-						indexString = indexString + "|" + $(this).index();
-						aliasString = aliasString + "|" + $(this).find(".alias_num").text()
-					}
-					dayOfWeekList.push(tempObj);
-				})
-				$("#dayList").val(indexString)
-				$("#aliasList").val(aliasString)
-				
-				var startTime 	= newDateForm( $("#startTime").val());
-				var resultList = betweenDate(startTime, dayOfWeekList); 
-				var j=0;
-				var maxLen = resultList.len;
-				for(var i = 0; i < resultList.list.length; i++) {
-					if( i == resultList.holidayList[j] ) {
-						$("#courseDateList").append(  "<div class='time_list holiday'>" + resultList.list[i] + "</div>");
-						j++;
-					} else {
-						$("#courseDateList").append(  "<input class='time_list' name='time_list' value=" + resultList.list[i] + ">"    );
-					}
+			$("#courseDateList").children().remove();
+			var plusIndex = 0;
+			var plusClass = "plus" + plusIndex;
+			var dayOfWeekList 	= [];
+			var aliasString = "";
+			var indexString = "";
+			
+			$("#courseTimeTable td.active").each(function(){
+				var tempObj 	= new Array();
+				tempObj.index 	= ( $(this).index() );
+				tempObj.alias 	= ( $(this).find(".alias_num").text());
+				if(indexString == "" ) {
+					indexString = $(this).index();
+					aliasString = $(this).find(".alias_num").text()
+				} else {
+					indexString = indexString + "|" + $(this).index();
+					aliasString = aliasString + "|" + $(this).find(".alias_num").text()
 				}
-				$("#endTime").val(resultList.maxValue);
-				$("#plusBtnCon").removeClass("hidden");
-				$("#courseDateList").append("<input class='plus_input "+ plusClass +"' placeholder='날짜 추가' readonly/>");
+				dayOfWeekList.push(tempObj);
+			})
+			$("#dayList").val(indexString)
+			$("#aliasList").val(aliasString)
+			
+			var startTime 	= newDateForm( $("#startTime").val());
+			var resultList = betweenDate(startTime, dayOfWeekList); 
+			var j=0;
+			var maxLen = resultList.len;
+			for(var i = 0; i < resultList.list.length; i++) {
+				if( i == resultList.holidayList[j] ) {
+					$("#courseDateList").append(  "<div class='time_list holiday'>" + resultList.list[i] + "</div>");
+					j++;
+				} else {
+					$("#courseDateList").append(  "<input class='time_list' name='time_list' value=" + resultList.list[i] + ">"    );
+				}
+			}
+			$("#endTime").val(resultList.maxValue);
+			$("#plusBtnCon").removeClass("hidden");
+			$("#courseDateList").append("<input class='plus_input "+ plusClass +"' placeholder='날짜 추가' readonly/>");
+			$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+			
+			$("#plusBtn").on("click" , function(){
+				$("." + plusClass).addClass("time_list inputVal");
+				$("." + plusClass).datepicker("destroy");
+				$("." + plusClass).removeClass("plus_input");
+				$("." + plusClass).removeClass(plusClass);
+				plusIndex++;
+				$("#endTime").val( maxDate($(".time_list")) );
+				$("#courseDateList").append("<input class='plus_input "+ plusClass +"' readonly placeholder='날짜 추가'></div>");
 				$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
-				
-				$("#plusBtn").on("click" , function(){
-					$("." + plusClass).addClass("time_list inputVal");
-					$("." + plusClass).datepicker("destroy");
-					$("." + plusClass).removeClass("plus_input");
-					$("." + plusClass).removeClass(plusClass);
-					plusIndex++;
-					$("#endTime").val( maxDate($(".time_list")) );
-					$("#courseDateList").append("<input class='plus_input "+ plusClass +"' readonly placeholder='날짜 추가'></div>");
-					$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
-					$(".time_list").on("click",function() {
-						$(this).remove();
-						$("#endTime").val( maxDate($(".time_list")) );
-						maxLen--;
-						$("#number").val( "총" + maxLen+ "회");
-					});
-					maxLen++;
-					$("#number").val( "총" + maxLen + "회");
-				});
-				
 				$(".time_list").on("click",function() {
 					$(this).remove();
 					$("#endTime").val( maxDate($(".time_list")) );
 					maxLen--;
 					$("#number").val( "총" + maxLen+ "회");
 				});
-				$("#times").val("주 " + $("#courseTimeTable td.active").length + "회");
+				maxLen++;
 				$("#number").val( "총" + maxLen + "회");
-				
-				if($("#courseTimeTable td.active").length == 1 ) {
-					$("#price").val("14");
-				} else if( $("#courseTimeTable td.active").length == 2 ) {
-					$("#price").val("24");
-				} else if( $("#courseTimeTable td.active").length == 3 ) {
-					$("#price").val("34");
-				} else if( $("#courseTimeTable td.active").length == 4 ) {
-					$("#price").val("44");
-				} else {
-					$("#price").val("");
-				}
+			});
+			
+			$(".time_list").on("click",function() {
+				$(this).remove();
+				$("#endTime").val( maxDate($(".time_list")) );
+				maxLen--;
+				$("#number").val( "총" + maxLen+ "회");
+			});
+			$("#times").val("주 " + $("#courseTimeTable td.active").length + "회");
+			$("#number").val( "총" + maxLen + "회");
+			
+			if($("#courseTimeTable td.active").length == 1 ) {
+				$("#price").val("14");
+			} else if( $("#courseTimeTable td.active").length == 2 ) {
+				$("#price").val("24");
+			} else if( $("#courseTimeTable td.active").length == 3 ) {
+				$("#price").val("34");
+			} else if( $("#courseTimeTable td.active").length == 4 ) {
+				$("#price").val("44");
+			} else {
+				$("#price").val("");
 			}
 		});
 		

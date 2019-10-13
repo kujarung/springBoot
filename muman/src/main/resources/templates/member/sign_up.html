@@ -5,33 +5,93 @@
         <head th:replace="common/sub/head"></head>
     </head> 
     <body>
-        <div class="wrapper">
+        <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-            <div class="col-12 sub_visual_con" style="background-image:url('img/sub_visual2.png')">
-                <div class="col-12 mw-1200 col-center h-100 show-table ">
-                    <div class="col-12 pr15 pl15 vm show-tablecell fn">
-                        <div class="title point_color">
-                            	수업 소개
-                        </div>
-                        <div class="content">
-                            8월 <극>성수기를 맞아 완판된 ⭐근력학교⭐
-                        </div>
-                    </div>
-                </div>
-            </div>
             
-            <div class="col-12 sub_content">
-            	<div class="login-form">
-				    <form>
-				      <input type="text" name="email" class="text-field" placeholder="아이디"><br>
-				      <input type="password" name="password" class="text-field" placeholder="비밀번호"><br>
-				      <input type="submit" value="로그인" class="submit-btn">
-				    </form>
-				 </div>
-            </div>
+            <div class="col-12 sub_main login_wrap" style="background-image: url('img/login_img3.jpg')">
+            	<div class="login_dim"></div>
+            	<div class="col-12  mw-768 col-center h-100">
+					<div class="col-12 reg_form">
+						<form class="col-12 front_reg_con" action="/admin/insertMember" method="post" id="mbmer_insert" style="z-index: 3">
+				            <div class="col-12 reg_main_title mb30">
+				            	회원 가입
+				        	</div>
+				            
+				            <div class="col-12 inner_reg_con mb30">
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">이름</div>
+					                <div class="reg_left_input">
+					                    <input name="name" required="">
+					                </div>
+					            </div>
+					
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">아이디</div>
+					                <div class="reg_left_input">
+					                    <input class="type_2 fl" name="id">
+					                    <div class="check_btn">
+					                        <div class="check_text">
+					                            	중복확인
+					                        </div>
+					                    </div>
+					                </div>
+					            </div>
+					
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">비밀번호</div>
+					                <div class="reg_left_input">
+					                    <input name="pass" type="password" required="">
+					                </div>
+					            </div>
+		
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">비밀번호 확인</div>
+					                <div class="reg_left_input">
+					                    <input name="pass_check" type="password" required="">
+					                </div>
+					            </div>
+					            
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">지점 선택</div>
+					                <div class="reg_left_select">
+					                    <select name="branch">
+					                        <option>고려대점</option>
+					                        <option>한양대점</option>
+					                    </select>
+					                </div>
+					            </div>
+					            
+		
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">전화 번호</div>
+					                <div class="reg_left_input">
+					                    <input name="pnum" placeholder="- 빼고 입력해 주세요 ex)01099999999" required="">
+					                </div>
+					            </div>
+					
+					            <div class="col-12 reg_con">
+					                <div class="reg_title">특이 사항</div>
+					                <div class="reg_left_input">
+					                    <input name="member_etc" required="">
+					                </div>
+					            </div>
+				            </div>
+				            
+				            <div class="col-12 mb20">
+	 					    	<div class="login_submit">
+							    	<div class="login_submit_style" style="display:block" id="loginBtn">
+							        	회원가입
+							        </div>
+							    </div>
+					    	</div>
+			        	</form>
+			        	
 
-            <footer th:replace="common/footer"></footer>
-        </div>
+			        
+					</div>
+			        
+		    	</div>
+            </div>
 
     </body>
 
