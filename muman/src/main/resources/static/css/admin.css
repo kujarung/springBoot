@@ -41,6 +41,8 @@ font-weight:bold; color:#ea9643}
 .table_style_3{width: 100%; background-color:white;}
 .table_style_3 tr{cursor: pointer;}
 .table_style_3 tr.active{background-color:#ea9643;}
+.table_style_3 tr.active td{color:white;}
+
 .table_style_3 thead th, .table_style_3 thead td{ background-color: #ea9643; padding:10px; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem;
     border-right: 1px solid #e8ecef; text-align: center; color:white;}
 .table_style_3 thead td.today{background-color: #FFC079;}
