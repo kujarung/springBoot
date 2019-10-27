@@ -1,7 +1,7 @@
 .sub_main {background-color:black; padding-bottom:150px;}
 .sub_main.login_wrap {height:100vh; padding-bottom:0px; background-size: cover; z-index:1}
 .login_dim{position: absolute; width:100%; height:100%; background-color: black; opacity: 0.5; z-index: 2}
-.sub_visual_back { height: 300px; background-size: cover; background-position: center; background-repeat: no-repeat; 
+.sub_visual_back { height: 250px; background-size: cover; background-position: center; background-repeat: no-repeat; 
 background-color: black; position: relative; margin-bottom:50px;}
 .sub_dim {background-color: black; opacity: 0.5; height: 300px; position: absolute !important;}
 .sub_visual_back .sub_text{color:white; font-size:45px;}
@@ -16,6 +16,23 @@ background-color: black; position: relative; margin-bottom:50px;}
 .tab_con{text-align: center; margin-bottom:30px;}
 .tab_con .tab {padding-top:20px; padding-bottom:20px; border:1px solid white; font-size:17px; color:white; font-weight: bold;}
 .tab_con .tab.active {background-color:rgb(255,242,0); color:#0B1761; border-color:rgb(255,242,0)}
+
+/* 학교 소개 */
+.school_main_visual{height:100vh; background-size: cover; background-repeat: no-repeat; background-position: center;}
+.visual_sub_dim{background-color: black; opacity: 0.5; height: 100vh; position: absolute !important;}
+.flex_center {display: flex; justify-content: flex-end; height: 100%; align-items: center;}
+.btn_bottom{position:absolute; bottom:50px; text-align: center; width:100%; z-index: 5; cursor: pointer; opacity:0; transform: translateY(50px);}
+.page_con{background-color: black; padding: 300px 0;}
+.page_con_dim{background-color: black; opacity: 0.5; height: 100%; position: absolute !important; top:0px; width:100%;}
+
+.transition_css {
+    		transition: all 0.3s ease 0s, transform 0.7s cubic-bezier(0.0, 0.0, 0.2, 1) 0.00030s, opacity 0.5s cubic-bezier(0.0, 0.0, 0.2, 1) 0.00015s;
+    		opacity:0;
+}
+
+#visual_font {transform: translateY(-100px);}
+#leftFont {transform: translateX(-500px); z-index: 5; overflow: visible;}
+#desc {opacity:0;}
 
 /* 로그인 */
 .login_title{color:white; font-size:60px; font-weight:400;}

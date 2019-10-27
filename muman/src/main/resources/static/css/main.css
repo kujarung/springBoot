@@ -46,7 +46,7 @@ svg {fill: black ;stroke:  black; stroke-width: 1px; width:20px;}
 /* profile */
 .profile_con{margin-bottom:50px;}
 
-.visual_back {background-image: url("../img/visual_img1.jpg"); background-size: cover;     background-position-y: -50px;}
+.visual_back {background-image: url("../img/visual_img1.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat;}
 .visual_top_content {padding-top: 40px; margin-bottom: 135px; text-align: right;}
 .visual_top_content .visual_top_content_des {color:#FFFFFF; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem; margin-right: 4px; vertical-align: middle;}
 .visual_top_content .img_box{display: inline-block; margin-right: 28px;  vertical-align: middle;}
@@ -84,6 +84,5 @@ svg {fill: black ;stroke:  black; stroke-width: 1px; width:20px;}
     .arr_btn {position: absolute;top: 50%; width: 40px;height: 40px; z-index: 3;cursor: pointer; }
     .arr_btn.right {right: calc((100% - 992px) / 2 + 15px);}
     .arr_btn.left {left: calc((100% - 992px) / 2 + 15px);}
-    .visual_back{background-size:contain;}
     .intro_teacher_con .teacher_img_con > img {height: 400px;}
 }
