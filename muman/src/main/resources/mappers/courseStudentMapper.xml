@@ -14,7 +14,8 @@
 			end_date, 
 			times_week, 
 			is_delay,
-			alias_list_full_name
+			alias_list_full_name,
+			aliasList
 		) 
 		VALUES 
 		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,  
@@ -33,14 +34,22 @@
 		FROM 
 		(
     	SELECT 
+    		(SELECT COUNT(MEMBER_SEQ) FROM COURSE_STUDENT) TOTAL_CNT,
     		@ROWNUM:=@ROWNUM+1 AS NO,
     		M.NAME, M.MEMBER_SEQ, CS.START_DATE, CS.END_DATE, CS.TIMES_WEEK, CS.IS_DELAY, CS.ALIAS_LIST_FULL_NAME 
+    		, PRICE, STR_TO_DATE(PRICE_DATE, '%Y-%m-%d') PRICE_DATE, PRICE_TYPE
     	FROM 
     		(SELECT @ROWNUM:= 0 ) dummy, COURSE_STUDENT CS
 		LEFT JOIN 
 			MEMBER M ON M.MEMBER_SEQ = CS.MEMBER_SEQ
 		) TBL
 		 WHERE 
-	 		(@ROWNUM:=0)=0	
+		 	(@ROWNUM:=0)=0
+		 AND
+	 	    no BETWEEN ( ( ( #{currentPage} - 1 ) * 10 ) + 1 ) AND ( ( ( #{currentPage} - 1 ) * 10 ) + 10 )
+    </select>
+    
+    <select id="selectCourseStudent" resultType="map">
+    	SELECT * FROM COURSE_STUDENT WHERE MEMBER_SEQ = #{memberSeq}
     </select>
 </mapper>

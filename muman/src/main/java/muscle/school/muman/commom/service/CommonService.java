@@ -89,7 +89,6 @@ public class CommonService {
     		prev = firstPage - 10;
     	}
     	
-    	
     	int realEnd = (int)(Math.ceil ( (totalCnt * 1.0) / pagingCnt ) );
     	if(lastPage > realEnd ) {
     		lastPage = realEnd;
@@ -211,5 +210,11 @@ public class CommonService {
     	
     }
 		return fullName;
+	}
+	
+	public Map<String, Object> aliasToDetail(int alias, String endDate) {
+		Map<String, Object> result = null;
+		
+		return result;
 	}
 }

@@ -108,6 +108,8 @@ public class AdminController {
 		System.out.println(cal.get(cal.MONTH) );
 		System.out.println(cal.get(cal.DATE) );
 		System.out.println(cal.get(cal.DAY_OF_WEEK) );
+		int member_seq = 10;
+		courseMasterService.delayCourse(member_seq, 12);
 	}
 	
 

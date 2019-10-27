@@ -131,8 +131,25 @@
     	<a class="step_btn left go_step2" href="/admin/admin_reg_course_student" style="display:block">
         	추가하기
         </a>
+    </div>
+    
+    <div class="col-12">
+    	<input type="text" id="test">test</button>
     </div>	
 </div>
+<script>
+	$(function(){
+		$("#test").addClass("test");
+		$("#test").on("click", function(){
+			$.ajax({
+				url : '/test',
+				success : (result) => {
+					console.log(result);
+				}
+			})
+		});		
+	})
 
+</script>
 </body>
 </html>

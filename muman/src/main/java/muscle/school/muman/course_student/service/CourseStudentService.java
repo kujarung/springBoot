@@ -25,7 +25,9 @@ public class CourseStudentService {
 		
 	}
 
-	public void insertStudent(String member_seq, String start_date, String end_date, int times_week, String aliasList) {
+	public void insertStudent(String member_seq, String start_date, String end_date, int times_week, String aliasList, 
+			String price, String price_date, String price_type
+			) {
 		String alias_list_full_name= "";
 		String [] tempAliasList = aliasList.split("\\|");
 		for(int i=0; i< tempAliasList.length;i++) {
@@ -48,9 +50,14 @@ public class CourseStudentService {
 		
 	}
 
-	public List<Map<String, Object>> selectCourseStudentList() {
+	public List<Map<String, Object>> selectCourseStudentList(int currentPage) {
 		// TODO Auto-generated method stub
-		return dao.selectCourseStudentList();
+		return dao.selectCourseStudentList(currentPage);
+	}
+
+	public Map<String, Object> getCourseStudentDetail(int member_seq) {
+		// TODO Auto-generated method stub
+		return dao.selectCourseStudent(member_seq);
 	}
 	
 }

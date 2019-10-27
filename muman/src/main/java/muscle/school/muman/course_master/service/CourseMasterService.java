@@ -1,6 +1,7 @@
 package muscle.school.muman.course_master.service;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import muscle.school.muman.commom.service.CommonService;
 import muscle.school.muman.course_master.dao.CourseMasterDao;
+import muscle.school.muman.course_student.service.CourseStudentService;
 
 @Service
 @MapperScan(basePackages = "muscle.school.muman.course_master.dao")
@@ -20,6 +22,9 @@ public class CourseMasterService {
 	CourseMasterDao dao;
 	@Autowired
 	CommonService commonSerivce;
+	@Autowired
+	CourseStudentService courseStudentService;
+	
 	
 	public void insertMember() {
 		
@@ -58,7 +63,18 @@ public class CourseMasterService {
 		}
 	}
 	
+	
 	public int delayCourse(int member_seq, int delay_num) {
+		Map<String, Object> studentDetail = courseStudentService.getCourseStudentDetail(member_seq);
+		String aliasList[] = studentDetail.get("aliasList").toString().split(",");
+		String endDate = studentDetail.get("end_date").toString();
+		String today;
+		for(String alias : aliasList) {
+			System.out.println("alias : " + alias);
+		}
+		System.out.println(endDate);
+		System.out.println(studentDetail);
+		
 		
 		return 1;
 	}
