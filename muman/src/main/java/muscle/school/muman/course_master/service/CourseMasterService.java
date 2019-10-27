@@ -58,5 +58,10 @@ public class CourseMasterService {
 		}
 	}
 	
+	public int delayCourse(int member_seq, int delay_num) {
+		
+		return 1;
+	}
+	
 
 }

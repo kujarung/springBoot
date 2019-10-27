@@ -1,4 +1,6 @@
 $(function(){
+	AOS.init();
+	
     setViewport();
     $("#moblie_menu").on("click", function() {
         var memnu = $("#moblie_menu_wrap");

@@ -23,7 +23,8 @@
 			#{end_date},
 			#{times_week}, 
 			0,
-			#{alias_list_full_name}
+			#{alias_list_full_name},
+			#{aliasList}
 		);
 	</insert>
     

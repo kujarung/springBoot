@@ -38,7 +38,7 @@ public class CourseStudentService {
 			}
 		}
 		alias_list_full_name = "(" + alias_list_full_name + ")";
-		dao.insertStudent(member_seq, start_date, end_date, times_week, alias_list_full_name);
+		dao.insertStudent(member_seq, start_date, end_date, times_week, alias_list_full_name, aliasList);
 		commonDao.nextCourseStudentSeq();
 		
 	}
