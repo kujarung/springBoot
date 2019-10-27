@@ -41,7 +41,7 @@ public class AdminController {
 	
 	//관리자 학생 등록 페이지
 	@GetMapping("/admin/admin_reg_course_student")
-	public String adminRegCourseStudent(Model model,@RequestParam(required=false) String standardDate) {
+	public String adminRegCourseStudent(Model model, @RequestParam(required=false) String standardDate) {
 		//시작일과 끝일을 리턴 받음
 		String[] dateList   = commonService.todayWeek(standardDate);
 		String startDate 	= dateList[0];
@@ -57,10 +57,14 @@ public class AdminController {
 	
 	//관리자 학생 확인 페이지
 	@GetMapping("/admin/admin_view_course_student")
-	public String adminViewCourseStudent(Model model) {
-		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList();
-		System.out.println(courseStudentList);
+	public String adminViewCourseStudent(Model model, @RequestParam(required=false, defaultValue = "1") int currentPage) {
+		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList(currentPage);
+		
+		int totalCnt = Integer.parseInt( courseStudentList.get(0).get("TOTAL_CNT").toString());
+		Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
 		model.addAttribute("courseStudentList", courseStudentList);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("currentPage", currentPage);
 		return "admin/admin_view_course_student";
 	}
 	
@@ -78,9 +82,15 @@ public class AdminController {
 
 	//관리자 회원 리스트 페이지
 	@GetMapping("/admin/admin_veiw_member")
-	public String admin_veiw_member(Model model, String member_name) {
-		List< Map<String,Object> > data = memberService.selectMemberList(member_name);
+	public String admin_veiw_member(Model model, String member_name, @RequestParam(required=false, defaultValue = "1") int currentPage) {
+		List< Map<String,Object> > data = memberService.selectMemberList(currentPage, member_name);
+		
+		int totalCnt = Integer.parseInt( data.get(0).get("TOTAL_CNT").toString() );
+		Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
 		model.addAttribute("memberList", data);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("currentPage", currentPage);
+		
 		return "admin/admin_veiw_member";
 	}	
 	

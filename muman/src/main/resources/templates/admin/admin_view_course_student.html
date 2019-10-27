@@ -10,18 +10,49 @@
 
 <div class="col-12 right_body">
 	<div class="col-12 inner_con">
-		<div class="step_title">
+		<div class="col-12 mb30 step_title">
 	        	수강생 현황
-	    </div>
+		</div>
+		
+		<div class="col-12 mb30">
+			<table class="filter_table">
+				<tbody>
+					<tr>
+						<td>이름</td>
+						<td><input type="text"></td>
+					</tr>
+					
+					<tr>
+						<td>시작일</td>
+						<td><input type="text"></td>
+					</tr>
+
+					<tr>
+						<td>종료일</td>
+						<td><input type="text"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="">
+				검색
+			</div>
+		</div>
+
 		<div class="col-12">
 			<div class="col-12">
-				<table class="table_style_3">
+				<table class="table_style_3 mb30">
 					<thead>
 						<tr>
 							<th>번호</th>
 							<th>이름</th>
 							<th>시작일</th>
-							<th>마감일</th>
+							<th>종료일</th>
+							
+							<th>수강료</th>
+							<th>등록일</th>
+							<th>결제 유형</th>
+							
 							<th>주 횟수</th>
 							<th>Delay 사용 여부</th>
 						</tr>
@@ -33,6 +64,23 @@
 							<td th:text="${courseStudentList.NAME}"></td>
 							<td th:text="${courseStudentList.START_DATE}"></td>
 							<td th:text="${courseStudentList.END_DATE}"></td>
+							
+							<td th:text="${courseStudentList.PRICE}"></td>
+							<td th:text="${courseStudentList.PRICE_DATE}"></td>
+							<td th:if="${courseStudentList.PRICE_TYPE} == 1">
+								카드
+							</td>
+							<td th:if="${courseStudentList.PRICE_TYPE} == 2">
+								계좌
+							</td>
+							<td th:if="${courseStudentList.PRICE_TYPE} == 3">
+								카드+탈잉
+							</td>
+							<td th:if="${courseStudentList.PRICE_TYPE} == 4">
+								계좌+탈잉
+							</td>
+							
+							
 							<td th:text="${courseStudentList.TIMES_WEEK} + '' + ${courseStudentList.ALIAS_LIST_FULL_NAME}"></td>
 							<td th:if="${courseStudentList.IS_DELAY} == 0">
 								Delay 미사용
@@ -43,12 +91,38 @@
 							<td class="hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
 						</tr>
 					</tbody>
-					
 				</table>	
 				
-				<div class="col-12">
+				<div class="col-12 paging_con">
+					<div class="before_btn">
+						<a th:href="@{/admin/admin_view_course_student(currentPage=${pagingInfo.prev})}">
+							이전
+						</a>
+					</div>
+
+					<div class="paging">
+						<th:block th:each="num: ${#numbers.sequence( {pagingInfo.firstPage}, {pagingInfo.lastPage})}">
+							<th:block th:if= "${num} == ${currentPage}">
+								<a class="paging_cnt current" th:text="${num}" th:href="@{/admin/admin_view_course_student(currentPage=${num} ) }">
+								</a>
+							</th:block>
+							
+							<th:block th:unless= "${num} == ${currentPage}">
+								<a class="paging_cnt" th:text="${num}" th:href="@{/admin/admin_view_course_student(currentPage=${num} ) }">
+								</a>
+							</th:block>
+							
+						</th:block>
+					</div>
 					
+					<div class="next_btn">
+						<a th:href="@{/admin/admin_view_course_student(currentPage=${pagingInfo.next})}">
+							다음
+						</a>
+					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 	</div>

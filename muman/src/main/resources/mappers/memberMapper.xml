@@ -10,11 +10,14 @@
 		 FROM 
 		 (
 			SELECT 
-				@ROWNUM:=@ROWNUM+1 AS no, name, member_id, member_seq, member_etc, branch, pnum
+				@ROWNUM:=@ROWNUM+1 AS no, ( SELECT COUNT(member_seq) FROM MEMBER ) AS TOTAL_CNT,
+				name, member_id, member_seq, member_etc, branch, pnum
 			FROM (SELECT @ROWNUM:= 0 ) dummy, MEMBER
 		 ) AS TBL
 		 WHERE 
 		 	(@ROWNUM:=0)=0
+		 AND
+	 	    no BETWEEN ( ( ( #{currentPage} - 1 ) * 10 ) + 1 ) AND ( ( ( #{currentPage} - 1 ) * 10 ) + 10 )
     </select>
     
     <insert id="insertMember">

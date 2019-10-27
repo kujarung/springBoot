@@ -3,6 +3,8 @@ package muscle.school.muman.commom.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +76,41 @@ public class CommonService {
 		return changeDayOfWeek;
 	}
 	
+    //페이징 처리
+    public Map<String, Object> calcPaging(int totalCnt, int currentPage, int pagingCnt) {
+    	Map<String,Object> pagingInfo = new HashMap<>();
+    	int lastPage  = (int)(Math.ceil( currentPage / 10.0 )) * 10;
+    	int firstPage = lastPage - 9;
+    	
+    	int prev = 0;
+    	if(firstPage == 1) {
+    		prev = 1;
+    	} else {
+    		prev = firstPage - 10;
+    	}
+    	
+    	
+    	int realEnd = (int)(Math.ceil ( (totalCnt * 1.0) / pagingCnt ) );
+    	if(lastPage > realEnd ) {
+    		lastPage = realEnd;
+    	}
+    	
+    	int next = 0;
+    	if(lastPage % 10 == 0) {
+    		next = lastPage + 1;
+    	} else {
+    		next = lastPage;
+    	}
+    	
+    	pagingInfo.put("lastPage", lastPage);
+    	pagingInfo.put("firstPage", firstPage);
+    	pagingInfo.put("prev", prev);
+    	pagingInfo.put("next", next);
+    	return pagingInfo;
+    }
+	
+	
+	//alias 번호를 풀 네임으로 변환 시키는 함수
 	public String getAliasToFullName(int alias) {
 		String fullName = null;
 		switch(alias){

@@ -1,79 +1,68 @@
 .form_con {margin-bottom:30px;}
-    .today{background-color: #8b8b8b}
-    .un_use{background-color: darkgray}
-    .table_style2{}
+.today{background-color: #8b8b8b}
+.un_use{background-color: #ea9643}
+.time_list {display: inline-block; border:1px solid black; margin-right:10px; padding: 5px;
+    vertical-align: top; font-size: 12px; font-weight: normal; height: 20px; width: calc(20% - 22px);
+    line-height: 20px; margin-bottom: 10px;}
+.time_list:nth-child(5){margin-right:0px;}
+.time_list:last-child {margin-right:0px;}
+.time_list.holiday{background-color: red;}
 
-    .time_list {display: inline-block; border:1px solid black; margin-right:10px; padding: 5px;
-        vertical-align: top; font-size: 12px; font-weight: normal; height: 20px; width: calc(20% - 22px);
-        line-height: 20px; margin-bottom: 10px;}
-    .time_list:nth-child(5){margin-right:0px;}
-    .time_list:last-child {margin-right:0px;}
-    .time_list.holiday{background-color: red;}
+.main_pic > img{width:130px; border-radius: 50%;}
+.main_pic{text-align: center;}
+.inner_box{height:calc(100vh - 100px); padding-top: 50px; padding-bottom: 50px;}
+.logo{text-align: center; display: block;}
+.logo > img{width:130px;}
+.left_gnb{height:100vh; background-color: #ea9643; color:white; width:200px; float:left;}
+.right_body{ height:100vh; width:calc(100% - 200px) !important; float:left; overflow-x: hidden; background-color:#f0f0f0;}
+.adm_menu {padding-top: 70px; text-align: center;}
+.adm_menu > li{width:100%; font-size:18px; line-height: 32px; padding-top: 15px; padding-bottom:15px; transition: 0.3s;}
+.adm_menu > li.active{background-color:#FFC079;}
+.adm_menu > li:hover{background-color:#FFC079;}
 
-    .main_pic > img{width:130px; border-radius: 50%;}
-    .main_pic{text-align: center;}
-    .inner_box{height:calc(100vh - 100px); padding-top: 50px; padding-bottom: 50px;}
-    .logo{text-align: center; display: block;}
-    .logo > img{width:130px;}
-    .left_gnb{height:100vh; background-color: #ea9643; color:white; width:200px; float:left;}
-    .right_body{ height:100vh; width:calc(100% - 200px) !important; float:left; overflow-x: hidden; background-color:#f0f0f0;}
-    .adm_menu {padding-top: 70px; text-align: center;}
-    .adm_menu > li{width:100%; font-size:18px; line-height: 32px; padding-top: 15px; padding-bottom:15px; transition: 0.3s;}
-    .adm_menu > li:hover{background-color:#a7906d;;}
+.icon{display: block; width: 30px; height: 30px; background-size: cover;}
+.admin_desc{font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem;  text-align: center;}
+.inner_font{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }
+.inner_con {transition:all 0.5s ease-out; padding-top: 80px; padding-left: 50px; padding-right: 50px;
+		    height:100vh; position: absolute !important; right:0; top: 0;}
+.inner_con.first{width: 100%; } .inner_con.second{right:-100%; } .inner_con.third {right:-200%; } .inner_con.fourth {right:-300%; }
+.step_btn_con {background-color: #ea9643; text-align: center; display: inline-block; position: absolute; bottom: 50px; transition: all 0.3s}
+.step_btn_con.right{right:50px;}
+.step_btn_con.left{left:50px;}
+.step_btn_con .step_btn {font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; color: #fff;padding:20px 30px; cursor: pointer;
+font-weight: bold;}
+.step_btn_con:hover{ background-color: #FFC079 ;}
+.step_btn_con.type_2{position:static;}
 
-    .icon{display: block; width: 30px; height: 30px; background-size: cover;}
-    .admin_desc{font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem;  text-align: center;}
-    .inner_font{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }
-    .inner_con {transition:all 0.5s ease-out; padding-top: 80px; padding-left: 50px; padding-right: 50px;
-    		    height:100vh; position: absolute !important; right:0; top: 0;}
-    .inner_con.first{width: 100%; } .inner_con.second{right:-100%; } .inner_con.third {right:-200%; } .inner_con.fourth {right:-300%; }
-    .step_btn_con {background-color: #ea9643; text-align: center; display: inline-block; position: absolute; bottom: 50px; transition: all 0.3s}
-    .step_btn_con.right{right:50px;}
-    .step_btn_con.left{left:50px;}
-    .step_btn_con .step_btn {font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; color: #fff;padding:20px 30px; cursor: pointer;
-    font-weight: bold;}
-    .step_btn_con:hover{ background-color: #a7906d ;}
-    .step_btn_con.type_2{position:static;}
+.step_title{font-size:40px; font-size:4.0rem; line-height:46px; line-height:4.6rem; margin-bottom: 30px; text-align: center;
+font-weight:bold; color:#ea9643}
 
-    .step_title{font-size:40px; font-size:4.0rem; line-height:46px; line-height:4.6rem; margin-bottom: 30px; text-align: center;
-    font-weight:bold}
+.table_con{min-height: 350px;}
+.table_style_3{width: 100%; background-color:white;}
+.table_style_3 tr{cursor: pointer;}
+.table_style_3 tr.active{background-color:#ea9643;}
+.table_style_3 tr.active td{color:white;}
 
-    .table_con{min-height: 350px;}
-    .table_style_3{width: 100%; background-color:white;}
-    .table_style_3 tr.active{background-color:darkgray;}
-    .table_style_3 thead th, .table_style_3 thead td{background-color: #f5f8fa; padding:10px; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem;
-        border-right: 1px solid #e8ecef; text-align: center;}
-    .table_style_3 thead th:last-child{border-right:none;}
-    .table_style_3 tbody td {text-align: center; padding:5px; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; border:1px solid #e8ecef;}
-    .table_style_3 tbody td.active{background-color:gray;}
-    .table_style_3 tbody th {text-align: center; padding:5px; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;  }
-    .paing_con{}
-    .paing_con .paging{display: inline-block;}
+.table_style_3 thead th, .table_style_3 thead td{ background-color: #ea9643; padding:10px; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem;
+    border-right: 1px solid #e8ecef; text-align: center; color:white;}
+.table_style_3 thead td.today{background-color: #FFC079;}
+.table_style_3 thead th:last-child{border-right:none;}
+.table_style_3 tbody td {text-align: center; padding:5px; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; border:1px solid #e8ecef;}
+.table_style_3 tbody td.active{background-color:#ea9643;}
+.table_style_3 tbody th {text-align: center; padding:5px; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;  }
+.paing_con{}
+.paing_con .paging{display: inline-block;}
 
-    .time_con{text-align: center; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; margin-bottom: 50px;
-        padding:10px; background-color:white;}
-    #nextWeek{float: right;}
-    #beforeWeek{float: left;}
-    .reg_member_con{border-top:2px solid black; border-bottom:2px solid black; padding:30px 100px; margin-bottom: 30px;}
-    .reg_con{margin-bottom: 15px; box-sizing: border-box}
-    .reg_con .reg_title{width: 150px; font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem; display: inline-block; vertical-align: middle;}
-    .reg_con .reg_left_input{width:calc(100% - 160px); display: inline-block; vertical-align: middle;}
-    .reg_con .reg_left_input input{width: 100%; padding:12px; outline: none; box-sizing: border-box; border:none;}
-    .reg_con .reg_left_input input.type_2{width: calc(100% - 120px);  outline: none;}
-    .reg_con .reg_left_input .check_btn{padding-top: 11px; padding-bottom: 11px; padding-right: 30px; padding-left: 30px;
-        outline: none; background-color:#ea9643; float: right; cursor:pointer;
-        -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; height: 28px;  display: table;}
-    .reg_con .reg_left_input .check_btn:hover{ background-color: #a7906d ;}
-    .reg_con .reg_left_input .check_btn .check_text{ display: table-cell; vertical-align: middle; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;
-    font-weight: bold; color: #fff;}
-    .reg_con .reg_left_select {width:calc(100% - 500px); display: inline-block; vertical-align: middle;}
-    .reg_con .reg_left_select select{padding: 5px; width: 160px; color: black; font-size:15px; font-size:1.5rem; 
-    line-height:21px; line-height:2.1rem; outline: none; border:none;}
-    #courseDateList{min-height:50px;}
-    .plus_input{height:27px;}
-    #endTime{border:none;}
-    #startTime{border:none;}
-    #price:after{content:"만원";}
-    #plusBtn{display:inline-block; background-color:#ea9643;}
-    #plusBtn .plus_btn_style{padding:10px; font-size:15px; color:white;}
-    .price_wrap{padding:50px 100px; border-top:2px solid black; border-bottom:2px solid black;}
+.time_con{text-align: center; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; margin-bottom: 50px;
+    padding:10px; background-color:white;}
+#nextWeek{float: right;}
+#beforeWeek{float: left;}
+
+
+#courseDateList{min-height:50px;}
+.plus_input{height:27px;}
+#endTime{border:none;}
+#startTime{border:none;}
+#plusBtn{display:inline-block; background-color:#ea9643;}
+#plusBtn .plus_btn_style{padding:10px; font-size:15px; color:white;}
+.price_wrap{padding:50px 100px; border-top:2px solid black; border-bottom:2px solid black;}

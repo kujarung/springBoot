@@ -4,7 +4,6 @@
 /*@import url('http://fonts.googleapis.com/earlyaccess/notosanskr.css');  !* font-weight : 100, 300, 400, 500, 700, 900 *!*/
 @import url('https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css');
 
-.CONTENT > P > SPAN{}
 /* Reset */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr,
 address, big, cite, code, del, dfn, em, font, img, ins,
@@ -29,3 +28,35 @@ a:link, a:visited {text-decoration:none; color:inherit;}
 a:hover {text-decoration:none;}
 input[type="button"] {-webkit-appearance: none;}
 i {line-height: 0.8em !important;}  /* 아이콘 vertical middle 위해 */
+
+
+
+/* 회원가입 및 등록 */
+.reg_member_con {border-top:2px solid black; border-bottom:2px solid black; padding:30px 100px; margin-bottom: 30px;}
+.reg_con{margin-bottom: 15px; box-sizing: border-box}
+.reg_con .reg_title{width: 150px; font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem; display: inline-block; vertical-align: middle;}
+.reg_con .reg_left_input{width:calc(100% - 160px); display: inline-block; vertical-align: middle;}
+.reg_con .reg_left_input input{width: 100%; padding:12px; outline: none; box-sizing: border-box; border:none; text-align: left;}
+.reg_con .reg_left_input input.type_2{width: calc(100% - 120px);  outline: none;}
+.reg_con .reg_left_input .check_btn {padding-top: 11px; padding-bottom: 11px; padding-right: 30px; padding-left: 30px;
+    outline: none; background-color:rgb(255,242,0); float: right; cursor:pointer;
+    -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; height: 28px;  display: table; transition:all 0.3s;}
+.reg_con .reg_left_input .check_btn:hover{ background-color: #FFC079 ;}
+.reg_con .reg_left_input .check_btn .check_text{ display: table-cell; vertical-align: middle; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;
+font-weight: bold; color: #0B1761;}
+.reg_con .reg_left_select {width:calc(100% - 160px); display: inline-block; vertical-align: middle; text-align: left;}
+.reg_con .reg_left_select select{padding: 5px; width: 160px; color: black; font-size:15px; font-size:1.5rem; 
+line-height:21px; line-height:2.1rem; outline: none; border:none;}
+
+/* 페이징 처리 */
+.paging_con {font-size:15px; text-align: center;}
+.paging_con .before_btn {color:black; display:inline-block; margin-right:10px;}
+.paging_con .before_btn:hover{color:#ea9643;}
+.paging_con .next_btn {color:black; display:inline-block; margin-left:10px;}
+.paging_con .next_btn:hover {color:#ea9643}
+.paging_con .paging {display:inline-block;}
+.paging_cnt:first-child{margin-left:0px;}
+.paging_cnt:last-child{margin-right:0px;}
+.paging_cnt {font-size:15px; margin-right:5px; margin-left:5px;}
+.paging_cnt.current{color:#ea9643;}
+.paging_cnt:hover{ color:#ea9643; }

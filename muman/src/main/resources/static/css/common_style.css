@@ -2,12 +2,13 @@
 
 /* btn_style */
 .btn_style_3_con{font-size:0px; font-size:0rem; line-height:0px; line-height:0.0rem; }
-.btn_style_3_con .btn_style_3{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; letter-spacing: -0.025em; font-weight: 500; color: #fff; -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
-    border-radius:30px; background-color:#ea9643; padding-top: 14px; padding-bottom: 16px; padding-left: 33px; padding-right: 30px; overflow:hidden; display: inline-block;}
+.btn_style_3_con .btn_style_3{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; letter-spacing: -0.025em; font-weight: 500; color: black; -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+    border-radius:30px; background-color:rgb(255,242,0); padding-top: 14px; padding-bottom: 16px; padding-left: 33px; padding-right: 30px; overflow:hidden; display: inline-block;}
 
 .mw-980{max-width: 980px;}
 /* .point_color{color:#fef200} */
-.point_color{color:#ea9643}
+.point_color{color:rgb(255,242,0)}
+.point_color2{color:#0B1761};
 .bold{font-weight: bold;}
 
 /* font */

@@ -5,38 +5,48 @@
         <head th:replace="common/sub/head"></head>
     </head> 
     <body>
-        <div class="wrapper">
+        <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-            <div class="col-12 sub_visual_con" style="background-image:url('img/sub_visual2.png')">
-                <div class="col-12 mw-1200 col-center h-100 show-table ">
-                    <div class="col-12 pr15 pl15 vm show-tablecell fn">
-                        <div class="title point_color">
-                            	수업 소개
-                        </div>
-                        <div class="content">
-                            8월 <극>성수기를 맞아 완판된 ⭐근력학교⭐
-                        </div>
-                    </div>
-                </div>
-            </div>
             
-            <div class="col-12 sub_content">
-            	<div class="login-form">
+            <div class="col-12 sub_main login_wrap" style="background-image: url('img/login_img3.jpg')">
+            	<div class="login_dim"></div>
+            	<div class="col-12 login-form">
 				    <form id="login">
-				      <input type="text" name="email" class="text-field" placeholder="아이디"><br>
-				      <input type="password" name="password" class="text-field" placeholder="비밀번호"><br>
-				      <input type="submit" value="로그인" class="submit-btn">
+					    <div class="col-12 col-center mw-768">
+					   		<div class="col-12 login_title mb30">
+						    	로그인
+						    </div>
+					    	
+					    	<div class="col-12 input_wrap">
+						    	<div class="col-12 mb20">
+							   		<input type="text" name="email" class="login_input" placeholder="아이디">
+							    </div>
+							    <div class="col-12 mb20">
+							    	<input type="password" name="password" class="login_input" placeholder="비밀번호">
+							    </div>
+					    	</div>
+					    	
+					    	<div class="col-12 mb20">
+	 					    	<div class="login_submit">
+							    	<div class="login_submit_style" style="display:block" id="loginBtn">
+							        	로그인
+							        </div>
+							    </div>
+					    	</div>
+
+						    <div class="col-12 fontsize16" style="color:white">
+						      <a href="#">비밀번호를 잊어버리셨나요?</a>
+						    </div>
+
+					    </div>
 				    </form>
-				
-				    <div class="links">
-				      <a href="#">비밀번호를 잊어버리셨나요?</a>
-				    </div>
 				 </div>
             </div>
-
-            <footer th:replace="common/footer"></footer>
         </div>
-
     </body>
-
+    <script>
+    	$("#loginBtn").on("click", function(){
+    		
+    	})
+    </script>
 </html>
