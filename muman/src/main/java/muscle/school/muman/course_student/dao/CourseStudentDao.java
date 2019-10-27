@@ -14,5 +14,7 @@ public interface CourseStudentDao {
 	List<Map<String, Object>> selectCourseStudentList(int currentPage);
 
 	Map<String, Object> selectCourseStudent(int memberSeq);
+
+	void updateEndDate(int member_seq, String updateDay);
 	
 }

@@ -60,35 +60,36 @@
 					
 					<tbody>
 						<tr th:each="courseStudentList : ${courseStudentList}" th:object="${courseStudentList}">
-							<td th:text="${courseStudentList.NO}"></td>
-							<td th:text="${courseStudentList.NAME}"></td>
-							<td th:text="${courseStudentList.START_DATE}"></td>
-							<td th:text="${courseStudentList.END_DATE}"></td>
-							
-							<td th:text="${courseStudentList.PRICE}"></td>
-							<td th:text="${courseStudentList.PRICE_DATE}"></td>
-							<td th:if="${courseStudentList.PRICE_TYPE} == 1">
-								카드
-							</td>
-							<td th:if="${courseStudentList.PRICE_TYPE} == 2">
-								계좌
-							</td>
-							<td th:if="${courseStudentList.PRICE_TYPE} == 3">
-								카드+탈잉
-							</td>
-							<td th:if="${courseStudentList.PRICE_TYPE} == 4">
-								계좌+탈잉
-							</td>
-							
-							
-							<td th:text="${courseStudentList.TIMES_WEEK} + '' + ${courseStudentList.ALIAS_LIST_FULL_NAME}"></td>
-							<td th:if="${courseStudentList.IS_DELAY} == 0">
-								Delay 미사용
-							</td>
-							<td th:unless="${courseStudentList.IS_DELAY} == 0">
-							 	Delay 사용
-							</td>
-							<td class="hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
+							<th:block th:if="${not #strings.isEmpty(courseStudentList)}">
+								<td th:text="${courseStudentList.NO}"></td>
+								<td th:text="${courseStudentList.NAME}"></td>
+								<td th:text="${courseStudentList.START_DATE}"></td>
+								<td th:text="${courseStudentList.END_DATE}"></td>
+								
+								<td th:text="${courseStudentList.PRICE}"></td>
+								<td th:text="${courseStudentList.PRICE_DATE}"></td>
+								<td th:if="${courseStudentList.PRICE_TYPE} == 1">
+									카드
+								</td>
+								<td th:if="${courseStudentList.PRICE_TYPE} == 2">
+									계좌
+								</td>
+								<td th:if="${courseStudentList.PRICE_TYPE} == 3">
+									카드+탈잉
+								</td>
+								<td th:if="${courseStudentList.PRICE_TYPE} == 4">
+									계좌+탈잉
+								</td>
+								
+								<td th:text="${courseStudentList.TIMES_WEEK} + '' + ${courseStudentList.ALIAS_LIST_FULL_NAME}"></td>
+								<td th:if="${courseStudentList.IS_DELAY} == 0">
+									Delay 미사용
+								</td>
+								<td th:unless="${courseStudentList.IS_DELAY} == 0">
+								 	Delay 사용
+								</td>
+								<td class="hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>							
+							</th:block>
 						</tr>
 					</tbody>
 				</table>	

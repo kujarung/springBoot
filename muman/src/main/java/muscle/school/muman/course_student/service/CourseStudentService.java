@@ -59,5 +59,10 @@ public class CourseStudentService {
 		// TODO Auto-generated method stub
 		return dao.selectCourseStudent(member_seq);
 	}
+
+	public void updateEndDate(int member_seq, String updateDay) {
+		// TODO Auto-generated method stub
+		dao.updateEndDate(member_seq, updateDay);
+	}
 	
 }

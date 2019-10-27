@@ -1,5 +1,6 @@
 package muscle.school.muman.admin.controller;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -59,12 +60,19 @@ public class AdminController {
 	@GetMapping("/admin/admin_view_course_student")
 	public String adminViewCourseStudent(Model model, @RequestParam(required=false, defaultValue = "1") int currentPage) {
 		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList(currentPage);
-		
-		int totalCnt = Integer.parseInt( courseStudentList.get(0).get("TOTAL_CNT").toString());
-		Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
-		model.addAttribute("courseStudentList", courseStudentList);
-		model.addAttribute("pagingInfo", pagingInfo);
-		model.addAttribute("currentPage", currentPage);
+		if(courseStudentList.size() != 0) {
+			int totalCnt = Integer.parseInt( courseStudentList.get(0).get("TOTAL_CNT").toString());
+			Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
+			model.addAttribute("courseStudentList", courseStudentList);
+			model.addAttribute("pagingInfo", pagingInfo);
+			model.addAttribute("currentPage", currentPage);
+		} else {
+			Map<String,Object> pagingInfo = commonService.calcPaging(0, currentPage, 10);
+			model.addAttribute("courseStudentList", "");
+			model.addAttribute("pagingInfo", pagingInfo);
+			model.addAttribute("currentPage", currentPage);
+		}
+
 		return "admin/admin_view_course_student";
 	}
 	
@@ -96,20 +104,9 @@ public class AdminController {
 	
 	
 	@RequestMapping("/test")
-	public void test() {
+	public void test() throws ParseException {
 		System.out.println("킹치웠나?");
-		Calendar cal = Calendar.getInstance();
-		System.out.println(cal.get(cal.YEAR) );
-		System.out.println(cal.get(cal.MONTH) );
-		System.out.println(cal.get(cal.DATE) );
-		System.out.println(cal.get(cal.DAY_OF_WEEK) );
-		cal.set(2019, 11, 31);
-		System.out.println(cal.get(cal.YEAR) );
-		System.out.println(cal.get(cal.MONTH) );
-		System.out.println(cal.get(cal.DATE) );
-		System.out.println(cal.get(cal.DAY_OF_WEEK) );
-		int member_seq = 10;
-		courseMasterService.delayCourse(member_seq, 12);
+		courseMasterService.delayCourse(10,12);
 	}
 	
 

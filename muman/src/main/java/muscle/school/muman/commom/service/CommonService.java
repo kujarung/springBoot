@@ -4,17 +4,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import muscle.school.muman.course_master.dao.CourseMasterDao;
+import muscle.school.muman.course_master.service.CourseMasterService;
 
 @Service
 @MapperScan(basePackages = "muscle.school.muman.commom.dao")
 public class CommonService {
+	
+	@Autowired
+	CourseMasterService courseMasterService;
 	
 	//월요일과 금요일 날을 리턴 하는 함수
 	public String[] todayWeek(String standardDate) {
@@ -212,9 +216,40 @@ public class CommonService {
 		return fullName;
 	}
 	
-	public Map<String, Object> aliasToDetail(int alias, String endDate) {
-		Map<String, Object> result = null;
+	// alias로 되어있는 것을 변형 하는 method
+	public Map<String, Object> aliasToDetail(String alias) {
+		List<Map<String, Object>> courseList = courseMasterService.selectCourseMasterList(Integer.parseInt(alias));
+		return courseList.get(0);
+	}
+	
+	//resultDay 만큼 endDate에서 더해주는 함수
+	public String afterDay(String day, int addDate) {
+		Calendar cal = Calendar.getInstance();
+		int endDateYear = Integer.parseInt( day.split("-")[0] );
+		int endDateMonth = Integer.parseInt( day.split("-")[1] ) - 1;
+		int endDateDate = Integer.parseInt(day.split("-")[2] ) + addDate;
+		cal.set( Calendar.YEAR, endDateYear );
+		cal.set( Calendar.MONTH, endDateMonth );
+		cal.set( Calendar.DATE, endDateDate );
 		
+		String result = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE);
 		return result;
+		
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int alias = 2;
+		String endDate = "2019-12-23";
+		int num = 12;
+		Calendar cal = Calendar.getInstance();
+		int endDateYear = Integer.parseInt( endDate.split("-")[0] );
+		int endDateMonth = Integer.parseInt( endDate.split("-")[1] ) - 1;
+		int endDateDate = Integer.parseInt(endDate.split("-")[2] );
+		cal.set( Calendar.YEAR, endDateYear );
+		cal.set( Calendar.MONTH, endDateMonth );
+		cal.set( Calendar.DATE, endDateDate );
+		
 	}
 }

@@ -52,4 +52,11 @@
     <select id="selectCourseStudent" resultType="map">
     	SELECT * FROM COURSE_STUDENT WHERE MEMBER_SEQ = #{memberSeq}
     </select>
+    
+    <update id="updateEndDate">
+    	UPDATE COURSE_STUDENT SET
+    		END_DATE = #{updateDay}
+    	WHERE 
+    		MEMBER_SEQ = #{member_seq}
+    </update>
 </mapper>
