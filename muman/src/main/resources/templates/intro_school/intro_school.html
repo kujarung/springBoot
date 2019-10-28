@@ -24,9 +24,9 @@
               	<div class="col-12 visual_sub_dim"></div>
             </div>
  
-             
             <!-- 경험이 다르다 -->
-            <div class="col-12 page_con" id="differExp" style='background-image: url("img/excer.jpg");'>
+            <div class="col-12 page_con" id="differExp">
+            	<div class="col-12 h-100 visual_bck" style='background-image: url("img/excer.jpg");'></div>
             	<div class="page_con_dim"></div>
             	<div class="col-12 col-center mw-1200">
             		<div class="col-12 mw-450">
@@ -52,23 +52,61 @@
             	</div>
             </div>  
             
+            
             <!-- 커리큘럼이 차별화 되어 있다 -->
-<!--             <div class="col-12 page_con" id="goodCurri">
+             <div class="col-12 page_con" id="goodCurri">
+            	<div class="col-12 h-100 visual_bck"></div>
+            	<div class="page_con_dim"></div>
             	<div class="col-12 col-center mw-1200">
-	            	<div class="col-12">
-	            		<div class="col-6">
+            		<div class="col-12 col-center tc">
+	            		<div class="fontsize42 point_color fontweight700 mb40" id="goodCurriFont">
+	            			최고의 시설로<br>
+	            			최고의 운동을 하세요
 	            		</div>
-	            		<div class="col-6">
+	            	    
+	            	    <div class="fontsize15 lineheight25 point_white transition_css mb80" id="goodCurriDesc">
+	            	    	엘리코 운동 기구로 차원이 다른 경험을 하세요.<br>
+	            	    	바벨 훈련이 있으면 케틀벨 훈련도 있고, 클럽벨 훈련이 있으면 맨몸 훈련도 있습니다.<br>
+	            	    	케틀벨은 기술 향상/ 바벨은 기록 향상의 재미가 있습니다.<br>
 	            		</div>
-	            	</div>
-	            	<div class="col-12">
-	            		<div class="col-6">
+	            		
+	            		<div class="col-12">
+	            			<div class="col-12 mb50">
+		            			<div class="col-6 pr20">
+		            				<div class="col-12 img_con">
+		            					<div class="img_dim"></div>
+		            					<img src="img/12.jpg">
+		            				</div>
+		            			</div>
+		            			
+		            			<div class="col-6 pl20">
+		            				<div class="col-12 img_con">
+		            					<div class="img_dim"></div>
+		            					<img src="img/34.png">
+		            				</div>	            			
+		            			</div>	            			
+	            			</div>
+	            			
+	            			<div class="col-12">
+		            			<div class="col-6 pr20">
+		            				<div class="col-12 img_con">
+		            					<div class="img_dim"></div>
+		            					<img src="img/56.jpg">
+		            				</div>
+		            			</div>
+		            			
+		            			<div class="col-6 pl20">
+		            				<div class="col-12 img_con">
+		            					<div class="img_dim"></div>
+		            					<img src="img/78.png">
+		            				</div>	            			
+		            			</div>	            			
+	            			</div>
+
 	            		</div>
-	            		<div class="col-6">
-	            		</div>
-	            	</div>            	
+	            	</div>        	
             	</div>
-            </div> -->            
+            </div>          
                         
             <!-- 운동기구가 좋다 -->
 <!--             <div class="col-12 page_con" id="goodFitnessEquipment">
@@ -97,7 +135,6 @@
         	$("#visual_font").animate( {
                 opacity : 1,
                 transform: 'translateY(-100px)',
-                transform: 'scale(1)',
             }, 600, "linear" );
         	
         	(function upDown() {
@@ -112,23 +149,44 @@
         	})();
         	
         	var firstCon = document.querySelector("#differExp").offsetTop;
+        	var goodCurri = document.querySelector("#goodCurri").offsetTop;
         	$(".btn_bottom").on("click", function(){
         		$('html, body').animate({scrollTop : firstCon}, 900);
         	});
         	
         	$(window).scroll(function () { 
         		var scrollValue = $(document).scrollTop(); 
-        		if(scrollValue > firstCon - 200) {
-        			$("#leftFont").animate( {
-                        opacity : 1,
-                        transform: 'translateX(100px)',
-                        transform: 'scale(1)',
-                    }, 1000, "linear", function(){
-                    	$("#desc").animate( {
+        		if(scrollValue > firstCon - 100) {
+        			$(".visual_bck").animate( {
+        				opacity : 1,
+                    }, 800, "linear", function(){
+                    	$("#leftFont").animate( {
                             opacity : 1,
-                        }, 800, "linear");
+                            transform: 'translateX(0px)',
+                            opacity : 1,
+                        }, 500, "linear",function(){
+                        	$("#desc").animate({
+                        		opacity : 1,
+                        	},500)
+                        });
                     } );
         		}
+        		
+        		if(scrollValue > goodCurri - 100){
+                	$("#goodCurriFont").animate( {
+                        opacity : 1,
+                        transform: 'translateY(0)',
+                    }, 600, "linear",function(){
+                    	$("#goodCurriDesc").animate({
+                    		opacity : 1,
+                    	},500, function(){
+                    		$(".img_con").animate({
+                    			opacity : 1,
+                    		}, 800)
+                    	})
+                    } );        			
+        		}
+        		
         	});
 
         	

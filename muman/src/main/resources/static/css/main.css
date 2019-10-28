@@ -1,5 +1,3 @@
-
-.main_visual_wrap{height:960px;}
 .main_visual_wrap .main_visual_img_wrap{position: absolute; top:0; left:0;}
 .main_visual_wrap .main_visual_img{position: absolute; top:0; right:0; width:100%; height:100%; background-repeat: no-repeat;
     background-size: contain; background-position: center; background-color: black;}
@@ -7,11 +5,11 @@
 .main_visual_wrap .main_visual_text_inner{text-align: center;}
 .main_visual_wrap h2{font-size:25px; font-size:2.5rem; line-height:40px; line-height:4.0rem; letter-spacing: -0.045em; font-weight: 400; color:#405a76; margin-bottom: 25px;}
 .main_visual_wrap .h2_desc{font-size:22px; font-size:2.2rem; line-height:28px; line-height:2.8rem; letter-spacing: -0.025em; color:#fff; margin-bottom: 44px;}
-.visual_dim{height: 800px; opacity: 0.6; background-color: #000;}
+.visual_dim{height:100vh; opacity: 0.6; background-color: #000;}
 
 /*main_vsiual*/
 .main_text_con{display: table-cell; text-align: center; vertical-align: middle}
-.main_visual_wrap {height: 500px;}
+.main_visual_wrap{height:100vh;}
 .main_visual_con{height: 100%;}
 .main_visual_wrap .bg_con{position: absolute;top: 0; left: 0; width: 100%;  height: 100%;  background-repeat: no-repeat; background-size: cover; z-index: -2;  background-position:center;}
 svg {fill: black ;stroke:  black; stroke-width: 1px; width:20px;}
@@ -46,7 +44,8 @@ svg {fill: black ;stroke:  black; stroke-width: 1px; width:20px;}
 /* profile */
 .profile_con{margin-bottom:50px;}
 
-.visual_back {background-image: url("../img/visual_img1.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.visual_back {background-image: url("../img/visual_img1.jpg"); background-size: contain; 
+background-position: center; background-repeat: no-repeat; background-color:black;}
 .visual_top_content {padding-top: 40px; margin-bottom: 135px; text-align: right;}
 .visual_top_content .visual_top_content_des {color:#FFFFFF; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem; margin-right: 4px; vertical-align: middle;}
 .visual_top_content .img_box{display: inline-block; margin-right: 28px;  vertical-align: middle;}
@@ -73,8 +72,6 @@ svg {fill: black ;stroke:  black; stroke-width: 1px; width:20px;}
 
 @media all and (min-width: 768px) {
     /*main_visual*/
-    .main_visual_wrap {height: 800px;}
-    .main_dim{ height: 800px;}
     .visual_text .visual_title {font-size:60px; font-size:6.0rem; line-height:66px; line-height:6.6rem; }
     .visual_text .visual_sub {font-size:45px; font-size:4.5rem; line-height:62px; line-height:6.2rem; }
 }
