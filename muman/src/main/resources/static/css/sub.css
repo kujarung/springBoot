@@ -1,6 +1,6 @@
 .sub_main {background-color:black; padding-bottom:150px;}
-.sub_main.login_wrap {height:100vh; padding-bottom:0px; background-size: cover; z-index:1}
-.login_dim{position: absolute; width:100%; height:100%; background-color: black; opacity: 0.5; z-index: 2}
+.sub_main.login_wrap {background-size: cover; z-index:1; padding-top:150px; padding-bottom:150px;}
+.login_dim{position: absolute; width:100%; height:100%; background-color: black; opacity: 0.5; z-index: 2; top:0px;}
 .sub_visual_back { height: 250px; background-size: cover; background-position: center; background-repeat: no-repeat; 
 background-color: black; position: relative; margin-bottom:50px;}
 .sub_dim {background-color: black; opacity: 0.5; height: 300px; position: absolute !important;}
@@ -35,7 +35,7 @@ background-color: black; position: relative; margin-bottom:50px;}
 }
 
 #goodCurriFont{opacity:0; transform: translateY(-100px);}
-#visual_font {transform: translateY(-100px);}
+#visual_font {transform: translateY(300px);}
 #leftFont {transform: translateX(-500px); z-index: 5;}
 #desc {opacity:0;}
 

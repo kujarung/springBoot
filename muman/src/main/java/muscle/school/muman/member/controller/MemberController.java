@@ -58,7 +58,7 @@ public class MemberController {
 		
 		service.insertMember(name, id, pass, branch, member_etc, pnum);
 		
-		return "redirect:admin/admin_veiw_member";
+		return "redirect:admin/veiw_member";
 		
 	}
 	

@@ -36,4 +36,8 @@ public class MemberService {
 	public List<Map<String, Object>> selectMemberList(int currentPage, String member_name) {
 		return dao.selectMemberList(currentPage, member_name);
 	}
+
+	public Map<String, Object> getMember(int memberSeq) {
+		return dao.getMember(memberSeq);
+	}
 }

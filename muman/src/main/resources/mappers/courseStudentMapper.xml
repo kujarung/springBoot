@@ -37,7 +37,7 @@
     		(SELECT COUNT(MEMBER_SEQ) FROM COURSE_STUDENT) TOTAL_CNT,
     		@ROWNUM:=@ROWNUM+1 AS NO,
     		M.NAME, M.MEMBER_SEQ, CS.START_DATE, CS.END_DATE, CS.TIMES_WEEK, CS.IS_DELAY, CS.ALIAS_LIST_FULL_NAME 
-    		, PRICE, STR_TO_DATE(PRICE_DATE, '%Y-%m-%d') PRICE_DATE, PRICE_TYPE
+    		, PRICE, STR_TO_DATE(PRICE_DATE, '%Y-%m-%d') PRICE_DATE, PRICE_TYPE, M.BRANCH
     	FROM 
     		(SELECT @ROWNUM:= 0 ) dummy, COURSE_STUDENT CS
 		LEFT JOIN 
@@ -50,7 +50,14 @@
     </select>
     
     <select id="selectCourseStudent" resultType="map">
-    	SELECT * FROM COURSE_STUDENT WHERE MEMBER_SEQ = #{memberSeq}
+    	SELECT 
+    		* 
+    	FROM 
+    		COURSE_STUDENT CS
+    	LEFT JOIN MEMBER M 
+    		ON M.MEMBER_SEQ = CS.MEMBER_SEQ
+    	WHERE 
+    		M.MEMBER_SEQ = #{memberSeq}
     </select>
     
     <update id="updateEndDate">

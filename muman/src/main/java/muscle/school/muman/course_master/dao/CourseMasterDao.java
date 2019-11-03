@@ -15,5 +15,7 @@ public interface CourseMasterDao {
 
 	void insertCourse(String member_seq, String ex_alias, String ex_date);
 
+	List<Map<String, Object>> selectCourseList(int memberSeq);
+
 	
 }

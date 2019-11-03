@@ -5,7 +5,7 @@
     
 <mapper namespace="muscle.school.muman.course_master.dao.CourseMasterDao">
         
-    <select id="selectCourseMasterList"  resultType = "map">
+    <select id="selectCourseMasterList" resultType = "map">
         SELECT 
         	*
         FROM 
@@ -83,4 +83,13 @@
 	 	VALUES 
 	 		(#{member_seq}, #{ex_alias}, #{ex_date})
 	 </insert>
+	 
+	 <select id="selectCourseList" parameterType="map" resultType="map">
+	 	SELECT 
+	 		* 
+	 	FROM 
+	 		EXCERCISE_MASTER 
+	 	WHERE 
+       		MEMBER_SEQ = #{memberSeq}
+	 </select>
 </mapper>

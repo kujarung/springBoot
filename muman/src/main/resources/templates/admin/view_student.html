@@ -14,34 +14,48 @@
 	        	수강생 현황
 		</div>
 		
-		<div class="col-12 mb30">
-			<table class="filter_table">
-				<tbody>
-					<tr>
-						<td>이름</td>
-						<td><input type="text"></td>
-					</tr>
-					
-					<tr>
-						<td>시작일</td>
-						<td><input type="text"></td>
-					</tr>
+        <div class="col-12 mb30">
+            <table class="col-12 filter_table mb30">
+                <colgroup>
+                    <col width = "10%">
+                    <col width = "auto">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th class="left">이름</td>
+                    <td>
+                        <div class="input_style1_con">
+                            <input type="text">
+                        </div>
+                    </td>
+                </tr>
 
-					<tr>
-						<td>종료일</td>
-						<td><input type="text"></td>
-					</tr>
-				</tbody>
-			</table>
+                <tr>
+                    <th class="left">지점</td>
+                    <td>
+                        <div class="select_style1_con">
+                            <select name="" id="">
+                                <option value="">고려대점</option>
+                                <option value="">한양대점</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-			<div class="">
-				검색
-			</div>
-		</div>
+            <div class="col-12 tc">
+                <div class="serch_btn_con">
+                    <div class="serch_btn">
+                        검색
+                    </div>
+                </div>
+            </div>
+        </div>
 
 		<div class="col-12">
 			<div class="col-12">
-				<table class="table_style_3 mb30">
+				<table class="table_style_3 mb30" id="stdent_table">
 					<thead>
 						<tr>
 							<th>번호</th>
@@ -55,6 +69,7 @@
 							
 							<th>주 횟수</th>
 							<th>Delay 사용 여부</th>
+							<th>지점</th>
 						</tr>
 					</thead>
 					
@@ -88,7 +103,8 @@
 								<td th:unless="${courseStudentList.IS_DELAY} == 0">
 								 	Delay 사용
 								</td>
-								<td class="hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>							
+								<td th:text="${courseStudentList.BRANCH}"></td>							
+								<td class="member_seq hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>							
 							</th:block>
 						</tr>
 					</tbody>
@@ -129,14 +145,16 @@
 	</div>
 	
 	<div class="step_btn_con right">
-    	<a class="step_btn left go_step2" href="/admin/admin_reg_course_student" style="display:block">
+    	<a class="step_btn left go_step2" href="/admin/reg_student" style="display:block">
         	추가하기
         </a>
     </div>
-    
+
+<!--     
     <div class="col-12">
     	<input type="text" id="test">test</button>
     </div>	
+ -->
 </div>
 <script>
 	$(function(){
@@ -145,11 +163,18 @@
 			$.ajax({
 				url : '/test',
 				success : (result) => {
-					console.log(result);
+					
 				}
 			})
-		});		
-	})
+		});
+		
+		$("#stdent_table tbody tr").on("click", function(){
+			var memberSeq = $(this).find(".member_seq").text();
+			location.href = "/admin/detail_student?memberSeq="+memberSeq;
+		})
+	});
+	
+	
 
 </script>
 </body>

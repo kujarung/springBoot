@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - CommonService",
+            "request": "launch",
+            "mainClass": "muscle.school.muman.commom.service.CommonService",
+            "projectName": "muman"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-MumanApplication<muman>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

@@ -116,4 +116,10 @@ public class CourseMasterService {
             System.out.println("date["+i+"] : "+b[i]);
         }
 	}
+
+	public List<Map<String, Object>> selectCourseList(int memberSeq) {
+		System.out.println(memberSeq);
+		
+		return dao.selectCourseList(memberSeq);
+	}
 }

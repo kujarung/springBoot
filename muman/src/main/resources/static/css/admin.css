@@ -23,7 +23,7 @@
 .icon{display: block; width: 30px; height: 30px; background-size: cover;}
 .admin_desc{font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem;  text-align: center;}
 .inner_font{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }
-.inner_con {transition:all 0.5s ease-out; padding-top: 80px; padding-left: 50px; padding-right: 50px;
+.inner_con {transition:all 0.5s ease-out; padding-top: 30px; padding-left: 50px; padding-right: 50px;
 		    height:100vh; position: absolute !important; right:0; top: 0;}
 .inner_con.first{width: 100%; } .inner_con.second{right:-100%; } .inner_con.third {right:-200%; } .inner_con.fourth {right:-300%; }
 .step_btn_con {background-color: #ea9643; text-align: center; display: inline-block; position: absolute; bottom: 50px; transition: all 0.3s}
@@ -66,3 +66,25 @@ font-weight:bold; color:#ea9643}
 #plusBtn{display:inline-block; background-color:#ea9643;}
 #plusBtn .plus_btn_style{padding:10px; font-size:15px; color:white;}
 .price_wrap{padding:50px 100px; border-top:2px solid black; border-bottom:2px solid black;}
+
+
+.input_style1_con input{width: 100%; outline-color: #ea9643; padding:5px; box-sizing: border-box; border:none; font-size: 15px;}
+.select_style1_con select{width: 100%; padding:5px; border:none; outline-color: #ea9643; font-size: 15px;}
+.filter_table tr {padding:5px; padding-top:10px; padding-bottom:10px;}
+.filter_table th {font-size:20px; font-weight: 400; padding-top:10px; padding-bottom:10px;}
+.filter_table th.left{text-align: left;}
+.filter_table td {font-size:15px;}
+.serch_btn_con{ background-color: #ea9643; text-align: center; display: inline-block; transition: all 0.3s;}
+
+.serch_btn_con .serch_btn{font-size: 15px; font-size: 1.5rem; line-height: 21px; line-height: 2.1rem; color: #fff; padding: 15px 50px; cursor: pointer; font-weight: bold;}
+.flex_box{  display: flex;}
+.flex_box.center{ align-items: center; justify-content: center;
+    flex-direction:column;}
+
+    
+.detail_table {border-bottom: 3px solid #ea9643; border-top:3px solid #ea9643}
+.detail_table tbody tr {border-bottom: 1px solid #ea9643}
+.detail_table tbody tr:last-child {border:none;}
+.detail_table tbody th {text-align: left; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem; padding-top: 10px; padding-bottom: 10px; color:#ea9643}
+.detail_table tbody td {text-align: left; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; padding-top: 10px; padding-bottom: 10px;}
+.detail_table .time_list {border:none; width:calc(20% - 25px); outline: none;}

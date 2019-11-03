@@ -1,9 +1,12 @@
 package muscle.school.muman.admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import muscle.school.muman.admin.service.AdminService;
 import muscle.school.muman.commom.service.CommonService;
@@ -41,7 +45,7 @@ public class AdminController {
 	}
 	
 	//관리자 학생 등록 페이지
-	@GetMapping("/admin/admin_reg_course_student")
+	@GetMapping("/admin/reg_student")
 	public String adminRegCourseStudent(Model model, @RequestParam(required=false) String standardDate) {
 		//시작일과 끝일을 리턴 받음
 		String[] dateList   = commonService.todayWeek(standardDate);
@@ -53,11 +57,11 @@ public class AdminController {
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("today", commonService.currentDay(standardDate));
 		model.addAttribute("holidayList" , holidayList);
-		return "admin/admin_reg_course_student";
+		return "admin/reg_student";
 	}
 	
 	//관리자 학생 확인 페이지
-	@GetMapping("/admin/admin_view_course_student")
+	@GetMapping("/admin/view_student")
 	public String adminViewCourseStudent(Model model, @RequestParam(required=false, defaultValue = "1") int currentPage) {
 		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList(currentPage);
 		if(courseStudentList.size() != 0) {
@@ -72,24 +76,36 @@ public class AdminController {
 			model.addAttribute("pagingInfo", pagingInfo);
 			model.addAttribute("currentPage", currentPage);
 		}
-
-		return "admin/admin_view_course_student";
+		return "admin/view_student";
+	}
+	//관리자 학생 확인 페이지
+	@GetMapping("/admin/detail_student")
+	public String detail_student(Model model, int memberSeq) {
+		Map<String, Object> courseStudent = courseStudentService.getCourseStudentDetail(memberSeq);
+		List<Map<String, Object>> courseList = courseMasterService.selectCourseList(memberSeq);
+		
+		model.addAttribute("courseStudent", courseStudent);
+		model.addAttribute("courseList", courseList);
+		return "/admin/detail_student";
 	}
 	
+	
+	
+	
 	//관리자 강의 등록 페이지
-	@GetMapping("/admin/admin_reg_course")
+	@GetMapping("/admin/reg_course")
 	public String adminRegCourse() {
-		return "admin/admin_reg_course";
+		return "admin/reg_course";
 	}
 	
 	//관리자 회원 등록 페이지
-	@GetMapping("/admin/admin_reg_member")
+	@GetMapping("/admin/reg_member")
 	public String adminRegMember() {
-		return "admin/admin_reg_member";
+		return "admin/reg_member";
 	}	
 
 	//관리자 회원 리스트 페이지
-	@GetMapping("/admin/admin_veiw_member")
+	@GetMapping("/admin/veiw_member")
 	public String admin_veiw_member(Model model, String member_name, @RequestParam(required=false, defaultValue = "1") int currentPage) {
 		List< Map<String,Object> > data = memberService.selectMemberList(currentPage, member_name);
 		
@@ -99,14 +115,24 @@ public class AdminController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("currentPage", currentPage);
 		
-		return "admin/admin_veiw_member";
+		return "admin/veiw_member";
 	}	
 	
 	
-	@RequestMapping("/test")
-	public void test() throws ParseException {
-		System.out.println("킹치웠나?");
-		courseMasterService.delayCourse(10,12);
+	@RequestMapping("/admin/delStu")
+	@ResponseBody
+	public void test(HttpServletResponse response, int memberSeq) throws ParseException {
+		int result = 1;
+		PrintWriter pw;
+		try {
+			pw = response.getWriter();
+			pw.print(result);
+			pw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 
