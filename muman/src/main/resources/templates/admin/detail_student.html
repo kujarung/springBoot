@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <head th:replace="common/admin/admin_head"></head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="common/admin/admin_gnb"></div>
+<div class="col-12 right_body" style="padding-top:100px;">
+    <div class="col-12 inner_con">
+        <div class="col-12 mb50 step_title">
+            수강생 상세 정보
+        </div>
+        <div class="col-12 col-center mw-768">
+            <div class="detail_table mb50">
+                <th:block th:object="${courseStudent}">
+	               <table style="width: 100%;">
+	                   <colgroup>
+	                       <col width="20%" />
+	                       <col width="30%" />
+	                       <col width="20%" />
+	                       <col width="30%" />
+	                   </colgroup>
+	                   <tbody>
+	                   <tr>
+	                       <th>이름</th>
+	                       <td th:text="${courseStudent.name}"></td>
+	
+	                       <th>아이디</th>
+	                       <td th:text="${courseStudent.member_id}"></td>
+	                   </tr>
+	                   <tr>
+	                       <th>시작일</th>
+	                       <td th:text="${courseStudent.start_date}"></td>
+	                       <th>종료일</th>
+	                       <td th:text="${courseStudent.end_date}"></td>
+	                   </tr>
+	                   
+	                   <tr>
+	                       <th>결제 금액</th>
+	                       <td th:text="${courseStudent.price}"></td>
+	                       <th>결제 여부</th>
+	                       <td th:text="${courseStudent.price_date}"></td>
+	                   </tr>	
+	                   
+	                   <tr>
+	                       <th>delay 사용 여부</th>
+	                       <td>
+	                       		<th:block th:if="${courseStudent.is_delay == 0}">
+	                       			미사용
+	                       		</th:block>
+	                       		
+	                       		<th:block th:if="${courseStudent.is_delay == 1}">
+	                       			사용
+	                       		</th:block>
+	                       </td>
+	                       <th>지점</th>
+	                       <td th:text="${courseStudent.branch}"></td>
+	                   </tr>
+	                   <tr>
+	                       <th>주횟수</th>
+	                       <td th:text="${courseStudent.times_week}"></td>
+	                       <th>기타 사항</th>
+	                       <td th:text="${courseStudent.member_etc}"></td>
+	                   </tr>
+	                   <tr>
+	                       <th>수강 일수</th>
+	                       <td colspan="3">
+	                           <div class="col-12 pt20 pb20">
+	                           	<th:block th:each="courseList : ${courseList}" th:object="${courseList}">
+	                           		<div class="time_list" th:text="${courseList.ex_date}">
+	                           			
+	                           		</div>
+	                           	</th:block>
+	                           </div>
+	
+	                       </td>
+	                   </tr>
+	                   </tbody>
+	               </table>
+	        	</th:block>
+            </div>
+
+
+            <div class="col-12">
+                <div class="col-12 tc">
+                    <div class="serch_btn_con mr10">
+                        <div class="serch_btn">
+                            수정
+                        </div>
+                    </div>
+
+                    <div class="serch_btn_con mr10">
+                        <div class="serch_btn">
+                        	<a href="/admin/view_student">
+                        		뒤로가기
+                        	</a>
+                        </div>
+                    </div>
+                    
+                    <div class="serch_btn_con">
+                        <div class="serch_btn" id="delStu">
+                        	삭제 하기
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<input th:value="${courseStudent.member_seq}" class="hidden" id="memberSeq">
+<!--     
+    <div class="col-12">
+    	<input type="text" id="test">test</button>
+    </div>	
+ -->
+</div>
+<script>
+	$(function(){
+		$("#delStu").on("click", function() {
+			var memberSeq = $("#memberSeq").val();
+			$.ajax({
+				data : {memberSeq : memberSeq},
+				url : '/admin/delStu',
+				success : function(result){
+					if(result == 1) {
+						alert("삭제에 성공하였습니다.");
+						location.href = "/admin/view_student";
+					} else {
+						alert("삭제에 실패 하였습니다.");
+					}
+				}
+			})			
+		})
+	});
+</script>
+</body>
+</html>
