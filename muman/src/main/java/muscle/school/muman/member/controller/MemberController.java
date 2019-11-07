@@ -62,6 +62,7 @@ public class MemberController {
 		
 	}
 	
+	//회원등록
 	@PostMapping("/insertMember")
 	public String insertMember(
 			@RequestParam(required=false) String name,

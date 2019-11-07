@@ -78,6 +78,7 @@ public class AdminController {
 		}
 		return "admin/view_student";
 	}
+	
 	//관리자 학생 확인 페이지
 	@GetMapping("/admin/detail_student")
 	public String detail_student(Model model, int memberSeq) {
@@ -88,9 +89,6 @@ public class AdminController {
 		model.addAttribute("courseList", courseList);
 		return "/admin/detail_student";
 	}
-	
-	
-	
 	
 	//관리자 강의 등록 페이지
 	@GetMapping("/admin/reg_course")
@@ -118,7 +116,11 @@ public class AdminController {
 		return "admin/veiw_member";
 	}	
 	
-	
+	/**
+	 * @param response
+	 * @param memberSeq
+	 * @return 
+	 */
 	@RequestMapping("/admin/delStu")
 	@ResponseBody
 	public void test(HttpServletResponse response, int memberSeq) throws ParseException {

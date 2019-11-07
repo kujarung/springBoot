@@ -223,6 +223,12 @@ public class CommonService {
 	}
 	
 	//resultDay 만큼 endDate에서 더해주는 함수
+	/** 
+	 * @param day : 시작 날짜
+	 * @param addDate : 더 할 일수
+	 * @return String 
+	 * 날짜(day)와 더 할 일수(addDate)를 더하여 결과 날짜를 리턴 시키는 함수
+	 * */
 	public String afterDay(String day, int addDate) {
 		Calendar cal = Calendar.getInstance();
 		int endDateYear = Integer.parseInt( day.split("-")[0] );
