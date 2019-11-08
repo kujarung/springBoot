@@ -478,7 +478,7 @@
 			setStartDate.setDate(setStartDate.getDate() + 7 );
 			setEndDate.setDate(setEndDate.getDate() + 7);
 			week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
-			$("#reload").attr("action", "/admin/admin_reg_course_student");
+			$("#reload").attr("action", "/admin/reg_student");
 			$('[name="standardDate"]').val(dateForm(setStartDate));
 			$("#reload").submit();
 		})
@@ -488,7 +488,7 @@
 			setStartDate.setDate(setStartDate.getDate() - 7 );
 			setEndDate.setDate(setEndDate.getDate() - 7);
 			var week = dateForm(setStartDate) + "~" + dateForm(setEndDate); 
-			$("#reload").attr("action", "/admin/admin_reg_course_student");
+			$("#reload").attr("action", "/admin/reg_student");
 			$('[name="standardDate"]').val(dateForm(setStartDate));
 			$("#reload").submit();
 		})
@@ -504,9 +504,6 @@
 				$("#memberList").show();
 				$("#memberList tbody").children().remove();
 				var jsonResult = result.result;
-				console.log(jsonResult);
-				console.log(result.totalCnt);
-				console.log(result.pagingInfo);
 				for(var i=0;i<Object.keys(jsonResult).length;i++) {
 					var tr = "<tr>" 
 					+ "<td>" + jsonResult[i].no + "</td>"
@@ -592,7 +589,7 @@
 			$("#courseDateList").append("<input class='plus_input "+ plusClass +"' placeholder='날짜 추가' readonly/>");
 			$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
 			
-			$("#plusBtn").on("click" , function(){
+			$("#plusBtn").on("click" , function() {
 				$("." + plusClass).addClass("time_list inputVal");
 				$("." + plusClass).datepicker("destroy");
 				$("." + plusClass).removeClass("plus_input");

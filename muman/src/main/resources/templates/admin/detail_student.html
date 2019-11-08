@@ -66,7 +66,7 @@
 	                       <td th:text="${courseStudent.alias_list_full_name}"></td>
 	                   </tr>
 	                   <tr>
-	                       <th>	수강 일수(이번 달만 표시 됩니다.)<br>
+	                       <th>	수강 일수<br>
 	                       		<span id="allShowCourse">모두 보기</span> 
 	                       </th>
 	                       <td colspan="3">
@@ -177,7 +177,7 @@
 		
 		$("#extenBtn").on("click", function() {
 			if( confirm("연장 페이지로 이동 하시겠습니까?") ) {
-				location.href = "/extendCourse";
+				location.href = "/extendCourse"
 			}
 		})
 		

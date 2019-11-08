@@ -42,15 +42,12 @@
 </div>
 
 <script>
-	$(".adm_menu li").on("click", function() {
-		$(".adm_menu li").each(function(){
-			$(this).removeClass("active")
-		});
-		
-		$(this).addClass("active");
-		
-		
-	})
+
+	function goPage(that, page) {
+		console.log($(that))
+		$(that).addClass("active");
+	}
+
 </script>
 
 </body>
