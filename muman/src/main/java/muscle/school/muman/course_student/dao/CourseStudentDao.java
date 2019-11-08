@@ -15,6 +15,6 @@ public interface CourseStudentDao {
 
 	Map<String, Object> selectCourseStudent(int memberSeq);
 
-	void updateEndDate(int member_seq, String updateDay);
+	void updateDelay(int member_seq, String updateDay);
 	
 }

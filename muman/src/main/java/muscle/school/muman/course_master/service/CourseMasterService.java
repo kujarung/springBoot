@@ -9,6 +9,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import muscle.school.muman.commom.service.CommonService;
 import muscle.school.muman.course_master.dao.CourseMasterDao;
@@ -45,14 +46,14 @@ public class CourseMasterService {
 	}
 	
 	@Transactional 
-	public int insertCourse(String member_seq, String dayListString, String[] time_list, String aliasListString) throws ParseException {
+	public int insertCourse(String memberSeq, String dayListString, String[] timeList, String aliasListString) throws ParseException {
 	    try {
-			for(int i=0;i < time_list.length;i++) {
+			for(int i=0;i < timeList.length;i++) {
 		    	String[] dayList 	= dayListString.split("\\|");
 		    	String[] aliasList 	= aliasListString.split("\\|");
 		    	for(int j=0; j<dayList.length;j++) {
-		    		if ( Integer.parseInt(dayList[j]) == commonSerivce.getDayOfWeek(time_list[i])  ) {
-		    			dao.insertCourse(member_seq, aliasList[j], time_list[i]);
+		    		if ( Integer.parseInt(dayList[j]) == commonSerivce.getDayOfWeek(timeList[i])  ) {
+		    			dao.insertCourse(memberSeq, aliasList[j], timeList[i]);
 		    		}
 		    	}
 		    }
@@ -63,8 +64,8 @@ public class CourseMasterService {
 		}
 	}
 	
-	public int insertOneCourse(String member_seq, String ex_alias, String end_date) {
-		dao.insertCourse(member_seq, ex_alias, end_date);
+	public int insertOneCourse(String memberSeq, String exAlias, String endDate) {
+		dao.insertCourse(memberSeq, exAlias, endDate);
 		return 0;
 	}
 	
@@ -76,11 +77,12 @@ public class CourseMasterService {
 	 * */
 	
 	@Transactional
-	public int delayCourse(int member_seq, int delay_num) throws ParseException {
+	@RequestMapping("/courseMasterService")
+	public int delayCourse(int memberSeq, int delayNum) throws ParseException {
+		System.out.println(memberSeq);
 		try {
-			String firstEndDate = "2019-11-22";
-			for(int j=0; j< delay_num; j++) {
-				Map<String, Object> studentDetail = courseStudentService.getCourseStudentDetail(member_seq);
+			for(int j=0; j< delayNum; j++) {
+				Map<String, Object> studentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
 				String aliasList[] = studentDetail.get("aliasList").toString().split("\\|");
 				//수강이 끝나는 마지막 일
 				String endDate = studentDetail.get("end_date").toString();
@@ -94,13 +96,13 @@ public class CourseMasterService {
 				int firstTargetDay 
 				= Integer.parseInt(commonSerivce.aliasToDetail(aliasList[0].toString()).get("week_of_day").toString() );
 				int serchIntDay =  firstTargetDay;
-				int insertAlias = Integer.parseInt( aliasList[0].toString() );
+				String insertAlias = aliasList[0].toString();
 				for(int i=0; i<aliasList.length;i++) {
 					int targetDay = 
 							Integer.parseInt(commonSerivce.aliasToDetail(aliasList[i].toString()).get("week_of_day").toString());
 					if(day < targetDay) {
 						serchIntDay = targetDay;
-						insertAlias = Integer.parseInt( aliasList[i].toString() );
+						insertAlias =  aliasList[i].toString();
 					}
 				}
 				//내가 수요일, 화요일이 타깃 요일이라면?
@@ -114,8 +116,8 @@ public class CourseMasterService {
 					resultDay = 7 - Math.abs(serchIntDay - intEndDay);
 				}
 				String updateDay = commonSerivce.afterDay(endDate, resultDay);
-				courseStudentService.updateEndDate(member_seq, firstEndDate);
-				/* insertOneCourse(member_seq, insertAlias, updateDay); */
+				courseStudentService.updateDelay(memberSeq, updateDay);
+				insertOneCourse( Integer.toString(memberSeq)   , insertAlias,  updateDay); 
 			}
 			return 1;
 		} catch (Exception e) {
@@ -134,8 +136,8 @@ public class CourseMasterService {
 	}
 
 	public List<Map<String, Object>> selectCourseList(int memberSeq) {
-		System.out.println(memberSeq);
-		
 		return dao.selectCourseList(memberSeq);
 	}
+
+
 }

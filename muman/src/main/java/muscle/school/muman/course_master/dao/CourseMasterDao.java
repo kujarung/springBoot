@@ -13,7 +13,7 @@ public interface CourseMasterDao {
 
 	List<Map<String, Object>> selectHolidayList();
 
-	void insertCourse(String member_seq, String ex_alias, String ex_date);
+	void insertCourse(String membeSeq, String exAlias, String exDate);
 
 	List<Map<String, Object>> selectCourseList(int memberSeq);
 

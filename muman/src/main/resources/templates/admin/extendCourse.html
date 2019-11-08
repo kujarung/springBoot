@@ -10,7 +10,7 @@
 <div class="col-12 right_body" style="padding-top:100px;">
     <div class="col-12 inner_con">
         <div class="col-12 mb50 step_title">
-            수강생 상세 정보
+        	연장 하기
         </div>
         <div class="col-12 col-center mw-768">
             <div class="detail_table mb50">
@@ -31,40 +31,6 @@
 	                       <td th:text="${courseStudent.member_id}"></td>
 	                   </tr>
 	                   
-	                   <tr>
-	                       <th>시작일</th>
-	                       <td th:text="${courseStudent.start_date}"></td>
-	                       <th>종료일</th>
-	                       <td th:text="${courseStudent.end_date}"></td>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>결제 금액</th>
-	                       <td th:text="${courseStudent.price}"></td>
-	                       <th>결제 여부</th>
-	                       <td th:text="${courseStudent.price_date}"></td>
-	                   </tr>	
-	                   
-	                   <tr>
-	                       <th>delay 사용 여부</th>
-	                       <td>
-	                       		<th:block th:if="${courseStudent.is_delay == 0}" id="delayYn">
-	                       			미사용
-	                       		</th:block>
-	                       		
-	                       		<th:block th:if="${courseStudent.is_delay == 1}" id="delayYn">
-	                       			사용
-	                       		</th:block>
-	                       </td>
-	                       <th>지점</th>
-	                       <td th:text="${courseStudent.branch}"></td>
-	                   </tr>
-	                   <tr>
-	                       <th>주횟수</th>
-	                       <td th:text="${courseStudent.times_week}"></td>
-	                       <th>운동 요일 및 시간</th>
-	                       <td th:text="${courseStudent.alias_list_full_name}"></td>
-	                   </tr>
 	                   <tr>
 	                       <th>	수강 일수(이번 달만 표시 됩니다.)<br>
 	                       		<span id="allShowCourse">모두 보기</span> 
@@ -88,32 +54,17 @@
 
             <div class="col-12">
                 <div class="col-12 tc">
-                    <div class="serch_btn_con mr10" id="extenBtn">
+                    <div class="serch_btn_con mr10" id="autoExtenBtn">
                         <div class="serch_btn">
-                            연장
+                            자동 연장
                         </div>
                     </div>
                     
-                    <div class="serch_btn_con mr10" id="delayBtn">
+                    <div class="serch_btn_con mr10" id="manualExtenBtn">
                         <div class="serch_btn">
-                            미루기
+                          	수동 연장
                         </div>
                     </div>                    
-                    
-
-                    <div class="serch_btn_con mr10">
-                        <div class="serch_btn">
-                        	<a href="/admin/view_student">
-                        		뒤로가기
-                        	</a>
-                        </div>
-                    </div>
-                    
-                    <div class="serch_btn_con">
-                        <div class="serch_btn" id="delStu">
-                        	삭제 하기
-                        </div>
-                    </div>
                     
                 </div>
             </div>

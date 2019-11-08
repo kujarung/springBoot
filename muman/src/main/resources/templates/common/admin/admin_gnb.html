@@ -12,12 +12,12 @@
         </a>
 
         <ul class="col-12 adm_menu">
-            <li class="active">
-                 <a href="/admin/veiw_member">회원 관리(작업 중)</a>
+            <li>
+                 <a href="/admin/veiw_member">회원 관리</a>
             </li>
             
             <li>
-                <a href="/admin/view_student">수강생 관리(부분 완성)</a>
+                <a href="/admin/view_student">수강생 관리</a>
             </li>
             
             <li>
@@ -40,6 +40,18 @@
         </ul>
     </div>
 </div>
+
+<script>
+	$(".adm_menu li").on("click", function() {
+		$(".adm_menu li").each(function(){
+			$(this).removeClass("active")
+		});
+		
+		$(this).addClass("active");
+		
+		
+	})
+</script>
 
 </body>
 </html>

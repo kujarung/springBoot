@@ -60,9 +60,10 @@
     		M.MEMBER_SEQ = #{memberSeq}
     </select>
     
-    <update id="updateEndDate">
+    <update id="updateDelay">
     	UPDATE COURSE_STUDENT SET
-    		END_DATE = #{updateDay}
+    		END_DATE = #{updateDay},
+    		IS_DELAY = 1
     	WHERE 
     		MEMBER_SEQ = #{member_seq}
     </update>

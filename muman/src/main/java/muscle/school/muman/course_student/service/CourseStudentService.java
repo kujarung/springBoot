@@ -25,7 +25,7 @@ public class CourseStudentService {
 		
 	}
 
-	public void insertStudent(String member_seq, String start_date, String end_date, int times_week, String aliasList, 
+	public void insertStudent(String memberSeq, String startDate, String endDate, int timesWeek, String aliasList, 
 			String price, String price_date, String price_type
 			) {
 		String alias_list_full_name= "";
@@ -40,13 +40,8 @@ public class CourseStudentService {
 			}
 		}
 		alias_list_full_name = "(" + alias_list_full_name + ")";
-		dao.insertStudent(member_seq, start_date, end_date, times_week, alias_list_full_name, aliasList);
+		dao.insertStudent(memberSeq, startDate, endDate, timesWeek, alias_list_full_name, aliasList);
 		commonDao.nextCourseStudentSeq();
-		
-	}
-	
-	public void updateStudent(String member_seq, String register_start_time, String register_end_time) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -55,14 +50,14 @@ public class CourseStudentService {
 		return dao.selectCourseStudentList(currentPage);
 	}
 
-	public Map<String, Object> getCourseStudentDetail(int member_seq) {
+	public Map<String, Object> getCourseStudentDetail(int memberSeq) {
 		// TODO Auto-generated method stub
-		return dao.selectCourseStudent(member_seq);
+		return dao.selectCourseStudent(memberSeq);
 	}
 
-	public void updateEndDate(int member_seq, String updateDay) {
+	public void updateDelay(int memberSeq, String updateDay) {
 		// TODO Auto-generated method stub
-		dao.updateEndDate(member_seq, updateDay);
+		dao.updateDelay(memberSeq, updateDay);
 	}
 	
 }
