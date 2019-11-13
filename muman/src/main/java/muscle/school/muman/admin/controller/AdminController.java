@@ -22,6 +22,7 @@ import muscle.school.muman.commom.service.CommonService;
 import muscle.school.muman.course_master.service.CourseMasterService;
 import muscle.school.muman.course_student.service.CourseStudentService;
 import muscle.school.muman.member.service.MemberService;
+import reactor.netty.http.server.HttpServerRequest;
 
 @Controller
 @EnableAutoConfiguration
@@ -114,7 +115,17 @@ public class AdminController {
 		model.addAttribute("currentPage", currentPage);
 		
 		return "admin/veiw_member";
-	}	
+	}
+	
+	// 강좌 연장 
+	@GetMapping("/admin/extendCourse")
+	public String extendCourse(int memberSeq, Model model) {
+		System.out.println("들어오니?");
+		System.out.println(memberSeq);
+		model.addAttribute("memberSeq", memberSeq);
+		return "admin/extendCourse";
+	}
+	
 	
 	/**
 	 * @param response

@@ -14,6 +14,21 @@
         </div>
         <div class="col-12 col-center mw-768">
             <div class="detail_table mb50">
+              	<div class="serch_btn_con mr10">
+                   <div class="serch_btn">
+                   	<a href="/admin/view_student">
+                   		뒤로가기
+                   	</a>
+                   </div>
+               </div>
+                
+                
+                <div class="serch_btn_con">
+                    <div class="serch_btn" id="delStu">
+                    	삭제 하기
+                    </div>
+                </div>
+                
                 <th:block th:object="${courseStudent}">
 	               <table style="width: 100%;">
 	                   <colgroup>
@@ -90,7 +105,13 @@
                 <div class="col-12 tc">
                     <div class="serch_btn_con mr10" id="extenBtn">
                         <div class="serch_btn">
-                            연장
+                            수동 연장
+                        </div>
+                    </div>
+                    
+                    <div class="serch_btn_con mr10" id="autoExtenBtn">
+                        <div class="serch_btn">
+                            자동 연장
                         </div>
                     </div>
                     
@@ -99,22 +120,6 @@
                             미루기
                         </div>
                     </div>                    
-                    
-
-                    <div class="serch_btn_con mr10">
-                        <div class="serch_btn">
-                        	<a href="/admin/view_student">
-                        		뒤로가기
-                        	</a>
-                        </div>
-                    </div>
-                    
-                    <div class="serch_btn_con">
-                        <div class="serch_btn" id="delStu">
-                        	삭제 하기
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
@@ -177,7 +182,8 @@
 		
 		$("#extenBtn").on("click", function() {
 			if( confirm("연장 페이지로 이동 하시겠습니까?") ) {
-				location.href = "/extendCourse"
+				var memberSeq = $("#memberSeq").val();
+				location.href = "/admin/extendCourse?memberSeq="+memberSeq;
 			}
 		})
 		

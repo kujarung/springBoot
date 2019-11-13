@@ -22,13 +22,13 @@
 				<tbody>
 					<tr>
 						<td>이름</td>
-						<td><input type="text"></td>
+						<td><input type="text" name="name"></td>
 					</tr>
 					
 					<tr>
 						<td>지점</td>
 						<td>
-							<select name="" id="">
+							<select name="branch" id="">
 								<option value="">고려대점</option>
 								<option value="">한양대점</option>
 							</select>
@@ -41,7 +41,6 @@
 				검색
 			</div>
 		</div>
-
 
 			<input name="member_name" class="col-12 hidden" readonly>
 			<input name="member_seq" class="hidden">			
@@ -234,7 +233,6 @@
             </div>
 		</div>
 		
-		
 		 <div class="col-12 inner_con third" id="third_con">
             <div class="step_title">
                 	시작 일자 선택
@@ -285,36 +283,12 @@
          
          <div class="col-12 inner_con fourth" id="fourth_con">
        		<div class="col-12 mw-768 col-center">
+       		    <div class="col-12 price_wrap">
        		    <div class="step_title">
-	              	결제 방식 및 확인
-	           	</div>
-	           	
-       			<div class="col-12 price_wrap">
-       				<div class="col-12 reg_con">
-	                <div class="reg_title">가격(변경 가능) </div>
-	                <div class="reg_left_input">
-                    	<input class="fl type2" name="price" id="price" value="" style="width:200px;">
-	                    <div class="check_btn" style="float:left;">
-	                        <div class="check_text">
-	                            	만원
-	                        </div>
-	                    </div>
-                	</div>
-	            </div>
-				
-				<div class="col-12 reg_con">
-	                <div class="reg_title">결제 방식</div>
-	                <div class="reg_left_select">
-					<select name="price_type">
-						<option value="1">계좌이체</option>
-						<option value="2">카드</option>
-						<option value="3">탈잉 + 계좌이체</option>
-						<option value="4">탈잉 + 카드</option>
-					</select>
-	                </div>
-	            </div>
-				
-				<div class="col-12 reg_con">
+			         결제 방식 및 확인
+			    </div>
+       		    
+       		    <div class="col-12 reg_con">
 	                <div class="reg_title">주 횟수</div>
 	                <div class="reg_left_input" >
 	                   <input id="times" name="times" value="주0회" style="border:none; display:inline-block" readonly>
@@ -327,19 +301,58 @@
 	                    <input id="number" readonly ></span>
 	                </div>
 	            </div>
-	            
-	            <div class="price_complate_yn">
-	            	<input type="checkbox">
-	            </div>
-	            <div class="col-12 reg_con">
-	                <div class="reg_title">결제 일자</div>
-	                <div class="reg_left_input">
-	                    <input id="price_date" name="price_date" readonly ></span>
-	                </div>
-	            </div>
-	            
+     				<div class="col-12 reg_con">
+                <div class="reg_title">가격(변경 가능) </div>
+                <div class="reg_left_input">
+                   	<input class="fl type2" name="price" id="price" value="" style="width:200px;">
+                    <div class="check_btn" style="float:left;">
+                        <div class="check_text">
+                            만원
+                        </div>
+                    </div>
+               	</div>
+            </div>       		    
+       		    	<div>
+       		    		나중에 결제 하기
+       		    		<input type="checkbox" id="toggle">
+       		    	</div>
+       		    	
+       		    	<script>
+       		    		$("#toggle").on("click", function() {
+       		    			if( $("#payment").hasClass("active") ) {
+       		    				$("#payment").removeClass("active");
+       		    				$("#payment").show();
+       		    			} else {
+       		    				$("#payment").addClass("active");
+       		    				$("#payment").hide();
+       		    			}
+       		    			
+       		    		})
+       		    	</script>
+       		    	
+       		    	<div class="show" id="payment">
+							<div class="col-12 reg_con">
+				                <div class="reg_title">결제 방식</div>
+				                <div class="reg_left_select">
+								<select name="price_type">
+									<option value="0">결제 선택</option>
+									<option value="1">계좌이체</option>
+									<option value="2">카드</option>
+									<option value="3">탈잉 + 계좌이체</option>
+									<option value="4">탈잉 + 카드</option>
+								</select>
+				                </div>
+				            </div>
+			            
+				            <div class="col-12 reg_con">
+				                <div class="reg_title">결제 일자</div>
+				                <div class="reg_left_input">
+				                    <input id="price_date" name="price_date" readonly ></span>
+				                </div>
+				            </div>       		    	
+		       		 	</div>
+       		    	</div>
        		</div>
-       	</div>
 
          	<div class="step_btn_con left">
 			     <div class="step_btn left go_step3">
@@ -381,6 +394,9 @@
 	<script th:inline="javascript">
 	$(function(){
 	    $(function(){
+			$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
+		    $("#price_date").datepicker({ dateFormat: 'yy-mm-dd' });
+		    
 	        $(".go_step1").on("click",function(){
 	            $("#first_con").css("right","0%");
 	            $("#second_con").css("right","-100%");
@@ -410,8 +426,8 @@
 		            $("#third_con").css("right","0%");
 		            $("#fourth_con").css("right","-100%");
 	        	}
-
 	        })
+	        
 	        $(".go_step4").on("click",function(){
 	        	if( $("#startTime").val() == "") {
 	        		alert("시작 시간을 선택해 주세요");
@@ -423,13 +439,45 @@
 		            $("#third_con").css("right","100%");
 		            $("#fourth_con").css("right","0%");
 	        	}
-
 	        })
 	    })
-		
-		$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
-	    $("#price_date").datepicker({ dateFormat: 'yy-mm-dd' });
-		
+
+		$.ajax({
+			url:'/selectMemberList',
+			dataType: "json",
+			async: false,
+			success: function(result){
+				$("#memberList").show();
+				$("#memberList tbody").children().remove();
+				var jsonResult = result.result;
+				for(var i=0;i<Object.keys(jsonResult).length;i++) {
+					var tr = "<tr>" 
+					+ "<td>" + jsonResult[i].no + "</td>"
+					+" <td class='tb_name'>" + jsonResult[i].name + "</td>"
+					+" <td class='tb_id'>" + jsonResult[i].member_id + "</td>"
+					+" <td class='tb_id'>" + jsonResult[i].member_etc + "</td>"
+					+" <td class='tb_id'>" + jsonResult[i].branch + "</td>"
+					+" <td class='hidden tb_seq'>" + jsonResult[i].member_seq + "</td>"
+					+ "</tr>";
+					$("#memberList tbody").append(tr);
+				}
+			}
+		 })
+ 
+		 $("#memberList td").on("click", function(){
+			 $("#memberList tr").each(function(){
+				 if( $(this).removeClass("active") );
+			 })
+			 var memberName = $(this).parent().find(".tb_name").text();
+			 var memberSeq = $(this).parent().find(".tb_seq").text();
+			 console.log($(this).parent() );
+			 $(this).parent().addClass("active");
+			 console.log(memberSeq)
+			 console.log(memberName)
+			 $('[name="member_name"]').val(memberName );
+			 $('[name="member_seq"]').val(  memberSeq );
+		 });
+	    
 	    var currentDay = $("#todayString").val();
 		var setStartDate = today(currentDay);
 		var setEndDate;
@@ -483,7 +531,6 @@
 			$("#reload").submit();
 		})
 		
-		
 		$("#beforeWeek").on("click",function(){
 			setStartDate.setDate(setStartDate.getDate() - 7 );
 			setEndDate.setDate(setEndDate.getDate() - 7);
@@ -492,46 +539,7 @@
 			$('[name="standardDate"]').val(dateForm(setStartDate));
 			$("#reload").submit();
 		})
-		
-		
-		/* $("#memberList").hide(); */
-		//맴버 찾기 버튼 클릭 시 리스트 출력
-		$.ajax({
-			url:'/selectMemberList',
-			dataType: "json",
-			async: false,
-			success: function(result){
-				$("#memberList").show();
-				$("#memberList tbody").children().remove();
-				var jsonResult = result.result;
-				for(var i=0;i<Object.keys(jsonResult).length;i++) {
-					var tr = "<tr>" 
-					+ "<td>" + jsonResult[i].no + "</td>"
-					+" <td class='tb_name'>" + jsonResult[i].name + "</td>"
-					+" <td class='tb_id'>" + jsonResult[i].member_id + "</td>"
-					+" <td class='tb_id'>" + jsonResult[i].member_etc + "</td>"
-					+" <td class='tb_id'>" + jsonResult[i].branch + "</td>"
-					+" <td class='hidden tb_seq'>" + jsonResult[i].member_seq + "</td>"
-					+ "</tr>";
-					$("#memberList tbody").append(tr);
-				}
-			}
-         })
-         
-         $("#memberList td").on("click", function(){
-        	 $("#memberList tr").each(function(){
-        		 if( $(this).removeClass("active") );
-        	 })
-        	 var memberName = $(this).parent().find(".tb_name").text();
-        	 var memberSeq = $(this).parent().find(".tb_seq").text();
-        	 console.log($(this).parent() );
-        	 $(this).parent().addClass("active");
-        	 console.log(memberSeq)
-        	 console.log(memberName)
-        	 $('[name="member_name"]').val(memberName );
-        	 $('[name="member_seq"]').val(  memberSeq );
-         })
-		
+
 		//강의 선택 validation
 		$("#courseTimeTable tbody td").on("click", function(){
 			if( $(this).hasClass("active")  ) {
@@ -545,7 +553,6 @@
 				}
 			}
 		})
-
 		
 		//시작 일자 변경 시 로식 실행
 		$("#startTime").on("change", function() {
@@ -656,77 +663,6 @@
 			}
 		});
 		
-		//yyy-mm-dd 형태로 변환
-		function dateForm (setStartDate){
-			return setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2);
-		}
-		
-		//오늘 날짜를 구하는 포멧터
-		function today(currentDay) {
-			return new Date(currentDay.split("-")[0], currentDay.split("-")[1] - 1, currentDay.split("-")[2]);
-		}
-		
-		//값을 가지고 일자 셋팅 시 포멧터
-		function newDateForm (value) {
-			return new Date( value.split("-")[0], ( value.split("-")[1] - 1), value.split("-")[2] );
-		}
-		
-		//date를 가지고 일자 셋팅
-		function withDateNewForm(date) {
-			return new Date(date.getFullYear(), date.getMonth(), date.getDate())
-		}
-		
-		//요일 한글 변환 포멧터
-		function korDay(day) {
-			if(day == 0) { return "일"; } else if(day == 1) { return "월"; } else if(day == 2) { return "화"; } 
-			else if(day == 3) { return "수"; } else if(day == 4) { return "목"; } else if(day == 5) { return "금"; } 
-			else if(day == 6) { return "토"; } else { return "error";}
-		}
-		
-		//오늘 날짜를 가져 오는 포멧터
-		function nowDay() {
-			var today = new Date();
-			return dateForm(today);
-		}
-		
-		//시작과 끝일 사이에 일치하는 요일 리스트를 구하는 함수
-		function betweenDate(startTime, dayOfWeekList) {
-			var resultList = [], totalList = {}, resultDayOfWeekList = [], holidayList = [];
-			var differDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate());
-			var i = 0;
-			var start = 0
-			var totalCnt = dayOfWeekList.length * 4;
-			console.log(dayOfWeekList);
-			totalList.len = 0;
-			while(i < totalCnt ) {
-				if(start == 0) {
-					differDate.setDate( parseInt( differDate.getDate() ) );
-					start++;
-				} else {
-					differDate.setDate( parseInt( differDate.getDate() ) + 1 );
-				}
-				
-				for(var j = 0; j< dayOfWeekList.length; j++) {
-					if( dayOfWeekList[j].index == differDate.getDay() ) {
- 						var isHolidayYn = isHoliday( dateForm(differDate));
-						if( isHolidayYn.isHoliday ) {
-							resultList.push(dateForm(differDate) + "(" + isHolidayYn.name + ")") ;
-							holidayList.push(i);
-							i++;
-							totalCnt++;
-						} else {
-							resultList.push(dateForm(differDate));
-							i++;
-							totalList.len++;
-						} 
-					}
-				}
-			}
-			totalList.holidayList = holidayList;
-			totalList.list = resultList;
-			totalList.maxValue = resultList[resultList.length - 1];
-			return totalList;
-		}
 		
 		//휴일인 지 아닌 지 판단하는 포멧터
 		function isHoliday (date) {
@@ -752,27 +688,6 @@
 				}
 			})
 			return result;
-		}
-		
-		//가장 큰 값을 찾는 포멧터
-		function maxDate(date) {
-			var resultDate = [];
-			var dateVal;
-			for(var i=0; i< date.length; i++) {
-				resultDate.push( dateToInt( $( date[i] ).val() )  );
-			}
-			var maxValue = Math.max.apply(null, resultDate);
-			return intToDate(maxValue);
-		}
-		
-		//숫자 비교를 위해 날짜를 int로 묶는 함수
-		function intToDate(date) {
-			date = date + "";
-			return date.slice(0,4) + "-" + date.slice(4,6) + "-" + date.slice(6,8);
-		}
-		
-		function dateToInt(intValue) {
-			return intValue.slice(0,4) + "" + intValue.slice(5,7) + "" + intValue.slice(8,10);
 		}
 	})
 	</script>
