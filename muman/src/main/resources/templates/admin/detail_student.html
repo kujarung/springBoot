@@ -14,21 +14,6 @@
         </div>
         <div class="col-12 col-center mw-768">
             <div class="detail_table mb50">
-              	<div class="serch_btn_con mr10">
-                   <div class="serch_btn">
-                   	<a href="/admin/view_student">
-                   		뒤로가기
-                   	</a>
-                   </div>
-               </div>
-                
-                
-                <div class="serch_btn_con">
-                    <div class="serch_btn" id="delStu">
-                    	삭제 하기
-                    </div>
-                </div>
-                
                 <th:block th:object="${courseStudent}">
 	               <table style="width: 100%;">
 	                   <colgroup>
@@ -76,7 +61,7 @@
 	                   </tr>
 	                   <tr>
 	                       <th>주횟수</th>
-	                       <td th:text="${courseStudent.times_week}"></td>
+	                       <td id="times" th:text="${courseStudent.times_week}"></td>
 	                       <th>운동 요일 및 시간</th>
 	                       <td th:text="${courseStudent.alias_list_full_name}"></td>
 	                   </tr>
@@ -119,7 +104,21 @@
                         <div class="serch_btn">
                             미루기
                         </div>
-                    </div>                    
+                    </div>
+
+<!--					<div class="serch_btn_con mr10">-->
+<!--						<div class="serch_btn">-->
+<!--							<a href="/admin/view_student">-->
+<!--								뒤로가기-->
+<!--							</a>-->
+<!--						</div>-->
+<!--					</div>-->
+
+<!--					<div class="serch_btn_con">-->
+<!--						<div class="serch_btn" id="delStu">-->
+<!--							삭제 하기-->
+<!--						</div>-->
+<!--					</div>-->
                 </div>
             </div>
         </div>
@@ -133,7 +132,6 @@
     	<input type="text" id="test">test</button>
     </div>	
  -->
-</div>
 <script>
 	$(function(){
 		//삭제 버튼 클릭 시
@@ -156,27 +154,23 @@
 		//미루기 버튼 클릭 시
 		$("#delayBtn").on("click", function(){
 			var delayYn = $("#delayYn").text();
-			if( delayYn ==  "미사용") {
-				if(confirm("미루기를 사용 하시겠습니까?") ) {
-					var memberSeq = $("#memberSeq").val();
-					$.ajax({
-						data : {memberSeq : memberSeq, delayNum : 1},
-						contentType: "application/json; charset=utf-8",
-						dataType: "json",
-						url : '/couseMaster/delayCourse',
-						success : function(result){
-							if(result == 1) {
-								alert("미루기 완료");
-								location.reload;
-							} else {
-								alert(" 오류 발생 관리자에게 문의 하세요. ");
-								location.reload;
-							}
+			if(confirm("미루기를 사용 하시겠습니까?") ) {
+				var memberSeq = $("#memberSeq").val();
+				$.ajax({
+					data : {memberSeq : memberSeq, delayNum : 1},
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					url : '/couseMaster/delayCourse',
+					success : function(result){
+						if(result == 1) {
+							alert("미루기 완료");
+							location.reload();
+						} else {
+							alert(" 오류 발생 관리자에게 문의 하세요. ");
+							location.reload();
 						}
-					})						
-				}
-			} else {
-				alert("미루기를 이미 사용 하였습니다.");
+					}
+				})
 			}
 		});
 		
@@ -186,7 +180,32 @@
 				location.href = "/admin/extendCourse?memberSeq="+memberSeq;
 			}
 		})
-		
+
+		//자동연장 클릭 시
+		$("#autoExtenBtn").on("click", function(){
+			var delayYn = $("#delayYn").text();
+			var memberSeq = $("#memberSeq").val();
+			var delayNum = ($("#times").text()*1)*4;
+			console.log(delayNum);
+			if(confirm("자동연장 사용 하시겠습니까?") ) {
+				$.ajax({
+					data : {memberSeq : memberSeq, delayNum : delayNum},
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					url : '/couseMaster/delayCourse',
+					success : function(result){
+						if(result == 1) {
+							alert("자동연장 완료");
+							location.reload;
+						} else {
+							alert(" 오류 발생 관리자에게 문의 하세요. ");
+							location.reload;
+						}
+					}
+				})
+			}
+		});
+
 		//모두 보기 버튼
 		$("#allShowCourse").on("click", function(){
 			

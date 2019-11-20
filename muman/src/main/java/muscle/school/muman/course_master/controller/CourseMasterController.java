@@ -43,7 +43,8 @@ public class CourseMasterController {
 	 * return "admin/admin_reg_course"; }
 	 * 
 	 */
-	
+
+//	미루기 기능
 	@RequestMapping("/couseMaster/delayCourse")
 	@ResponseBody
 	public void delayCourse(HttpServletResponse response, 

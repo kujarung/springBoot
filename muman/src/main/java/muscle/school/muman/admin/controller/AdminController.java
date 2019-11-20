@@ -120,8 +120,6 @@ public class AdminController {
 	// 강좌 연장 
 	@GetMapping("/admin/extendCourse")
 	public String extendCourse(int memberSeq, Model model) {
-		System.out.println("들어오니?");
-		System.out.println(memberSeq);
 		model.addAttribute("memberSeq", memberSeq);
 		return "admin/extendCourse";
 	}

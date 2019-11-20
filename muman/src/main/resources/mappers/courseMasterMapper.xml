@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="muscle.school.muman.course_master.dao.CourseMasterDao">
-        
+
     <select id="selectCourseMasterList" resultType = "map">
         SELECT 
         	*
@@ -81,7 +81,7 @@
 	 	INSERT
 	 		INTO EXCERCISE_MASTER(member_seq, ex_alias, ex_date) 
 	 	VALUES 
-	 		(#{member_seq}, #{ex_alias}, #{ex_date})
+	 		(#{memberSeq}, #{exAlias}, #{exDate})
 	 </insert>
 	 
 	 <select id="selectCourseList" parameterType="map" resultType="map">
