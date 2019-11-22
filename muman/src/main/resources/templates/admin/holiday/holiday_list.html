@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <head th:replace="common/admin/admin_head"></head>
+</head>
+<body>
+	<div th:replace="common/admin/admin_gnb"></div>
+
+	<div class="col-12 right_body">
+		<div class="" style="padding:150px 50px 50px 0px;">
+			<th:block>
+				<div id='calendar'></div>
+				<div class="">저</div>
+			</th:block>
+		</div>
+	</div>
+
+	<th:block>
+	<script th:inline="javascript">
+		function calInit() {
+			/*<![CDATA[*/
+			var holidayList = [[${holidayList}]];
+			/*]]>*/
+			var calendarEl = document.getElementById('calendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+				header: {
+					left: 'prev',
+					center: 'title',
+					right: 'next'
+				},
+				views: {
+					month: {
+						columnFormat: 'dddd'
+					},
+					agendaWeek: {
+						columnFormat: 'M/D ddd',
+						titleFormat: 'YYYY년 M월 D일',
+						eventLimit: false
+					},
+					agendaDay: {
+						columnFormat: 'dddd',
+						eventLimit: false
+					},
+					listWeek: {
+						columnFormat: ''
+					}
+				},
+				navLinks: true, // can click day/week names to navigate views
+				selectable: true,
+				selectMirror: true,
+				select: function(arg) {
+					var title = prompt('휴일 이름을 입력 하세요.');
+					if (title) {
+						calendar.addEvent({
+							title: title,
+							start: arg.start,
+							end: arg.end,
+						})
+					}
+					var today = new Date(arg.start);
+					var event = { "title" : title,  "start" : arg.start,  "end" : arg.end};
+
+					events.push(event);
+					calendar.unselect()
+				},
+				local : "kr",
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				eventSources: [],
+				eventClick: function(info) { //만들어진 이벤트를 클릭 했을 시
+
+				},
+
+
+				locale: 'ko',
+				timezone: "local",
+				nextDayThreshold: "09:00:00",
+				allDaySlot: true,
+				displayEventTime: true,
+				displayEventEnd: true,
+				firstDay: 0, //월요일이 먼저 오게 하려면 1
+				weekNumbers: false,
+				selectable: true,
+				weekNumberCalculation: "ISO",
+				eventLimit: true,
+				views: {
+					month: {
+						eventLimit: 12
+					}
+				},
+				eventLimitClick: 'week', //popover
+				navLinks: true,
+				timeFormat: 'HH:mm',
+				defaultTimedEventDuration: '01:00:00',
+				editable: true,
+				minTime: '00:00:00',
+				maxTime: '24:00:00',
+				slotLabelFormat: 'HH:mm',
+				weekends: true,
+				nowIndicator: true,
+				dayPopoverFormat: 'MM/DD dddd',
+				longPressDelay: 0,
+				eventLongPressDelay: 0,
+				selectLongPressDelay: 0
+			});
+
+
+			var events = []
+			var today = new Date();
+			today.getFullYear();
+			for(var i=0; i < holidayList.length;i++) {
+				var day = holidayList[i].HOLIDAY;
+				var title = holidayList[i].HOLIDAY_NAME;
+				if( holidayList[i].IS_STATIC == 1) {
+					day = today.getFullYear() + "-" + day;
+				}
+				var event = {"title" : title, "start" : day};
+				events.push(event);
+			}
+			calendar.addEventSource(events);
+			calendar.render();
+		}
+
+		$(function(){
+			calInit();
+		})
+	</script>
+	</th:block>
+</body>
+</html>

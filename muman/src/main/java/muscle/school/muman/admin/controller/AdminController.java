@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import muscle.school.muman.holiday.service.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,9 @@ public class AdminController {
 	CommonService commonService;
 	@Autowired
 	CourseStudentService courseStudentService;
-	
+	@Autowired
+	HolidayService holidayService;
+
 	//관리자 메인 페이지
 	@GetMapping("/admin/index")
 	public String adminMain() {
@@ -53,7 +56,7 @@ public class AdminController {
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
 		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate);
-		List<Map<String,Object>> holidayList 	= courseMasterService.selectHolidayList();
+		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("today", commonService.currentDay(standardDate));
@@ -119,8 +122,18 @@ public class AdminController {
 	
 	// 강좌 연장 
 	@GetMapping("/admin/extendCourse")
-	public String extendCourse(int memberSeq, Model model) {
+	public String extendCourse(int memberSeq, Model model, @RequestParam(required=false) String standardDate) {
+		String[] dateList   = commonService.todayWeek(standardDate);
+		String startDate 	= dateList[0];
+		String endDate 		= dateList[1];
+		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate);
+		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
+		model.addAttribute("courseNumList", courseNumList);
+		model.addAttribute("dateList", dateList);
+		model.addAttribute("today", commonService.currentDay(standardDate));
+		model.addAttribute("holidayList" , holidayList);
 		model.addAttribute("memberSeq", memberSeq);
+
 		return "admin/extendCourse";
 	}
 	

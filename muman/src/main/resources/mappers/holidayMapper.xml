@@ -4,49 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="muscle.school.muman.holiday.dao.HolidayDao">
-        
-    <select id="selectMemberList" resultType="map">        	
-         SELECT TBL.*
-		 FROM 
-		 (
-			SELECT 
-				@ROWNUM:=@ROWNUM+1 AS no, ( SELECT COUNT(member_seq) FROM MEMBER ) AS TOTAL_CNT,
-				name, member_id, member_seq, member_etc, branch, pnum
-			FROM (SELECT @ROWNUM:= 0 ) dummy, MEMBER
-		 ) AS TBL
-		 WHERE 
-		 	(@ROWNUM:=0)=0
-		 AND
-	 	    no BETWEEN ( ( ( #{currentPage} - 1 ) * 10 ) + 1 ) AND ( ( ( #{currentPage} - 1 ) * 10 ) + 10 )
+
+	<select id="selectHolidayList" resultType="map">
+    	SELECT * FROM USE_HOLIDAY
     </select>
-    
-    <insert id="insertMember">
-    	INSERT INTO MEMBER
-    	(
-	    	member_seq, 
-	    	name, 
-	    	member_id, 
-	    	member_pass, 
-	    	force_yn, 
-	    	reg_date, 
-	    	authority,
-	    	member_etc,
-	    	branch,
-	    	pnum
-    	)
-    	VALUES
-    	(
-    		IFNULL( (SELECT MAX(member_seq) + 1 FROM GENERATE_SEQ) , 1 ),
-    		#{name},
-    		#{id},
-    		#{pass},
-    		1,
-    		SYSDATE(),
-    		2,
-    		#{member_etc},
-    		#{branch},
-    		#{pnum}
-    	)
-    	
-    </insert>
+
 </mapper>

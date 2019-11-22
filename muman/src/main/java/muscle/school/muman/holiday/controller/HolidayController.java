@@ -7,16 +7,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import muscle.school.muman.holiday.service.HolidayService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import muscle.school.muman.commom.service.CommonService;
@@ -28,12 +26,18 @@ public class HolidayController {
 	
 	@Autowired
 	MemberService service;
-
 	@Autowired
 	CommonService commonService;
-	
-	//회원 가입 페이지
-	
+	@Autowired
+	HolidayService holidayService;
+
+	@RequestMapping("/holiday_list")
+	public String holidayList(Model model) {
+		List<Map<String,Object>> holidayList = holidayService.selectHolidayList();
+
+		model.addAttribute("holidayList", holidayList);
+		return "admin/holiday/holiday_list";
+	}
 	
 	
 }

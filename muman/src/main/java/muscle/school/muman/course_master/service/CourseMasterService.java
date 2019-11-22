@@ -25,16 +25,11 @@ public class CourseMasterService {
 	CommonService commonSerivce;
 	@Autowired
 	CourseStudentService courseStudentService;
-	
-	
-	public void insertMember() {
-		
-	}
-	
+
+
 	public List<Map<String, Object>> selectCourseMasterList(int alias) {
 		return dao.selectCourseMasterList(alias);
 	}
-
 
 	public List<Map<String, Object>> selectRegMemberList(String startDate, String endDate) {
 		return dao.selectRegMemberList(startDate, endDate);

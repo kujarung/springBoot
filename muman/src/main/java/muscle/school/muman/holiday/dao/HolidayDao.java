@@ -10,4 +10,6 @@ public interface HolidayDao {
 	List<Map<String, Object>> selectMemberList(int currentPage, String member_name);
 
 	void insertMember(String name, String id, String pass, String branch, String member_etc, String pnum);
+
+    List<Map<String, Object>> selectHolidayList();
 }

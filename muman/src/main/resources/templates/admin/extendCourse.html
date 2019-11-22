@@ -1,99 +1,708 @@
 <!DOCTYPE html>
 <html>
 <head>
- <head th:replace="common/admin/admin_head"></head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<head th:replace="common/admin/admin_head"></head>
 </head>
 <body>
 <div th:replace="common/admin/admin_gnb"></div>
-<div class="col-12 right_body" style="padding-top:100px;">
-    <div class="col-12 inner_con">
-        <div class="col-12 mb50 step_title">
-        	연장 하기
-        </div>
-        <div class="col-12 col-center mw-768">
-            <div class="detail_table mb50">
-	               <table style="width: 100%;">
-	                   <colgroup>
-	                       <col width="20%" />
-	                       <col width="30%" />
-	                       <col width="20%" />
-	                       <col width="30%" />
-	                   </colgroup>
-	                   <tbody>
-	                   <tr>
-	                       <th>이름</th>
-	
-	                       <th>아이디</th>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>	수강 일수(이번 달만 표시 됩니다.)<br>
-	                       		<span id="allShowCourse">모두 보기</span> 
-	                       </th>
-	                       <td colspan="3">
-	                           <div class="col-12 pt20 pb20">
-	                           </div>
-	                       </td>
-	                   </tr>
-	                   </tbody>
-	               </table>
-            </div>
+<div class="col-12 right_body">
+	<form class="col-12" id="course" action="/admin/insertCourseStudent" method="post">
+		<input type="hidden" name="dayList" id="dayList">
+		<input type="hidden" name="aliasList" id="aliasList">
 
+		<div class="col-12 inner_con second" id="second_con">
+			<div class="step_title">
+				시간 선택
+			</div>
 
-            <div class="col-12">
-                <div class="col-12 tc">
-                    <div class="serch_btn_con mr10" id="manualExtenBtn">
-                        <div class="serch_btn">
-                          	수동 연장
-                        </div>
-                    </div>                    
-                    
-                </div>
-            </div>
-        </div>
+			<div class="time_con">
+				<div id="beforeWeek">이전</div>
+				<span class="mb30 over-hidden">
+		    		<span id="today"></span>
+                </span>
+				<div id="nextWeek">다음</div>
+			</div>
 
-    </div>
+			<div class="col-12 form_con">
+				<div class="table_con">
+					<table class="table_style_3" id="courseTimeTable">
+						<colgroup>
+						</colgroup>
+						<col width="20%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<thead></thead>
+						<tbody>
+
+						<tr>
+							<th>10:00 ~ 11:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 10">
+	                       	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+	                       	   </span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+	                       	   	 강의 없음
+	                       	   </span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>12:00 ~ 13:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 12">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                     	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                     	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                     	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                     	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>15:00 ~ 17:00</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 15">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                 	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                 	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                 	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                 	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>18:00 ~ 19:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 18">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>20:00 ~ 21:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 20">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>22:00 ~ 23:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 22">
+	                    	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+	                       	   </span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+	                       	   	 강의 없음
+	                       	   </span>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+			<div class="step_btn_con left">
+				<div class="step_btn left go_step1">
+					이전으로
+				</div>
+			</div>
+
+			<div class="step_btn_con right">
+				<div class="step_btn right go_step3">
+					다음으로
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 inner_con third" id="third_con">
+			<div class="step_title">
+				시작 일자 선택
+			</div>
+			<div class="col-12 ">
+				<div class="col-12 mb30">
+					<div class="col-12 reg_con">
+						<div class="reg_title">수업 시작일</div>
+						<div class="reg_left_input">
+							<input name="register_start_time" id="startTime" readonly>
+						</div>
+					</div>
+
+					<div class="col-12 reg_con">
+						<div class="reg_title">수업 마지막일</div>
+						<div class="reg_left_input">
+							<input name="register_end_time" id="endTime" readonly style="background-color:#ea9643; color:white;">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 mb20">
+					<div class="col-12 mb30" id="courseDateList">
+
+					</div>
+
+					<div class="col-12 hidden" id="plusBtnCon">
+						<div id="plusBtn">
+							<div class="plus_btn_style">
+								추가하기
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="step_btn_con left">
+				<div class="step_btn left go_step2">
+					이전으로
+				</div>
+			</div>
+			<div class="step_btn_con right">
+				<div class="step_btn left go_step4">
+					다음으로
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 inner_con fourth" id="fourth_con">
+			<div class="col-12 mw-768 col-center">
+				<div class="col-12 price_wrap">
+					<div class="step_title">
+						결제 방식 및 확인
+					</div>
+
+					<div class="col-12 reg_con">
+						<div class="reg_title">주 횟수</div>
+						<div class="reg_left_input" >
+							<input id="times" name="times" value="주0회" style="border:none; display:inline-block" readonly>
+						</div>
+					</div>
+
+					<div class="col-12 reg_con">
+						<div class="reg_title">수업 총 횟수</div>
+						<div class="reg_left_input">
+							<input id="number" readonly ></span>
+						</div>
+					</div>
+					<div class="col-12 reg_con">
+						<div class="reg_title">가격(변경 가능) </div>
+						<div class="reg_left_input">
+							<input class="fl type2" name="price" id="price" value="" style="width:200px;">
+							<div class="check_btn" style="float:left;">
+								<div class="check_text">
+									만원
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						나중에 결제 하기
+						<input type="checkbox" id="toggle">
+					</div>
+
+					<script>
+						$("#toggle").on("click", function() {
+							if( $("#payment").hasClass("active") ) {
+								$("#payment").removeClass("active");
+								$("#payment").show();
+							} else {
+								$("#payment").addClass("active");
+								$("#payment").hide();
+							}
+
+						})
+					</script>
+
+					<div class="show" id="payment">
+						<div class="col-12 reg_con">
+							<div class="reg_title">결제 방식</div>
+							<div class="reg_left_select">
+								<select name="price_type">
+									<option value="0">결제 선택</option>
+									<option value="1">계좌이체</option>
+									<option value="2">카드</option>
+									<option value="3">탈잉 + 계좌이체</option>
+									<option value="4">탈잉 + 카드</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-12 reg_con">
+							<div class="reg_title">결제 일자</div>
+							<div class="reg_left_input">
+								<input id="price_date" name="price_date" readonly ></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="step_btn_con left">
+				<div class="step_btn left go_step3">
+					이전으로
+				</div>
+			</div>
+			<div class="step_btn_con right">
+				<div class="step_btn left go_step2" id="courseInsertBtn">
+					저장하기
+				</div>
+			</div>
+		</div>
+
+	</form>
+
 </div>
 
-<!--     
-    <div class="col-12">
-    	<input type="text" id="test">test</button>
-    </div>	
- -->
-</div>
+<form id="reload">
+	<input type="hidden" name="standardDate">
+</form>
+
+<input id="todayString" type="hidden" th:value = "${today}">
+
+
+<!--
 <script>
-	$(function(){
-		//삭제 버튼 클릭 시
-		$("#delStu").on("click", function() {
-			var memberSeq = $("#memberSeq").val();
-			$.ajax({
-				data : {memberSeq : memberSeq},
-				url : '/admin/delStu',
-				success : function(result){
-					if(result == 1) {
-						alert("삭제에 성공하였습니다.");
-						location.href = "/admin/view_student";
-					} else {
-						alert("삭제에 실패 하였습니다.");
-					}
-				}
-			})			
-		})
-		
-		$("#extenBtn").on("click", function() {
-			if( confirm("연장 페이지로 이동 하시겠습니까?") ) {
-				location.href = "/admin/extendCourse";
+	$("#test").on("click", () => {
+		$.ajax({
+			url : '/test',
+			success : (result) => {
+				console.log(result);
 			}
 		})
-		
-		//모두 보기 버튼
-		$("#allShowCourse").on("click", function(){
-			
-		});
-		
-	});
+	})
 </script>
+ -->
+
+<th:block>
+	<script th:inline="javascript">
+		$(function(){
+			$(function(){
+				$("#startTime").datepicker({ dateFormat: 'yy-mm-dd' });
+				$("#price_date").datepicker({ dateFormat: 'yy-mm-dd' });
+				$("#second_con").css("right","0%");
+
+				$(".go_step2").on("click",function(){
+					if( $("#memberList tr.active").length > 0 ) {
+						$("#second_con").css("right","100%");
+						$("#third_con").css("right","0%");
+						$("#fourth_con").css("right","-100%");
+					} else {
+						alert("회원을 선택해 주세요.");
+						return false;
+					}
+				})
+
+				$(".go_step3").on("click",function(){
+					if($("#courseTimeTable td.active").length == 0 ) {
+						alert("시간을 선택해 주세요.")
+						return false;
+					} else {
+						$("#second_con").css("right","-100%");
+						$("#third_con").css("right","0%");
+						$("#fourth_con").css("right","100%");
+					}
+				})
+
+				$(".go_step4").on("click",function(){
+					if( $("#startTime").val() == "") {
+						alert("시작 시간을 선택해 주세요");
+						$("#startTime").focus();
+						return false;
+					} else {
+						$("#second_con").css("right","200%");
+						$("#third_con").css("right","100%");
+						$("#fourth_con").css("right","0%");
+					}
+				})
+			})
+
+			$.ajax({
+				url:'/selectMemberList',
+				dataType: "json",
+				async: false,
+				success: function(result){
+					$("#memberList").show();
+					$("#memberList tbody").children().remove();
+					var jsonResult = result.result;
+					for(var i=0;i<Object.keys(jsonResult).length;i++) {
+						var tr = "<tr>"
+								+ "<td>" + jsonResult[i].no + "</td>"
+								+" <td class='tb_name'>" + jsonResult[i].name + "</td>"
+								+" <td class='tb_id'>" + jsonResult[i].member_id + "</td>"
+								+" <td class='tb_id'>" + jsonResult[i].member_etc + "</td>"
+								+" <td class='tb_id'>" + jsonResult[i].branch + "</td>"
+								+" <td class='hidden tb_seq'>" + jsonResult[i].member_seq + "</td>"
+								+ "</tr>";
+						$("#memberList tbody").append(tr);
+					}
+				}
+			})
+
+			$("#memberList td").on("click", function(){
+				$("#memberList tr").each(function(){
+					if( $(this).removeClass("active") );
+				})
+				var memberName = $(this).parent().find(".tb_name").text();
+				var memberSeq = $(this).parent().find(".tb_seq").text();
+				console.log($(this).parent() );
+				$(this).parent().addClass("active");
+				console.log(memberSeq)
+				console.log(memberName)
+				$('[name="member_name"]').val(memberName );
+				$('[name="member_seq"]').val(  memberSeq );
+			});
+
+			var currentDay = $("#todayString").val();
+			var setStartDate = today(currentDay);
+			var setEndDate;
+			console.log( setStartDate.getDay() );
+			//월요일일 떄
+			if(setStartDate.getDay() == 1) {
+				setStartDate = today(currentDay);
+				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+				//일요일 일 때
+			} else if(setStartDate.getDay() == 0 ) {
+				setStartDate = today(currentDay);
+				setStartDate.setDate(setStartDate.getDate() + 1);
+				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+				//그 외
+			} else {
+				for(var i=1; i<7;i++) {
+					if( ( setStartDate.getDay() - i) == 1  ) {
+						setStartDate.setDate( (setStartDate.getDate()-i));
+						setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+					}
+				}
+			}
+
+			var theadTd = "";
+			var theadTdTotal = "";
+			for(var i=0;i<5;i++) {
+				var headDay = withDateNewForm(setStartDate);
+				headDay.setDate( (headDay.getDate() + i ) );
+				var kDay = korDay(headDay.getDay() );
+				var fullDay = dateForm(headDay);
+				if(fullDay == nowDay() ) {
+					theadTd = "<td class='today'>" + kDay +"(" + fullDay + ")</td>";
+					theadTdTotal = theadTdTotal + theadTd;
+				} else {
+					theadTd = "<td>" + kDay +"(" + fullDay + ")</td>";
+					theadTdTotal = theadTdTotal + theadTd;
+				}
+			}
+			theadTdTotal = "<tr><td>시간</td>" + theadTdTotal + "</tr>";
+			$("#courseTimeTable thead").append(theadTdTotal);
+			var week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+			$("#courseTimeTable thead").append();
+			$("#today").text(week);
+
+			$("#nextWeek").on("click",function() {
+				setStartDate.setDate(setStartDate.getDate() + 7 );
+				setEndDate.setDate(setEndDate.getDate() + 7);
+				week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+				$("#reload").attr("action", "/admin/reg_student");
+				$('[name="standardDate"]').val(dateForm(setStartDate));
+				$("#reload").submit();
+			})
+
+			$("#beforeWeek").on("click",function(){
+				setStartDate.setDate(setStartDate.getDate() - 7 );
+				setEndDate.setDate(setEndDate.getDate() - 7);
+				var week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+				$("#reload").attr("action", "/admin/reg_student");
+				$('[name="standardDate"]').val(dateForm(setStartDate));
+				$("#reload").submit();
+			})
+
+			//강의 선택 validation
+			$("#courseTimeTable tbody td").on("click", function(){
+				if( $(this).hasClass("active")  ) {
+					$(this).removeClass("active");
+				} else {
+					if( $(this).children().eq(0).text().trim() == "강의 없음"){
+						alert("강의가 없는 날은 선택 불가능 합니다.");
+						return false;
+					} else {
+						$(this).addClass("active");
+					}
+				}
+			})
+
+			//시작 일자 변경 시 로식 실행
+			$("#startTime").on("change", function() {
+				$("#courseDateList").children().remove();
+				var plusIndex = 0;
+				var plusClass = "plus" + plusIndex;
+				var dayOfWeekList 	= [];
+				var aliasString = "";
+				var indexString = "";
+
+				$("#courseTimeTable td.active").each(function(){
+					var tempObj 	= new Array();
+					tempObj.index 	= ( $(this).index() );
+					tempObj.alias 	= ( $(this).find(".alias_num").text());
+					if(indexString == "" ) {
+						indexString = $(this).index();
+						aliasString = $(this).find(".alias_num").text()
+					} else {
+						indexString = indexString + "|" + $(this).index();
+						aliasString = aliasString + "|" + $(this).find(".alias_num").text()
+					}
+					dayOfWeekList.push(tempObj);
+				})
+				$("#dayList").val(indexString)
+				$("#aliasList").val(aliasString)
+
+				var startTime 	= newDateForm( $("#startTime").val());
+				var resultList = betweenDate(startTime, dayOfWeekList);
+				var j=0;
+				var maxLen = resultList.len;
+				for(var i = 0; i < resultList.list.length; i++) {
+					if( i == resultList.holidayList[j] ) {
+						$("#courseDateList").append(  "<div class='time_list holiday'>" + resultList.list[i] + "</div>");
+						j++;
+					} else {
+						$("#courseDateList").append(  "<input class='time_list' name='time_list' value=" + resultList.list[i] + ">"    );
+					}
+				}
+				$("#endTime").val(resultList.maxValue);
+				$("#plusBtnCon").removeClass("hidden");
+				$("#courseDateList").append("<input class='plus_input "+ plusClass +"' placeholder='날짜 추가' readonly/>");
+				$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+
+				$("#plusBtn").on("click" , function() {
+					$("." + plusClass).addClass("time_list inputVal");
+					$("." + plusClass).datepicker("destroy");
+					$("." + plusClass).removeClass("plus_input");
+					$("." + plusClass).removeClass(plusClass);
+					plusIndex++;
+					$("#endTime").val( maxDate($(".time_list")) );
+					$("#courseDateList").append("<input class='plus_input "+ plusClass +"' readonly placeholder='날짜 추가'></div>");
+					$("." + plusClass).datepicker({ dateFormat: 'yy-mm-dd' });
+					$(".time_list").on("click",function() {
+						$(this).remove();
+						$("#endTime").val( maxDate($(".time_list")) );
+						maxLen--;
+						$("#number").val( "총" + maxLen+ "회");
+					});
+					maxLen++;
+					$("#number").val( "총" + maxLen + "회");
+				});
+
+				$(".time_list").on("click",function() {
+					$(this).remove();
+					$("#endTime").val( maxDate($(".time_list")) );
+					maxLen--;
+					$("#number").val( "총" + maxLen+ "회");
+				});
+				$("#times").val("주 " + $("#courseTimeTable td.active").length + "회");
+				$("#number").val( "총" + maxLen + "회");
+
+				if($("#courseTimeTable td.active").length == 1 ) {
+					$("#price").val("14");
+				} else if( $("#courseTimeTable td.active").length == 2 ) {
+					$("#price").val("24");
+				} else if( $("#courseTimeTable td.active").length == 3 ) {
+					$("#price").val("34");
+				} else if( $("#courseTimeTable td.active").length == 4 ) {
+					$("#price").val("44");
+				} else {
+					$("#price").val("");
+				}
+			});
+
+			//인서트 버튼 클릭 시 validation 체크
+			$("#courseInsertBtn").on("click", function() {
+				var isValid = true;
+				var validMsg;
+				if ( $('[name="member_name"]').val() == '' ) {
+					validMsg = "회원 이름 입력해 주세요";
+					isValid = false;
+				}
+
+				if($("#startTime").val() == '') {
+					validMsg = "시작일을 입력해 주세요.";
+					isValid = false;
+				}
+
+				if(!isValid) {
+					alert(validMsg);
+					return false;
+				} else {
+					var times = $("#times").val();
+					times = times.slice(1, times.length);
+					times = times.slice(0,-1);
+					$("#times").val(times);
+					$("#course").submit();
+				}
+			});
+
+
+			//휴일인 지 아닌 지 판단하는 포멧터
+			function isHoliday (date) {
+				/*<![CDATA[*/
+				var holidayList = [[${holidayList}]];
+				/*]]>*/
+				var result = {};
+				$(holidayList).each( function() {
+					if( $(this)[0].USE_YN == 1 ) {
+						if( $(this)[0].IS_STATIC == 1 ) {
+							var today = new Date();
+							var differDay = today.getFullYear() + "-" + $(this)[0].HOLIDAY;
+							if(differDay == date) {
+								result.isHoliday =  true;
+								result.name = $(this)[0].HOLIDAY_NAME;
+							}
+						} else {
+							if( $(this)[0].HOLIDAY == date ) {
+								result.isHoliday =  true;
+								result.name = $(this)[0].HOLIDAY_NAME;
+							}
+						}
+					}
+				})
+				return result;
+			}
+
+			//가장 큰 값을 찾는 포멧터
+			function maxDate(date) {
+				var resultDate = [];
+				var dateVal;
+				for(var i=0; i< date.length; i++) {
+					resultDate.push( dateToInt( $( date[i] ).val() )  );
+				}
+				var maxValue = Math.max.apply(null, resultDate);
+				return intToDate(maxValue);
+			}
+
+			//숫자 비교를 위해 날짜를 int로 묶는 함수
+			function intToDate(date) {
+				date = date + "";
+				return date.slice(0,4) + "-" + date.slice(4,6) + "-" + date.slice(6,8);
+			}
+
+			function dateToInt(intValue) {
+				return intValue.slice(0,4) + "" + intValue.slice(5,7) + "" + intValue.slice(8,10);
+			}
+
+			//시작과 끝일 사이에 일치하는 요일 리스트를 구하는 함수
+			function betweenDate(startTime, dayOfWeekList) {
+				var resultList = [], totalList = {}, resultDayOfWeekList = [], holidayList = [];
+				var differDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate());
+				var i = 0;
+				var start = 0
+				var totalCnt = dayOfWeekList.length * 4;
+				console.log(dayOfWeekList);
+				totalList.len = 0;
+				while(i < totalCnt ) {
+					if(start == 0) {
+						differDate.setDate( parseInt( differDate.getDate() ) );
+						start++;
+					} else {
+						differDate.setDate( parseInt( differDate.getDate() ) + 1 );
+					}
+
+					for(var j = 0; j< dayOfWeekList.length; j++) {
+						if( dayOfWeekList[j].index == differDate.getDay() ) {
+							var isHolidayYn = isHoliday( dateForm(differDate));
+							if( isHolidayYn.isHoliday ) {
+								resultList.push(dateForm(differDate) + "(" + isHolidayYn.name + ")") ;
+								holidayList.push(i);
+								i++;
+								totalCnt++;
+							} else {
+								resultList.push(dateForm(differDate));
+								i++;
+								totalList.len++;
+							}
+						}
+					}
+				}
+				totalList.holidayList = holidayList;
+				totalList.list = resultList;
+				totalList.maxValue = resultList[resultList.length - 1];
+				return totalList;
+			}
+
+			//yyy-mm-dd 형태로 변환
+			function dateForm (setStartDate){
+				return setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2);
+			}
+
+			//오늘 날짜를 구하는 포멧터
+			function today(currentDay) {
+				return new Date(currentDay.split("-")[0], currentDay.split("-")[1] - 1, currentDay.split("-")[2]);
+			}
+
+			//값을 가지고 일자 셋팅 시 포멧터
+			function newDateForm (value) {
+				return new Date( value.split("-")[0], ( value.split("-")[1] - 1), value.split("-")[2] );
+			}
+
+			//date를 가지고 일자 셋팅
+			function withDateNewForm(date) {
+				return new Date(date.getFullYear(), date.getMonth(), date.getDate())
+			}
+
+			//요일 한글 변환 포멧터
+			function korDay(day) {
+				if(day == 0) { return "일"; } else if(day == 1) { return "월"; } else if(day == 2) { return "화"; }
+				else if(day == 3) { return "수"; } else if(day == 4) { return "목"; } else if(day == 5) { return "금"; }
+				else if(day == 6) { return "토"; } else { return "error";}
+			}
+
+			//오늘 날짜를 가져 오는 포멧터
+			function nowDay() {
+				var today = new Date();
+				return dateForm(today);
+			}
+
+
+
+		})
+	</script>
+</th:block>
+
 </body>
 </html>

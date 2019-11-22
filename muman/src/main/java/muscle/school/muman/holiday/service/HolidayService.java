@@ -3,6 +3,7 @@ package muscle.school.muman.holiday.service;
 import java.util.List;
 import java.util.Map;
 
+import muscle.school.muman.holiday.dao.HolidayDao;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,24 +17,13 @@ import muscle.school.muman.member.dao.MemberDao;
 public class HolidayService {
 	
     @Autowired
-    MemberDao dao;
+	HolidayDao dao;
     @Autowired
     CommonDao commonDao;
 	
-    @Transactional
-	public int insertMember(String name, String id, String pass, String branch, String member_etc, String pnum) {
-		try {
-			dao.insertMember(name, id, pass, branch, member_etc, pnum);
-			commonDao.nextMemberSeq();
-			return 1;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return 0;
-		}
-    	
-	}
 
-	public List<Map<String, Object>> selectMemberList(int currentPage, String member_name) {
-		return dao.selectMemberList(currentPage, member_name);
-	}
+    public List<Map<String, Object>> selectHolidayList() {
+		return dao.selectHolidayList();
+
+    }
 }

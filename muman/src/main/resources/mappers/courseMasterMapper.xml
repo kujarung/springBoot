@@ -46,11 +46,7 @@
 		ORDER BY 
 			CM.week_of_day , CM.course_start_time 
     </select>
-    
-    <select id="selectHolidayList" resultType="map">
-    	SELECT * FROM USE_HOLIDAY
-    </select>
-    
+
 <!--     <select id="selectRegNumList" resultType="map">
 		SELECT 
 			DISTINCT EX_ALIAS, (SELECT COUNT(EX_DATE) FROM EXCERCISE_MASTER WHERE EX_ALIAS = A.EX_ALIAS) CURRENT_NUM
