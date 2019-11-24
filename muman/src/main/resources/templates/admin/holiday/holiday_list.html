@@ -58,22 +58,38 @@
 							title: title,
 							start: arg.start,
 							end: arg.end,
-						})
-					}
-					var today = new Date(arg.start);
-					var event = { "title" : title,  "start" : arg.start,  "end" : arg.end};
+							allDay: arg.allDay
+						});
+						var startDay = new Date(arg.start);
+						var endDay = new Date(arg.end);
+						startDay = dateForm(startDay);
+						endDay = dateForm(endDay);
+						var event = { "title" : title,  "start" : startDay,  "end" : endDay};
+						events.push(event);
+						calendar.unselect();
+						$.ajax({
+							url:'/insertHoliday',
+							dataType: "json",
+							async: false,
+							data : event,
+							success: function(result){
+								if(result == 1) {
+									alert("휴일이 등록 되었습니다.")
+								} else {
+									alert("등록 오류");
+								}
+							}
 
-					events.push(event);
-					calendar.unselect()
+						});
+					}
 				},
 				local : "kr",
 				editable: true,
 				eventLimit: true, // allow "more" link when too many events
 				eventSources: [],
 				eventClick: function(info) { //만들어진 이벤트를 클릭 했을 시
-
+					console.log( info.event);
 				},
-
 
 				locale: 'ko',
 				timezone: "local",
@@ -112,12 +128,14 @@
 			var today = new Date();
 			today.getFullYear();
 			for(var i=0; i < holidayList.length;i++) {
-				var day = holidayList[i].HOLIDAY;
+				var start = holidayList[i].START_DAY;
+				var end = holidayList[i].END_DAY;
 				var title = holidayList[i].HOLIDAY_NAME;
 				if( holidayList[i].IS_STATIC == 1) {
-					day = today.getFullYear() + "-" + day;
+					start = today.getFullYear() + "-" + start;
+					end = today.getFullYear() + "-" + end;
 				}
-				var event = {"title" : title, "start" : day};
+				var event = {"title" : title, "start" : start, "end": end};
 				events.push(event);
 			}
 			calendar.addEventSource(events);

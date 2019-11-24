@@ -25,19 +25,30 @@ import muscle.school.muman.member.service.MemberService;
 public class HolidayController {
 	
 	@Autowired
-	MemberService service;
+	HolidayService service;
 	@Autowired
 	CommonService commonService;
-	@Autowired
-	HolidayService holidayService;
 
 	@RequestMapping("/holiday_list")
 	public String holidayList(Model model) {
-		List<Map<String,Object>> holidayList = holidayService.selectHolidayList();
+		List<Map<String,Object>> holidayList = service.selectHolidayList();
 
 		model.addAttribute("holidayList", holidayList);
 		return "admin/holiday/holiday_list";
 	}
-	
+
+	@RequestMapping("/insertHoliday")
+	@ResponseBody
+	int insertHoliday(String title, String start, String end) {
+		int result = service.insertHoliday(title, start, end);
+		return result;
+	}
+
+	@RequestMapping("/deleteHoliday")
+	@ResponseBody
+	int deletetHoliday(String title, String start, String end) {
+		int result = service.insertHoliday(title, start, end);
+		return result;
+	}
 	
 }
