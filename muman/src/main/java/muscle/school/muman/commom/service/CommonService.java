@@ -210,9 +210,117 @@ public class CommonService {
             break ;            
         case 30:
         	fullName = "금6교시";
-            break ;             
-    	
-    }
+            break ;
+
+		case 31:
+			fullName = "월1교시";
+			break ;
+		case 32:
+			fullName = "월2교시";
+			break ;
+		case 33:
+			fullName = "월3교시";
+			break ;
+		case 34:
+			fullName = "월4교시";
+			break ;
+		case 35:
+			fullName = "월5교시";
+			break ;
+		case 36:
+			fullName = "월6교시";
+			break ;
+
+		case 37:
+			fullName = "월7교시";
+			break ;
+		case 38:
+			fullName = "화1교시";
+			break ;
+		case 39:
+			fullName = "화2교시";
+			break ;
+		case 40:
+			fullName = "화3교시";
+			break ;
+		case 41:
+			fullName = "화4교시";
+			break ;
+		case 42:
+			fullName = "화5교시";
+			break ;
+
+		case 43:
+			fullName = "화6교시";
+			break ;
+		case 44:
+			fullName = "화7교시";
+			break ;
+		case 45:
+			fullName = "수1교시";
+			break ;
+		case 46:
+			fullName = "수2교시";
+			break ;
+		case 47:
+			fullName = "수3교시";
+			break ;
+		case 48:
+			fullName = "수4교시";
+			break ;
+
+		case 49:
+			fullName = "수5교시";
+			break ;
+		case 50:
+			fullName = "수6교시";
+			break ;
+		case 51:
+			fullName = "수7교시";
+			break ;
+		case 52:
+			fullName = "목1교시";
+			break ;
+		case 53:
+			fullName = "목2교시";
+			break ;
+		case 54:
+			fullName = "목3교시";
+			break ;
+		case 55:
+			fullName = "목4교시";
+			break ;
+		case 56:
+			fullName = "목5교시";
+			break ;
+		case 57:
+			fullName = "목6교시";
+			break ;
+		case 58:
+			fullName = "목7교시";
+			break ;
+		case 59:
+			fullName = "금1교시";
+			break ;
+		case 60:
+			fullName = "금2교시";
+			break ;
+		case 61:
+			fullName = "금3교시";
+			break ;
+		case 62:
+			fullName = "금4교시";
+			break ;
+		case 63:
+			fullName = "금5교시";
+			break ;
+		case 64:
+			fullName = "금6교시";
+			break ;
+		case 65:
+			fullName = "금7교시";
+			break ;
+		}
 		return fullName;
 	}
 	

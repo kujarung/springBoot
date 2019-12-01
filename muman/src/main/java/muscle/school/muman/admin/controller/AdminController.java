@@ -50,25 +50,48 @@ public class AdminController {
 	
 	//관리자 학생 등록 페이지
 	@GetMapping("/admin/reg_student")
-	public String adminRegCourseStudent(Model model, @RequestParam(required=false) String standardDate) {
+	public String adminRegCourseStudent(Model model, @RequestParam(required=false) String standardDate
+										,@RequestParam(required=false, defaultValue= "1") int branch
+	) {
 		//시작일과 끝일을 리턴 받음
 		String[] dateList   = commonService.todayWeek(standardDate);
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
-		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate);
+		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate, branch);
 		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("today", commonService.currentDay(standardDate));
 		model.addAttribute("holidayList" , holidayList);
-		return "admin/reg_student";
+		model.addAttribute("branch", branch);
+		return "admin/student/reg_student";
+}
+
+	//관리자 학생 등록 페이지
+	@GetMapping("/admin/course_manage")
+	public String adminCourseManage(Model model, @RequestParam(required=false) String standardDate
+			,@RequestParam(required=false, defaultValue= "1") int branch
+	) {
+		//시작일과 끝일을 리턴 받음
+		String[] dateList   = commonService.todayWeek(standardDate);
+		String startDate 	= dateList[0];
+		String endDate 		= dateList[1];
+		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate, branch);
+		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
+		model.addAttribute("courseNumList", courseNumList);
+		model.addAttribute("dateList", dateList);
+		model.addAttribute("today", commonService.currentDay(standardDate));
+		model.addAttribute("holidayList" , holidayList);
+		return "admin/course/course_manage";
 	}
-	
+
+
 	//관리자 학생 확인 페이지
 	@GetMapping("/admin/view_student")
 	public String adminViewCourseStudent(Model model, @RequestParam(required=false, defaultValue = "1") int currentPage) {
 		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList(currentPage);
 		if(courseStudentList.size() != 0) {
+			System.out.println(courseStudentList);
 			int totalCnt = Integer.parseInt( courseStudentList.get(0).get("TOTAL_CNT").toString());
 			Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
 			model.addAttribute("courseStudentList", courseStudentList);
@@ -80,7 +103,7 @@ public class AdminController {
 			model.addAttribute("pagingInfo", pagingInfo);
 			model.addAttribute("currentPage", currentPage);
 		}
-		return "admin/view_student";
+		return "admin/student/view_student";
 	}
 	
 	//관리자 학생 확인 페이지
@@ -91,7 +114,7 @@ public class AdminController {
 		
 		model.addAttribute("courseStudent", courseStudent);
 		model.addAttribute("courseList", courseList);
-		return "/admin/detail_student";
+		return "/admin/student/detail_student";
 	}
 	
 	//관리자 강의 등록 페이지
@@ -103,7 +126,7 @@ public class AdminController {
 	//관리자 회원 등록 페이지
 	@GetMapping("/admin/reg_member")
 	public String adminRegMember() {
-		return "admin/reg_member";
+		return "admin/member/reg_member";
 	}	
 
 	//관리자 회원 리스트 페이지
@@ -117,16 +140,18 @@ public class AdminController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("currentPage", currentPage);
 		
-		return "admin/veiw_member";
+		return "admin/member/veiw_member";
 	}
 	
 	// 강좌 연장 
 	@GetMapping("/admin/extendCourse")
-	public String extendCourse(int memberSeq, Model model, @RequestParam(required=false) String standardDate) {
+	public String extendCourse(int memberSeq, Model model, @RequestParam(required=false) String standardDate
+			,@RequestParam(required=false, defaultValue= "1") int branch
+	) {
 		String[] dateList   = commonService.todayWeek(standardDate);
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
-		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate);
+		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate, branch);
 		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);

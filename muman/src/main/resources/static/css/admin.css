@@ -63,7 +63,7 @@ font-weight:bold; color:#ea9643}
 .plus_input{height:27px;}
 #endTime{border:none;}
 #startTime{border:none;}
-#plusBtn{display:inline-block; background-color:#ea9643;}
+#plusBtn{display:inline-block; background-color:#ea9643; cursor: pointer;}
 #plusBtn .plus_btn_style{padding:10px; font-size:15px; color:white;}
 .price_wrap{padding:50px 100px; border-top:2px solid black; border-bottom:2px solid black;}
 
@@ -88,3 +88,9 @@ font-weight:bold; color:#ea9643}
 .detail_table tbody th {text-align: left; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem; padding-top: 10px; padding-bottom: 10px; color:black}
 .detail_table tbody td {text-align: left; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; padding-top: 10px; padding-bottom: 10px;}
 .detail_table .time_list {border:none; width:calc(20% - 25px); outline: none;}
+
+.tab_con{text-align: center; margin-bottom:30px;}
+.tab_con .tab {padding-top:10px; padding-bottom:10px; border:1px solid white; font-size:14px; color:black; font-weight: bold;
+background-color:white;; cursor: pointer;}
+.tab_con .tab.active {background-color:#ea9643; color:white; border-color: #ea9643}
+.tab_con .tab:hover {background-color:#ea9643; color:white; border-color: #ea9643}

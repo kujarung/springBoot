@@ -9,13 +9,12 @@ import org.springframework.stereotype.Repository;
 public interface CourseMasterDao {
 	List<Map<String, Object>> selectCourseMasterList(int alias);
 
-	List<Map<String, Object>> selectRegMemberList(String startDate, String endDate);
+	List<Map<String, Object>> selectRegMemberList(String startDate, String endDate, int branch);
 
 	List<Map<String, Object>> selectHolidayList();
 
-	void insertCourse(String memberSeq, String exAlias, String exDate);
+	void insertCourse(String memberSeq, String exAlias, String exDate, int branch);
 
 	List<Map<String, Object>> selectCourseList(int memberSeq);
 
-	
 }

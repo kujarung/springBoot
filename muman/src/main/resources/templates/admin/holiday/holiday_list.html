@@ -9,11 +9,15 @@
 	<div th:replace="common/admin/admin_gnb"></div>
 
 	<div class="col-12 right_body">
-		<div class="" style="padding:150px 50px 50px 0px;">
-			<th:block>
-				<div id='calendar'></div>
-				<div class="">저</div>
-			</th:block>
+		<div class="col-12" style="padding:50px 50px 50px 0px;">
+			<div class="col-12 mb30 step_title">
+				휴일 관리
+			</div>
+			<div class="col-12">
+				<th:block>
+					<div id='calendar'></div>
+				</th:block>
+			</div>
 		</div>
 	</div>
 
@@ -53,34 +57,36 @@
 				selectMirror: true,
 				select: function(arg) {
 					var title = prompt('휴일 이름을 입력 하세요.');
+					var branch = prompt("지점을 입력하세요. 안암:1, 한양대:2");
 					if (title) {
-						calendar.addEvent({
-							title: title,
-							start: arg.start,
-							end: arg.end,
-							allDay: arg.allDay
-						});
-						var startDay = new Date(arg.start);
-						var endDay = new Date(arg.end);
-						startDay = dateForm(startDay);
-						endDay = dateForm(endDay);
-						var event = { "title" : title,  "start" : startDay,  "end" : endDay};
-						events.push(event);
-						calendar.unselect();
-						$.ajax({
-							url:'/insertHoliday',
-							dataType: "json",
-							async: false,
-							data : event,
-							success: function(result){
-								if(result == 1) {
-									alert("휴일이 등록 되었습니다.")
-								} else {
-									alert("등록 오류");
+						if(branch == 1 && branch == 2) {
+							calendar.addEvent({
+								title: title,
+								start: arg.start,
+								end: arg.end,
+								allDay: arg.allDay
+							});
+							var startDay = new Date(arg.start);
+							var endDay = new Date(arg.end);
+							startDay = dateForm(startDay);
+							endDay = dateForm(endDay);
+							var event = { "title" : title,  "start" : startDay,  "end" : endDay, branch : branch};
+							events.push(event);
+							calendar.unselect();
+							$.ajax({
+								url:'/insertHoliday',
+								dataType: "json",
+								async: false,
+								data : event,
+								success: function(result){
+									if(result == 1) {
+										alert("휴일이 등록 되었습니다.")
+									} else {
+										alert("등록 오류");
+									}
 								}
-							}
-
-						});
+							});
+						}
 					}
 				},
 				local : "kr",

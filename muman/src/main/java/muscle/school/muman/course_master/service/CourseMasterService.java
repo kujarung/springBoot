@@ -31,8 +31,8 @@ public class CourseMasterService {
 		return dao.selectCourseMasterList(alias);
 	}
 
-	public List<Map<String, Object>> selectRegMemberList(String startDate, String endDate) {
-		return dao.selectRegMemberList(startDate, endDate);
+	public List<Map<String, Object>> selectRegMemberList(String startDate, String endDate, int branch) {
+		return dao.selectRegMemberList(startDate, endDate, branch);
 	}
 
 	public List<Map<String, Object>> selectHolidayList() {
@@ -41,14 +41,16 @@ public class CourseMasterService {
 	}
 	
 	@Transactional 
-	public int insertCourse(String memberSeq, String dayListString, String[] timeList, String aliasListString) throws ParseException {
+	public int insertCourse(String memberSeq, String dayListString, String[] timeList, String aliasListString
+							,int branch
+	) throws ParseException {
 	    try {
 			for(int i=0;i < timeList.length;i++) {
 		    	String[] dayList 	= dayListString.split("\\|");
 		    	String[] aliasList 	= aliasListString.split("\\|");
 		    	for(int j=0; j<dayList.length;j++) {
 		    		if ( Integer.parseInt(dayList[j]) == commonSerivce.getDayOfWeek(timeList[i])  ) {
-		    			dao.insertCourse(memberSeq, aliasList[j], timeList[i]);
+		    			dao.insertCourse(memberSeq, aliasList[j], timeList[i], branch);
 		    		}
 		    	}
 		    }
@@ -59,8 +61,8 @@ public class CourseMasterService {
 		}
 	}
 	
-	public int insertOneCourse(String memberSeq, String exAlias, String endDate) {
-		dao.insertCourse(memberSeq, exAlias, endDate);
+	public int insertOneCourse(String memberSeq, String exAlias, String endDate, int branch) {
+		dao.insertCourse(memberSeq, exAlias, endDate, branch);
 		return 0;
 	}
 	
@@ -73,7 +75,7 @@ public class CourseMasterService {
 	
 	@Transactional
 	@RequestMapping("/courseMasterService")
-	public int delayCourse(int memberSeq, int delayNum) throws ParseException {
+	public int delayCourse(int memberSeq, int delayNum, int branch) throws ParseException {
 		System.out.println(memberSeq);
 		try {
 			for(int j=0; j< delayNum; j++) {
@@ -110,9 +112,10 @@ public class CourseMasterService {
 				if(serchIntDay - intEndDay < 0) {
 					resultDay = 7 - Math.abs(serchIntDay - intEndDay);
 				}
+
 				String updateDay = commonSerivce.afterDay(endDate, resultDay);
 				courseStudentService.updateDelay(memberSeq, updateDay);
-				insertOneCourse( Integer.toString(memberSeq)   , insertAlias,  updateDay); 
+				insertOneCourse( Integer.toString(memberSeq)   , insertAlias,  updateDay, branch);
 			}
 			return 1;
 		} catch (Exception e) {

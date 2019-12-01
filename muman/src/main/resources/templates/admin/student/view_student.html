@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
  <head th:replace="common/admin/admin_head"></head>
 <meta charset="UTF-8">
@@ -35,8 +35,9 @@
                     <td>
                         <div class="select_style1_con">
                             <select name="" id="">
-                                <option value="">고려대점</option>
-                                <option value="">한양대점</option>
+                                <option value="">전체</option>
+                                <option value="1">안암점</option>
+                                <option value="2">한양대점</option>
                             </select>
                         </div>
                     </td>
@@ -80,9 +81,19 @@
 								<td th:text="${courseStudentList.NAME}"></td>
 								<td th:text="${courseStudentList.START_DATE}"></td>
 								<td th:text="${courseStudentList.END_DATE}"></td>
-								
+
 								<td th:text="${courseStudentList.PRICE}"></td>
-								<td th:text="${courseStudentList.PRICE_DATE}"></td>
+								<td th:if="${courseStudentList.PRICE_DATE} eq '1980-01-01' ">
+									미결제
+								</td>
+
+								<th:block th:if="${courseStudentList.PRICE_DATE} neq '1980-01-01'">
+									<td th:text="${courseStudentList.PRICE_DATE}"></td>
+								</th:block>
+
+								<td th:if="${courseStudentList.PRICE_TYPE} == -1">
+									미결제
+								</td>
 								<td th:if="${courseStudentList.PRICE_TYPE} == 1">
 									카드
 								</td>
@@ -95,7 +106,7 @@
 								<td th:if="${courseStudentList.PRICE_TYPE} == 4">
 									계좌+탈잉
 								</td>
-								
+
 								<td th:text="${courseStudentList.TIMES_WEEK} + '' + ${courseStudentList.ALIAS_LIST_FULL_NAME}"></td>
 								<td th:if="${courseStudentList.IS_DELAY} == 0">
 									Delay 미사용
@@ -103,8 +114,13 @@
 								<td th:unless="${courseStudentList.IS_DELAY} == 0">
 								 	Delay 사용
 								</td>
-								<td th:text="${courseStudentList.BRANCH}"></td>							
-								<td class="member_seq hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>							
+								<td th:if="${courseStudentList.BRANCH} == 1">
+									안암점
+								</td>
+								<td th:if="${courseStudentList.BRANCH} == 2">
+									한양대점
+								</td>
+								<td class="member_seq hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
 							</th:block>
 						</tr>
 					</tbody>

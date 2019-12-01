@@ -12,4 +12,6 @@ public interface MemberDao {
 	void insertMember(String name, String id, String pass, String branch, String member_etc, String pnum);
 
 	Map<String, Object> getMember(int memberSeq);
+
+    int isExistId(String id);
 }

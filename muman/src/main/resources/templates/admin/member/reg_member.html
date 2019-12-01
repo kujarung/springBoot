@@ -17,6 +17,10 @@
         </div>
 
         <form class="col-12 reg_member_con" action="/admin/insertMember" method="post" id="mbmer_insert">
+            <div style="font-size: 15px; color:red; margin-bottom: 30px;">
+                모든 값은 필수 입니다.<br>
+                만약 넣은 값이 없다면 무작위로 입력해주세요.
+            </div>
             <div class="col-12 reg_con">
                 <div class="reg_title">이름</div>
                 <div class="reg_left_input">
@@ -27,8 +31,8 @@
             <disv class="col-12 reg_con">
                 <div class="reg_title">아이디</div>
                 <div class="reg_left_input">
-                    <input class="type_2" name="id">
-                    <div class="check_btn">
+                    <input class="type_2" name="id" id="chkIdVal">
+                    <div class="check_btn" id="checkId">
                         <div class="check_text">
                             	중복확인
                         </div>
@@ -47,8 +51,8 @@
                 <div class="reg_title">지점선택</div>
                 <div class="reg_left_select">
                     <select name="branch">
-                        <option>고려대점</option>
-                        <option>한양대점</option>
+                        <option value="1">안암점</option>
+                        <option value="2">한양대점</option>
                     </select>
                 </div>
             </div>
@@ -63,7 +67,7 @@
             <div class="col-12 reg_con">
                 <div class="reg_title">특이 사항</div>
                 <div class="reg_left_input">
-                    <input name="member_etc" required>
+                    <input name="member_etc" required placeholder="없을 경우 없음 입력">
                 </div>
             </div>
         </form>
@@ -79,8 +83,49 @@
 </div>
 
 <script>
-	$("#reg_insert").on("click", function(){
-		$("#mbmer_insert").submit();
+    var chkId = false;
+    $("#checkId").on("click",function() {
+        console.log($("#chkIdVal").val())
+        var id = $("#chkIdVal").val();
+        if(id == "") {
+            alert("아이디 값을 입력해주세요.")
+        } else {
+            $.ajax({
+                url : "/searchId",
+                dataType: "json",
+                async: false,
+                data: {id : id},
+                success: function(result){
+                    if(!result) {
+                        alert("사용 가능한 아이디 입니다.");
+                        chkId = true;
+                    } else {
+                        alert("사용 불가능한 아이디 입니다.");
+                        chkId = false;
+                    }
+                }
+            });
+        }
+    })
+
+
+	$("#reg_insert").on("click", function() {
+        var val = true;
+
+        $("input").each(function () {
+            if( $(this).val() == "" ) val = false;
+        })
+        if(val) {
+            if(!chkId) {
+                alert("아이디 중복 검사를 해주세요.");
+                return false;
+            } else {
+                $("#mbmer_insert").submit();
+            }
+        } else {
+            alert("모든 폼에 입력값은 필수 입니다.")
+        }
+
 	})
 </script>
 </body>

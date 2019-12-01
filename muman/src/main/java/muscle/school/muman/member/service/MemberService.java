@@ -40,4 +40,8 @@ public class MemberService {
 	public Map<String, Object> getMember(int memberSeq) {
 		return dao.getMember(memberSeq);
 	}
+
+    public int isExistId(String id) {
+    	return dao.isExistId(id);
+    }
 }

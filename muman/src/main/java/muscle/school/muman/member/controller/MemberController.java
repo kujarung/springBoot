@@ -58,7 +58,7 @@ public class MemberController {
 		
 		service.insertMember(name, id, pass, branch, member_etc, pnum);
 		
-		return "redirect:admin/veiw_member";
+		return "redirect:veiw_member";
 		
 	}
 	
@@ -79,7 +79,7 @@ public class MemberController {
 		if(sucess == 1) {
 			model.addAttribute("error", "1");
 			System.out.println("2");
-			return "redirect:sucess";
+			return "redirect:admin/member/success";
 		} else {
 			System.out.println("3");
 			model.addAttribute("error", "1");
@@ -92,7 +92,20 @@ public class MemberController {
 	public String sucessRegMember() {
 		return "member/insert_sucess";
 	}
-	
+
+
+//	아이디가 있는 지 여부
+	@GetMapping("/searchId")
+	@ResponseBody
+	public boolean searchId(@RequestParam(required = false) String id) {
+		int result = service.isExistId(id);
+		if(result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	//회원 리스트 출력
 	@GetMapping("/selectMemberList")
 	@ResponseBody

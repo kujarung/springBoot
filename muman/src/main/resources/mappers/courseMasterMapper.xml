@@ -19,15 +19,6 @@
     
     
     <select id="selectRegMemberList" resultType="map">
-<!-- 	    
-		SELECT
-			 (SELECT COUNT(EX_DATE) FROM EXCERCISE_MASTER WHERE EX_ALIAS = A.EX_ALIAS) CURRENT_NUM, CM.max_people,CM.is_use_yn,
-			CM.couse_time_name, CM.course_start_time, CM.week_of_day, CM.alias_number
-		FROM 
-			COURSE_MASTER CM
-		ORDER BY CM.week_of_day , CM.course_start_time  
--->
-	    
 	    SELECT
 			 DISTINCT 
 			 (	SELECT 
@@ -37,12 +28,14 @@
 			 	WHERE 
 			 		EX_ALIAS = A.EX_ALIAS
 			 			AND EX_DATE BETWEEN #{startDate} AND #{endDate}
-			 ) CURRENT_NUM, 
+			 ) CURRENT_NUM,
 			 CM.max_people,CM.is_use_yn, CM.couse_time_name, CM.course_start_time, CM.week_of_day, CM.alias_number
 		FROM 
 			COURSE_MASTER CM
 		LEFT JOIN 
 			EXCERCISE_MASTER A ON A.ex_alias = CM.alias_number AND A.EX_DATE BETWEEN #{startDate} AND #{endDate}
+		WHERE
+			CM.branch = #{branch}
 		ORDER BY 
 			CM.week_of_day , CM.course_start_time 
     </select>
@@ -75,9 +68,9 @@
 	 
 	 <insert id="insertCourse">
 	 	INSERT
-	 		INTO EXCERCISE_MASTER(member_seq, ex_alias, ex_date) 
+	 		INTO EXCERCISE_MASTER(member_seq, ex_alias, ex_date, branch)
 	 	VALUES 
-	 		(#{memberSeq}, #{exAlias}, #{exDate})
+	 		(#{memberSeq}, #{exAlias}, #{exDate}, #{branch})
 	 </insert>
 	 
 	 <select id="selectCourseList" parameterType="map" resultType="map">

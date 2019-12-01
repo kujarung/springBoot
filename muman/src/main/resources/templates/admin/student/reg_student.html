@@ -7,118 +7,56 @@
 </head>
 <body>
 <div th:replace="common/admin/admin_gnb"></div>
+
+<style>
+	#nextWeek,#beforeWeek {cursor: pointer;}
+</style>
 <div class="col-12 right_body">
-	<form class="col-12" id="course" action="/admin/insertCourseStudent" method="post">
+	<form class="col-12" id="course" action="/courseStudent/insertCourseStudent" method="post">
 		<input type="hidden" name="dayList" id="dayList">
 		<input type="hidden" name="aliasList" id="aliasList">
 		
 		<div class="col-12 inner_con first" id="first_con">
-			<div class="col-12 mb30 step_title">
-                	회원 선택
-            </div>
-			
-		<div class="col-12 mb30">
-			<table class="filter_table">
-				<tbody>
-					<tr>
-						<td>이름</td>
-						<td><input type="text" name="name"></td>
-					</tr>
-					
-					<tr>
-						<td>지점</td>
-						<td>
-							<select name="branch" id="">
-								<option value="">고려대점</option>
-								<option value="">한양대점</option>
-							</select>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<div class="">
-				검색
+			<div class="step_title">
+				시간 선택
 			</div>
-		</div>
+			<div class="col-12 tab_con">
+				<span th:th:if = "${branch} == 1">
+					<div class="col-6 tab active" id="branchAn">안암점</div>
+					<div class="col-6 tab" id="branchHan">한양대점</div>
+				</span>
 
-			<input name="member_name" class="col-12 hidden" readonly>
-			<input name="member_seq" class="hidden">			
-			<div class="col-12" id="memberList">
-				<table class="table_style_3 mb30">
-	               <colgroup>
-	                   <col width = "10%">
-	                   <col width = "15%">
-	                   <col width = "15%">
-	                   <col width = "auto">
-	                   <col width = "10%">
-	               </colgroup>
-	               <thead>
-	                   <th>번호</th>
-	                   <th>이름</th>
-	                   <th>아이디</th>
-	                   <th>특이사항</th>
-	                   <th>지점</th>
-	               </thead>
-	
-	               <tbody>
-	
-	               </tbody>
-	           </table>
-	           
-	           <div class="col-12 paging_con">
-					<div class="before_btn">
-
-					</div>
-
-					<div class="paging">
-
-					</div>
-					
-					<div class="next_btn">
-
-					</div>
-				</div>
+				<span th:th:if = "${branch} == 2">
+					<div class="col-6 tab" id="branchAn">안암점</div>
+					<div class="col-6 tab active" id="branchHan">한양대점</div>
+				</span>
 			</div>
-			
-			<div class="step_btn_con right">
-                <div class="step_btn left go_step2" id="goStep2">
-                    	다음으로
-                </div>
-            </div>
-		</div>
-		
-		<div class="col-12 inner_con second" id="second_con">
-           <div class="step_title">
-             	시간 선택
-            </div>
-            
-			<div class="time_con">
-            	<div id="beforeWeek">이전</div>
-                <span class="mb30 over-hidden">
+			<div class="col-12 time_con">
+				<div id="beforeWeek">이전</div>
+				<span class="mb30 over-hidden">
 		    		<span id="today"></span>
                 </span>
-                <div id="nextWeek">다음</div>
-			</div>            
-            			
-			<div class="col-12 form_con">
+				<div id="nextWeek">다음</div>
+			</div>
+			<span th:th:if = "${branch} == 1">
+				<div class="col-12 form_con">
 				<div class="table_con">
 					<table class="table_style_3" id="courseTimeTable">
-		               <colgroup>
-		               </colgroup>
-	                      <col width="20%" />
-	                      <col width="16%" />
-	                      <col width="16%" />
-	                      <col width="16%" />
-	                      <col width="16%" />
-	                      <col width="16%" />
-	                   <thead></thead>
-	                   <tbody>
-	                   
-	                   <tr>
-	                       <th>10:00 ~ 11:30</th>
-	                       <td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
-	                       	   th:if="${courseRegNumList.course_start_time} == 10">
+						<colgroup>
+						</colgroup>
+						<col width="20%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<thead></thead>
+						<tbody>
+
+						<tr>
+							<th>10:00 ~ 11:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 10">
 	                       	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
 	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
 		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
@@ -129,76 +67,76 @@
 		                       	 </span>
 		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 	                       	   </span>
-	                       	   <span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
 	                       	   	 강의 없음
 	                       	   </span>
-	                       </td>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>12:00 ~ 13:30</th>
-	                       <td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
-	                       	   th:if="${courseRegNumList.course_start_time} == 12">
-	                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
-	                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+							</td>
+						</tr>
+
+						<tr>
+							<th>12:00 ~ 13:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 12">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                     	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                     	 </span>
-	                     	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                     	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                     	 </span>
-	                     	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
-	                       </td>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>15:00 ~ 17:00</th>
-	                         <td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
-	                       	   th:if="${courseRegNumList.course_start_time} == 15">
-	                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
-	           	 			 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>15:00 ~ 17:00</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 15">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 		                 	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 		                 	 </span>
-		                 	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 		                 	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 		                 	 </span>
-		                 	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
-	                       </td>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>18:00 ~ 19:30</th>
-	                         <td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
-	                       	   th:if="${courseRegNumList.course_start_time} == 18">
-	                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
-	                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>18:00 ~ 19:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 18">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                       	 </span>
-	                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                       	 </span>
-	                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
-	                       </td>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>20:00 ~ 21:30</th>
-	                         <td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
-	                       	   th:if="${courseRegNumList.course_start_time} == 20">
-	                       	 <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
-	                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>20:00 ~ 21:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 20">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                       	 </span>
-	                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                       	 </span>
-	                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
-	                       </td>
-	                   </tr>
-	                   
-	                   <tr>
-	                       <th>22:00 ~ 23:30</th>
-	                       <td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
-	                       	   th:if="${courseRegNumList.course_start_time} == 22">
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>22:00 ~ 23:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 22">
 	                    	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
 	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
 		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
@@ -209,28 +147,241 @@
 		                       	 </span>
 		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 	                       	   </span>
-	                       	   <span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
 	                       	   	 강의 없음
 	                       	   </span>
-	                       </td>
-	                   </tr>
-	                   </tbody>
-	               </table>
+							</td>
+						</tr>
+						</tbody>
+					</table>
 				</div>
-				
-			</div>
-			
-			<div class="step_btn_con left">
-                <div class="step_btn left go_step1">
-                    	이전으로
-                </div>
-            </div>
 
-            <div class="step_btn_con right">
-                <div class="step_btn right go_step3">
-                    	다음으로
-                </div>
-            </div>
+			</div>
+			</span>
+			<span th:th:if = "${branch} == 2">
+				<div class="col-12 form_con">
+				<div class="table_con">
+					<table class="table_style_3" id="courseTimeTable">
+						<colgroup>
+						</colgroup>
+						<col width="20%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<col width="16%" />
+						<thead></thead>
+						<tbody>
+
+						<tr>
+							<th>09:00 ~ 10:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 9">
+	                       	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+	                       	   </span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+	                       	   	 강의 없음
+	                       	   </span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>11:00 ~ 12:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 11">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                     	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                     	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                     	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                     	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>14:00 ~ 15:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 14">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                 	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                 	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                 	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                 	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>16:00 ~ 17:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 16">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>18:00 ~ 19:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 18">
+								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                       	 </span>
+								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>20:00 ~ 21:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 20">
+	                    	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+	                       	   </span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+	                       	   	 강의 없음
+	                       	   </span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>22:00 ~ 23:30</th>
+							<td th:each="courseRegNumList : ${courseNumList}" th:object="${courseNumList}"
+								th:if="${courseRegNumList.course_start_time} == 22">
+	                    	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
+	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
+		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+		                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+		                       	 </span>
+		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+	                       	   </span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+	                       	   	 강의 없음
+	                       	   </span>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			</span>
+			<div class="step_btn_con right">
+				<div class="step_btn left go_step2" id="goStep2">
+					다음으로
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-12 inner_con second" id="second_con">
+			<div class="col-12 mb30 step_title">
+				회원 선택
+			</div>
+			<div class="col-12 mb30">
+				<table class="filter_table">
+					<tbody>
+					<tr>
+						<td>이름</td>
+						<td><input type="text" name="name"></td>
+					</tr>
+
+					<tr>
+						<td>지점</td>
+						<td>
+							<select name="branch" id="">
+								<option value="">고려대점</option>
+								<option value="">한양대점</option>
+							</select>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<div class="">
+					검색
+				</div>
+			</div>
+			<input name="member_name" class="col-12 hidden" readonly>
+			<input name="member_seq" class="hidden">
+
+			<div class="col-12" id="memberList">
+				<table class="table_style_3 mb30">
+					<colgroup>
+						<col width = "10%">
+						<col width = "15%">
+						<col width = "15%">
+						<col width = "auto">
+						<col width = "10%">
+					</colgroup>
+					<thead>
+					<th>번호</th>
+					<th>이름</th>
+					<th>아이디</th>
+					<th>특이사항</th>
+					<th>지점</th>
+					</thead>
+
+					<tbody>
+
+					</tbody>
+				</table>
+
+				<div class="col-12 paging_con">
+					<div class="before_btn">
+
+					</div>
+
+					<div class="paging">
+
+					</div>
+
+					<div class="next_btn">
+
+					</div>
+				</div>
+			</div>
+			<div class="step_btn_con left">
+				<div class="step_btn left go_step1">
+					이전으로
+				</div>
+			</div>
+			<div class="step_btn_con right">
+				<div class="step_btn right go_step3">
+					다음으로
+				</div>
+			</div>
 		</div>
 		
 		 <div class="col-12 inner_con third" id="third_con">
@@ -335,7 +486,7 @@
 				                <div class="reg_title">결제 방식</div>
 				                <div class="reg_left_select">
 								<select name="price_type">
-									<option value="0">결제 선택</option>
+									<option value="-1">결제 선택</option>
 									<option value="1">계좌이체</option>
 									<option value="2">카드</option>
 									<option value="3">탈잉 + 계좌이체</option>
@@ -365,13 +516,14 @@
                 </div>
             </div>
          </div>
-						
+		<input type="hidden" th:value="${branch}" name="insertBranch">
 	</form>
 
 </div>
 
 <form id="reload">
 	<input type="hidden" name="standardDate">
+	<input type="hidden" th:value="${branch}" name="branch" id="branchVal">
 </form>
 
 <input id="todayString" type="hidden" th:value = "${today}">
@@ -405,27 +557,27 @@
 	        })
 
 	        $(".go_step2").on("click",function(){
-	        	if( $("#memberList tr.active").length > 0 ) {
-		            $("#first_con").css("right","100%");
-		            $("#second_con").css("right","0%");
-		            $("#third_con").css("right","-100%");
-		            $("#fourth_con").css("right","-200%");
-	        	} else {
-	        		alert("회원을 선택해 주세요.");
-	        		return false;
-	        	}              
+				if($("#courseTimeTable td.active").length == 0 ) {
+					alert("시간을 선택해 주세요.")
+					return false;
+				} else {
+					$("#first_con").css("right","100%");
+					$("#second_con").css("right","0%");
+					$("#third_con").css("right","-100%");
+					$("#fourth_con").css("right","-200%");
+				}
 	        })
 
 	        $(".go_step3").on("click",function(){
-	        	if($("#courseTimeTable td.active").length == 0 ) {
-	        		alert("시간을 선택해 주세요.")
-	        		return false;
-	        	} else {
-		            $("#first_con").css("right","200%");
-		            $("#second_con").css("right","100%");
-		            $("#third_con").css("right","0%");
-		            $("#fourth_con").css("right","-100%");
-	        	}
+				if( $("#memberList tr.active").length > 0 ) {
+					$("#first_con").css("right","200%");
+					$("#second_con").css("right","100%");
+					$("#third_con").css("right","0%");
+					$("#fourth_con").css("right","-100%");
+				} else {
+					alert("회원을 선택해 주세요.");
+					return false;
+				}
 	        })
 	        
 	        $(".go_step4").on("click",function(){
@@ -481,7 +633,6 @@
 	    var currentDay = $("#todayString").val();
 		var setStartDate = today(currentDay);
 		var setEndDate;
-		console.log( setStartDate.getDay() );
 		//월요일일 떄
 		if(setStartDate.getDay() == 1) {
 			setStartDate = today(currentDay);
@@ -530,7 +681,27 @@
 			$('[name="standardDate"]').val(dateForm(setStartDate));
 			$("#reload").submit();
 		})
-		
+
+		$("#branchAn").on("click",function() {
+			$("#branchVal").val("1");
+			setStartDate.setDate(setStartDate.getDate()  );
+			setEndDate.setDate(setEndDate.getDate() );
+			week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+			$("#reload").attr("action", "/admin/reg_student");
+			$('[name="standardDate"]').val(dateForm(setStartDate));
+			$("#reload").submit();
+		})
+
+		$("#branchHan").on("click",function() {
+			$("#branchVal").val("2");
+			setStartDate.setDate(setStartDate.getDate()  );
+			setEndDate.setDate(setEndDate.getDate() );
+			week = dateForm(setStartDate) + "~" + dateForm(setEndDate);
+			$("#reload").attr("action", "/admin/reg_student");
+			$('[name="standardDate"]').val(dateForm(setStartDate));
+			$("#reload").submit();
+		})
+
 		$("#beforeWeek").on("click",function(){
 			setStartDate.setDate(setStartDate.getDate() - 7 );
 			setEndDate.setDate(setEndDate.getDate() - 7);
@@ -641,11 +812,7 @@
 		$("#courseInsertBtn").on("click", function() {
 			var isValid = true;
 			var validMsg;
-			if ( $('[name="member_name"]').val() == '' ) {
-				validMsg = "회원 이름 입력해 주세요";
-				isValid = false;
-			}
-			
+
 			if($("#startTime").val() == '') {
 				validMsg = "시작일을 입력해 주세요.";
 				isValid = false;

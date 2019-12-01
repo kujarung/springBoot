@@ -127,6 +127,7 @@
 </div>
 
 <input th:value="${courseStudent.member_seq}" class="hidden" id="memberSeq">
+<input th:value="${courseStudent.branch}" class="hidden" id="branch"/>
 <!--     
     <div class="col-12">
     	<input type="text" id="test">test</button>
@@ -156,8 +157,9 @@
 			var delayYn = $("#delayYn").text();
 			if(confirm("미루기를 사용 하시겠습니까?") ) {
 				var memberSeq = $("#memberSeq").val();
+				var branch = $('#branch').val();
 				$.ajax({
-					data : {memberSeq : memberSeq, delayNum : 1},
+					data : {memberSeq : memberSeq, delayNum : 1, branch: branch },
 					contentType: "application/json; charset=utf-8",
 					dataType: "json",
 					url : '/couseMaster/delayCourse',
@@ -186,20 +188,21 @@
 			var delayYn = $("#delayYn").text();
 			var memberSeq = $("#memberSeq").val();
 			var delayNum = ($("#times").text()*1)*4;
+			var branch = $('#branch').val();
 			console.log(delayNum);
 			if(confirm("자동연장 사용 하시겠습니까?") ) {
 				$.ajax({
-					data : {memberSeq : memberSeq, delayNum : delayNum},
+					data : {memberSeq : memberSeq, delayNum : delayNum, branch: branch},
 					contentType: "application/json; charset=utf-8",
 					dataType: "json",
 					url : '/couseMaster/delayCourse',
 					success : function(result){
 						if(result == 1) {
 							alert("자동연장 완료");
-							location.reload;
+							location.reload();
 						} else {
 							alert(" 오류 발생 관리자에게 문의 하세요. ");
-							location.reload;
+							location.reload();
 						}
 					}
 				})

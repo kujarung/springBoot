@@ -15,17 +15,25 @@
 			times_week, 
 			is_delay,
 			alias_list_full_name,
-			aliasList
+			aliasList,
+
+			price,
+			price_type,
+			price_date
 		) 
 		VALUES 
-		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,  
-			#{member_seq},
-			#{start_date},
-			#{end_date},
-			#{times_week}, 
+		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,
+			#{memberSeq},
+			#{startDate},
+			#{endDate},
+			#{timesWeek},
 			0,
-			#{alias_list_full_name},
-			#{aliasList}
+			#{aliasListFullName},
+			#{aliasList},
+
+			#{price},
+			#{priceType},
+			#{priceDate}
 		);
 	</insert>
     

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <head th:replace="common/admin/admin_head"></head>
+</head>
+<body>
+
+	<div th:replace="common/admin/admin_gnb"></div>
+	
+	<div class="col-12 right_body">
+   
+    <div class="col-12  mw-768 col-center pt80">
+        <div class="">
+            회원을 등록 하였습니다.
+        </div>
+        <a href="/admin/veiw_member">
+            돌아가기
+        </a>
+    </div>
+</div>
+
+<script>
+    var chkId = false;
+    $("#checkId").on("click",function() {
+        console.log($("#chkIdVal").val())
+        var id = $("#chkIdVal").val();
+        $.ajax({
+            url : "/searchId",
+            dataType: "json",
+            async: false,
+            data: {id : id},
+            success: function(result){
+                if(result) {
+                    alert("사용 가능한 아이디 입니다.");
+                    chkId = result;
+                } else {
+                    alert("사용 불가능한 아이디 입니다.");
+                    chkId = result;
+                }
+            }
+        });
+    })
+
+
+	$("#reg_insert").on("click", function() {
+        var val = true;
+
+        $("input").each(function () {
+            if( $(this).val() == "" ) val = false;
+        })
+        if(val) {
+
+            if(!chkId) {
+                alert("아이디 중복 검사를 해주세요.");
+                return false;
+            } else {
+
+                $("#mbmer_insert").submit();
+            }
+        } else {
+            alert("모든 폼에 입력값은 필수 입니다.")
+        }
+
+	})
+</script>
+</body>
+</html>

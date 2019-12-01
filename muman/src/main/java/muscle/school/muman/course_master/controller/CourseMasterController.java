@@ -21,38 +21,20 @@ public class CourseMasterController {
 	
 	@Autowired
 	CourseMasterService service;
-	/*
-	 * @Autowired MemberService memberService; AdminService adminService;
-	 * 
-	 * 
-	 * //관리자 메인 페이지
-	 * 
-	 * @GetMapping("/admin/index") public String adminMain() { return "admin/index";
-	 * }
-	 * 
-	 * //관리자 학생 등록 페이지
-	 * 
-	 * @GetMapping("/admin/admin_reg_course_student") public String
-	 * adminRegCourseStudent(Model model) {
-	 * 
-	 * return "admin/admin_reg_course_student"; }
-	 * 
-	 * //관리자 강의 등록 페이지
-	 * 
-	 * @GetMapping("/admin/admin_reg_course") public String adminRegCourse() {
-	 * return "admin/admin_reg_course"; }
-	 * 
-	 */
+
+
 
 //	미루기 기능
 	@RequestMapping("/couseMaster/delayCourse")
 	@ResponseBody
 	public void delayCourse(HttpServletResponse response, 
 			@RequestParam(required = false) Integer memberSeq, 
-			@RequestParam(required = false) Integer delayNum) throws IOException  {
+			@RequestParam(required = false) Integer delayNum, int branch
+
+	) throws IOException  {
 		int result;
 		try {
-			result = service.delayCourse(memberSeq, delayNum);
+			result = service.delayCourse(memberSeq, delayNum, branch);
 			result = 1;
 			PrintWriter pw;
 			pw = response.getWriter();

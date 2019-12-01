@@ -42,7 +42,12 @@
 								<td th:text="${memberList.name}"></td>
 								<td th:text="${memberList.member_id}"></td>
 								<td th:text="${memberList.member_etc}"></td>
-								<td th:text="${memberList.branch}"></td>
+								<td th:if="${memberList.branch} == 1">
+									안암점
+								</td>
+								<td th:if="${memberList.branch} == 2">
+									한양대점
+								</td>
 								<td th:text="${memberList.pnum}"></td>
 							</tr>
 		               </tbody>
