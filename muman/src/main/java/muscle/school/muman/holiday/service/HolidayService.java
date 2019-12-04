@@ -30,8 +30,8 @@ public class HolidayService {
 
     }
 
-    public int insertHoliday(String title, String start, String end) {
-        dao.insertHoliday(title, start, end);
+    public int insertHoliday(String title, String start, String end, String branch) {
+        dao.insertHoliday(title, start, end, branch);
         return 1;
     }
 }

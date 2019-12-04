@@ -1,12 +1,17 @@
 package muscle.school.muman.main.controller;
 
+import muscle.school.muman.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import muscle.school.muman.main.service.MainService;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @EnableAutoConfiguration
@@ -15,9 +20,14 @@ public class MainController {
     @Autowired
     MainService service;
 
+
+    @Autowired
+    MemberService memberService;
     //메인 화면으로 이동
     @RequestMapping(value = "/", method=RequestMethod.GET)
-    public String main() throws Exception {
+    public String main(Model model) throws Exception {
+        List<Map<String, Object>> result = memberService.selectMemberList(1,"");
+        model.addAttribute("result", result);
         return "index";
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -466,18 +466,20 @@
        		    	<div>
        		    		나중에 결제 하기
        		    		<input type="checkbox" id="toggle">
+						<input tyle="hidden" name="payment-yn" value="0" id="paymentYn">
        		    	</div>
        		    	
        		    	<script>
        		    		$("#toggle").on("click", function() {
        		    			if( $("#payment").hasClass("active") ) {
+								$("#paymentYn").val('0');
        		    				$("#payment").removeClass("active");
        		    				$("#payment").show();
        		    			} else {
+       		    				$("#paymentYn").val('1');
        		    				$("#payment").addClass("active");
        		    				$("#payment").hide();
        		    			}
-       		    			
        		    		})
        		    	</script>
        		    	

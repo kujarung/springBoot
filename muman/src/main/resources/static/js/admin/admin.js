@@ -30,3 +30,25 @@ function nowDay() {
 	var today = new Date();
 	return dateForm(today);
 }
+
+var Progress = {
+	on : function() {
+		var html = '\t<div style="position:fixed; width:100%; height:100vh; display:flex; z-index: 9; background-color: rgba(0,0,0,0.5);\n' +
+			'\t\t\tjustify-content: center; align-items: center;" id="progressCon">\n' +
+			'\t\t<div style="z-index: 10">\n' +
+			'\t\t\t<img src="/img/ajax-loader.gif">\n' +
+			'\t\t</div>\n' +
+			'\t</div>';
+		$("body").append(html);
+
+		console.log(1111);
+	},
+	off : function(text) {
+		window.setTimeout(function () {
+			$("#progressCon").remove();
+			alert(text);
+			location.reload();
+		},500);
+
+	},
+}

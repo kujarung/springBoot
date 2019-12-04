@@ -6,17 +6,20 @@
 <mapper namespace="muscle.school.muman.holiday.dao.HolidayDao">
 
 	<select id="selectHolidayList" resultType="map">
-    	SELECT * FROM USE_HOLIDAY
+    	SELECT
+    		*
+    	FROM
+    		USE_HOLIDAY
     </select>
 
 	<insert id="insertHoliday">
 		insert into USE_HOLIDAY
 		(
-			START_DAY, HOLIDAY_NAME, USE_YN, IS_STATIC, END_DAY
+			START_DAY, HOLIDAY_NAME, USE_YN, IS_STATIC, END_DAY, BRANCH
 		)
 		values
 		(
-			#{start}, #{title}, 1, 0, #{end}
+			#{start}, #{title}, 1, 0, #{end}, #{branch}
 		)
 	</insert>
 

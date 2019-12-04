@@ -87,7 +87,29 @@ public class MemberController {
 		}
 		
 	}
-	
+
+
+	//관리자 회원 리스트 페이지
+	@GetMapping("/admin/veiw_member")
+	public String admin_veiw_member(Model model, String member_name, @RequestParam(required=false, defaultValue = "1") int currentPage) {
+		List< Map<String,Object> > data = service.selectMemberList(currentPage, member_name);
+
+		int totalCnt = Integer.parseInt( data.get(0).get("TOTAL_CNT").toString() );
+		Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
+		model.addAttribute("memberList", data);
+		model.addAttribute("pagingInfo", pagingInfo);
+		model.addAttribute("currentPage", currentPage);
+
+		return "admin/member/veiw_member";
+	}
+
+	//관리자 회원 등록 페이지
+	@GetMapping("/admin/reg_member")
+	public String adminRegMember() {
+		return "admin/member/reg_member";
+	}
+
+
 	@GetMapping("/sucess")
 	public String sucessRegMember() {
 		return "member/insert_sucess";

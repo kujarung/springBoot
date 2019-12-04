@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <head th:replace="common/admin/admin_head"></head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
 	<div th:replace="common/admin/admin_gnb"></div>
-
 	<div class="col-12 right_body">
 		<div class="col-12" style="padding:50px 50px 50px 0px;">
 			<div class="col-12 mb30 step_title">
 				휴일 관리
 			</div>
 			<div class="col-12">
+				<div style="max-width: 900px; margin: 0 auto; padding: 30px; font-size:20px;">
+					<span style="color:blue;">파랑색</span> 배경은 안암
+					<br>
+					<span style="color:red;">빨강색</span> 배경은 한양대 입니다.
+				</div>
 				<th:block>
 					<div id='calendar'></div>
 				</th:block>
@@ -57,9 +62,9 @@
 				selectMirror: true,
 				select: function(arg) {
 					var title = prompt('휴일 이름을 입력 하세요.');
-					var branch = prompt("지점을 입력하세요. 안암:1, 한양대:2");
 					if (title) {
-						if(branch == 1 && branch == 2) {
+						var branch = prompt("지점을 입력하세요. 안암:1, 한양대:2");
+						if(branch == 1 || branch == 2) {
 							calendar.addEvent({
 								title: title,
 								start: arg.start,
@@ -69,7 +74,8 @@
 							var startDay = new Date(arg.start);
 							var endDay = new Date(arg.end);
 							startDay = dateForm(startDay);
-							endDay = dateForm(endDay);
+							endDay = dateForm( (moment([endDay.getFullYear(), endDay.getMonth(), endDay.getDate()]).subtract(1,"days"))._d );
+
 							var event = { "title" : title,  "start" : startDay,  "end" : endDay, branch : branch};
 							events.push(event);
 							calendar.unselect();
@@ -77,12 +83,15 @@
 								url:'/insertHoliday',
 								dataType: "json",
 								async: false,
-								data : event,
+								data : event
+								, beforeSend: function () {
+									Progress.on();
+								},
 								success: function(result){
 									if(result == 1) {
-										alert("휴일이 등록 되었습니다.")
+										Progress.off("등록이 완료 되었습니다.");
 									} else {
-										alert("등록 오류");
+										Progress.off("등록이 오류");
 									}
 								}
 							});
@@ -133,15 +142,25 @@
 			var events = []
 			var today = new Date();
 			today.getFullYear();
+			console.log(holidayList)
 			for(var i=0; i < holidayList.length;i++) {
 				var start = holidayList[i].START_DAY;
 				var end = holidayList[i].END_DAY;
 				var title = holidayList[i].HOLIDAY_NAME;
+				var backgroundColor = "black";
 				if( holidayList[i].IS_STATIC == 1) {
 					start = today.getFullYear() + "-" + start;
 					end = today.getFullYear() + "-" + end;
 				}
-				var event = {"title" : title, "start" : start, "end": end};
+
+				if(holidayList[i].branch == 1) {
+					backgroundColor = "blue";
+				} else {
+					backgroundColor = "red";
+				}
+
+
+				var event = {"title" : title, "start" : start, "end": end, "backgroundColor" : backgroundColor};
 				events.push(event);
 			}
 			calendar.addEventSource(events);

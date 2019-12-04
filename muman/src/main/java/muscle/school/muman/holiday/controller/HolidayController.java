@@ -39,15 +39,15 @@ public class HolidayController {
 
 	@RequestMapping("/insertHoliday")
 	@ResponseBody
-	int insertHoliday(String title, String start, String end) {
-		int result = service.insertHoliday(title, start, end);
+	int insertHoliday(String title, String start, String end, String branch) {
+		int result = service.insertHoliday(title, start, end, branch);
 		return result;
 	}
 
 	@RequestMapping("/deleteHoliday")
 	@ResponseBody
 	int deletetHoliday(String title, String start, String end) {
-		int result = service.insertHoliday(title, start, end);
+		int result = 1;
 		return result;
 	}
 	

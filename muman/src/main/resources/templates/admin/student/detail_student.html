@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
  <head th:replace="common/admin/admin_head"></head>
 <meta charset="UTF-8">
@@ -42,7 +42,12 @@
 	                       <th>결제 금액</th>
 	                       <td th:text="${courseStudent.price}"></td>
 	                       <th>결제 여부</th>
-	                       <td th:text="${courseStudent.price_date}"></td>
+						   <td th:if="${courseStudent.payment_yn} == 0">
+							   미결제<button id="changePayment">결제 상태 변경</button>
+						   </td>
+						   <td th:if="${courseStudent.payment_yn} == 1">
+							   결제<button id="chkPayInfo">결제 정보 확인</button>
+						   </td>
 	                   </tr>	
 	                   
 	                   <tr>
@@ -67,7 +72,7 @@
 	                   </tr>
 	                   <tr>
 	                       <th>	수강 일수<br>
-	                       		<span id="allShowCourse">모두 보기</span> 
+	                       		<span id="allShowCourse">(모두 보기)</span>
 	                       </th>
 	                       <td colspan="3">
 	                           <div class="col-12 pt20 pb20">

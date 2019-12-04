@@ -64,13 +64,10 @@
 							<th>시작일</th>
 							<th>종료일</th>
 							
-							<th>수강료</th>
-							<th>등록일</th>
-							<th>결제 유형</th>
-							
 							<th>주 횟수</th>
 							<th>Delay 사용 여부</th>
 							<th>지점</th>
+							<th>결제 여부</th>
 						</tr>
 					</thead>
 					
@@ -82,30 +79,6 @@
 								<td th:text="${courseStudentList.START_DATE}"></td>
 								<td th:text="${courseStudentList.END_DATE}"></td>
 
-								<td th:text="${courseStudentList.PRICE}"></td>
-								<td th:if="${courseStudentList.PRICE_DATE} eq '1980-01-01' ">
-									미결제
-								</td>
-
-								<th:block th:if="${courseStudentList.PRICE_DATE} neq '1980-01-01'">
-									<td th:text="${courseStudentList.PRICE_DATE}"></td>
-								</th:block>
-
-								<td th:if="${courseStudentList.PRICE_TYPE} == -1">
-									미결제
-								</td>
-								<td th:if="${courseStudentList.PRICE_TYPE} == 1">
-									카드
-								</td>
-								<td th:if="${courseStudentList.PRICE_TYPE} == 2">
-									계좌
-								</td>
-								<td th:if="${courseStudentList.PRICE_TYPE} == 3">
-									카드+탈잉
-								</td>
-								<td th:if="${courseStudentList.PRICE_TYPE} == 4">
-									계좌+탈잉
-								</td>
 
 								<td th:text="${courseStudentList.TIMES_WEEK} + '' + ${courseStudentList.ALIAS_LIST_FULL_NAME}"></td>
 								<td th:if="${courseStudentList.IS_DELAY} == 0">
@@ -121,6 +94,13 @@
 									한양대점
 								</td>
 								<td class="member_seq hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
+								<td th:if="${courseStudentList.PAYMENT_YN} == 0">
+									미결제
+								</td>
+
+								<td th:if="${courseStudentList.PAYMENT_YN} == 1">
+									결제
+								</td>
 							</th:block>
 						</tr>
 					</tbody>
