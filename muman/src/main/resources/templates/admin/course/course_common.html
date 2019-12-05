@@ -15,9 +15,6 @@
 		<div class="col-12 col-center mw-768">
 			<div class="detail_table mb50">
 				<th:block th:object="${courseDetail}">
-					<td th:text="${courseDetail}">
-
-					</td>
 					<table style="width: 100%;">
 						<colgroup>
 							<col width="20%" />
@@ -27,45 +24,18 @@
 						</colgroup>
 						<tbody>
 						<tr>
-							<th>이름</th>
-							<td th:text="${courseDetail.name}"></td>
-
-							<th>아이디</th>
-							<td th:text="${courseStudent.member_id}"></td>
-						</tr>
-
-						<tr>
-							<th>시작일</th>
-							<td th:text="${courseStudent.start_date}"></td>
-							<th>종료일</th>
-							<td th:text="${courseStudent.end_date}"></td>
-						</tr>
-
-						<tr>
-							<th>결제 금액</th>
-							<td th:text="${courseStudent.price}"></td>
-							<th>결제 여부</th>
-							<td th:if="${courseStudent.payment_yn} == 0">
-								미결제<button id="changePayment">결제 상태 변경</button>
-							</td>
-							<td th:if="${courseStudent.payment_yn} == 1">
-								결제<button id="chkPayInfo">결제 정보 확인</button>
-							</td>
-						</tr>
-
-						<tr>
-							<th>delay 사용 여부</th>
-							<td>
-								<th:block th:if="${courseStudent.is_delay == 0}" id="delayYn">
-									미사용
-								</th:block>
-
-								<th:block th:if="${courseStudent.is_delay == 1}" id="delayYn">
-									사용
-								</th:block>
-							</td>
 							<th>지점</th>
-							<td th:text="${courseStudent.branch}"></td>
+							<td th:text="${courseDetail.branch}"></td>
+
+							<th>시작 시간</th>
+							<td th:text="${courseDetail.course_start_time}"></td>
+						</tr>
+
+						<tr>
+							<th>요일</th>
+							<td th:text="${courseDetail.week_of_day}" id="day"></td>
+							<th>사용 여부</th>
+							<td th:text="${courseDetail.is_use_yn}"></td>
 						</tr>
 						</tbody>
 					</table>

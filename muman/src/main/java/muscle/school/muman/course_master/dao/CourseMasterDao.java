@@ -17,4 +17,5 @@ public interface CourseMasterDao {
 
 	List<Map<String, Object>> selectCourseList(int memberSeq);
 
+	void updateDetail(int useYn, int maxPeople, int alias);
 }

@@ -138,4 +138,14 @@ public class CourseMasterService {
 	}
 
 
+	public int updateDetail(int useYn, int maxPeople, int alias) {
+		try {
+			dao.updateDetail(useYn, maxPeople, alias);
+			System.out.println(1);
+			return 1;
+		} catch (Exception e) {
+			System.out.println(0);
+			return 0;
+		}
+	}
 }

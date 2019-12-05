@@ -81,4 +81,10 @@
 	 	WHERE 
        		MEMBER_SEQ = #{memberSeq}
 	 </select>
+
+	<update id="updateDetail">
+		update COURSE_MASTER set
+		max_people = #{maxPeople}, is_use_yn = #{useYn}
+		where alias_number = #{alias}
+	</update>
 </mapper>

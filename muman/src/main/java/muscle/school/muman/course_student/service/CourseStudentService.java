@@ -26,21 +26,21 @@ public class CourseStudentService {
 	}
 
 	public void insertStudent(String memberSeq, String startDate, String endDate, int timesWeek, String aliasList, 
-			String price, String price_date, String price_type
+			String price, String price_date, String price_type, int paymentYn
 			) {
-		String alias_list_full_name= "";
+		String aliasListFullFame= "";
 		String [] tempAliasList = aliasList.split("\\|");
 		for(int i=0; i< tempAliasList.length;i++) {
 			int aliasNum = Integer.parseInt( tempAliasList[i].toString() );
 			String aliasName = commonService.getAliasToFullName( aliasNum );
 			if(i == 0 ) {
-				alias_list_full_name = aliasName;
+				aliasListFullFame = aliasName;
 			} else {
-				alias_list_full_name = alias_list_full_name + "," + aliasName;
+				aliasListFullFame = aliasListFullFame + "," + aliasName;
 			}
 		}
-		alias_list_full_name = "(" + alias_list_full_name + ")";
-		dao.insertStudent(memberSeq, startDate, endDate, timesWeek, alias_list_full_name, aliasList, price, price_type, price_date);
+		aliasListFullFame = "(" + aliasListFullFame + ")";
+		dao.insertStudent(memberSeq, startDate, endDate, timesWeek, aliasListFullFame, aliasList, price, price_type, price_date, paymentYn);
 		commonDao.nextCourseStudentSeq();
 		
 	}

@@ -40,16 +40,17 @@ public class CourseStudentController {
 
 	@PostMapping("/courseStudent/insertCourseStudent")
 	@Transactional
-	public String insertCourseStudent(HttpServletRequest req, 					  @RequestParam() String member_seq, 
-									  @RequestParam(value = "register_start_time") String 	start_date, @RequestParam() int times,
-									  @RequestParam(value = "register_end_time") String 	end_date,   @RequestParam() String[] time_list, 
-									  @RequestParam() String dayList, 			  		@RequestParam() String aliasList,
-									  @RequestParam() String price_date, 			  	@RequestParam() String price, @RequestParam() String price_type,
+	public String insertCourseStudent(HttpServletRequest req, 					  							@RequestParam(value = "member_seq") String memberSeq,
+									  @RequestParam(value = "register_start_time") String 	startDate, 		@RequestParam() int times,
+									  @RequestParam(value = "register_end_time") String 	endDate,   		@RequestParam(value = "time_list") String[] timeList,
+									  @RequestParam() String dayList, 			  														@RequestParam() String aliasList,
+									  @RequestParam(value = "price_date", defaultValue = "1992-07-28") String priceDate, 			  	@RequestParam() String price,
+									  @RequestParam(value = "price_type") String priceType,
 									  @RequestParam(value="insertBranch") int branch, @RequestParam(value="payment-yn") int paymentYn
 	) throws ParseException {
 
-		courseMasterService.insertCourse(member_seq, dayList, time_list, aliasList, branch);
-		courseStudentService.insertStudent(member_seq, start_date, end_date, times, aliasList, price, price_date, price_type);
+		courseMasterService.insertCourse(memberSeq, dayList, timeList, aliasList, branch);
+		courseStudentService.insertStudent(memberSeq, startDate, endDate, times, aliasList, price, priceDate, priceType, paymentYn);
 		return "admin/common/success";
 	}
 

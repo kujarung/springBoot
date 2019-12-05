@@ -108,4 +108,16 @@ public class CourseMasterController {
 		System.out.println(courseDetail);
 		return "admin/course/course_manage_detail";
 	}
+
+
+	@GetMapping("/updateDetail")
+	@ResponseBody
+	public int updateDetail(@RequestParam(required=false) int useYn,
+							   @RequestParam(required=false) int maxPeople,
+							   @RequestParam(required=false) int alias
+	) {
+		int result;
+		result = service.updateDetail(useYn, maxPeople, alias);
+		return result;
+	}
 }

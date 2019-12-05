@@ -13,72 +13,91 @@
 			강좌 상세 정보
 		</div>
 		<div class="col-12 col-center mw-768">
-			<div class="detail_table mb50">
-				<th:block th:object="${courseDetail}">
-					<td th:text="${courseDetail}">
 
-					</td>
-					<table style="width: 100%;">
-						<colgroup>
-							<col width="20%" />
-							<col width="30%" />
-							<col width="20%" />
-							<col width="30%" />
-						</colgroup>
-						<tbody>
-						<tr>
-							<th>이름</th>
-							<td th:text="${courseDetail.name}"></td>
+				<div class="detail_table mb50">
+					<th:block th:object="${courseDetail}">
+						<table style="width: 100%;">
+							<colgroup>
+								<col width="20%" />
+								<col width="30%" />
+								<col width="20%" />
+								<col width="30%" />
+							</colgroup>
+							<tbody>
+							<tr>
+								<th>지점</th>
+								<td th:text="${courseDetail[0].branch}"></td>
 
-							<th>아이디</th>
-							<td th:text="${courseStudent.member_id}"></td>
-						</tr>
+								<th>시작 시간</th>
+								<td th:text="${courseDetail[0].course_start_time}"></td>
+							</tr>
+							<tr>
+								<th>요일</th>
+								<td th:text="${courseDetail[0].week_of_day}" id="day"></td>
+								<th>사용 여부</th>
+								<td>
+									<select id="useYn">
+										<option value="1" th:selected="${courseDetail[0].is_use_yn} == 1">사용</option>
+										<option value="2" th:selected="${courseDetail[0].is_use_yn} == 2">미사용</option>
+									</select>
+								</td>
 
-						<tr>
-							<th>시작일</th>
-							<td th:text="${courseStudent.start_date}"></td>
-							<th>종료일</th>
-							<td th:text="${courseStudent.end_date}"></td>
-						</tr>
+							</tr>
 
-						<tr>
-							<th>결제 금액</th>
-							<td th:text="${courseStudent.price}"></td>
-							<th>결제 여부</th>
-							<td th:if="${courseStudent.payment_yn} == 0">
-								미결제<button id="changePayment">결제 상태 변경</button>
-							</td>
-							<td th:if="${courseStudent.payment_yn} == 1">
-								결제<button id="chkPayInfo">결제 정보 확인</button>
-							</td>
-						</tr>
+							<tr>
+								<th>최대 수용인원</th>
+								<td>
+									<input th:value="${courseDetail[0].max_people}" id="maxPeople"/>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</th:block>
+				</div>
 
-						<tr>
-							<th>delay 사용 여부</th>
-							<td>
-								<th:block th:if="${courseStudent.is_delay == 0}" id="delayYn">
-									미사용
-								</th:block>
+				<div class="col-12 tc">
+					<div class="serch_btn_con">
+						<div class="serch_btn" onclick="location.href='/admin/course_manage'">
+							이전으로
+						</div>
+					</div>
 
-								<th:block th:if="${courseStudent.is_delay == 1}" id="delayYn">
-									사용
-								</th:block>
-							</td>
-							<th>지점</th>
-							<td th:text="${courseStudent.branch}"></td>
-						</tr>
-						</tbody>
-					</table>
-				</th:block>
-			</div>
+					<div class="serch_btn_con">
+						<div class="serch_btn" id="reviseBtn">
+							수정
+						</div>
+					</div>
+				</div>
+
 		</div>
-
+		<input type="hidden" th:value="${alias}" id="alias">
 	</div>
 </div>
 
 <script>
 	$(function(){
+		$("#reviseBtn").on("click", function() {
+			var useYn = $("#useYn").val();
+			var maxPeople = $("#maxPeople").val();
+			var alias = $("#alias").val();
+			console.log()
+			$.ajax({
+				data : {useYn : useYn, maxPeople:maxPeople, alias: alias},
+				dataType : "json",
+				url : "/updateDetail",
+				beforeSend: function () {
+					Progress.on();
+				},
+				success : function(result) {
+					if(result == 1) {
+						Progress.off("수정이 완료 되었습니다.");
+					} else {
+						Progress.off("수정 오류 입니다.");
+					}
 
+				}
+			})
+		})
 	});
 </script>
 </body>

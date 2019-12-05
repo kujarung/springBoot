@@ -19,7 +19,8 @@
 
 			price,
 			price_type,
-			price_date
+			price_date,
+			payment_yn
 		) 
 		VALUES 
 		(   IFNULL( (SELECT MAX(course_student_seq) + 1 FROM GENERATE_SEQ) , 1 )  ,
@@ -33,7 +34,8 @@
 
 			#{price},
 			#{priceType},
-			#{priceDate}
+			#{priceDate},
+			#{paymentYn}
 		);
 	</insert>
     

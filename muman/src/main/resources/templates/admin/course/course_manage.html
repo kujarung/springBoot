@@ -55,17 +55,21 @@
 								th:if="${courseRegNumList.course_start_time} == 10">
 	                       	   <span  th:if="${courseRegNumList.is_use_yn} == 1">
 	                       	     <span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
-		                       	 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
-		                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-		                       	 </span>
-		                       	 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
-		                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-		                       	 </span>
-		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
-	                       	   </span>
+
+								   <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+									   <span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+								   </span>
+
+								   <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
+									   <span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+								   </span>
+								   <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+							   </span>
+
 								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
-	                       	   	 강의 없음
-	                       	   </span>
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -75,12 +79,16 @@
 								th:if="${courseRegNumList.course_start_time} == 12">
 								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
 								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
-	                     	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-	                     	 </span>
+	                     	 		<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                     	 	</span>
 								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
-	                     	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-	                     	 </span>
+	                     	 		<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
+	                     	 	</span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -91,11 +99,15 @@
 								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
 								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 		                 	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-		                 	 </span>
+		                 	 	</span>
 								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 		                 	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-		                 	 </span>
+		                 	 	</span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -106,11 +118,15 @@
 								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
 								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-	                       	 </span>
+	                       	 	</span>
 								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-	                       	 </span>
+	                       	 	</span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -121,11 +137,15 @@
 								<span th:text="${courseRegNumList.couse_time_name} + '교시' "></span>
 								<span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-	                       	 </span>
+	                       	 	</span>
 								<span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
-	                       	 </span>
+	                       	 	</span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -144,8 +164,9 @@
 		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 	                       	   </span>
 								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
-	                       	   	 강의 없음
-	                       	   </span>
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 						</tbody>
@@ -184,8 +205,9 @@
 		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 	                       	   </span>
 								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
-	                       	   	 강의 없음
-	                       	   </span>
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -201,6 +223,10 @@
 	                     	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                     	 </span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+																<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -231,6 +257,10 @@
 	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                       	 </span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+																<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -246,6 +276,10 @@
 	                       	 	<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 	                       	 </span>
 								<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+																<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -264,8 +298,9 @@
 		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 	                       	   </span>
 								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
-	                       	   	 강의 없음
-	                       	   </span>
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 
@@ -284,8 +319,9 @@
 		                       	 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 	                       	   </span>
 								<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
-	                       	   	 강의 없음
-	                       	   </span>
+									<span>강의 없음</span>
+									<span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
+								</span>
 							</td>
 						</tr>
 						</tbody>
@@ -394,6 +430,7 @@
 
 		$("#courseTimeTable tbody tr td").on("click", function() {
 			var alias = $(this).find(".alias_num").text();
+			console.log(alias);
 			location.href="/admin/course_manage_detail?alias=" + alias;
 		})
 	})
