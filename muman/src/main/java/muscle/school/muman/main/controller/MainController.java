@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import muscle.school.muman.main.service.MainService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,10 @@ public class MainController {
     MemberService memberService;
     //메인 화면으로 이동
     @RequestMapping(value = "/", method=RequestMethod.GET)
-    public String main(Model model) throws Exception {
+    public String main(HttpServletRequest request, Model model) throws Exception {
+        if(request.getSession().getAttribute("loginInfo") != null) {
+
+        }
         List<Map<String, Object>> result = memberService.selectMemberList(1,"");
         model.addAttribute("result", result);
         return "index";

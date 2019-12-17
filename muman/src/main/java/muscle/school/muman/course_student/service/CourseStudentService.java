@@ -42,7 +42,6 @@ public class CourseStudentService {
 		aliasListFullFame = "(" + aliasListFullFame + ")";
 		dao.insertStudent(memberSeq, startDate, endDate, timesWeek, aliasListFullFame, aliasList, price, price_type, price_date, paymentYn);
 		commonDao.nextCourseStudentSeq();
-		
 	}
 
 	public List<Map<String, Object>> selectCourseStudentList(int currentPage) {

@@ -61,4 +61,6 @@
 	<select id="isExistId" resultType="int">
 		select count(member_id) from MEMBER where member_id = #{id}
 	</select>
+
+
 </mapper>

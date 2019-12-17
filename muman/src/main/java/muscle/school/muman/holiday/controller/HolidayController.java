@@ -2,6 +2,7 @@ package muscle.school.muman.holiday.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class HolidayController {
 
 	@RequestMapping("/insertHoliday")
 	@ResponseBody
-	int insertHoliday(String title, String start, String end, String branch) {
+	int insertHoliday(String title, String start, String end, String branch) throws ParseException {
 		int result = service.insertHoliday(title, start, end, branch);
 		return result;
 	}

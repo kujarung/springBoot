@@ -14,4 +14,8 @@ public interface HolidayDao {
     List<Map<String, Object>> selectHolidayList();
 
     void insertHoliday(String title, String start, String end, String branch);
+
+    List<Map<String, Object>> searchHoilday(String searchDay);
+
+    List<Map<String, Object>> getDeayMember(int startDay, String start);
 }

@@ -23,4 +23,9 @@
 		)
 	</insert>
 
+	<select id="getDeayMember" resultType="map">
+		select * from COURSE_STUDENT
+		left join MEMBER M on COURSE_STUDENT.member_seq = M.member_seq
+		where #{start} between start_date and end_date
+	</select>
 </mapper>

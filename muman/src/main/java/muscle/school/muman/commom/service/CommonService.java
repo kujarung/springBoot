@@ -350,6 +350,15 @@ public class CommonService {
 		return result;
 		
 	}
+
+	public Calendar changeCal(String day) {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, Integer.parseInt(day.split("-")[0]) );
+		cal.set(Calendar.MONTH, Integer.parseInt(day.split("-")[1]) - 1);
+		cal.set(Calendar.DATE, Integer.parseInt(day.split("-")[2]));
+
+		return cal;
+	}
 	/**
 	 * @param args
 	 */
