@@ -69,7 +69,7 @@ public class CourseMasterService {
 	/**
 	 * @param member_seq
 	 * @param delay_num
-	 * 
+	 *
 	 * @return 
 	 * */
 	
@@ -107,7 +107,7 @@ public class CourseMasterService {
 				//수요일 = 4
 				//결과 = 7 - 절대값(4 - 3)
 				//오늘 부터 결과 값 만큼 +
-				
+
 				int resultDay = serchIntDay - intEndDay;
 				if(serchIntDay - intEndDay < 0) {
 					resultDay = 7 - Math.abs(serchIntDay - intEndDay);

@@ -1,6 +1,7 @@
 package muscle.school.muman.holiday.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -38,32 +39,50 @@ public class HolidayService {
 
     @Transactional
     public int insertHoliday(String title, String start, String end, String branch) throws ParseException {
-        dao.insertHoliday(title, start, end, branch);
-        int startDay = commonService.getDayOfWeek(start);
+        try {
+            dao.insertHoliday(title, start, end, branch);
+            int startDay = commonService.getDayOfWeek(start);
 
-        List<Map<String, Object>> deayMemberList = dao.getDeayMember(startDay,start);
+            Calendar startCal = Calendar.getInstance();
+            startCal.set(Calendar.YEAR, Integer.parseInt(start.split("-")[0]) );
+            startCal.set(Calendar.MONTH, Integer.parseInt(start.split("-")[1]) - 1);
+            startCal.set(Calendar.DATE, Integer.parseInt(start.split("-")[2]));
 
-        for(int i=0; i <deayMemberList.size(); i++) {
-            String memberStartDay = deayMemberList.get(i).get("start_date").toString();
-            String memberEndDay = deayMemberList.get(i).get("end_date").toString();
-            int memberSeq = Integer.parseInt(deayMemberList.get(i).get("member_seq").toString());
-            int insertBranch = Integer.parseInt(deayMemberList.get(i).get("branch").toString());
-            System.out.println(deayMemberList.get(i).get("aliasList") );
-            String[] memberAliasList = deayMemberList.get(i).get("aliasList").toString().split("|");
-            Calendar endCal = commonService.changeCal(end);
-            Calendar memberStartCal = commonService.changeCal(memberStartDay);
-            while( endCal.compareTo(memberStartCal) == 1 ) {
-                int plusDate = 0;
-                memberStartCal.add(Calendar.DATE, plusDate);
-                for(int a = 0;a < memberAliasList.length;a++) {
-                    int holdiay = memberStartCal.get(Calendar.DAY_OF_WEEK);
-                    int alias = Integer.parseInt(memberAliasList[a]);
-                    if(holdiay == alias) {
-                        courseMasterService.delayCourse(memberSeq, 1, insertBranch);
+            Calendar endCal = Calendar.getInstance();
+            endCal.set(Calendar.YEAR, Integer.parseInt(end.split("-")[0]) );
+            endCal.set(Calendar.MONTH, Integer.parseInt(end.split("-")[1]) - 1);
+            endCal.set(Calendar.DATE, Integer.parseInt(end.split("-")[2]));
+
+            // 시작일이 끝나는 날 보다 클 때 까지 반복
+            while(startCal.compareTo(endCal) < 0) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String whileStart = format.format(startCal.getTime() );
+                System.out.println();
+                // 휴일의 시작일이 수강 중인 날짜의 중간인 멤버를 찾음
+                List<Map<String, Object>> dealMemberList = dao.getDeayMember(Calendar.DAY_OF_WEEK, whileStart);
+                //멤버의 수 만큼 반복
+                for (Map<String, Object> stringObjectMap : dealMemberList) {
+                    //제어 할 멥버의 정보값을 가져옴
+                    int memberSeq = Integer.parseInt(stringObjectMap.get("member_seq").toString());
+                    int insertBranch = Integer.parseInt(stringObjectMap.get("branch").toString());
+                    String[] memberAliasList = stringObjectMap.get("aliasList").toString().split("\\|");
+                    // 정보 값 중 멤버가 수강하고 있는 날의 aliasList에 있는 값 중 휴일과 일치하는 날이 있는 지 찾아봄
+                    // 있다면 딜레이 없다면 스킵
+                    int holiday = startCal.get(Calendar.DAY_OF_WEEK);
+                    System.out.println(format.format(startCal.getTime() ));
+                    for (String s : memberAliasList) {
+                        int alias = Integer.parseInt(s);
+                        int aliasDay = Integer.parseInt(commonService.getAliasDetail(alias).get("dayOfWeek").toString());
+                        if ( holiday == aliasDay) {
+                            courseMasterService.delayCourse(memberSeq, 1, insertBranch);
+                        }
                     }
                 }
+                startCal.add(Calendar.DATE,1);
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
 
         /*

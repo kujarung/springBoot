@@ -19,7 +19,7 @@ public class CommonService {
 	
 	@Autowired
 	CourseMasterService courseMasterService;
-	
+
 	//월요일과 금요일 날을 리턴 하는 함수
 	public String[] todayWeek(String standardDate) {
 		String[] result = new String[2];
@@ -65,7 +65,8 @@ public class CommonService {
 	
 	//yyyy-mm-dd 형태로 포메팅 하는 함수
 	public String formatDate(Calendar currentCalendar) {
-		return currentCalendar.get(Calendar.DAY_OF_YEAR) + "-" + currentCalendar.get(Calendar.DAY_OF_MONTH) + "-" + currentCalendar.get(Calendar.DATE);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return (format.format(currentCalendar).toString() );
 	}
 	
 	//날짜의 요일을 알려 주는 함수
@@ -76,7 +77,7 @@ public class CommonService {
 		changeMonth= Integer.parseInt( currentDate.split("-")[1] );
 		changeDate =Integer.parseInt( currentDate.split("-")[2] );
 		cal.set( changeYear , changeMonth - 1, changeDate);
-		changeDayOfWeek = cal.get(cal.DAY_OF_WEEK) - 1;
+		changeDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 		return changeDayOfWeek;
 	}
 	
@@ -111,7 +112,341 @@ public class CommonService {
     	pagingInfo.put("next", next);
     	return pagingInfo;
     }
-	
+
+    public Map<String, Object> getAliasDetail(int alias) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		switch(alias){
+			case 1:
+				result.put("fullName","월1교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",1);
+				break ;
+			case 2:
+				result.put("fullName","월2교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",1);
+				break ;
+			case 3:
+				result.put("fullName","월3교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",1);
+				break ;
+			case 4:
+				result.put("fullName","월4교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",1);
+				break ;
+			case 5:
+				result.put("fullName","월5교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",1);
+				break ;
+			case 6:
+				result.put("fullName","월6교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",1);
+				break ;
+			case 7:
+				result.put("fullName","화1교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",1);
+				break ;
+			case 8:
+				result.put("fullName","화2교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",1);
+				break ;
+			case 9:
+				result.put("fullName","화3교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",1);
+				break ;
+			case 10:
+				result.put("fullName","화4교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",1);
+				break ;
+			case 11:
+				result.put("fullName","화5교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",1);
+				break ;
+			case 12:
+				result.put("fullName","화6교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",1);
+				break ;
+			case 13:
+				result.put("fullName","수1교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",1);
+				break ;
+			case 14:
+				result.put("fullName","수2교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",1);
+				break ;
+			case 15:
+				result.put("fullName","수3교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",1);
+				break ;
+			case 16:
+				result.put("fullName","수4교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",1);
+				break ;
+			case 17:
+				result.put("fullName","수5교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",1);
+				break ;
+			case 18:
+				result.put("fullName","수6교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",1);
+				break ;
+
+			case 19:
+				result.put("fullName","목1교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",1);
+				break ;
+			case 20:
+				result.put("fullName","목2교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",1);
+				break ;
+			case 21:
+				result.put("fullName","목3교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",1);
+				break ;
+			case 22:
+				result.put("fullName","목4교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",1);
+				break ;
+			case 23:
+				result.put("fullName","목5교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",1);
+				break ;
+			case 24:
+				result.put("fullName","목6교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",1);
+				break ;
+
+			case 25:
+				result.put("fullName","금1교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",1);
+				break ;
+			case 26:
+				result.put("fullName","금2교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",1);
+				break ;
+			case 27:
+				result.put("fullName","금3교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",1);
+				break ;
+			case 28:
+				result.put("fullName","금4교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",1);
+				break ;
+			case 29:
+				result.put("fullName","금5교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",1);
+				break ;
+			case 30:
+				result.put("fullName","금6교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",1);
+				break ;
+
+			case 31:
+				result.put("fullName","월1교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 32:
+				result.put("fullName","월2교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 33:
+				result.put("fullName","월3교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 34:
+				result.put("fullName","월4교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 35:
+				result.put("fullName","월5교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 36:
+				result.put("fullName","월6교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 37:
+				result.put("fullName","월7교시");
+				result.put("dayOfWeek",2);
+				result.put("branch",2);
+				break ;
+			case 38:
+				result.put("fullName","화1교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 39:
+				result.put("fullName","화2교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 40:
+				result.put("fullName","화3교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 41:
+				result.put("fullName","화4교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 42:
+				result.put("fullName","화5교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 43:
+				result.put("fullName","화6교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 44:
+				result.put("fullName","화7교시");
+				result.put("dayOfWeek",3);
+				result.put("branch",2);
+				break ;
+			case 45:
+				result.put("fullName","수1교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 46:
+				result.put("fullName","수2교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 47:
+				result.put("fullName","수3교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 48:
+				result.put("fullName","수4교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 49:
+				result.put("fullName","수5교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 50:
+				result.put("fullName","수6교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 51:
+				result.put("fullName","수7교시");
+				result.put("dayOfWeek",4);
+				result.put("branch",2);
+				break ;
+			case 52:
+				result.put("fullName","목1교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 53:
+				result.put("fullName","목2교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 54:
+				result.put("fullName","목3교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 55:
+				result.put("fullName","목4교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 56:
+				result.put("fullName","목5교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 57:
+				result.put("fullName","목6교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 58:
+				result.put("fullName","목7교시");
+				result.put("dayOfWeek",5);
+				result.put("branch",2);
+				break ;
+			case 59:
+				result.put("fullName","금1교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+			case 60:
+				result.put("fullName","금2교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+			case 61:
+				result.put("fullName","금3교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+			case 62:
+				result.put("fullName","금4교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+			case 63:
+				result.put("fullName","금5교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+			case 64:
+				result.put("fullName","금6교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+			case 65:
+				result.put("fullName","금7교시");
+				result.put("dayOfWeek",6);
+				result.put("branch",2);
+				break ;
+		}
+		return result;
+	}
 	
 	//alias 번호를 풀 네임으로 변환 시키는 함수
 	public String getAliasToFullName(int alias) {

@@ -39,7 +39,6 @@ public class CourseMasterController {
 	public void delayCourse(HttpServletResponse response, 
 			@RequestParam(required = false) Integer memberSeq, 
 			@RequestParam(required = false) Integer delayNum, int branch
-
 	) throws IOException  {
 		int result;
 		try {
@@ -58,7 +57,7 @@ public class CourseMasterController {
 	//관리자 강의 등록 페이지
 	@GetMapping("/admin/reg_course")
 	public String adminRegCourse() {
-		return "admin/reg_course";
+	    return "admin/reg_course";
 	}
 
 
@@ -120,4 +119,6 @@ public class CourseMasterController {
 		result = service.updateDetail(useYn, maxPeople, alias);
 		return result;
 	}
+
+
 }
