@@ -74,7 +74,7 @@ public class CommonService {
 		int changeYear, changeMonth, changeDate, changeDayOfWeek; 
 		Calendar cal = Calendar.getInstance();
 		changeYear = Integer.parseInt( currentDate.split("-")[0] );	
-		changeMonth= Integer.parseInt( currentDate.split("-")[1] );
+		changeMonth= Integer.parseInt( currentDate.split("-")[1]);
 		changeDate =Integer.parseInt( currentDate.split("-")[2] );
 		cal.set( changeYear , changeMonth - 1, changeDate);
 		changeDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
@@ -694,20 +694,8 @@ public class CommonService {
 
 		return cal;
 	}
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		int alias = 2;
-		String endDate = "2019-12-23";
-		int num = 12;
-		Calendar cal = Calendar.getInstance();
-		int endDateYear = Integer.parseInt( endDate.split("-")[0] );
-		int endDateMonth = Integer.parseInt( endDate.split("-")[1] ) - 1;
-		int endDateDate = Integer.parseInt(endDate.split("-")[2] );
-		cal.set( Calendar.YEAR, endDateYear );
-		cal.set( Calendar.MONTH, endDateMonth );
-		cal.set( Calendar.DATE, endDateDate );
-		
+
+	public String showCalDetail(Calendar cal) {
+		return cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE);
 	}
 }

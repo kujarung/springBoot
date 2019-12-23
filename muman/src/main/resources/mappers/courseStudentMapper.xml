@@ -77,4 +77,20 @@
     	WHERE 
     		MEMBER_SEQ = #{member_seq}
     </update>
+
+	<update id="updateCourseStudent">
+		update COURSE_STUDENT set
+			end_date = #{endDate},
+			times_week = #{timesWeek},
+			is_delay = 0,
+			alias_list_full_name = #{aliasListFullName},
+			aliasList = #{aliasList},
+
+			price = #{price},
+			price_type = #{priceType},
+			price_date = #{priceDate},
+			payment_yn = #{paymentYn}
+		where
+			MEMBER_SEQ = #{memberSeq}
+	</update>
 </mapper>

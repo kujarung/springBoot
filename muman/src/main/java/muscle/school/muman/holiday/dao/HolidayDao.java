@@ -11,7 +11,7 @@ public interface HolidayDao {
 
 	void insertMember(String name, String id, String pass, String branch, String member_etc, String pnum);
 
-    List<Map<String, Object>> selectHolidayList();
+    List<Map<String, Object>> selectHolidayList(Map<String, Object> param);
 
     void insertHoliday(String title, String start, String end, String branch);
 

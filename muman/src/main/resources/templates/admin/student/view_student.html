@@ -14,45 +14,46 @@
 	        	수강생 현황
 		</div>
 		
-        <div class="col-12 mb30">
-            <table class="col-12 filter_table mb30">
-                <colgroup>
-                    <col width = "10%">
-                    <col width = "auto">
-                </colgroup>
-                <tbody>
-                <tr>
-                    <th class="left">이름</td>
-                    <td>
-                        <div class="input_style1_con">
-                            <input type="text">
-                        </div>
-                    </td>
-                </tr>
+<!--        <div class="col-12 mb30">-->
+<!--            <table class="col-12 filter_table mb30">-->
+<!--                <colgroup>-->
+<!--                    <col width = "10%">-->
+<!--                    <col width = "auto">-->
+<!--                </colgroup>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    <th class="left">이름</td>-->
+<!--                    <td>-->
+<!--                        <div class="input_style1_con">-->
+<!--                            <input type="text">-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
 
-                <tr>
-                    <th class="left">지점</td>
-                    <td>
-                        <div class="select_style1_con">
-                            <select name="" id="">
-                                <option value="">전체</option>
-                                <option value="1">안암점</option>
-                                <option value="2">한양대점</option>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+<!--                <tr>-->
+<!--                    <th class="left">지점</td>-->
+<!--                    <td>-->
+<!--                        <div class="select_style1_con">-->
+<!--                            <select name="" id="">-->
+<!--                                <option value="">전체</option>-->
+<!--                                <option value="1">안암점</option>-->
+<!--                                <option value="2">한양대점</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
 
-            <div class="col-12 tc">
-                <div class="serch_btn_con">
-                    <div class="serch_btn">
-                        검색
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--            <div class="col-12 tc">-->
+<!--                <div class="serch_btn_con">-->
+<!--                    <div class="serch_btn">-->
+<!--                        검색-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
 
 		<div class="col-12">
 			<div class="col-12">
@@ -156,12 +157,6 @@
 	$(function(){
 		$("#test").addClass("test");
 		$("#test").on("click", function(){
-			$.ajax({
-				url : '/test',
-				success : (result) => {
-					
-				}
-			})
 		});
 		
 		$("#stdent_table tbody tr").on("click", function(){
@@ -169,8 +164,9 @@
 			location.href = "/admin/detail_student?memberSeq="+memberSeq;
 		})
 	});
-	
-	
+
+	$('[href="/admin/view_student"]').parent().addClass("active");
+
 
 </script>
 </body>

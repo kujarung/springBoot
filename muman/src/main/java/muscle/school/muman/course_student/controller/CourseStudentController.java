@@ -44,13 +44,30 @@ public class CourseStudentController {
 									  @RequestParam(value = "register_start_time") String 	startDate, 		@RequestParam() int times,
 									  @RequestParam(value = "register_end_time") String 	endDate,   		@RequestParam(value = "time_list") String[] timeList,
 									  @RequestParam() String dayList, 			  														@RequestParam() String aliasList,
-									  @RequestParam(value = "price_date", defaultValue = "1992-07-28") String priceDate, 			  	@RequestParam() String price,
+									  @RequestParam(value = "price_date", defaultValue = "1999-09-09") String priceDate, 			  	@RequestParam() String price,
 									  @RequestParam(value = "price_type") String priceType,
 									  @RequestParam(value="insertBranch") int branch, @RequestParam(value="payment-yn") int paymentYn
 	) throws ParseException {
 
 		courseMasterService.insertCourse(memberSeq, dayList, timeList, aliasList, branch);
 		courseStudentService.insertStudent(memberSeq, startDate, endDate, times, aliasList, price, priceDate, priceType, paymentYn);
+		return "admin/common/success";
+	}
+
+
+	@PostMapping("/courseStudent/updateCourseStudent")
+	@Transactional
+	public String updateCourseStudent(HttpServletRequest req, 					  							@RequestParam(value = "member_seq") String memberSeq,
+									  @RequestParam() int times,
+									  @RequestParam(value = "register_end_time") String 	endDate,   		@RequestParam(value = "time_list") String[] timeList,
+									  @RequestParam() String dayList, 			  														@RequestParam() String aliasList,
+									  @RequestParam(value = "price_date", defaultValue = "1999-09-09") String priceDate, 			  	@RequestParam() String price,
+									  @RequestParam(value = "price_type") String priceType,
+									  @RequestParam(value="insertBranch") int branch, @RequestParam(value="payment-yn") int paymentYn
+	) throws ParseException {
+
+		courseMasterService.insertCourse(memberSeq, dayList, timeList, aliasList, branch);
+		courseStudentService.updateCourseStudent(memberSeq, endDate, times, aliasList, price, priceDate, priceType, paymentYn);
 		return "admin/common/success";
 	}
 
@@ -79,12 +96,14 @@ public class CourseStudentController {
 	public String adminRegCourseStudent(Model model, @RequestParam(required=false) String standardDate
 			,@RequestParam(required=false, defaultValue= "1") int branch
 	) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("branch", branch);
 		//시작일과 끝일을 리턴 받음
 		String[] dateList   = commonService.todayWeek(standardDate);
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
 		List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate, branch);
-		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
+		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList(param);
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("today", commonService.currentDay(standardDate));
@@ -95,7 +114,9 @@ public class CourseStudentController {
 
 	//관리자 확인 페이지
 	@GetMapping("/admin/detail_student")
-	public String detail_student(Model model, int memberSeq) {
+	public String detail_student(HttpServletRequest req, Model model) {
+		int memberSeq = Integer.parseInt(req.getParameter("memberSeq").toString() );
+		System.out.println(memberSeq);
 		Map<String, Object> courseStudent = courseStudentService.getCourseStudentDetail(memberSeq);
 		List<Map<String, Object>> courseList = courseMasterService.selectCourseList(memberSeq);
 

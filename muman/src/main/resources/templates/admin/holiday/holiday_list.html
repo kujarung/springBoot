@@ -28,6 +28,7 @@
 
 	<th:block>
 	<script th:inline="javascript">
+		$('[href="/holiday_list"]').parent().addClass("active");
 		function calInit() {
 			/*<![CDATA[*/
 			var holidayList = [[${holidayList}]];
@@ -112,7 +113,7 @@
 				allDaySlot: true,
 				displayEventTime: true,
 				displayEventEnd: true,
-				firstDay: 0, //월요일이 먼저 오게 하려면 1
+				firstDay: 1, //월요일이 먼저 오게 하려면 1
 				weekNumbers: false,
 				selectable: true,
 				weekNumberCalculation: "ISO",
@@ -152,15 +153,15 @@
 					start = today.getFullYear() + "-" + start;
 					end = today.getFullYear() + "-" + end;
 				}
-
 				if(holidayList[i].branch == 1) {
 					backgroundColor = "blue";
 				} else {
 					backgroundColor = "red";
 				}
-
-
-				var event = {"title" : title, "start" : start, "end": end, "backgroundColor" : backgroundColor};
+				var endPlus1 = newDateForm(end);
+				endPlus1.setDate(endPlus1.getDate() + 1);
+				endPlus1 = dateForm(endPlus1);
+				var event = {"title" : title, "start" : start, "end": endPlus1, "backgroundColor" : backgroundColor};
 				events.push(event);
 			}
 			calendar.addEventSource(events);

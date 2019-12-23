@@ -18,4 +18,8 @@ public interface CourseMasterDao {
 	List<Map<String, Object>> selectCourseList(int memberSeq);
 
 	void updateDetail(int useYn, int maxPeople, int alias);
+
+	void changePayment(Integer memberSeq);
+
+	List<Map<String, Object>> searchHolidayInCourse(String startDate, String endDate);
 }

@@ -3,6 +3,7 @@ package muscle.school.muman.course_master.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,6 @@ public class CourseMasterController {
 		int result;
 		try {
 			result = service.delayCourse(memberSeq, delayNum, branch);
-			result = 1;
 			PrintWriter pw;
 			pw = response.getWriter();
 			pw.print(result);
@@ -53,6 +53,26 @@ public class CourseMasterController {
 			e.printStackTrace();
 		}
 	}
+
+	//	미루기 기능
+	@RequestMapping("/couseMaster/changePayment")
+	@ResponseBody
+	public void changePayment(HttpServletResponse response,
+							@RequestParam(required = false) Integer memberSeq
+	) throws IOException  {
+		int result;
+		try {
+			result = service.changePayment(memberSeq);
+			PrintWriter pw;
+			pw = response.getWriter();
+			pw.print(result);
+			pw.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	//관리자 강의 등록 페이지
 	@GetMapping("/admin/reg_course")
@@ -66,12 +86,14 @@ public class CourseMasterController {
 	public String adminCourseManage(Model model, @RequestParam(required=false) String standardDate
 			,@RequestParam(required=false, defaultValue= "1") int branch
 	) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("branch", branch);
 		//시작일과 끝일을 리턴 받음
 		String[] dateList   = commonService.todayWeek(standardDate);
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
 		List<Map<String,Object>> courseNumList 	= service.selectRegMemberList(startDate, endDate, branch);
-		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
+		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList(param);
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("today", commonService.currentDay(standardDate));
@@ -85,15 +107,20 @@ public class CourseMasterController {
 	public String extendCourse(int memberSeq, Model model, @RequestParam(required=false) String standardDate
 			,@RequestParam(required=false, defaultValue= "1") int branch
 	) {
+		System.out.println(memberSeq);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("branch", branch);
+		//시작일과 끝일을 리턴 받음
 		String[] dateList   = commonService.todayWeek(standardDate);
 		String startDate 	= dateList[0];
 		String endDate 		= dateList[1];
 		List<Map<String,Object>> courseNumList 	= service.selectRegMemberList(startDate, endDate, branch);
-		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList();
+		List<Map<String,Object>> holidayList 	= holidayService.selectHolidayList(param);
 		model.addAttribute("courseNumList", courseNumList);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("today", commonService.currentDay(standardDate));
 		model.addAttribute("holidayList" , holidayList);
+		model.addAttribute("branch", branch);
 		model.addAttribute("memberSeq", memberSeq);
 
 		return "admin/course/extendCourse";

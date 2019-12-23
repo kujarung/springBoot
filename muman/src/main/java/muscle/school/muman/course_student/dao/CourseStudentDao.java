@@ -18,4 +18,6 @@ public interface CourseStudentDao {
 	void updateDelay(int member_seq, String updateDay);
 
 	void insertStudent(String memberSeq, String startDate, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
+
+	void updateCourseStudent(String memberSeq, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
 }

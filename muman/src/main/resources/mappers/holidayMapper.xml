@@ -5,11 +5,17 @@
     
 <mapper namespace="muscle.school.muman.holiday.dao.HolidayDao">
 
-	<select id="selectHolidayList" resultType="map">
+	<select id="selectHolidayList" resultType="map" parameterType="map">
     	SELECT
     		*
     	FROM
     		USE_HOLIDAY
+    	WHERE
+    		1 = 1
+    		<if test="branch != ''">
+				and branch = #{branch}
+			</if>
+
     </select>
 
 	<insert id="insertHoliday">

@@ -58,5 +58,21 @@ public class CourseStudentService {
 		// TODO Auto-generated method stub
 		dao.updateDelay(memberSeq, updateDay);
 	}
-	
+
+	public void updateCourseStudent(String memberSeq, String endDate, int timesWeek, String aliasList,
+									String price, String priceDate, String priceType, int paymentYn){
+		String aliasListFullName= "";
+		String [] tempAliasList = aliasList.split("\\|");
+		for(int i=0; i< tempAliasList.length;i++) {
+			int aliasNum = Integer.parseInt( tempAliasList[i].toString() );
+			String aliasName = commonService.getAliasToFullName( aliasNum );
+			if(i == 0 ) {
+				aliasListFullName = aliasName;
+			} else {
+				aliasListFullName = aliasListFullName + "," + aliasName;
+			}
+		}
+		aliasListFullName = "(" + aliasListFullName + ")";
+		dao.updateCourseStudent(memberSeq, endDate, timesWeek, aliasListFullName, aliasList, price, priceType, priceDate, paymentYn);
+	}
 }

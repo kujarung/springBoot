@@ -3,6 +3,7 @@ package muscle.school.muman.holiday.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,9 @@ public class HolidayController {
 
 	@RequestMapping("/holiday_list")
 	public String holidayList(Model model) {
-		List<Map<String,Object>> holidayList = service.selectHolidayList();
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("branch", "");
+		List<Map<String,Object>> holidayList = service.selectHolidayList(param);
 
 		model.addAttribute("holidayList", holidayList);
 		return "admin/holiday/holiday_list";

@@ -78,8 +78,11 @@
 	 		* 
 	 	FROM 
 	 		EXCERCISE_MASTER 
-	 	WHERE 
-       		MEMBER_SEQ = #{memberSeq}
+	 	WHERE
+	 		1=1
+		 <if test="_parameter != 0">
+       		and MEMBER_SEQ = #{memberSeq}
+		 </if>
 	 </select>
 
 	<update id="updateDetail">
@@ -87,4 +90,18 @@
 		max_people = #{maxPeople}, is_use_yn = #{useYn}
 		where alias_number = #{alias}
 	</update>
+
+
+	<update id="changePayment">
+		update COURSE_STUDENT set
+		price_date = sysdate(), payment_yn = 1
+		where member_seq = #{memberSeq}
+	</update>
+
+	<select id="searchHolidayInCourse" resultType="map">
+		select branch, member_seq
+		from EXCERCISE_MASTER
+		where ex_date between
+		#{startDate} and #{endDate}
+	</select>
 </mapper>

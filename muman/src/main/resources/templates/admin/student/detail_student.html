@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <div th:replace="common/admin/admin_gnb"></div>
 <div class="col-12 right_body" style="padding-top:100px;">
     <div class="col-12 inner_con">
@@ -46,7 +47,8 @@
 							   미결제<button id="changePayment">결제 상태 변경</button>
 						   </td>
 						   <td th:if="${courseStudent.payment_yn} == 1">
-							   결제<button id="chkPayInfo">결제 정보 확인</button>
+							   <span class="">결제일 : </span>
+							   <span th:text="${courseStudent.price_date}"></span>
 						   </td>
 	                   </tr>	
 	                   
@@ -62,7 +64,17 @@
 	                       		</th:block>
 	                       </td>
 	                       <th>지점</th>
-	                       <td th:text="${courseStudent.branch}"></td>
+	                       <td  class="branch" th:text="${courseStudent.branch}"></td>
+						   <input type="hidden" th:value="${courseStudent.branch}" id="insertBranch">
+						   <script>
+							   $(".branch").each(function () {
+								   if ( $(this).text() == 1 ) {
+									   $(this).text("안암점")
+								   } else {
+									   $(this).text("한양대점")
+								   }
+							   })
+						   </script>
 	                   </tr>
 	                   <tr>
 	                       <th>주횟수</th>
@@ -77,19 +89,32 @@
 	                       <td colspan="3">
 	                           <div class="col-12 pt20 pb20">
 	                           	<th:block th:each="courseList : ${courseList}" th:object="${courseList}">
-	                           		<div class="time_list" th:text="${courseList.ex_date}">
-	                           			
+	                           		<div class="time_list">
+										<span class="date" th:text="${courseList.ex_date}"></span>
+										<span class="day"></span>
 	                           		</div>
 	                           	</th:block>
 	                           </div>
-	
 	                       </td>
 	                   </tr>
 	                   </tbody>
 	               </table>
 	        	</th:block>
             </div>
-
+			<script>
+				$(function () {
+					$(".date").each(function () {
+						var day = $(this).text();
+						var today = dateForm(new Date());
+						var date = new Date(day.split("-")[0], (day.split("-")[1]-1) , day.split("-")[2]).getDay();
+						var text = "(" +korDay(date) +")";
+						$(this).siblings().text(text);
+						if(dateToInt(day) < dateToInt(today)) {
+							$(this).parent().hide();
+						}
+					});
+				})
+			</script>
 
             <div class="col-12">
                 <div class="col-12 tc">
@@ -167,14 +192,15 @@
 					data : {memberSeq : memberSeq, delayNum : 1, branch: branch },
 					contentType: "application/json; charset=utf-8",
 					dataType: "json",
-					url : '/couseMaster/delayCourse',
+					url : '/couseMaster/delayCourse'
+					, beforeSend: function () {
+						Progress.on();
+					},
 					success : function(result){
 						if(result == 1) {
-							alert("미루기 완료");
-							location.reload();
+							Progress.off("미루기 완료");
 						} else {
-							alert(" 오류 발생 관리자에게 문의 하세요. ");
-							location.reload();
+							Progress.off("오류 발생 관리자에게 문의 하세요.");
 						}
 					}
 				})
@@ -184,7 +210,8 @@
 		$("#extenBtn").on("click", function() {
 			if( confirm("연장 페이지로 이동 하시겠습니까?") ) {
 				var memberSeq = $("#memberSeq").val();
-				location.href = "/admin/extendCourse?memberSeq="+memberSeq;
+				var branch = $("#insertBranch").val();
+				location.href = "/admin/extendCourse?memberSeq="+memberSeq+"&branch="+branch;
 			}
 		})
 
@@ -200,26 +227,49 @@
 					data : {memberSeq : memberSeq, delayNum : delayNum, branch: branch},
 					contentType: "application/json; charset=utf-8",
 					dataType: "json",
-					url : '/couseMaster/delayCourse',
+					url : '/couseMaster/delayCourse'
+					, beforeSend: function () {
+						Progress.on();
+					},
 					success : function(result){
 						if(result == 1) {
-							alert("자동연장 완료");
-							location.reload();
+							Progress.off("자동연장 완료");
 						} else {
-							alert(" 오류 발생 관리자에게 문의 하세요. ");
-							location.reload();
+							Progress.off("오류 발생 관리자에게 문의 하세요.");
 						}
 					}
 				})
 			}
 		});
-
 		//모두 보기 버튼
 		$("#allShowCourse").on("click", function(){
-			
+			$(".time_list").show();
 		});
-		
+
+		$("#changePayment").on("click", function () {
+			var memberSeq = $("#memberSeq").val();
+			if( confirm("오늘 날짜로 결제일이 설정 됩니다. 변경 하시겠습니까?") ) {
+				$.ajax({
+					data : {memberSeq : memberSeq},
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					url : '/couseMaster/changePayment'
+					, beforeSend: function () {1
+						Progress.on();
+					},success : function(result){
+						if(result == 1) {
+							Progress.off("변경 완료");
+						} else {
+							Progress.off("오류 발생 관리자에게 문의 하세요.");
+						}
+					}
+				})
+			}
+		})
 	});
+
+
+	$('[href="/admin/view_student"]').parent().addClass("active");
 </script>
 </body>
 </html>
