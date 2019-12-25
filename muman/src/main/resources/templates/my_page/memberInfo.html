@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>수업 소개</title>
+    <head th:replace="common/sub/head"></head>
+</head>
+<body>
+
+<div class="col-12 wrapper">
+    <header th:replace="common/header"></header>
+    <div class="sub_main col-12">
+        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');">
+        </div>
+
+        <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+            <div class="col-12">
+                <form>
+                    <div class="col-12 mb50">
+                        <div style="font-size: 35px; line-height: 40px; color:rgb(38,75,57);">
+                            회원 정보
+                        </div>
+                    </div>
+
+                    <div class="col-12 ex-item-con">
+                        <div class="col-6 ex-item">
+                            <div class="ex-title fl">이름</div>
+                            <div class="ex-desc  fl">
+                                <div type="text" th:text="${memberInfo.name}"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 ex-item">
+                            <div class="ex-title fl">아이디</div>
+                            <div class="ex-desc  fl">
+                                <div type="text" th:text="${memberInfo.member_id}"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 ex-item">
+                            <div class="ex-title fl">휴대번호</div>
+                            <div class="ex-desc  fl">
+                                <input type="text" th:value="${memberInfo.pnum}">
+                            </div>
+                        </div>
+
+                        <div class="col-6 ex-item">
+                            <div class="ex-title fl">지점</div>
+                            <div class="ex-desc  fl">
+                                <div class="branch" type="text" th:text="${memberInfo.branch}"></div>
+                            </div>
+                            <script>
+                                $(".branch").each(function () {
+                                    if( $(this).text() == 1 ) {
+                                        $(this).text("안암");
+                                    } else {
+                                        $(this).text("한양대");
+                                    }
+                                })
+                            </script>
+                        </div>
+
+                        <div class="col-6 ex-item">
+                            <div class="ex-title fl">가입일</div>
+                            <div class="ex-desc  fl">
+                                <p th:text="${memberInfo.reg_date}">
+                            </div>
+                        </div>
+
+                        <div class="col-6 ex-item">
+                            <div class="ex-title fl">특이사항</div>
+                            <div class="ex-desc  fl">
+                                <input type="text" th:value="${memberInfo.member_etc}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt90 tc">
+                        <div class="login_submit mr20" style="display:inline-block;">
+                            <div class="login_submit_style" style="display:block" id="back">
+                                뒤로 가기
+                            </div>
+                        </div>
+
+                        <div class="login_submit"  style="display:inline-block;">
+                            <div class="login_submit_style" style="display:block" id="mod">
+                                수정 하기
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    $("#back").on("click", function () {
+                        location.href = "/my_page";
+                    });
+                </script>
+        </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="common/footer"></footer>
+</body>
+</html>

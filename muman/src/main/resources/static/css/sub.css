@@ -1,9 +1,10 @@
-.sub_main {background-color:black; padding-bottom:150px;}
-.sub_main.login_wrap {background-size: cover; z-index:1; padding-top:150px; padding-bottom:150px;}
+.sub_main {padding-bottom:150px;}
+.sub_main.login_wrap {background-size: cover; z-index:1; padding-top:50px; padding-bottom:50px;}
 .login_dim{position: absolute; width:100%; height:100%; background-color: black; opacity: 0.5; z-index: 2; top:0px;}
-.sub_visual_back { height: 250px; background-size: cover; background-position: center; background-repeat: no-repeat; 
-background-color: black; position: relative; margin-bottom:50px;}
-.sub_dim {background-color: black; opacity: 0.5; height: 300px; position: absolute !important;}
+.sub_visual_back { height: 250px; background-size: cover; background-repeat: no-repeat;
+background-color: black; position: relative; margin-bottom:50px; background-position: top;}
+.sub_visual_back.type2 {height: 150px;}
+.sub_dim {background-color: black; opacity: 0.5; height: 250px; position: absolute !important;}
 .sub_visual_back .sub_text{color:white; font-size:45px;}
 .sub_visual_back .sub_content {color:white; font-size:15px;}
 
@@ -11,11 +12,11 @@ background-color: black; position: relative; margin-bottom:50px;}
 .time_table_con{margin-bottom: 30px;}
 .price_con{margin-bottom: 30px;}
 .how_to_con{color:white;}
-.how_to_con .content_con{border:1px solid white; padding:20px; 
-                         font-weight: bold; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }
+.how_to_con .content_con{border:1px solid black; padding:20px;
+                         font-weight: bold; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; color: black;}
 .tab_con{text-align: center; margin-bottom:30px;}
-.tab_con .tab {padding-top:20px; padding-bottom:20px; border:1px solid white; font-size:17px; color:white; font-weight: bold;}
-.tab_con .tab.active {background-color:rgb(255,242,0); color:#0B1761; border-color:rgb(255,242,0)}
+.tab_con .tab {padding-top:20px; padding-bottom:20px; border:1px solid rgb(38,75,57); font-size:17px; color:black; font-weight: bold;}
+.tab_con .tab.active {background-color:rgb(38,75,57); color:white; border-color:rgb(38,75,57)}
 
 /* 학교 소개 */
 .school_main_visual{height:100vh; background-size: cover; background-repeat: no-repeat; background-position: center;}
@@ -48,9 +49,9 @@ background-color: black; position: relative; margin-bottom:50px;}
 #login{display:table-cell; vertical-align: middle; width:100%;}
 .input_wrap {padding-top:30px; border-top:3px solid white; margin-bottom:30px;}
 .login_input{width: 80%; text-align: left; padding: 10px; border:none; outline:none;}
-.login_submit {margin:auto; background-color: rgb(255,242,0); width:200px; cursor: pointer; transition:all 0.3s}
-.login_submit:hover {background-color: #FFC079;}
-.login_submit .login_submit_style {color:#0B1761; padding:15px; font-size:15px; font-size: 30px; font-weight: 400;}
+.login_submit {margin:auto; background-color: rgb(38,75,57); width:150px; cursor: pointer; transition:all 0.3s}
+.login_submit:hover {background-color: rgba(38,75,57, 0.6);}
+.login_submit .login_submit_style {color:white; padding:55px; font-size: 30px; font-weight: 400;}
 
 /* 회원가입*/
 .inner_reg_con{padding:30px 80px; border-top:2px solid white; border-bottom:2px solid white;}
@@ -58,3 +59,18 @@ background-color: black; position: relative; margin-bottom:50px;}
 .reg_form {height:100vh; display:table; text-align: center; z-index:3}
 .front_reg_con { display:table-cell; vertical-align: middle; width:100%; float:none !important;}
 .front_reg_con .reg_title{color:white;}
+
+/* 마이 페이지 */
+.ex-item-con {border-bottom: 3px solid rgb(38,75,57);
+	border-top: 3px solid rgb(38,75,57); padding-left: 30px; padding-right: 30px;}
+.ex-item-con .ex-item {padding-bottom: 20px; padding-top: 20px; border-bottom:1px solid rgb(38,75,57);}
+.ex-item-con .ex-item.no-border {border-bottom: none;}
+.ex-item-con .ex-title {font-size: 20px; line-height: 30px; width: 170px; font-weight: bold;}
+.ex-item-con .ex-desc {font-size: 20px; line-height: 30px; width: calc(100% - 175px); font-weight: 500;}
+.list-item {font-size: 15px; line-height: 20px; width: 23%; margin-bottom: 10px; display:inline-block;}
+
+
+.ex_tab {display: flex; justify-content: center; align-items: center; padding: 50px; flex-direction: column;}
+.ex_tab .tab-icon {margin-bottom: 20px;}
+.ex_tab .tab-icon > img {width: 100px; height: 100px;}
+.ex_tab .tab-font > a {display:block; font-size: 15px; line-height: 20px; font-weight: bold;}

@@ -5,28 +5,71 @@
     <head th:replace="common/sub/head"></head>
 </head>
 <body>
+
 <div class="col-12 wrapper">
     <header th:replace="common/header"></header>
     <div class="sub_main col-12">
-        <div class="col-12 sub_visual_back" style="background-image: url('img/visual_img1.jpg');">
-            <div class="col-12 sub_dim"></div>
-            <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
-                <div class="col-12 h-100 fn show-table">
-                    <div class="col-12 fn show-tablecell vm tl">
-                        <div class="col-12">
-                            <div class="col-12 sub_text pb10 pt90 bold">
-                                My Page
-                            </div>
-                            <div class="col-12 sub_content">
-                                <span class="point_color bold"></span>
-                            </div>
+        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');">
+    </div>
+
+        <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+            <div class="col-12 mb30">
+                <div class="col-12 tc mb10">
+                    <div class="col-12">
+                        <img src="img/muscle.png" style="width: 100px; height: 100px;">
+                    </div>
+                </div>
+                <div class="col-12 tc">
+                    <p style="font-size: 50px;" th:text="${memberInfo.name}"></p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="col-4">
+                    <div class="ex_tab">
+                        <div class="tab-icon">
+                            <img src="img/tab1.png">
+                        </div>
+                        <div class="tab-font">
+                            <a href="/memberInfo">
+                                회원 정보 수정
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-4 ex_tab">
+                    <div class="tab-icon">
+                        <img src="img/tab2.png">
+                    </div>
+                    <div class="tab-font">
+                        <a href="/exInfo">
+                            운동 정보
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-4 ex_tab">
+                    <div class="tab-icon">
+                        <img src="img/tab3.png">
+                    </div>
+                    <div class="tab-font">
+                        <a id="soon">
+                            운동 기록표(추가 예정)
+                        </a>
+                    </div>
+                </div>
+                <script>
+                    $("#soon").on("click",function () {
+                        alert("준비 중입니다.");
+                        return ;
+                    })
+                </script>
             </div>
         </div>
     </div>
 </div>
+
 <footer th:replace="common/footer"></footer>
 </body>
 </html>

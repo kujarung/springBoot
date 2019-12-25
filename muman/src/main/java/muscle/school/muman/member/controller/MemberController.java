@@ -76,10 +76,8 @@ public class MemberController {
 		sucess = service.insertMember(name, id, pass, branch, member_etc, pnum);
 		if(sucess == 1) {
 			model.addAttribute("error", "1");
-			System.out.println("2");
 			return "redirect:admin/member/success";
 		} else {
-			System.out.println("3");
 			model.addAttribute("error", "1");
 			return "redirect:/sign_up";
 		}

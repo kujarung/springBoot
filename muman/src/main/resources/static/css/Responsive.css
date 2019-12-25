@@ -2,7 +2,7 @@
 
 
 
-.wrapper {height: auto; min-height: 100%;}
+.wrapper {height: auto;}
 html *, body * {transition: color, background-color, border-color .3s;}
 
 .mw-450{max-width:450px;}

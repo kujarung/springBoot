@@ -30,13 +30,6 @@ public class ScheduleService {
 		params.put("start_time",request.getParameter("startTime") );
 		params.put("end_time",request.getParameter("endTime") );
 
-		System.out.println( request.getParameter("startDate")  );
-		System.out.println( request.getParameter("endDate")  );
-		System.out.println( request.getParameter("course_title")  );
-		System.out.println( request.getParameter("contents")  );
-		System.out.println( request.getParameter("week_total")  );
-		System.out.println( request.getParameter("startTime")  );
-		System.out.println( request.getParameter("endTime")  );
 		dao.insertCourse(params);
 	}
 

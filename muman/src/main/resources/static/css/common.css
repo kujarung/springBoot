@@ -39,11 +39,12 @@ i {line-height: 0.8em !important;}  /* 아이콘 vertical middle 위해 */
 .reg_con .reg_left_input input{width: 100%; padding:12px; outline: none; box-sizing: border-box; border:none; text-align: left;}
 .reg_con .reg_left_input input.type_2{width: calc(100% - 120px);  outline: none;}
 .reg_con .reg_left_input .check_btn {padding-top: 11px; padding-bottom: 11px; padding-right: 30px; padding-left: 30px;
-    outline: none; background-color:rgb(255,242,0); float: right; cursor:pointer;
-    -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; height: 28px;  display: table; transition:all 0.3s;}
-.reg_con .reg_left_input .check_btn:hover{ background-color: #FFC079 ;}
+    outline: none; background-color:rgb(38,75,57); float: right; cursor:pointer;
+    -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; height: 28px;  display: table; transition:all 0.3s;
+    color: white;}
+.reg_con .reg_left_input .check_btn:hover{ background-color: rgba(38,75,57,0.6);}
 .reg_con .reg_left_input .check_btn .check_text{ display: table-cell; vertical-align: middle; font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;
-font-weight: bold; color: #0B1761;}
+font-weight: bold; color: white;}
 .reg_con .reg_left_select {width:calc(100% - 160px); display: inline-block; vertical-align: middle; text-align: left;}
 .reg_con .reg_left_select select{padding: 5px; width: 160px; color: black; font-size:15px; font-size:1.5rem; 
 line-height:21px; line-height:2.1rem; outline: none; border:none;}
@@ -60,3 +61,8 @@ line-height:21px; line-height:2.1rem; outline: none; border:none;}
 .paging_cnt {font-size:15px; margin-right:5px; margin-left:5px;}
 .paging_cnt.current{color:#ea9643;}
 .paging_cnt:hover{ color:#ea9643; }
+
+
+.login_submit {margin:auto; background-color: rgb(38,75,57); width:200px; cursor: pointer; transition:all 0.3s}
+.login_submit:hover {background-color: rgba(38,75,57, 0.6);}
+.login_submit .login_submit_style {color:white; padding:15px; font-size: 30px; font-weight: 400;}

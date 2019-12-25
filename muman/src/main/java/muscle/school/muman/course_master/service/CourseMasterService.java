@@ -76,7 +76,6 @@ public class CourseMasterService {
 	@Transactional
 	@RequestMapping("/courseMasterService")
 	public int delayCourse(int memberSeq, int delayNum, int branch) throws ParseException {
-		System.out.println(memberSeq);
 		try {
 			Map<String, Object> studentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
 			String aliasList[] = studentDetail.get("aliasList").toString().split("\\|");
@@ -136,10 +135,8 @@ public class CourseMasterService {
 	public int updateDetail(int useYn, int maxPeople, int alias) {
 		try {
 			dao.updateDetail(useYn, maxPeople, alias);
-			System.out.println(1);
 			return 1;
 		} catch (Exception e) {
-			System.out.println(0);
 			return 0;
 		}
 	}

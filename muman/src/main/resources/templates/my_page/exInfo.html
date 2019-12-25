@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>수업 소개</title>
+    <head th:replace="common/sub/head"></head>
+</head>
+<body>
+
+<div class="col-12 wrapper">
+    <header th:replace="common/header"></header>
+    <div class="sub_main col-12">
+        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');">
+        </div>
+
+        <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+            <div class="col-12">
+                <div class="col-12 mb50">
+                    <div style="font-size: 35px; line-height: 40px; color:rgb(38,75,57);">
+                        운동 정보
+                    </div>
+                </div>
+
+                <div class="col-12 ex-item-con">
+                    <div class="col-6 ex-item">
+                        <div class="ex-title fl">운동시작일</div>
+                        <div class="ex-desc  fl">
+                            <div th:text="${courseStudentDetail.start_date}">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 ex-item">
+                        <div class="ex-title fl">운동 끝나는 일</div>
+                        <div class="ex-desc  fl">
+                            <div th:text="${courseStudentDetail.end_date}"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 ex-item">
+                        <div class="ex-title fl">주 횟수</div>
+                        <div class="ex-desc fl">
+                            <div th:text="${courseStudentDetail.times_week}"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 ex-item">
+                        <div class="ex-title fl">학년</div>
+                        <div class="ex-desc fl">
+                            <div th:text="${courseStudentDetail.grade}"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 ex-item">
+                        <div class="ex-title fl">미루기 사용여부</div>
+                        <div class="ex-desc fl">
+                            <div th:if="${courseStudentDetail.is_delay} == 0">
+                                <span id="delayYn" class="mr20">
+                                    미사용
+                                </span>
+                                <span id="delayBtn" style=" cursor: pointer; border: 1px solid rgb(38,75,57); background-color: rgb(38,75,57); color: white; padding: 10px;">
+                                    사용하기</span>
+                            </div>
+                            <div th:if="${courseStudentDetail.is_delay} == 1">
+                                사용
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6 ex-item">
+                        <div class="ex-title fl">운동 요일 및 시간</div>
+                        <div class="ex-desc fl">
+                            <div th:text="${courseStudentDetail.alias_list_full_name}"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 ex-item">
+                        <div class="ex-title fl">결제 여부</div>
+                        <div class="ex-desc fl">
+                            <div th:if="${courseStudentDetail.payment_yn} == 1">
+                                <div class="">
+                                    결제(<span th:text="${courseStudentDetail.price}"></span>)
+                                </div>
+                                <div class="">
+                                    결제일(<span th:text="${courseStudentDetail.price_date}"></span>)
+                                </div>
+                            </div>
+                            <div th:if="${courseStudentDetail.payment_yn} == 0">
+                                <div class="">
+                                    미결제(<span th:text="${courseStudentDetail.price}"></span>만원)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 ex-item no-border">
+                        <div class="ex-title fl">
+                            운동 일수<br>
+                            <span id="allShowCourse" style="font-size: 13px;">(모두 보기)</span>
+                        </div>
+                        <div class="ex-desc fl">
+                            <th:block th:each="exList : ${exList}" th:object="${exList}">
+                                <div class="list-item" th:text="${exList.ex_date}">
+
+                                </div>
+                            </th:block>
+                            <script>
+                                //모두 보기 버튼
+                                $("#allShowCourse").on("click",function(){
+                                    $(".list-item").show();
+                                });
+
+                                $(function() {
+                                    $(".list-item").each(function () {
+                                        var day = $(this).text();
+                                        var today = dateForm(new Date());
+                                        var date = new Date(day.split("-")[0], (day.split("-")[1]-1) , day.split("-")[2]).getDay();
+                                        var text = "(" +korDay(date) +")";
+                                        $(this).text(day + text);
+                                        if(dateToInt(day) < dateToInt(today)) {
+                                            $(this).hide();
+                                        }
+                                    });
+
+                                    //미루기 버튼 클릭 시
+                                    $("#delayBtn").on("click", function () {
+                                        var delayYn = $("#delayYn").text().trim();
+                                        console.log(delayYn);
+                                        if( delayYn == "미사용") {
+                                            if (confirm("미루기를 사용 하시겠습니까?")) {
+                                                var memberSeq = $("#memberSeq").val();
+                                                var branch = $('#branch').val();
+                                                $.ajax({
+                                                    data: {memberSeq: memberSeq, delayNum: 1, branch: branch},
+                                                    contentType: "application/json; charset=utf-8",
+                                                    dataType: "json",
+                                                    url: '/couseMaster/delayCourse'
+                                                    , beforeSend: function () {
+                                                        Progress.on();
+                                                    },
+                                                    success: function (result) {
+                                                        if (result == 1) {
+                                                            Progress.off("미루기 완료");
+                                                        } else {
+                                                            Progress.off("오류 발생 관리자에게 문의 하세요.");
+                                                        }
+                                                    }
+                                                })
+                                            }
+                                        } else {
+                                            alert("미루기를 이미 사용 하였습니다.");
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt90 tc">
+                    <div class="login_submit">
+                        <div class="login_submit_style" style="display:block" id="back">
+                            뒤로 가기
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $("#back").on("click", function () {
+                        location.href = "/my_page";
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="common/footer"></footer>
+</body>
+</html>

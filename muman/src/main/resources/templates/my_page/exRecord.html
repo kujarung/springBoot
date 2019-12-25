@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>수업 소개</title>
+    <head th:replace="common/sub/head"></head>
+</head>
+<body>
+
+<div class="col-12 wrapper">
+    <header th:replace="common/header"></header>
+    <div class="sub_main col-12">
+        <div class="col-12 sub_visual_back" style="background-image: url('img/water2.jpg');">
+            <div class="col-12 sub_dim"></div>
+            <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                <div class="col-12 h-100 fn show-table">
+                    <div class="col-12 fn show-tablecell vm tl">
+                        <div class="col-12">
+                            <div class="col-12 sub_text pb10 pt90 bold">
+                                마이 페이지
+                            </div>
+                            <div class="col-12 sub_content">
+                                <span class="point_color bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+            <div class="col-12" style="color: white;">
+                <div class="">
+                    <div class="">운동시작일</div>
+                    <div class="">
+                        <div th:value="${courseStudentDetail.start_date}">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">운동 끝나는 일</div>
+                    <div class="">
+                        <div th:value="${courseStudentDetail.end_date}"></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">주 횟수</div>
+                    <div class="">
+                        <div th:value="${courseStudentDetail.times_week}"></div>
+                    </div>
+                </div>
+                <div class="">미루기 사용여부</div>
+                <div class="">
+                    <div th:value="${courseStudentDetail.is_delay}"></div>
+                </div>
+                <div class="">운동 요일 및 시간</div>
+                <div class="">
+                    <div th:text="${courseStudentDetail.alias_list_full_name}"></div>
+                </div>
+                <div class="">결제 여부</div>
+                <div class="">
+                   <div th:if="${courseStudentDetail.payment_yn} == 1">
+                       <div class="">
+                           결제(<span th:text="${courseStudentDetail.price}"></span>)
+                       </div>
+                       <div class="">
+                           결제일(<span th:text="${courseStudentDetail.price_date}"></span>)
+                       </div>
+                   </div>
+                    <div th:if="${courseStudentDetail.payment_yn} == 0">
+                        <div class="">
+                            미결제(<span th:text="${courseStudentDetail.text}"></span>)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="common/footer"></footer>
+</body>
+</html>

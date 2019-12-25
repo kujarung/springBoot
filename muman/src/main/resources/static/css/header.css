@@ -8,7 +8,7 @@
 .wrapper .right_utill_con ul > li:last-child{margin-right:0px;}
 .wrapper .right_utill_con ul.sub_menu_ul {height:0px; opacity: 0;}
 .wrapper .right_utill_con ul.sub_menu_ul  li  {font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; color: #fff; display: block;}
-.wrapper .right_utill_con ul.sub_menu_ul  li:hover{color:rgb(255,242,0);}
+.wrapper .right_utill_con ul.sub_menu_ul  li:hover{color:rgb(38,75,57);}
 
 /*모바일 메뉴*/
 #moblie_menu {display:block; padding-right:30px; padding-top:20px;}
@@ -37,7 +37,7 @@
     .wrapper .right_utill_con ul > li{display:inline-block;}
     #moblie_menu{display:none;}
     .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet:hover{background: #fff; opacity: 1; transition: all 0.2s}
-    .wrapper .right_utill_con ul > li > a:hover{transition: color 0.2s ease; color:rgb(255,242,0);}
+    .wrapper .right_utill_con ul > li > a:hover{transition: color 0.2s ease; color:rgb(38,75,57);}
 }
 
 @media all and (min-width: 992px) {

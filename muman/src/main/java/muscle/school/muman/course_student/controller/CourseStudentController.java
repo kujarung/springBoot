@@ -76,7 +76,6 @@ public class CourseStudentController {
 	public String adminViewCourseStudent(Model model, @RequestParam(required=false, defaultValue = "1") int currentPage) {
 		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList(currentPage);
 		if(courseStudentList.size() != 0) {
-			System.out.println(courseStudentList);
 			int totalCnt = Integer.parseInt( courseStudentList.get(0).get("TOTAL_CNT").toString());
 			Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);
 			model.addAttribute("courseStudentList", courseStudentList);
@@ -116,7 +115,6 @@ public class CourseStudentController {
 	@GetMapping("/admin/detail_student")
 	public String detail_student(HttpServletRequest req, Model model) {
 		int memberSeq = Integer.parseInt(req.getParameter("memberSeq").toString() );
-		System.out.println(memberSeq);
 		Map<String, Object> courseStudent = courseStudentService.getCourseStudentDetail(memberSeq);
 		List<Map<String, Object>> courseList = courseMasterService.selectCourseList(memberSeq);
 

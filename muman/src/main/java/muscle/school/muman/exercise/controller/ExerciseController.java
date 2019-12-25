@@ -55,7 +55,6 @@ public class ExerciseController {
 
             } else {
                 for(int j=0;j<deatilList.size();j++) {
-                    System.out.println(deatilList.get(j).get("ex_seq") );
                     deatilResultList.add( deatilList.get(j) );
                 }
             }
@@ -65,8 +64,6 @@ public class ExerciseController {
         int totalPage = service.countTotalCnt();
         //페이징 처리
         Map<String, Object> pagingInfo = calcPaging(totalPage, currentPage, 5);
-        System.out.println("list : " + list);
-        System.out.println("deatilResultList : " + deatilResultList);
         model.addAttribute("list", list);
         model.addAttribute("deatilList", deatilResultList);
         //페이징 처리

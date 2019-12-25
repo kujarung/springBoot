@@ -107,7 +107,6 @@ public class CourseMasterController {
 	public String extendCourse(int memberSeq, Model model, @RequestParam(required=false) String standardDate
 			,@RequestParam(required=false, defaultValue= "1") int branch
 	) {
-		System.out.println(memberSeq);
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("branch", branch);
 		//시작일과 끝일을 리턴 받음
@@ -131,7 +130,6 @@ public class CourseMasterController {
 		List<Map<String,Object>> courseDetail = service.selectCourseMasterList(alias);
 		model.addAttribute("alias", alias);
 		model.addAttribute("courseDetail", courseDetail);
-		System.out.println(courseDetail);
 		return "admin/course/course_manage_detail";
 	}
 

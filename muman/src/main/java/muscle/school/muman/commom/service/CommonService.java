@@ -713,7 +713,6 @@ public class CommonService {
 			sha = sb.toString();
 		}catch(NoSuchAlgorithmException e){
 			//e.printStackTrace();
-			System.out.println("Encrypt Error - NoSuchAlgorithmException");
 			sha = null;
 		}
 		return sha;
