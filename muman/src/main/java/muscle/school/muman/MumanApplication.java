@@ -18,12 +18,12 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 public class MumanApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MumanApplication.class, args);
+	    SpringApplication.run(MumanApplication.class, args);
 	}
 
     @Bean
     public HttpSessionListener httpSessionListener(){
-        return new SessionListener();
+	    return new SessionListener();
     }
 
 	@Bean

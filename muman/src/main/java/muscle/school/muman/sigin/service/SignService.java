@@ -5,6 +5,8 @@ import muscle.school.muman.member.service.MemberService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,9 +27,4 @@ public class SignService {
 		return memberService.searchIdAndPass(loginId, encPass);
 	}
 
-	public String signOut(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "/";
-	}
 }

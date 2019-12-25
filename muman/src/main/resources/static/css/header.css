@@ -22,9 +22,9 @@
 .mobile_logo_con{padding-right: 15px; padding-left: 15px; padding-top: 30px; margin-bottom: 30px;}
 .mobile_logo_con .left_logo{float: left;}
 .mobile_logo_con .right_btn_con{width: 40px; height: 40px; float: right; padding-top: 20px; cursor: pointer;}
-.click_header_wrap{  position: fixed !important;  right: -100%;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
-.click_header_wrap > div {  overflow-y: scroll;  width: 100%;  height: 100%;  margin-right: 0px;  background-color: #000;  }
-.click_header_wrap.active {  position: fixed;  right: 0%;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
+.click_header_wrap{  position: fixed !important;  right: -200%;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
+.click_header_wrap > div {  overflow-y: scroll;  width: 100%;  height: 100%;  margin-right: 0;  background-color: #000;  }
+.click_header_wrap.active {  position: fixed;  right: 0;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
 
 @media all and (min-width: 768px) {
     .third_card_con .arr_btn{display:none;}

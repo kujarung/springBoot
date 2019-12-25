@@ -15,26 +15,6 @@
             <div class="right_utill_con">
                 <!--메뉴 쪽, 추가 메뉴 필요시 li a 를 추가 하면 됨-->
                 <ul class="col-12 ul_utill">
-                    <th:block th:if="${session.memberSeq} != null">
-                        <li>
-                            <div style="font-size: 15px;">
-                                <span th:text="${session.name}" style="color:lightyellow;"></span><span style="color: white;">님 환영합니다.</span>
-                            </div>
-                        </li>
-                        <li class="">
-                            <a href="/my_page">
-                                My Page
-                            </a>
-                        </li>
-                        <th:block th:if="${session.authority} == 1">
-                            <li class="">
-                                <a href="/admin/index">
-                                    관리자 페이지
-                                </a>
-                            </li>
-                        </th:block>
-                    </th:block>
-
                     <li class="">
                         <a href="/intro_school">
                            	 학교 소개
@@ -62,6 +42,26 @@
                                 로그인
                             </a>
                         </li>
+                    </th:block>
+                    <th:block th:if="${session.memberSeq} != null">
+                        <li class="">
+                            <a href="/my_page">
+                                My Page
+                            </a>
+                        </li>
+                        <th:block th:if="${session.authority} == 1">
+                            <li class="">
+                                <a href="/admin/index">
+                                    관리자 페이지
+                                </a>
+                            </li>
+                        </th:block>
+                        <li class="">
+                            <a href="javascript:logout();">
+                                로그 아웃
+                            </a>
+                        </li>
+
                     </th:block>
                     <li id="moblie_menu">
                         <span></span>
@@ -155,3 +155,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    function logout() {
+        $.ajax({
+            url:"/logout",
+            success : function (result) {
+                location.href= result;
+            }
+        })
+    }
+</script>

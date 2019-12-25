@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>수업 소개</title>
     <head th:replace="common/sub/head"></head>
@@ -7,10 +7,23 @@
 <body>
 <div class="col-12 wrapper">
     <header th:replace="common/header"></header>
-
-    <div class="col-12 sub_main login_wrap" style="background-image: url('../../static/img/login_img3.jpg')">
-        <div class="login_dim"></div>
-        <div class="col-12 login-form">
+    <div class="sub_main col-12">
+        <div class="col-12 sub_visual_back" style="background-image: url('img/visual_img1.jpg');">
+            <div class="col-12 sub_dim"></div>
+            <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                <div class="col-12 h-100 fn show-table">
+                    <div class="col-12 fn show-tablecell vm tl">
+                        <div class="col-12">
+                            <div class="col-12 sub_text pb10 pt90 bold">
+                                My Page
+                            </div>
+                            <div class="col-12 sub_content">
+                                <span class="point_color bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
