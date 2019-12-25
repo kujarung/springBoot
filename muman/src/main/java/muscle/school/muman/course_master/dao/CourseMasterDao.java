@@ -1,9 +1,9 @@
 package muscle.school.muman.course_master.dao;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CourseMasterDao {

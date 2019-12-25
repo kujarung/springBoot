@@ -14,4 +14,6 @@ public interface MemberDao {
 	Map<String, Object> getMember(int memberSeq);
 
     int isExistId(String id);
+
+	List<Map<String, Object>> searchIdAndPass(String loginId, String encPass);
 }

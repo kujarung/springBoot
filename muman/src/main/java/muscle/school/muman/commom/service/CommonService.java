@@ -1,17 +1,18 @@
 package muscle.school.muman.commom.service;
 
+import muscle.school.muman.course_master.service.CourseMasterService;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import muscle.school.muman.course_master.service.CourseMasterService;
 
 @Service
 @MapperScan(basePackages = "muscle.school.muman.commom.dao")
@@ -698,4 +699,24 @@ public class CommonService {
 	public String showCalDetail(Calendar cal) {
 		return cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE);
 	}
+
+	public String encryptSHA256(String str){
+		String sha = "";
+		try{
+			MessageDigest sh = MessageDigest.getInstance("SHA-256");
+			sh.update(str.getBytes());
+			byte[] byteData = sh.digest();
+			StringBuilder sb = new StringBuilder();
+			for (byte byteDatum : byteData) {
+				sb.append(Integer.toString((byteDatum & 0xff) + 0x100, 16).substring(1));
+			}
+			sha = sb.toString();
+		}catch(NoSuchAlgorithmException e){
+			//e.printStackTrace();
+			System.out.println("Encrypt Error - NoSuchAlgorithmException");
+			sha = null;
+		}
+		return sha;
+	}
+
 }

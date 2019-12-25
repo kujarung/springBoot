@@ -1,5 +1,6 @@
 package muscle.school.muman;
 
+import javax.servlet.http.HttpSessionListener;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,6 +20,11 @@ public class MumanApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(MumanApplication.class, args);
 	}
+
+    @Bean
+    public HttpSessionListener httpSessionListener(){
+        return new SessionListener();
+    }
 
 	@Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{

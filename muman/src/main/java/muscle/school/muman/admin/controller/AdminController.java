@@ -32,8 +32,6 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	@Autowired
-	CourseMasterService courseMasterService;
-	@Autowired
 	MemberService memberService;
 	@Autowired
 	CommonService commonService;

@@ -44,4 +44,12 @@ public class MemberService {
     public int isExistId(String id) {
     	return dao.isExistId(id);
     }
+
+	public List<Map<String, Object>> searchIdAndPass(String loginId, String encPass) {
+    	List<Map<String, Object>> result = dao.searchIdAndPass(loginId, encPass);
+    	if(result.size() == 0) {
+    		return null;
+		}
+    	return result;
+	}
 }

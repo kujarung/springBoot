@@ -62,5 +62,7 @@
 		select count(member_id) from MEMBER where member_id = #{id}
 	</select>
 
-
+	<select id="searchIdAndPass" resultType="map">
+		select * from MEMBER where member_id = #{loginId} and member_pass = #{encPass}
+	</select>
 </mapper>

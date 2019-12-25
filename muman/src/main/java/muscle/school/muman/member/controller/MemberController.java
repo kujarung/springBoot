@@ -35,14 +35,14 @@ public class MemberController {
 	//회원 가입 페이지
 	@GetMapping("/sign_up")
 	public String sign_up() {
-		return "member/sign_up";
+		return "sign/sign_up";
 	}
 	
 	//로그인 페이지
 	@GetMapping("/sign_in")
 	public String sign_in() {
 		
-		return "member/sign_in";
+		return "sign/sign_in";
 	}
 	
 	//회원 가입 admin
@@ -55,11 +55,9 @@ public class MemberController {
 			@RequestParam(required=false) String member_etc,
 			@RequestParam(required=false) String pnum
 			) {
-		
-		service.insertMember(name, id, pass, branch, member_etc, pnum);
-		
+		String encPass = commonService.encryptSHA256(pass);
+		service.insertMember(name, id, encPass, branch, member_etc, pnum);
 		return "redirect:veiw_member";
-		
 	}
 	
 	//회원등록

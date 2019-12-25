@@ -1,5 +1,5 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
     <head> 
         <title>수업 소개</title> 
         <head th:replace="common/sub/head"></head>
@@ -8,7 +8,7 @@
         <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
             
-            <div class="col-12 sub_main login_wrap" style="background-image: url('img/login_img3.jpg')">
+            <div class="col-12 sub_main login_wrap" style="background-image: url('img/login_img2.jpg')">
             	<div class="login_dim"></div>
             	<div class="col-12 login-form">
 				    <form id="login">
@@ -19,10 +19,10 @@
 					    	
 					    	<div class="col-12 input_wrap">
 						    	<div class="col-12 mb20">
-							   		<input type="text" name="email" class="login_input" placeholder="아이디">
+							   		<input type="text" name="email" class="login_input" placeholder="아이디" id="id">
 							    </div>
 							    <div class="col-12 mb20">
-							    	<input type="password" name="password" class="login_input" placeholder="비밀번호">
+							    	<input type="password" name="password" class="login_input" placeholder="비밀번호" id="pass">
 							    </div>
 					    	</div>
 					    	
@@ -33,8 +33,7 @@
 							        </div>
 							    </div>
 					    	</div>
-
-						    <div class="col-12 fontsize16" style="color:white">
+							<div class="col-12 fontsize16" style="color:white">
 						      <a href="#">비밀번호를 잊어버리셨나요?</a>
 						    </div>
 
@@ -46,8 +45,37 @@
         <footer th:replace="common/footer"></footer>
     </body>
     <script>
+
+		$(document).keydown(function(key) {
+			if (key.keyCode === 13) {
+				login();
+			}
+		});
     	$("#loginBtn").on("click", function(){
-    		
-    	})
+			login();
+    	});
+
+		function login() {
+			var id = $("#id").val();
+			var pass = $("#pass").val();
+			if(id === "" || pass === "") {
+				alert("아이디 및 비밀번호를 입력해주세요.")
+			} else {
+				$.ajax({
+					url : "/signIn",
+					dataType: "json",
+					method : "post",
+					async: false,
+					data: {loginId : id, loginPassword: pass},
+					success: function(result){
+						if(result === 1) {
+							location.href="/";
+						} else {
+							alert("아이디 및 비밀번호를 확인해주세요.");
+						}
+					}
+				});
+			}
+		}
     </script>
 </html>
