@@ -104,7 +104,26 @@
 				eventLimit: true, // allow "more" link when too many events
 				eventSources: [],
 				eventClick: function(info) { //만들어진 이벤트를 클릭 했을 시
-					console.log( info.event);
+					console.log( info.event.id);
+					if( confirm("삭제 하시겠습니까?") ) {
+						var seq = info.event.id;
+						$.ajax({
+							url:'/deleteHoliday',
+							dataType: "json",
+							async: false,
+							data : {seq : seq}
+							, beforeSend: function () {
+								Progress.on();
+							},
+							success: function(result){
+								if(result == 1) {
+									Progress.off("삭제 완료 되었습니다.");
+								} else {
+									Progress.off("삭제 오류");
+								}
+							}
+						});
+					}
 				},
 
 				locale: 'ko',
@@ -138,8 +157,6 @@
 				eventLongPressDelay: 0,
 				selectLongPressDelay: 0
 			});
-
-
 			var events = []
 			var today = new Date();
 			today.getFullYear();
@@ -148,6 +165,8 @@
 				var start = holidayList[i].START_DAY;
 				var end = holidayList[i].END_DAY;
 				var title = holidayList[i].HOLIDAY_NAME;
+				var seq = holidayList[i].SEQ;
+				var branch = holidayList[i].branch;
 				var backgroundColor = "black";
 				if( holidayList[i].IS_STATIC == 1) {
 					start = today.getFullYear() + "-" + start;
@@ -161,7 +180,7 @@
 				var endPlus1 = newDateForm(end);
 				endPlus1.setDate(endPlus1.getDate() + 1);
 				endPlus1 = dateForm(endPlus1);
-				var event = {"title" : title, "start" : start, "end": endPlus1, "backgroundColor" : backgroundColor};
+				var event = {"title" : title, "start" : start, "end": endPlus1, "backgroundColor" : backgroundColor, "id" : seq};
 				events.push(event);
 			}
 			calendar.addEventSource(events);

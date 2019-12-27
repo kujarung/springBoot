@@ -15,7 +15,8 @@ background-color: black; position: relative; margin-bottom:50px; background-posi
 .how_to_con .content_con{border:1px solid black; padding:20px;
                          font-weight: bold; font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; color: black;}
 .tab_con{text-align: center; margin-bottom:30px;}
-.tab_con .tab {padding-top:20px; padding-bottom:20px; border:1px solid rgb(38,75,57); font-size:17px; color:black; font-weight: bold;}
+.tab_con .tab {padding-top:20px; padding-bottom:20px; border:1px solid rgb(38,75,57); font-size:17px; color:black; font-weight: bold; cursor: pointer;}
+.tab_con .tab:hover{background-color:rgb(38,75,57); color:white; border-color:rgb(38,75,57)}
 .tab_con .tab.active {background-color:rgb(38,75,57); color:white; border-color:rgb(38,75,57)}
 
 /* 학교 소개 */

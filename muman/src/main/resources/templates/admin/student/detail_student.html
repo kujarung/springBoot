@@ -18,12 +18,13 @@
                 <th:block th:object="${courseStudent}">
 	               <table style="width: 100%;">
 	                   <colgroup>
+	                       <col width="25%" />
 	                       <col width="20%" />
-	                       <col width="30%" />
 	                       <col width="20%" />
-	                       <col width="30%" />
+	                       <col width="35%" />
 	                   </colgroup>
 	                   <tbody>
+
 	                   <tr>
 	                       <th>이름</th>
 	                       <td th:text="${courseStudent.name}"></td>
@@ -40,18 +41,21 @@
 	                   </tr>
 	                   
 	                   <tr>
-	                       <th>결제 금액</th>
-	                       <td th:text="${courseStudent.price}"></td>
 	                       <th>결제 여부</th>
 						   <td th:if="${courseStudent.payment_yn} == 0">
-							   미결제<button id="changePayment">결제 상태 변경</button>
+							   미결제<button class="ml20" id="changePayment">결제 상태 변경</button>
 						   </td>
 						   <td th:if="${courseStudent.payment_yn} == 1">
 							   <span class="">결제일 : </span>
 							   <span th:text="${courseStudent.price_date}"></span>
 						   </td>
+
+						   <th>학년</th>
+						   <td>
+							   <input th:value="${courseStudent.grade}">
+						   </td>
 	                   </tr>	
-	                   
+
 	                   <tr>
 	                       <th>delay 사용 여부</th>
 	                       <td>

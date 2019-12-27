@@ -122,4 +122,13 @@ public class HolidayService {
         List<Map<String, Object>> result = dao.searchHoilday(searchDay);
         return result;
     }
+
+    public int deletetHoliday(int seq) {
+        try {
+            dao.deletetHoliday(seq);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 }

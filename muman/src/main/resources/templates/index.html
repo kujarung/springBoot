@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Main</title>
+    <title>근력학교</title>
     <head th:replace="common/main/head"></head>
 </head>
 <body>
@@ -9,127 +9,71 @@
     <header th:replace="common/header"></header>
     <!--main visual 영역-->
     <div class="section col-12">
-        <div class="col-12 swiper-container main_visual_wrap">
-            <div class="col-12 swiper-wrapper">
-                <div class="swiper-slide col-12">
-                    <div class="col-12 h-100 main_visual_img_wrap">
-                        <div class="main_visual_img" style="background-image: url('img/theme1_visual_bg2.jpg');">
-                            <div class="visual_dim"></div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-center mw-1200 h-100">
-                        <div class="col-12 h-100 pr15 pl15">
-                            <div class="col-12 h-100">
-                                <div class="col-12 h-100 main_visual_text">
-                                    <div class="show-tablecell vm">
-                                        <div class="main_visual_text_inner">
-                                            <div class="col-12">
-                                                <div class="col-12">
-                                                    <!--                                                <div class="logo mb40">
-                                                                                                    <a href="javascript:void(0);">
-                                                                                                        <img src="img/big_logo.png" alt="logo">
-                                                                                                    </a>
-                                                                                                </div>-->
-                                                </div>
-                                                <div class="col-12">
-                                                    <h2 class="" style="color:#fff">
-                                                        <span class="point_color">차별화된</span> 트레이닝<br>
-                                                        하드스타일 케틀벨&바벨 교육 기관
-                                                    </h2>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="h2_desc point_white">
-                                                        <span class="point_color fontweight700">강해지는 법</span>을 배우세요. 그리고
-                                                        <span class="point_color fontweight700">행복</span>해지세요.
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="btn_style_3_con">
-                                                        <a href="/intro_course" class="btn_style_3">
-                                                            수업 확인 하기
-                                                                    <span class="ml9">
-                                                        <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                                y="0px" viewBox="0 0 29.4 16.8" style="enable-background:new 0 0 29.4 16.8; width: 24px; height: 14px;" xml:space="preserve" >
-                                                        <style type="text/css">
-                                                            .st0 {
-                                                                fill: white;
-                                                                stroke: white;
-                                                                stroke-width: 2;
-                                                                stroke-linecap: square;
-                                                                stroke-miterlimit: 10;
-                                                            }
-                                                        </style>
-                                                            <path class="st0" d="M-2-13"/>
-                                                            <polygon points="21,0 19.6,1.4 25.6,7.4 0,7.4 0,9.4 25.6,9.4 19.6,15.4 21,16.8 29.4,8.4" style="fill:white"/>
-                                                        </svg>
-                                                        </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
+        <div class="col-12 main_visual_wrap">
+            <div class="col-12 h-100 main_visual_img_wrap">
+                <div class="col-12 over-hidden h-100">
+                    <video class="main-vedio" muted playsinline autoplay loop id="vid">
+                    </video>
+
+                    <script>
+                        $(function () {
+                            var vid = document.getElementById("vid");
+                            var html = '<source src="video/viedio.mp4" type="video/mp4"><source/>';
+                            if(document.body.offsetWidth > 768) {
+                                html = '<source src="video/viedio.mp4" type="video/mp4"><source/>'
+                                $(vid).append(html);
+                                vid.play();
+                            } else {
+                                html = '<source src="video/viedio2.mp4" type="video/mp4"><source/>'
+                                $(vid).append(html);
+                                $(vid).addClass("type2");
+                                vid.play();
+                            }
+                        });
+                    </script>
+                    <div class="visual_dim"></div>
+                </div>
+            </div>
+            <div class="col-12 col-center mw-1200 h-100">
+                <div class="col-12 h-100 pr15 pl15">
+                    <div class="col-12 h-100">
+                        <div class="col-12 h-100 main_visual_text">
+                            <div class="show-tablecell vm">
+                                <div class="main_visual_text_inner">
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <h2 class="" style="color:#fff">
+                                                <span class="point_color">차별화된</span> 트레이닝<br>
+                                                하드스타일 케틀벨&바벨 교육 기관
+                                            </h2>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="h2_desc point_white">
+                                                <span class="point_color fontweight700">강해지는 법</span>을 배우세요. 그리고
+                                                <span class="point_color fontweight700">행복</span>해지세요.
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide col-12">
-                    <div class="col-12 h-100 main_visual_img_wrap">
-                        <div class="main_visual_img" style="background-image: url('img/theme1_visual_bg3.jpg');">
-                            <div class="visual_dim"></div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-center mw-1200 h-100">
-                        <div class="col-12 h-100 pr15 pl15">
-                            <div class="col-12 h-100">
-                                <div class="col-12 h-100 main_visual_text">
-                                    <div class="show-tablecell vm">
-                                        <div class="main_visual_text_inner">
-                                            <div class="col-12">
-                                                <div class="col-12">
-                                                    <!--                                                <div class="logo mb40">
-                                                                                                    <a href="javascript:void(0);">
-                                                                                                        <img src="img/big_logo.png" alt="logo">
-                                                                                                    </a>
-                                                                                                </div>-->
-                                                </div>
-                                                <div class="col-12">
-                                                    <h2 class="" style="color:#fff">
-                                                        <span class="point_color">차별화된</span> 트레이닝<br>
-                                                        하드스타일 케틀벨&바벨 교육 기관
-                                                    </h2>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="h2_desc point_white">
-                                                        <span class="point_color fontweight700">강해지는 법</span>을 배우세요. 그리고
-                                                        <span class="point_color fontweight700">행복</span>해지세요.
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="btn_style_3_con">
-                                                        <a href="javascript:void(0);" class="btn_style_3">
-                                                            수업 확인 하기
-                                                                    <span class="ml9">
-                                                        <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                                y="0px" viewBox="0 0 29.4 16.8" style="enable-background:new 0 0 29.4 16.8; width: 24px; height: 14px;" xml:space="preserve" >
-                                                        <style type="text/css">
-                                                            .st0 {
-                                                                fill: white;
-                                                                stroke: white;
-                                                                stroke-width: 2;
-                                                                stroke-linecap: square;
-                                                                stroke-miterlimit: 10;
-                                                            }
-                                                        </style>
-                                                            <path class="st0" d="M-2-13"/>
-                                                            <polygon points="21,0 19.6,1.4 25.6,7.4 0,7.4 0,9.4 25.6,9.4 19.6,15.4 21,16.8 29.4,8.4" style="fill:white"/>
-                                                        </svg>
-                                                        </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                        <div class="col-12">
+                                            <div class="btn_style_3_con">
+                                                <a href="/intro_course" class="btn_style_3">
+                                                    수업 확인 하기
+                                                            <span class="ml9">
+                                                <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                                                        y="0px" viewBox="0 0 29.4 16.8" style="enable-background:new 0 0 29.4 16.8; width: 24px; height: 14px;" xml:space="preserve" >
+                                                <style type="text/css">
+                                                    .st0 {
+                                                        fill: white;
+                                                        stroke: white;
+                                                        stroke-width: 2;
+                                                        stroke-linecap: square;
+                                                        stroke-miterlimit: 10;
+                                                    }
+                                                </style>
+                                                    <path class="st0" d="M-2-13"/>
+                                                    <polygon points="21,0 19.6,1.4 25.6,7.4 0,7.4 0,9.4 25.6,9.4 19.6,15.4 21,16.8 29.4,8.4" style="fill:white"/>
+                                                </svg>
+                                                </span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -139,6 +83,70 @@
                     </div>
                 </div>
             </div>
+
+<!--                <div class="swiper-slide col-12">-->
+<!--                    <div class="col-12 h-100 main_visual_img_wrap">-->
+<!--                        <div class="main_visual_img" style="background-image: url('img/theme1_visual_bg3.jpg');">-->
+<!--                            <div class="visual_dim"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-center mw-1200 h-100">-->
+<!--                        <div class="col-12 h-100 pr15 pl15">-->
+<!--                            <div class="col-12 h-100">-->
+<!--                                <div class="col-12 h-100 main_visual_text">-->
+<!--                                    <div class="show-tablecell vm">-->
+<!--                                        <div class="main_visual_text_inner">-->
+<!--                                            <div class="col-12">-->
+<!--                                                <div class="col-12">-->
+<!--                                                    &lt;!&ndash;                                                <div class="logo mb40">-->
+<!--                                                                                                    <a href="javascript:void(0);">-->
+<!--                                                                                                        <img src="img/big_logo.png" alt="logo">-->
+<!--                                                                                                    </a>-->
+<!--                                                                                                </div>&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                                <div class="col-12">-->
+<!--                                                    <h2 class="" style="color:#fff">-->
+<!--                                                        <span class="point_color">차별화된</span> 트레이닝<br>-->
+<!--                                                        하드스타일 케틀벨&바벨 교육 기관-->
+<!--                                                    </h2>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-12">-->
+<!--                                                    <div class="h2_desc point_white">-->
+<!--                                                        <span class="point_color fontweight700">강해지는 법</span>을 배우세요. 그리고-->
+<!--                                                        <span class="point_color fontweight700">행복</span>해지세요.-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-12">-->
+<!--                                                    <div class="btn_style_3_con">-->
+<!--                                                        <a href="javascript:void(0);" class="btn_style_3">-->
+<!--                                                            수업 확인 하기-->
+<!--                                                                    <span class="ml9">-->
+<!--                                                        <svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"-->
+<!--                                                                y="0px" viewBox="0 0 29.4 16.8" style="enable-background:new 0 0 29.4 16.8; width: 24px; height: 14px;" xml:space="preserve" >-->
+<!--                                                        <style type="text/css">-->
+<!--                                                            .st0 {-->
+<!--                                                                fill: white;-->
+<!--                                                                stroke: white;-->
+<!--                                                                stroke-width: 2;-->
+<!--                                                                stroke-linecap: square;-->
+<!--                                                                stroke-miterlimit: 10;-->
+<!--                                                            }-->
+<!--                                                        </style>-->
+<!--                                                            <path class="st0" d="M-2-13"/>-->
+<!--                                                            <polygon points="21,0 19.6,1.4 25.6,7.4 0,7.4 0,9.4 25.6,9.4 19.6,15.4 21,16.8 29.4,8.4" style="fill:white"/>-->
+<!--                                                        </svg>-->
+<!--                                                        </span>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
         </div>
     </div>
 
@@ -262,8 +270,7 @@
     </div>
 
 
-    <div class="col-12" style="height: 600px; margin-bottom: 50px; margin-top: 50px; background-image: url('img/review2.jpg'); background-position: center;
-        background-size: cover";>
+    <div class="col-12 visual1">
     </div>
 
     <div class="col-12">
@@ -318,7 +325,7 @@
         </div>
 
         <div class="col-12" style="background-color: #f8f9fb;">
-            <div class="col-12" style="height:600px; background-image: url('img/back1.jpg'); -webkit-background-size: cover;background-size: cover; background-position: center;">
+            <div class="col-12 visual2">
             </div>
             <div class="col-center mw-1230 pr15 pl15 why_ms_wrap">
                 <div class="col-12 why_ms_con">

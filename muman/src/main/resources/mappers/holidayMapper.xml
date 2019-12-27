@@ -34,4 +34,8 @@
 		left join MEMBER M on COURSE_STUDENT.member_seq = M.member_seq
 		where #{start} between start_date and end_date
 	</select>
+
+	<delete id="deletetHoliday">
+		delete from USE_HOLIDAY where seq = #{seq}
+	</delete>
 </mapper>

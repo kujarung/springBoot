@@ -29,7 +29,10 @@ a:hover {text-decoration:none;}
 input[type="button"] {-webkit-appearance: none;}
 i {line-height: 0.8em !important;}  /* 아이콘 vertical middle 위해 */
 
+.main-vedio {height: 100vh; width: auto; position: absolute; left: -50%; }
+.main-vedio.type2 {left: -100%;}
 
+.sub-vedio {height: 100vh; width: auto; position: absolute;}
 
 /* 회원가입 및 등록 */
 .reg_member_con {border-top:2px solid black; border-bottom:2px solid black; padding:30px 100px; margin-bottom: 30px;}
@@ -66,3 +69,8 @@ line-height:21px; line-height:2.1rem; outline: none; border:none;}
 .login_submit {margin:auto; background-color: rgb(38,75,57); width:200px; cursor: pointer; transition:all 0.3s}
 .login_submit:hover {background-color: rgba(38,75,57, 0.6);}
 .login_submit .login_submit_style {color:white; padding:15px; font-size: 30px; font-weight: 400;}
+
+@media all and (min-width: 768px) {
+    .main-vedio {height: auto; width: 100%; position: static;}
+    .sub-vedio {height: auto; width: 100%;}
+}

@@ -18,4 +18,6 @@ public interface HolidayDao {
     List<Map<String, Object>> searchHoilday(String searchDay);
 
     List<Map<String, Object>> getDeayMember(int startDay, String start);
+
+    void deletetHoliday(int seq);
 }

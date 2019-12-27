@@ -50,9 +50,8 @@ public class HolidayController {
 
 	@RequestMapping("/deleteHoliday")
 	@ResponseBody
-	int deletetHoliday(String title, String start, String end) {
-		int result = 1;
-		return result;
+	int deletetHoliday(@RequestParam int seq) {
+		return service.deletetHoliday(seq);
 	}
-	
+
 }
