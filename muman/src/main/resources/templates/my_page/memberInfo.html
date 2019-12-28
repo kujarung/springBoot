@@ -9,41 +9,40 @@
 <div class="col-12 wrapper">
     <header th:replace="common/header"></header>
     <div class="sub_main col-12">
-        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');">
-        </div>
+        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');"></div>
 
         <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
-            <div class="col-12">
-                <form>
+            <div class="col-12 mt50 mt50">
+                <form action="/updateInfo">
                     <div class="col-12 mb50">
-                        <div style="font-size: 35px; line-height: 40px; color:rgb(38,75,57);">
+                        <div style="font-size: 35px; line-height: 40px; color:rgb(38,75,57); font-weight: bold;">
                             회원 정보
                         </div>
                     </div>
 
                     <div class="col-12 ex-item-con">
-                        <div class="col-6 ex-item">
+                        <div class="col-12 col-sm-6 ex-item">
                             <div class="ex-title fl">이름</div>
                             <div class="ex-desc  fl">
                                 <div type="text" th:text="${memberInfo.name}"></div>
                             </div>
                         </div>
 
-                        <div class="col-6 ex-item">
+                        <div class="col-12 col-sm-6 ex-item">
                             <div class="ex-title fl">아이디</div>
                             <div class="ex-desc  fl">
                                 <div type="text" th:text="${memberInfo.member_id}"></div>
                             </div>
                         </div>
 
-                        <div class="col-6 ex-item">
+                        <div class="col-12 col-sm-6 ex-item">
                             <div class="ex-title fl">휴대번호</div>
                             <div class="ex-desc  fl">
-                                <input type="text" th:value="${memberInfo.pnum}">
+                                <input id="pnum" type="text" th:value="${memberInfo.pnum}" placeholder="- 빼고 입력해 주세요 ex)01099999999">
                             </div>
                         </div>
 
-                        <div class="col-6 ex-item">
+                        <div class="col-12 col-sm-6 ex-item">
                             <div class="ex-title fl">지점</div>
                             <div class="ex-desc  fl">
                                 <div class="branch" type="text" th:text="${memberInfo.branch}"></div>
@@ -59,18 +58,22 @@
                             </script>
                         </div>
 
-                        <div class="col-6 ex-item">
+                        <div class="col-12 col-sm-6 ex-item no-border-web">
                             <div class="ex-title fl">가입일</div>
                             <div class="ex-desc  fl">
                                 <p th:text="${memberInfo.reg_date}">
                             </div>
                         </div>
 
-                        <div class="col-6 ex-item">
+                        <div class="col-12 col-sm-6 ex-item no-border">
                             <div class="ex-title fl">특이사항</div>
                             <div class="ex-desc  fl">
-                                <input type="text" th:value="${memberInfo.member_etc}">
+                                <label for="memberEtc"></label>
+                                <input id="memberEtc" th:value="${memberInfo.member_etc}">
                             </div>
+                            <style>
+                                #memberEtc {width:  100%; border:none; border-bottom: 1px solid rgb(38,75,57);}
+                            </style>
                         </div>
                     </div>
 
@@ -87,11 +90,35 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" th:value="${memberSeq}" id="memberSeq">
+                    <input type="hidden" th:value="${branch}" id="branch">
                 </form>
                 <script>
                     $("#back").on("click", function () {
                         location.href = "/my_page";
                     });
+                    
+                    $("#mod").on("click",function () {
+                        var memberSeq = $("#memberSeq").val();
+                        var pnum = $("#pnum").val();
+                        var etc = $("#memberEtc").val();
+                        $.ajax({
+                            data: {memberSeq: memberSeq, pnum: pnum, etc: etc},
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            url: '/updateInfo'
+                            , beforeSend: function () {
+                                Progress.on();
+                            },
+                            success: function (result) {
+                                if (result == 1) {
+                                    Progress.off("업데이트 완료");
+                                } else {
+                                    Progress.off("오류 발생 관리자에게 문의 하세요.");
+                                }
+                            }
+                        })
+                    })
                 </script>
         </div>
         </div>

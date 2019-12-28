@@ -2,7 +2,7 @@
 .sub_main.login_wrap {background-size: cover; z-index:1; padding-top:100px; padding-bottom:50px;}
 .login_dim{position: absolute; width:100%; height:100%; background-color: black; opacity: 0.5; z-index: 2; top:0px;}
 .sub_visual_back { height: 250px; background-size: cover; background-repeat: no-repeat;
-background-color: black; position: relative; margin-bottom:50px; background-position: top;}
+background-color: black; position: relative; margin-bottom:100px; background-position: top;}
 .sub_visual_back.type2 {height: 150px;}
 .sub_dim {background-color: black; opacity: 0.5; height: 250px; position: absolute !important;}
 .sub_visual_back .sub_text{color:white; font-size:45px;}
@@ -25,6 +25,7 @@ background-color: black; position: relative; margin-bottom:50px; background-posi
 .flex_center {display: flex; justify-content: flex-end; height: 100%; align-items: center;}
 .btn_bottom{position:absolute; bottom:50px; text-align: center; width:100%; z-index: 5; cursor: pointer; opacity:0; transform: translateY(50px);}
 .page_con { padding: 250px 0;}
+
 /*.page_con_dim{background-color: black; opacity: 0.5; height: 100%; position: absolute !important; top:0px; width:100%;}*/
 /*.img_dim{height:500px; position: absolute; background-color: black; opacity: 0.2; width: 100%; z-index: 5}*/
 .img_con {transition: all 0.3s ease 0s, transform 0.7s cubic-bezier(0.0, 0.0, 0.2, 1) 0.00030s, opacity 0.5s cubic-bezier(0.0, 0.0, 0.2, 1) 0.00015s;
@@ -46,41 +47,61 @@ background-color: black; position: relative; margin-bottom:50px; background-posi
 
 /* 로그인 */
 .login_title{color:white; font-size:60px; font-weight:400;}
-.login-form {height:100vh; display:table; text-align: center; z-index:3}
+.login-form {height:calc(100vh - 150px); display:table; text-align: center; z-index:3}
 #login{display:table-cell; vertical-align: middle; width:100%;}
 .input_wrap {padding-top:30px; border-top:3px solid white; margin-bottom:30px;}
-.login_input{width: 80%; text-align: left; padding: 10px; border:none; outline:none;}
-.login_submit {margin:auto; background-color: rgb(38,75,57); width:150px; cursor: pointer; transition:all 0.3s}
-.login_submit:hover {background-color: rgba(38,75,57, 0.6);}
-.login_submit .login_submit_style {color:white; padding:55px; font-size: 30px; font-weight: 400;}
+.login_input{width: 80%; text-align: left; padding: 10px; border:none; outline:none; font-size: 20px; background-color: transparent; border-bottom: 1px solid #e9eff6; color: white;}
+
+.login_input::placeholder {
+	color: white;
+}
+.login_input::-webkit-input-placeholder {
+	color: white;
+}
+.login_input:-ms-input-placeholder {
+	color: white;
+}
 
 /* 회원가입*/
-.inner_reg_con{padding:30px 80px; border-top:2px solid white; border-bottom:2px solid white;}
+.inner_reg_con{padding:30px 10px; border-top:2px solid white; border-bottom:2px solid white;}
 .reg_main_title {color:white; font-size:60px; font-weight:400;}
-.reg_form {height:100vh; display:table; text-align: center; z-index:3}
+.reg_form { padding-top: 100px; display:table; text-align: center; z-index:3}
 .front_reg_con { display:table-cell; vertical-align: middle; width:100%; float:none !important;}
 .front_reg_con .reg_title{color:white;}
 
 /* 마이 페이지 */
 .ex-item-con {border-bottom: 3px solid rgb(38,75,57);
-	border-top: 3px solid rgb(38,75,57); padding-left: 30px; padding-right: 30px;}
+	border-top: 3px solid rgb(38,75,57); padding-right: 0; padding-left: 0;}
 .ex-item-con .ex-item {padding-bottom: 20px; padding-top: 20px; border-bottom:1px solid rgb(38,75,57);}
 .ex-item-con .ex-item.no-border {border-bottom: none;}
-.ex-item-con .ex-title {font-size: 20px; line-height: 30px; width: 170px; font-weight: bold;}
-.ex-item-con .ex-desc {font-size: 20px; line-height: 30px; width: calc(100% - 175px); font-weight: 500;}
-.list-item {font-size: 15px; line-height: 20px; width: 23%; margin-bottom: 10px; display:inline-block;}
+.ex-item-con .ex-item.no-border-web {border-bottom:1px solid rgb(38,75,57);}
+.ex-item-con .ex-title {font-size: 13px; line-height: 20px; width: 110px; font-weight: bold;}
+.ex-item-con .ex-desc {font-size: 13px; line-height: 20px; width: calc(100% - 115px); font-weight: 500;}
+.list-item {font-size: 15px; line-height: 20px; width: 45%; margin-bottom: 10px; display:inline-block;}
 
 
-.ex_tab {display: flex; justify-content: center; align-items: center; padding: 50px; flex-direction: column;}
+.ex_tab {display: flex; justify-content: center; align-items: center; padding: 10px; flex-direction: column;}
 .ex_tab .tab-icon {margin-bottom: 20px;}
 .ex_tab .tab-icon > img {width: 100px; height: 100px;}
+.ex_tab .tab-font {text-align: center;;}
 .ex_tab .tab-font > a {display:block; font-size: 15px; line-height: 20px; font-weight: bold;}
 
 /* 수업 신청*/
-.step_title{font-size:40px; font-size:4.0rem; line-height:46px; line-height:4.6rem; margin-bottom: 30px; text-align: center; font-weight:bold; color:rgb(38,75,57);}
+.step_title{font-size:40px; font-size:4.0rem; line-height:46px; line-height:4.6rem; margin-bottom: 50px; text-align: center; font-weight:bold; color:rgb(38,75,57);}
 .time_list {display: inline-block; border:1px solid black; margin-right:10px; padding: 5px;
 	vertical-align: top; font-size: 12px; font-weight: normal; height: 20px; width: calc(20% - 22px);
 	line-height: 20px; margin-bottom: 10px; outline: none;}
 .time_list:nth-child(5){margin-right:0px;}
 .time_list:last-child {margin-right:0px;}
 .time_list.holiday{background-color: red;}
+.one, .two, .last {transition: all 0.3s; padding-right: 15px; padding-left: 15px;}
+
+
+@media all and (min-width: 768px) {
+	.ex-item-con {padding-left: 30px; padding-right: 30px;}
+	.inner_reg_con{padding:30px 80px;}
+	.ex-item-con .ex-title {font-size: 20px; line-height: 30px; width: 170px;}
+	.ex-item-con .ex-desc {font-size: 20px; line-height: 30px; width: calc(100% - 175px); font-weight: 500;}
+	.list-item {width: 23%;}
+	.ex-item-con .ex-item.no-border-web {border-bottom: none;}
+}

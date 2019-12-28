@@ -30,9 +30,91 @@
                             수업 소개
                         </a>
                     </li>
+                    <th:block th:if="${session.memberSeq} == null">
+                        <li class="">
+                            <a href="/sign_up">
+                                회원가입
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/sign_in">
+                                로그인
+                            </a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${session.memberSeq} != null">
+                        <li class="">
+                            <a href="/memberMyPage">
+                                My Page
+                            </a>
+                        </li>
+                        <th:block th:if="${session.authority} == 1">
+                            <li class="">
+                                <a href="/admin/index">
+                                    관리자 페이지
+                                </a>
+                            </li>
+                        </th:block>
+                        <li class="">
+                            <a href="javascript:logout();">
+                                로그 아웃
+                            </a>
+                        </li>
+                    </th:block>
+
+                    <li id="moblie_menu">
+                        <span></span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--모바일 시에 메뉴-->
+<div id="moblie_menu_wrap" class="col-12 click_header_wrap">
+    <div class="col-12">
+        <div class="col-12 mobile_logo_con">
+            <div class="left_logo">
+                <img src="../img/main.png" alt="" style="width:100px;">
+            </div>
+
+            <div id="x_btn" class="right_btn_con close_btn">
+                <a href="/">
+                    <img src="../img/x_btn.png" alt="">
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-12 header_fixed_menu_box">
+            <div class="member_menu_wrap">
+                <div class="col-0 mr40">
+                    <a href="/" target="_blank" class="btn_style_0">
+                        <span class="fontsize30 point_white fontweight_bold">근력학교</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 pr40 pl40 pr-md-0 pl-md-0">
+            <div class="col-12 gnb_wrap">
+                <ul>
+                    <li class="">
+                        <a href="/intro_school">
+                            학교 소개
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/intro_teacher">
+                            강사 소개
+                        </a>
+                    </li>
                     <li>
-                        <a href="/reg_course">
-                            수업 신청하기
+                        <a href="/intro_course">
+                            수업 소개
                         </a>
                     </li>
                     <th:block th:if="${session.memberSeq} == null">
@@ -65,95 +147,7 @@
                                 로그 아웃
                             </a>
                         </li>
-
                     </th:block>
-                    <li id="moblie_menu">
-                        <span></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!--모바일 시에 메뉴-->
-<div id="moblie_menu_wrap" class="col-12 click_header_wrap">
-    <div class="col-12">
-        <div class="col-12 mobile_logo_con">
-            <div class="left_logo">
-                <img src="../img/logo_girl.png" alt="" style="width:200px;">
-            </div>
-            <div id="x_btn" class="right_btn_con close_btn">
-                <img src="../img/x_btn.png" alt="">
-            </div>
-        </div>
-
-        <div class="col-12 header_fixed_menu_box">
-            <div class="member_menu_wrap">
-                <div class="col-0 mr40">
-                    <a href="/" target="_blank" class="btn_style_0">
-                        <span class="point0">근력학교</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 pr40 pl40 pr-md-0 pl-md-0">
-            <div class="col-12 gnb_wrap">
-                <ul>
-                    <li class="">
-                        <a href="/">
-                            강사소개
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/intro_course">
-                            수업 소개
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="">
-                            신청 안내
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/exercise/exerciseRecord">
-                            일지 작성
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="/exercise/exerciseConfirm">
-                            일지 확인
-                        </a>
-                    </li>
-                    
-                    <li class="">
-                        <a href="/course_schedule/regSchedule">
-                            스케쥴 등록
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/course_schedule/checkSchedule">
-                            스케쥴 확인
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/register/regStudent">
-                            수강생등록
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/sign_up">
-                           	회원가입
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/sign_in">
-                           	로그인
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>

@@ -28,8 +28,9 @@ public class MainController {
     //메인 화면으로 이동
     @RequestMapping(value = "/", method=RequestMethod.GET)
     public String main(HttpServletRequest request, Model model) throws Exception {
-        List<Map<String, Object>> result = memberService.selectMemberList(1,"");
-        model.addAttribute("result", result);
+        HttpSession session = request.getSession();
+        Integer memberSeq = (Integer)session.getAttribute("memberSeq");
+        model.addAttribute("memberSeq", memberSeq);
         return "index";
     }
 

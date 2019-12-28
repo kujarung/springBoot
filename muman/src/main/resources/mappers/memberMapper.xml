@@ -65,4 +65,12 @@
 	<select id="searchIdAndPass" resultType="map">
 		select * from MEMBER where member_id = #{loginId} and member_pass = #{encPass}
 	</select>
+
+	<update id="updateInfo">
+		UPDATE MEMBER SET
+    		member_etc = #{etc},
+    		pnum = #{pnum}
+    	WHERE
+    		MEMBER_SEQ = #{memberSeq}
+	</update>
 </mapper>

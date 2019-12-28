@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseStudentDao {
 
-	void insertStudent(String member_seq, String start_date, String end_date, int times_week, String alias_list_full_name, String aliasList);
+	void insertStudent(int member_seq, String start_date, String end_date, int times_week, String alias_list_full_name, String aliasList);
 
 	List<Map<String, Object>> selectCourseStudentList(int currentPage);
 
@@ -17,7 +17,7 @@ public interface CourseStudentDao {
 
 	void updateDelay(int member_seq, String updateDay);
 
-	void insertStudent(String memberSeq, String startDate, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
+	void insertStudent(int memberSeq, String startDate, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
 
-	void updateCourseStudent(String memberSeq, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
+	void updateCourseStudent(int memberSeq, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
 }

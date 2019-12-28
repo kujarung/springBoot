@@ -5,13 +5,12 @@
     <head th:replace="common/sub/head"></head>
 </head>
 <body>
-
 <div class="col-12 wrapper">
     <header th:replace="common/header"></header>
     <div class="sub_main col-12">
         <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');"></div>
-        <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
-            <div class="col-12 mb30">
+        <div class="col-12 h-100 col-center mw-1200 pt80 pb80 pr15 pl15">
+            <div class="col-12 mb80">
                 <div class="col-12 tc mb10">
                     <div class="col-12">
                         <img src="img/muscle.png" style="width: 100px; height: 100px;">
@@ -41,20 +40,17 @@
                         <img src="img/tab2.png">
                     </div>
                     <div class="tab-font">
-                        <th:block>
-                            <div th:if="${courseStudentDetail} == null">
-                                <a href="/exInfo">
-                                    신청 정보
-                                </a>
-                            </div>
-
-                            <div th:if="${courseStudentDetail} != null">
-                                <a href="/exInfo">
-                                    운동 정보
-                                </a>
-                            </div>
+                        <th:block th:if="${courseStudentDetail} == null">
+                            <a href="/reg_course">
+                                수업 신청하기
+                            </a>
                         </th:block>
 
+                        <th:block th:if="${courseStudentDetail} != null">
+                            <a href="/exInfo">
+                                운동 정보
+                            </a>
+                        </th:block>
                     </div>
                 </div>
 
@@ -64,10 +60,13 @@
                     </div>
                     <div class="tab-font">
                         <a id="soon">
-                            운동 기록표(추가 예정)
+                            운동 기록표
+                            <br>
+                            (추가 예정)
                         </a>
                     </div>
                 </div>
+
                 <script>
                     $("#soon").on("click",function () {
                         alert("준비 중입니다.");

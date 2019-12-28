@@ -54,15 +54,15 @@ public class CourseMasterController {
 		}
 	}
 
-	//	미루기 기능
+	//결제 상태 변경
 	@RequestMapping("/couseMaster/changePayment")
 	@ResponseBody
 	public void changePayment(HttpServletResponse response,
-							@RequestParam(required = false) Integer memberSeq
-	) throws IOException  {
+							  @RequestParam(required = false) Integer memberSeq,
+							  @RequestParam(required = false) Integer priceType) throws IOException  {
 		int result;
 		try {
-			result = service.changePayment(memberSeq);
+			result = service.changePayment(memberSeq, priceType);
 			PrintWriter pw;
 			pw = response.getWriter();
 			pw.print(result);
@@ -72,6 +72,26 @@ public class CourseMasterController {
 			e.printStackTrace();
 		}
 	}
+
+	//결제 상태 변경
+	@RequestMapping("/couseMaster/changeGrade")
+	@ResponseBody
+	public void changeGrade(HttpServletResponse response,
+							  @RequestParam(required = false) Integer memberSeq,
+							  @RequestParam(required = false) Integer grade) throws IOException  {
+		int result;
+		try {
+			result = service.changeGrade(memberSeq, grade);
+			PrintWriter pw;
+			pw = response.getWriter();
+			pw.print(result);
+			pw.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 
 	//관리자 강의 등록 페이지

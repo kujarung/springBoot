@@ -23,24 +23,28 @@ public class MyInfoController {
     @Autowired
     CourseStudentService courseStudentService;
 
-    @RequestMapping(value = "/my_page")
-    public String myPage(HttpServletRequest request, Model model) {
+
+    @RequestMapping(value = "/memberMyPage")
+    public String memberMyPage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         Integer memberSeq = (Integer)session.getAttribute("memberSeq");
         if(memberSeq == null) {
             return "index";
         } else {
-            Map<String,Object> memberInfo = memberService.getMember(memberSeq);
-            List<Map<String,Object>> exList = courseMasterService.selectCourseList(memberSeq);
+            Map<String, Object> memberInfo = memberService.getMember(memberSeq);
+            Integer branch = (Integer)session.getAttribute("branch");
+            List<Map<String, Object>> exList = courseMasterService.selectCourseList(memberSeq);
             Map<String, Object> courseStudentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
             model.addAttribute("memberInfo", memberInfo);
             model.addAttribute("exList", exList);
-            if(courseStudentDetail == null) {
+            model.addAttribute("memberSeq", memberSeq);
+            model.addAttribute("branch", branch);
+            if (courseStudentDetail == null) {
                 model.addAttribute("courseStudentDetail", null);
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);
             }
-            return "/my_page/myPage";
+            return "my_page/myPage";
         }
     }
 
@@ -52,16 +56,19 @@ public class MyInfoController {
             return "index";
         } else {
             Map<String, Object> memberInfo = memberService.getMember(memberSeq);
+            Integer branch = (Integer)session.getAttribute("branch");
             List<Map<String, Object>> exList = courseMasterService.selectCourseList(memberSeq);
             Map<String, Object> courseStudentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
             model.addAttribute("memberInfo", memberInfo);
             model.addAttribute("exList", exList);
+            model.addAttribute("memberSeq", memberSeq);
+            model.addAttribute("branch", branch);
             if (courseStudentDetail == null) {
                 model.addAttribute("courseStudentDetail", null);
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);
             }
-            return "/my_page/memberInfo";
+            return "my_page/memberInfo";
         }
     }
 
@@ -76,14 +83,17 @@ public class MyInfoController {
             Map<String, Object> memberInfo = memberService.getMember(memberSeq);
             List<Map<String, Object>> exList = courseMasterService.selectCourseList(memberSeq);
             Map<String, Object> courseStudentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
+            Integer branch = (Integer)session.getAttribute("branch");
             model.addAttribute("memberInfo", memberInfo);
             model.addAttribute("exList", exList);
+            model.addAttribute("memberSeq", memberSeq);
+            model.addAttribute("branch", branch);
             if (courseStudentDetail == null) {
                 model.addAttribute("courseStudentDetail", null);
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);
             }
-            return "/my_page/exInfo";
+            return "my_page/exInfo";
         }
     }
 
@@ -104,7 +114,7 @@ public class MyInfoController {
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);
             }
-            return "/my_page/exRecord";
+            return "my_page/exRecord";
         }
     }
 }

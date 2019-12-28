@@ -154,4 +154,30 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
+
+
+	//회원 리스트 출력
+	@GetMapping("/updateInfo")
+	@ResponseBody
+	public void updateInfo(
+			@RequestParam(required = false) int memberSeq,
+			@RequestParam(required = false) String pnum,
+			@RequestParam(required = false) String etc,
+			Model model , HttpServletResponse response) throws IOException {
+		try {
+			service.updateInfo(memberSeq, pnum, etc);
+			int result = 1;
+			PrintWriter pw = response.getWriter();
+			pw.print(result);
+			pw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			int result = 0;
+			PrintWriter pw = response.getWriter();
+			pw.print(result);
+			pw.flush();
+		}
+	}
+
 }

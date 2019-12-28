@@ -22,9 +22,9 @@
 	    SELECT
 			 DISTINCT 
 			 (	SELECT 
-			 		COUNT(MEMBER_SEQ) 
+			 		COUNT(CS.MEMBER_SEQ)
 			 	FROM 
-			 		EXCERCISE_MASTER
+			 		EXCERCISE_MASTER EM
 			 	LEFT JOIN
 			 		COURSE_STUDENT CS ON CS.MEMBER_SEQ = EM.MEMBER_SEQ
 			 	WHERE 
@@ -95,7 +95,13 @@
 
 	<update id="changePayment">
 		update COURSE_STUDENT set
-		price_date = sysdate(), payment_yn = 1
+		price_date = sysdate(), payment_yn = 1, price_type = #{priceType}
+		where member_seq = #{memberSeq}
+	</update>
+
+	<update id="changeGrade">
+		update COURSE_STUDENT set
+		grade = #{grade}
 		where member_seq = #{memberSeq}
 	</update>
 

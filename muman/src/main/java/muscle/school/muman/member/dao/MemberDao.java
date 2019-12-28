@@ -16,4 +16,6 @@ public interface MemberDao {
     int isExistId(String id);
 
 	List<Map<String, Object>> searchIdAndPass(String loginId, String encPass);
+
+    void updateInfo(int memberSeq, String pnum, String etc);
 }

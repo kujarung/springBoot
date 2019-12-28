@@ -13,7 +13,6 @@
 		<div class="col-12 mb30 step_title">
 	        	수강생 현황
 		</div>
-		
 <!--        <div class="col-12 mb30">-->
 <!--            <table class="col-12 filter_table mb30">-->
 <!--                <colgroup>-->
@@ -69,6 +68,7 @@
 							<th>Delay 사용 여부</th>
 							<th>지점</th>
 							<th>결제 여부</th>
+							<th>학년</th>
 						</tr>
 					</thead>
 					
@@ -95,6 +95,7 @@
 									한양대점
 								</td>
 								<td class="member_seq hidden" th:text="${courseStudentList.MEMBER_SEQ}"></td>
+
 								<td th:if="${courseStudentList.PAYMENT_YN} == 0">
 									미결제
 								</td>
@@ -102,6 +103,8 @@
 								<td th:if="${courseStudentList.PAYMENT_YN} == 1">
 									결제
 								</td>
+
+								<td th:text="${courseStudentList.GRADE}"></td>
 							</th:block>
 						</tr>
 					</tbody>

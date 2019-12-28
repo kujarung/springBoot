@@ -25,7 +25,7 @@ public class CourseStudentService {
 		
 	}
 
-	public void insertStudent(String memberSeq, String startDate, String endDate, int timesWeek, String aliasList, 
+	public void insertStudent(int memberSeq, String startDate, String endDate, int timesWeek, String aliasList,
 			String price, String price_date, String price_type, int paymentYn
 			) {
 		String aliasListFullFame= "";
@@ -59,7 +59,7 @@ public class CourseStudentService {
 		dao.updateDelay(memberSeq, updateDay);
 	}
 
-	public void updateCourseStudent(String memberSeq, String endDate, int timesWeek, String aliasList,
+	public void updateCourseStudent(int memberSeq, String endDate, int timesWeek, String aliasList,
 									String price, String priceDate, String priceType, int paymentYn){
 		String aliasListFullName= "";
 		String [] tempAliasList = aliasList.split("\\|");

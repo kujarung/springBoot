@@ -42,7 +42,7 @@ public class CourseMasterService {
 	}
 	
 	@Transactional 
-	public int insertCourse(String memberSeq, String dayListString, String[] timeList, String aliasListString
+	public int insertCourse(int memberSeq, String dayListString, String[] timeList, String aliasListString
 							,int branch
 	) throws ParseException {
 	    try {
@@ -63,7 +63,7 @@ public class CourseMasterService {
 		}
 	}
 	
-	public int insertOneCourse(String memberSeq, String exAlias, String endDate, int branch) {
+	public int insertOneCourse(int memberSeq, String exAlias, String endDate, int branch) {
 		dao.insertCourse(memberSeq, exAlias, endDate, branch);
 		return 0;
 	}
@@ -116,7 +116,7 @@ public class CourseMasterService {
 					endDate = updateDay;
 				} else {
 					courseStudentService.updateDelay(memberSeq, updateDay);
-					insertOneCourse( Integer.toString(memberSeq)   , insertAlias,  updateDay, branch);
+					insertOneCourse(memberSeq   , insertAlias,  updateDay, branch);
 					endDate = updateDay;
 				}
 			}
@@ -141,9 +141,9 @@ public class CourseMasterService {
 		}
 	}
 
-	public int changePayment(Integer memberSeq) {
+	public int changePayment(Integer memberSeq, Integer priceType) {
 		try {
-			dao.changePayment(memberSeq);
+			dao.changePayment(memberSeq, priceType);
 			return 1;
 		} catch (Exception e) {
 			return 0;
@@ -153,5 +153,14 @@ public class CourseMasterService {
 
 	public List<Map<String, Object>> searchHoildayInCourse(String startDate, String endDate) {
 		return dao.searchHolidayInCourse(startDate, endDate);
+	}
+
+	public int changeGrade(Integer memberSeq, Integer grade) {
+		try {
+			dao.changeGrade(memberSeq, grade);
+			return 1;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 }

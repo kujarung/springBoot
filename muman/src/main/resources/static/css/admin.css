@@ -23,7 +23,7 @@
 .icon{display: block; width: 30px; height: 30px; background-size: cover;}
 .admin_desc{font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem;  text-align: center;}
 .inner_font{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }
-.inner_con {transition:all 0.5s ease-out; padding-top: 80px; padding-left: 50px; padding-right: 50px;
+.inner_con {padding-top: 80px; padding-left: 50px; padding-right: 50px;
 		    height:100vh; position: absolute !important; right:0; top: 0;}
 .inner_con.first{width: 100%; } .inner_con.second{right:-100%; } .inner_con.third {right:-200%; } .inner_con.fourth {right:-300%; }
 .step_btn_con {background-color: #ea9643; text-align: center; display: inline-block; position: absolute; bottom: 50px; transition: all 0.3s}

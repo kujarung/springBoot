@@ -12,17 +12,19 @@
 .wrapper .right_utill_con ul.sub_menu_ul  li:hover{color:rgb(38,75,57);}
 
 /*모바일 메뉴*/
-#moblie_menu {display:block; padding-right:30px; padding-top:20px;}
+#moblie_menu {display:block; padding-right:30px; padding-top:20px; }
 #moblie_menu span{  position: absolute;  display: block;  width: 41px;  height: 3px;  top: 50%;  margin-top: -1.5px;  background-color: #fff;}
 #moblie_menu span:before{    position: absolute;  display: block;  height: 3px;  background-color: #fff;  content: "";  width: 29px;  top: -10px;}
 #moblie_menu span:after{    position: absolute;  display: block;  height: 3px;  background-color: #fff;  content: "";  width: 18px;  bottom: -10px;  }
-.gnb_wrap li > a {font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem; color: #fff;  display: block;  padding-bottom: 20px;  margin-bottom: 20px;}
+.gnb_wrap li > a {font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem; color: #72757e;  display: block;  padding-bottom: 20px;  margin-bottom: 20px;
+border-bottom: 1px solid #72757e;}
+.gnb_wrap li.active > a {color: white; border-bottom-color:white; font-weight: bold;}
 .click_header_wrap .header_fixed_menu_box {  background-color: #1b1b1b;  margin-bottom: 32px;  padding-left: 40px;  padding-right: 40px;  padding-top: 16px;  padding-bottom: 15px;  }
 .click_header_wrap .member_menu_wrap {  display: inline-block;  vertical-align: middle;  margin-top: 1px;  float: none;  }
 .click_header_wrap .member_menu_wrap > div {font-size:14px; font-size:1.4rem; line-height:20px; line-height:2.0rem;    color: #fff;  float: none;  vertical-align: middle;  }
-.mobile_logo_con{padding-right: 15px; padding-left: 15px; padding-top: 30px; margin-bottom: 30px;}
+.mobile_logo_con{padding-right: 15px; padding-left: 15px; padding-top: 30px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;}
 .mobile_logo_con .left_logo{float: left;}
-.mobile_logo_con .right_btn_con{width: 40px; height: 40px; float: right; padding-top: 20px; cursor: pointer;}
+.mobile_logo_con .right_btn_con{width: 40px; height: 40px; float: right; cursor: pointer;}
 .click_header_wrap{  position: fixed !important;  right: -200%;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }
 .click_header_wrap > div {  overflow-y: scroll;  width: 100%;  height: 100%;  margin-right: 0;  background-color: #000;  }
 .click_header_wrap.active {  position: fixed;  right: 0;  z-index: 101;  height: 100%;  transition: all 0.5s;  background-color: rgba(0, 0, 0, 0);  }

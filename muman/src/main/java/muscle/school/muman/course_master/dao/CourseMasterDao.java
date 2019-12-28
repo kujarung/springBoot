@@ -13,13 +13,15 @@ public interface CourseMasterDao {
 
 	List<Map<String, Object>> selectHolidayList();
 
-	void insertCourse(String memberSeq, String exAlias, String exDate, int branch);
+	void insertCourse(int memberSeq, String exAlias, String exDate, int branch);
 
 	List<Map<String, Object>> selectCourseList(int memberSeq);
 
 	void updateDetail(int useYn, int maxPeople, int alias);
 
-	void changePayment(Integer memberSeq);
+	void changePayment(Integer memberSeq, Integer priceType);
 
 	List<Map<String, Object>> searchHolidayInCourse(String startDate, String endDate);
+
+	void changeGrade(Integer memberSeq, Integer grade);
 }

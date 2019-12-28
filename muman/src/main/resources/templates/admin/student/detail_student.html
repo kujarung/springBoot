@@ -28,7 +28,7 @@
 	                   <tr>
 	                       <th>이름</th>
 	                       <td th:text="${courseStudent.name}"></td>
-	
+
 	                       <th>아이디</th>
 	                       <td th:text="${courseStudent.member_id}"></td>
 	                   </tr>
@@ -36,25 +36,68 @@
 	                   <tr>
 	                       <th>시작일</th>
 	                       <td th:text="${courseStudent.start_date}"></td>
-	                       <th>종료일</th>
+
+						   <th>종료일</th>
 	                       <td th:text="${courseStudent.end_date}"></td>
 	                   </tr>
-	                   
-	                   <tr>
-	                       <th>결제 여부</th>
-						   <td th:if="${courseStudent.payment_yn} == 0">
-							   미결제<button class="ml20" id="changePayment">결제 상태 변경</button>
-						   </td>
-						   <td th:if="${courseStudent.payment_yn} == 1">
-							   <span class="">결제일 : </span>
-							   <span th:text="${courseStudent.price_date}"></span>
-						   </td>
 
+					   <th:block th:if="${courseStudent.payment_yn} == 0">
+						   <tr>
+							   <th>결제 여부</th>
+							   <td th:if="${courseStudent.payment_yn} == 0">
+									   미결제
+							   </td>
+
+							   <th>결제 여부</th>
+							   <td>
+								   <select id="priceType">
+									   <option value="1">카드</option>
+									   <option value="2">계좌</option>
+									   <option value="3">카드+탈잉</option>
+									   <option value="4">계좌+탈잉</option>
+								   </select>
+								   <button class="ml20" id="changePayment">결제 상태 변경</button>
+							   </td>
+						   </tr>
+					   </th:block>
+
+					   <th:block th:if="${courseStudent.payment_yn} == 1">
+						   <tr>
+							   <th>결제 여부</th>
+							   <td>
+								   <span class="">결제 : </span>
+								   <span th:text="${courseStudent.price_date}"></span>
+							   </td>
+
+							   <th>결제 유형</th>
+							   <td>
+								   <select disabled>
+									   <option th:selected="${courseStudent.price_type} == 1">카드</option>
+									   <option th:selected="${courseStudent.price_type} == 2">계좌</option>
+									   <option th:selected="${courseStudent.price_type} == 3">카드+탈잉</option>
+									   <option th:selected="${courseStudent.price_type} == 4">계좌+탈잉</option>
+								   </select>
+							   </td>
+						   </tr>
+					   </th:block>
+
+
+	                   <tr>
 						   <th>학년</th>
-						   <td>
-							   <input th:value="${courseStudent.grade}">
+						   <td colspan="3">
+							   <select id="grade">
+								   <option value="1" th:selected="${courseStudent.grade} == 1">1학년</option>
+								   <option value="2" th:selected="${courseStudent.grade} == 2">2학년</option>
+								   <option value="3" th:selected="${courseStudent.grade} == 3">3학년</option>
+								   <option value="4" th:selected="${courseStudent.grade} == 4">4학년</option>
+								   <option value="5" th:selected="${courseStudent.grade} == 5">대학원생1</option>
+								   <option value="6" th:selected="${courseStudent.grade} == 6">대학원생2</option>
+								   <option value="7" th:selected="${courseStudent.grade} == 7">대학원생3</option>
+								   <option value="8" th:selected="${courseStudent.grade} == 8">졸</option>
+							   </select>
+							   <button class="ml20" id="changeGrade">학년 변경</button>
 						   </td>
-	                   </tr>	
+	                   </tr>
 
 	                   <tr>
 	                       <th>delay 사용 여부</th>
@@ -172,8 +215,9 @@
 		//삭제 버튼 클릭 시
 		$("#delStu").on("click", function() {
 			var memberSeq = $("#memberSeq").val();
+			var priceType = $("#priceType").val();
 			$.ajax({
-				data : {memberSeq : memberSeq},
+				data : {memberSeq : memberSeq, priceType : priceType},
 				url : '/admin/delStu',
 				success : function(result){
 					if(result == 1) {
@@ -252,13 +296,14 @@
 
 		$("#changePayment").on("click", function () {
 			var memberSeq = $("#memberSeq").val();
+			var priceType = $("#priceType").val();
 			if( confirm("오늘 날짜로 결제일이 설정 됩니다. 변경 하시겠습니까?") ) {
 				$.ajax({
-					data : {memberSeq : memberSeq},
+					data : {memberSeq : memberSeq, priceType : priceType },
 					contentType: "application/json; charset=utf-8",
 					dataType: "json",
 					url : '/couseMaster/changePayment'
-					, beforeSend: function () {1
+					, beforeSend: function () {
 						Progress.on();
 					},success : function(result){
 						if(result == 1) {
@@ -269,7 +314,31 @@
 					}
 				})
 			}
-		})
+		});
+
+
+		$("#changeGrade").on("click", function () {
+			var memberSeq = $("#memberSeq").val();
+			var grade = $("#grade").val();
+			if( confirm("오늘 날짜로 결제일이 설정 됩니다. 변경 하시겠습니까?") ) {
+				$.ajax({
+					data : {memberSeq : memberSeq, grade : grade },
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					url : '/couseMaster/changeGrade'
+					, beforeSend: function () {
+						Progress.on();
+					},success : function(result){
+						if(result == 1) {
+							Progress.off("변경 완료");
+						} else {
+							Progress.off("오류 발생 관리자에게 문의 하세요.");
+						}
+					}
+				})
+			}
+		});
+
 	});
 
 

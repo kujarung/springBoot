@@ -31,10 +31,12 @@ public class SignController {
 			HttpSession session = request.getSession();
 			int memberSeq = Integer.parseInt(result.get(0).get("member_seq").toString() );
 			int authority = Integer.parseInt(result.get(0).get("authority").toString() );
+			int branch = Integer.parseInt(result.get(0).get("branch").toString() );
 			String name = result.get(0).get("name").toString();
 			session.setAttribute("memberSeq", memberSeq);
 			session.setAttribute("name", name);
 			session.setAttribute("authority", authority);
+			session.setAttribute("branch", branch);
 			return 1;
 		} else {
 			return 0;

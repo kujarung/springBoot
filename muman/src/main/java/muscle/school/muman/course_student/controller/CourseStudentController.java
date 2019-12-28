@@ -40,7 +40,7 @@ public class CourseStudentController {
 
 	@PostMapping("/courseStudent/insertCourseStudent")
 	@Transactional
-	public String insertCourseStudent(HttpServletRequest req, 					  							@RequestParam(value = "member_seq") String memberSeq,
+	public String insertCourseStudent(HttpServletRequest req, 					  							@RequestParam(value = "member_seq") int memberSeq,
 									  @RequestParam(value = "register_start_time") String 	startDate, 		@RequestParam() int times,
 									  @RequestParam(value = "register_end_time") String 	endDate,   		@RequestParam(value = "time_list") String[] timeList,
 									  @RequestParam() String dayList, 			  														@RequestParam() String aliasList,
@@ -57,7 +57,7 @@ public class CourseStudentController {
 
 	@PostMapping("/courseStudent/updateCourseStudent")
 	@Transactional
-	public String updateCourseStudent(HttpServletRequest req, 					  							@RequestParam(value = "member_seq") String memberSeq,
+	public String updateCourseStudent(HttpServletRequest req, 					  							@RequestParam(value = "member_seq") int memberSeq,
 									  @RequestParam() int times,
 									  @RequestParam(value = "register_end_time") String 	endDate,   		@RequestParam(value = "time_list") String[] timeList,
 									  @RequestParam() String dayList, 			  														@RequestParam() String aliasList,
@@ -75,6 +75,7 @@ public class CourseStudentController {
 	@GetMapping("/admin/view_student")
 	public String adminViewCourseStudent(Model model, @RequestParam(required=false, defaultValue = "1") int currentPage) {
 		List<Map<String,Object>> courseStudentList 	= courseStudentService.selectCourseStudentList(currentPage);
+
 		if(courseStudentList.size() != 0) {
 			int totalCnt = Integer.parseInt( courseStudentList.get(0).get("TOTAL_CNT").toString());
 			Map<String,Object> pagingInfo = commonService.calcPaging(totalCnt, currentPage, 10);

@@ -31,8 +31,8 @@
 									<div class="col-12 reg_con">
 										<div class="reg_title"><span class="point-red">*</span>아이디</div>
 										<div class="reg_left_input">
-											<input class="type_2 fl" name="id" placeholder="영문소문자,숫자 조합의 4~12 사이로 입력해 주세요.">
-											<div class="check_btn" id="duplicate">
+											<input class="type_2 fl" name="id" placeholder="영문,숫자 조합의 4~12길이">
+											<div class="check_btn" id="duplicate" style="width: 120px">
 												<div class="check_text">
 													중복확인
 												</div>
@@ -43,14 +43,17 @@
 									<div class="col-12 reg_con">
 										<div class="reg_title"><span class="point-red">*</span>비밀번호</div>
 										<div class="reg_left_input">
-											<input name="pass" type="password" required="required" placeholder="비밀번호는 8자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.">
+											<input name="pass" type="password" placeholder="영문 + 숫자 6자~12자로 사용">
 										</div>
 									</div>
 
 									<div class="col-12 reg_con">
-										<div class="reg_title"><span class="point-red">*</span>비밀번호 확인</div>
+										<div class="reg_title">
+											<span class="point-red fl" style="display:block;">*</span>
+											<span class="over-hidden" style="display:block;">비밀번호<br>확인</span>
+										</div>
 										<div class="reg_left_input">
-											<input name="pass_check" type="password" required="required" placeholder="비밀번호는 8자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.">
+											<input name="pass_check" type="password" placeholder="영문 + 숫자 6자~20자로 사용">
 										</div>
 									</div>
 
@@ -58,7 +61,7 @@
 										<div class="reg_title"><span class="point-red">*</span>지점 선택</div>
 										<div class="reg_left_select">
 											<select name="branch">
-												<option value="1">고려대점</option>
+												<option value="1">고대본점</option>
 												<option value="2">한양대점</option>
 											</select>
 										</div>
@@ -145,7 +148,7 @@
 					if(validatePassword(pass)) {
 						submit_ok++;
 					} else {
-						alert("비밀번호는 8자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.");
+						alert("비밀번호는 6자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.");
 						return false;
 					}
 
@@ -159,7 +162,7 @@
 				});
 
 				function validatePassword(character) {
-					return /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/.test(character)
+					return /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,}$/.test(character)
 				}
 				function validateId(id) {
 					return /^[A-Za-z0-9]{4,12}$/.test(id);
