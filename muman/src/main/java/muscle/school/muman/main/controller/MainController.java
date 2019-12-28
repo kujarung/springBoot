@@ -28,9 +28,6 @@ public class MainController {
     //메인 화면으로 이동
     @RequestMapping(value = "/", method=RequestMethod.GET)
     public String main(HttpServletRequest request, Model model) throws Exception {
-        if(request.getSession().getAttribute("loginInfo") != null) {
-
-        }
         List<Map<String, Object>> result = memberService.selectMemberList(1,"");
         model.addAttribute("result", result);
         return "index";
@@ -52,5 +49,16 @@ public class MainController {
     @RequestMapping(value = "/intro_course", method=RequestMethod.GET)
     public String intro_course() {
         return "intro_course/intro_course";
+    }
+
+    @RequestMapping(value = "/map")
+    public String map() {
+        return "map/map";
+    }
+
+
+    @RequestMapping(value = "/success")
+    public String success() {
+        return "sign/success";
     }
 }

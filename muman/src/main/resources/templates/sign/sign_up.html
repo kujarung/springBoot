@@ -1,5 +1,5 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
     <head> 
         <title>회원가입</title>
         <head th:replace="common/sub/head"></head>
@@ -7,100 +7,166 @@
     <body>
         <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-            
             <div class="col-12 sub_main login_wrap" style="background-image: url('img/water.jpg')">
             	<div class="login_dim"></div>
             	<div class="col-12  mw-768 col-center h-100">
 					<div class="col-12 reg_form">
-						<form class="col-12 front_reg_con" action="/insertMember" method="post" id="mbmer_insert" style="z-index: 3">
-				            <div class="col-12 reg_main_title mb30">
-				            	회원 가입
-				        	</div>
-				            
-				            <div class="col-12 inner_reg_con mb30">
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">이름</div>
-					                <div class="reg_left_input">
-					                    <input name="name" required="required">
-					                </div>
-					            </div>
-					
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">아이디</div>
-					                <div class="reg_left_input">
-					                    <input class="type_2 fl" name="id">
-					                    <div class="check_btn">
-					                        <div class="check_text">
-					                            	중복확인
-					                        </div>
-					                    </div>
-					                </div>
-					            </div>
-					
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">비밀번호</div>
-					                <div class="reg_left_input">
-					                    <input name="pass" type="password" required="required">
-					                </div>
-					            </div>
-		
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">비밀번호 확인</div>
-					                <div class="reg_left_input">
-					                    <input name="pass_check" type="password" required="required">
-					                </div>
-					            </div>
-					            
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">지점 선택</div>
-					                <div class="reg_left_select">
-					                    <select name="branch">
-					                        <option>고려대점</option>
-					                        <option>한양대점</option>
-					                    </select>
-					                </div>
-					            </div>
-					            
-		
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">전화 번호</div>
-					                <div class="reg_left_input">
-					                    <input name="pnum" placeholder="- 빼고 입력해 주세요 ex)01099999999" required="required">
-					                </div>
-					            </div>
-					
-					            <div class="col-12 reg_con">
-					                <div class="reg_title">특이 사항</div>
-					                <div class="reg_left_input">
-					                    <input name="member_etc" required="required">
-					                </div>
-					            </div>
-				            </div>
-				            
-				            <div class="col-12 mb20">
-	 					    	<div class="login_submit">
-							    	<div class="login_submit_style" style="display:block" id="regBtn">
-							        	회원가입
-							        </div>
-							    </div>
-					    	</div>
-			        	</form>
+							<form class="col-12 front_reg_con" action="/insertMember" method="post" id="mbmer_insert" style="z-index: 3">
+								<div class="col-12 reg_main_title mb30">
+									회원 가입
+								</div>
+
+								<div class="col-12 inner_reg_con mb30">
+									<div class="col-12 reg_con">
+										<div class="col-12 tl fontsize15 point_white mb20">
+											<span class="point-red">*</span> 은 필수 입력 값입니다.
+										</div>
+
+										<div class="reg_title"><span class="point-red">*</span>이름</div>
+										<div class="reg_left_input">
+											<input name="name" required="required">
+										</div>
+									</div>
+
+									<div class="col-12 reg_con">
+										<div class="reg_title"><span class="point-red">*</span>아이디</div>
+										<div class="reg_left_input">
+											<input class="type_2 fl" name="id" placeholder="영문소문자,숫자 조합의 4~12 사이로 입력해 주세요.">
+											<div class="check_btn" id="duplicate">
+												<div class="check_text">
+													중복확인
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 reg_con">
+										<div class="reg_title"><span class="point-red">*</span>비밀번호</div>
+										<div class="reg_left_input">
+											<input name="pass" type="password" required="required" placeholder="비밀번호는 8자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.">
+										</div>
+									</div>
+
+									<div class="col-12 reg_con">
+										<div class="reg_title"><span class="point-red">*</span>비밀번호 확인</div>
+										<div class="reg_left_input">
+											<input name="pass_check" type="password" required="required" placeholder="비밀번호는 8자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.">
+										</div>
+									</div>
+
+									<div class="col-12 reg_con">
+										<div class="reg_title"><span class="point-red">*</span>지점 선택</div>
+										<div class="reg_left_select">
+											<select name="branch">
+												<option value="1">고려대점</option>
+												<option value="2">한양대점</option>
+											</select>
+										</div>
+									</div>
+
+
+									<div class="col-12 reg_con">
+										<div class="reg_title">전화 번호</div>
+										<div class="reg_left_input">
+											<input name="pnum" placeholder="- 빼고 입력해 주세요 ex)01099999999">
+										</div>
+									</div>
+
+									<div class="col-12 reg_con">
+										<div class="reg_title">특이 사항</div>
+										<div class="reg_left_input">
+											<input name="member_etc">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-12 mb20">
+									<div class="login_submit">
+										<div class="login_submit_style" style="display:block" id="regBtn">
+											회원가입
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 		    	</div>
             </div>
+            <script type="text/javascript" th:inline="javascript">
+				$('[href="/sign_up"]').parent().addClass("active");
+				var isDuplicate;
+				$("#duplicate").on("click", function () {
+					var id = $("[name='id']").val();
+					if(validateId(id)) {
+						$.ajax({
+							data : {id : id},
+							url : "/searchId",
+							async: false,
+							success : function (result) {
+								isDuplicate = result;
+								if(isDuplicate) {
+									alert("중복 된 아이디 입니다.");
+								} else {
+									alert("사용 가능한 아이디 입니다.");
+								}
+							}
+						});
+					} else {
+						alert("아이디는 영문소문자,숫자 조합의 4~12 사이여야 합니다.");
+						isDuplicate = true;
+						return false;
+					}
 
-            <input id="error" type="hidden" th:value = "${error}">
-            <script type="text/javascript" th:inline="javascript"> 
-            $("#regBtn").on("click", function(){
-            	$("#mbmer_insert").submit();
-            })	
-            /*<![CDATA[*/
 
-            var error = /*[[${error}]]*/;
-            console.log(error);
+				});
 
-        	/*]]>*/
+				$("#regBtn").on("click", function(){
+					var submit_ok = 0;
+					var pass = $("[name='pass']").val();
+					var pass_check = $("[name='pass_check']").val();
+					var name = $('[name="name"]').val().trim();
+					var id = $('[name="id"]').val().trim();
+
+
+					if(name != "") {
+						submit_ok++;
+					} else {
+						alert("이름을 입력해 주세요.");
+						return false;
+					}
+
+					if(!isDuplicate) {
+						submit_ok++;
+					} else {
+						alert("아이디 중복 검사를 해주세요.");
+						return false;
+					}
+
+					if(validatePassword(pass)) {
+						submit_ok++;
+					} else {
+						alert("비밀번호는 8자 이상 영문 숫자 특수 문자 중 2가지를 조합하여야 합니다.");
+						return false;
+					}
+
+					if(!pass == pass_check) {
+						alert("비밀번호 중복 확인을 해주세요.");
+						return false;
+					} else {
+						submit_ok++;
+					}
+					$("#mbmer_insert").submit();
+				});
+
+				function validatePassword(character) {
+					return /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/.test(character)
+				}
+				function validateId(id) {
+					return /^[A-Za-z0-9]{4,12}$/.test(id);
+				}
+
             </script>
+
     </body>
 
 </html>

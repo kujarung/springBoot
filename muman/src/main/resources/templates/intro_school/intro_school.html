@@ -1,13 +1,13 @@
-<!DOCTYPE html> 
-<html> 
-    <head> 
-        <title>선생님 소개</title>
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>학교 소개</title>
         <head th:replace="common/sub/head"></head>
-    </head> 
+    </head>
     <body>
         <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-            
+
             <div class="col-12">
               	<div class="col-12 school_main_visual" style='background-image: url("img/visual_img_school1.jpg");'>
               		<div class="col-12 col-center mw-1200 flex_center pl50 pr50 pr-sm-0 pl-sm-0">
@@ -16,7 +16,7 @@
                             <span class="point_color">가장</span> 똑똑한<br>
               				<span class="point_color">피티샵</span>
               			</div>
-              			
+
               			<div class="btn_bottom">
               				<img src="img/down-arrow.png">
               			</div>
@@ -24,53 +24,57 @@
               	</div>
               	<div class="col-12 visual_sub_dim"></div>
             </div>
- 
+
             <!-- 경험이 다르다 -->
             <div class="col-12 page_con" id="differExp">
             	<div class="col-12 h-100 visual_bck" style='background-image: url("img/excer.jpg");'></div>
-            	<div class="page_con_dim"></div>
+<!--            	<div class="page_con_dim"></div>-->
             	<div class="col-12 col-center mw-1200 pr50 pl50 pr-sm-0 pl-sm-0">
             		<div class="col-12 mw-450">
 	            		<div class="fontsize42 point_color fontweight700 mb40" id="leftFont">
 		           			훈련은 <br>
-	            			'알고'<br> 
+	            			'알고'<br>
 	            			해야 합니다.
 	            		</div>
-	            		
+
 	            		<div class="fontsize15 lineheight25 point_white transition_css" id="desc">
-	            			훈련은 그것을 ‘왜’ 해야 하고, ‘무엇을’ 해야 하고, ‘어떻게’ 해야 하는지를 스스로 납득한 상태에서 행해질 때, 강력한 지속성을 부여 받습니다.<br>
-							근력학교의 첫 수업은 철저히 이 방향에 맞추어 설계되어 있습니다.<br>
-							<br>
-							‘운동은 왜 해야 되지?’<br>
-							‘필라테스/보디빌딩/파워리프팅/클라이밍/요가/케틀벨/클럽벨/불가리안백/메이스벨/체중 중에 뭘 해야 하지?’<br>
-							‘OO(이것이 무엇이든)은 어떻게 해야 하지?’<br>
-							<br>
-							이 질문에 스스로 답을 찾지 못한 사람은 드넓은 훈련의 숲에서 길을 잃고 헤맬 수밖에 없습니다.<br>
-							<br>
-							우리의 시간은 아주 소중한데 말이죠.
+							<div class="point_white">
+								훈련은 그것을 ‘왜’ 해야 하고, ‘무엇을’ 해야 하고, ‘어떻게’ 해야 하는지를 스스로 납득한 상태에서 행해질 때, 강력한 지속성을 부여 받습니다.<br>
+								근력학교의 첫 수업은 철저히 이 방향에 맞추어 설계되어 있습니다.<br>
+								<br>
+								‘운동은 왜 해야 되지?’<br>
+								‘필라테스/보디빌딩/파워리프팅/클라이밍/요가/케틀벨/클럽벨/불가리안백/메이스벨/체중 중에 뭘 해야 하지?’<br>
+								‘OO(이것이 무엇이든)은 어떻게 해야 하지?’<br>
+								<br>
+								이 질문에 스스로 답을 찾지 못한 사람은 드넓은 훈련의 숲에서 길을 잃고 헤맬 수밖에 없습니다.<br>
+								<br>
+								우리의 시간은 아주 소중한데 말이죠.
+							</div>
 	            		</div>
             		</div>
             	</div>
-            </div>  
-            
-            
-            <!-- 커리큘럼이 차별화 되어 있다 -->
+            </div>
+
+
+            <!-- 운동 시설 굿  -->
              <div class="col-12 page_con" id="goodCurri">
             	<div class="col-12 h-100 visual_bck"></div>
-            	<div class="page_con_dim"></div>
             	<div class="col-12 col-center mw-1200">
             		<div class="col-12 col-center tc">
-	            		<div class="fontsize42 point_color fontweight700 mb40" id="goodCurriFont">
+	            		<div class="fontsize42 point_color fontweight700 mb40">
 	            			최고의 시설로<br>
 	            			최고의 운동을 하세요
 	            		</div>
-	            	    
-	            	    <div class="fontsize15 lineheight25 point_white transition_css mb80" id="goodCurriDesc">
-	            	    	엘리코 운동 기구로 차원이 다른 경험을 하세요.<br>
-	            	    	바벨 훈련이 있으면 케틀벨 훈련도 있고, 클럽벨 훈련이 있으면 맨몸 훈련도 있습니다.<br>
-	            	    	케틀벨은 기술 향상/ 바벨은 기록 향상의 재미가 있습니다.<br>
+
+	            	    <div class="fontsize15 lineheight25 point_white mb80">
+							<div style="color: black;">
+								고급 운동 기구로 차원이 다른 경험을 하세요.<br>
+								0.5kg 까지 모두 준비 되어있습니다.<br>
+								바벨 훈련이 있으면 케틀벨 훈련도 있고, 클럽벨 훈련이 있으면 맨몸 훈련도 있습니다.<br>
+								케틀벨은 기술 향상/ 바벨은 기록 향상의 재미가 있습니다.<br>
+							</div>
 	            		</div>
-	            		
+
 	            		<div class="col-12">
 	            			<div class="col-12 mb50">
 		            			<div class="col-6 pr20">
@@ -78,66 +82,85 @@
 		            					<div class="img_dim"></div>
 		            					<img src="img/12.jpg">
 		            				</div>
+									<div class="">
+
+									</div>
 		            			</div>
-		            			
+
 		            			<div class="col-6 pl20">
 		            				<div class="col-12 img_con">
 		            					<div class="img_dim"></div>
 		            					<img src="img/34.png">
-		            				</div>	            			
-		            			</div>	            			
-	            			</div>
-	            			
-	            			<div class="col-12">
-		            			<div class="col-6 pr20">
-		            				<div class="col-12 img_con">
-		            					<div class="img_dim"></div>
-		            					<img src="img/56.jpg">
 		            				</div>
 		            			</div>
-		            			
-		            			<div class="col-6 pl20">
-		            				<div class="col-12 img_con">
-		            					<div class="img_dim"></div>
-		            					<img src="img/78.png">
-		            				</div>	            			
-		            			</div>	            			
 	            			</div>
-
-	            		</div>
-	            	</div>        	
-            	</div>
-            </div>          
-                        
-            <!-- 운동기구가 좋다 -->
-<!--             <div class="col-12 page_con" id="goodFitnessEquipment">
-            	<div class="col-12 col-center mw-1200">
-	            	<div class="col-12">
-	            		<div class="col-6">
-	            		</div>
-	            		<div class="col-6">
 	            		</div>
 	            	</div>
-	            	<div class="col-12">
-	            		<div class="col-6">
-	            		</div>
-	            		<div class="col-6">
-	            		</div>
-	            	</div>            	
             	</div>
-            </div> -->
-            
-            
+            </div>
+
+			<!--       차별화 된 커리 큘럼         -->
+			<div class="col-12">
+				<div class="">
+					근력 학교 만의 차별화 된 시스템
+				</div>
+				
+				<div class="">
+					<div class="">
+						1. 학년 제도
+					</div>
+					<div class="">
+
+					</div>
+
+				</div>
+
+				<div class="">
+					<div class="">
+						2. 매번 새로운 커리큘럼
+					</div>
+
+					<div class="">
+						
+					</div>
+				</div>
+				
+				<div class="">
+					<div class="">
+						3. 수강생 맞춤 수업
+					</div>
+					<div class="">
+
+					</div>
+				</div>
+				
+				<div class="">
+					<div class="">
+						4. 개인 운동 기록
+					</div>
+					<div class="">
+
+					</div>
+				</div>
+			</div>
+
+			<!--	찾아 오시는 길		-->
+			<div class="">
+				<a href="/map">
+
+				</a>
+			</div>
             <footer th:replace="common/footer"></footer>
         </div>
-        
+
         <script>
         $(function(){
+        	$('[href="/intro_school"]').parent().addClass("active");
         	$("#visual_font").animate( {
                 opacity : 1,
                 transform: 'translateY(0)',
             }, 600, "linear" );
-        	
+
         	(function upDown() {
         		$('.btn_bottom').animate({
                     opacity : 1,
@@ -148,15 +171,15 @@
         			transform: 'translateY(20px)'
         		}, "slow", function() { upDown(); });
         	})();
-        	
+
         	var firstCon = document.querySelector("#differExp").offsetTop;
         	var goodCurri = document.querySelector("#goodCurri").offsetTop;
         	$(".btn_bottom").on("click", function(){
         		$('html, body').animate({scrollTop : firstCon}, 900);
         	});
-        	
-        	$(window).scroll(function () { 
-        		var scrollValue = $(document).scrollTop(); 
+
+        	$(window).scroll(function () {
+        		var scrollValue = $(document).scrollTop();
         		if(scrollValue > firstCon - 100) {
         			$(".visual_bck").animate( {
         				opacity : 1,
@@ -172,21 +195,21 @@
                         });
                     } );
         		}
-        		
-        		if(scrollValue > goodCurri){
-                	$("#goodCurriFont").animate( {
-                        opacity : 1,
-                        transform: 'translateY(0)',
-                    }, 600, "linear",function(){
-                    	$("#goodCurriDesc").animate({
-                    		opacity : 1,
-                    	},500, function(){
-                    		$(".img_con").animate({
-                    			opacity : 1,
-                    		}, 800)
-                    	})
-                    } );        			
-        		}
+
+        		// if(scrollValue + 100 > goodCurri){
+                // 	$("#goodCurriFont").animate( {
+                //         opacity : 1,
+                //         transform: 'translateY(0)',
+                //     }, 600, "linear",function(){
+                //     	$("#goodCurriDesc").animate({
+                //     		opacity : 1,
+                //     	},500, function(){
+                //     		$(".img_con").animate({
+                //     			opacity : 1,
+                //     		}, 800)
+                //     	})
+                //     } );
+        		// }
         	});
         })
         </script>

@@ -24,10 +24,11 @@
 			 (	SELECT 
 			 		COUNT(MEMBER_SEQ) 
 			 	FROM 
-			 		EXCERCISE_MASTER 
+			 		EXCERCISE_MASTER
+			 	LEFT JOIN
+			 		COURSE_STUDENT CS ON CS.MEMBER_SEQ = EM.MEMBER_SEQ
 			 	WHERE 
-			 		EX_ALIAS = A.EX_ALIAS
-			 			AND EX_DATE BETWEEN #{startDate} AND #{endDate}
+			 		EX_ALIAS = A.EX_ALIAS AND EX_DATE BETWEEN #{startDate} AND #{endDate} AND CS.PAYMENT_YN = 1
 			 ) CURRENT_NUM,
 			 CM.max_people,CM.is_use_yn, CM.couse_time_name, CM.course_start_time, CM.week_of_day, CM.alias_number
 		FROM 

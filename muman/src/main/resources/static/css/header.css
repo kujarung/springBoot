@@ -4,8 +4,9 @@
 .wrapper .left_logo{float: left;}
 .wrapper .left_logo h1{width: 120px; height: 60px;}
 .wrapper .right_utill_con {float: right; vertical-align: middle; padding-top: 30px;}
-.wrapper .right_utill_con ul > li {color: #fff; font-size:18px; font-size:1.8rem; line-height:24px; line-height:2.4rem; display:none; margin-right:20px; vertical-align:top; font-weight: 400;}
+.wrapper .right_utill_con ul > li {color: #fff; font-size:18px; font-size:1.8rem; line-height:24px; line-height:2.4rem; display:none; margin-right:20px; vertical-align:top; font-weight: bold;}
 .wrapper .right_utill_con ul > li:last-child{margin-right:0px;}
+.wrapper .right_utill_con ul > li.active {color:rgb(38,75,57);}
 .wrapper .right_utill_con ul.sub_menu_ul {height:0px; opacity: 0;}
 .wrapper .right_utill_con ul.sub_menu_ul  li  {font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem; color: #fff; display: block;}
 .wrapper .right_utill_con ul.sub_menu_ul  li:hover{color:rgb(38,75,57);}

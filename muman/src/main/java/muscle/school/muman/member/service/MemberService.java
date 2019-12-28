@@ -19,7 +19,7 @@ public class MemberService {
     MemberDao dao;
     @Autowired
     CommonDao commonDao;
-	
+
     @Transactional
 	public int insertMember(String name, String id, String pass, String branch, String member_etc, String pnum) {
 		try {

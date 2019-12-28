@@ -75,7 +75,7 @@ svg {fill: white ;stroke:  white; stroke-width: 1px; width:20px;}
     background-repeat: no-repeat; background-size: contain}
 
 .visual2 {height:300px; background-image: url('../img/back1.jpg'); -webkit-background-size: cover;
-    background-repeat: no-repeat; background-size: contain; background-position: left;}
+    background-repeat: no-repeat; background-size: contain; background-position: top;}
 
 @media all and (min-width: 768px) {
     /*main_visual*/

@@ -35,7 +35,7 @@ public class MyInfoController {
             Map<String, Object> courseStudentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
             model.addAttribute("memberInfo", memberInfo);
             model.addAttribute("exList", exList);
-            if(courseStudentDetail.size() == 0) {
+            if(courseStudentDetail == null) {
                 model.addAttribute("courseStudentDetail", null);
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);
@@ -56,7 +56,7 @@ public class MyInfoController {
             Map<String, Object> courseStudentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
             model.addAttribute("memberInfo", memberInfo);
             model.addAttribute("exList", exList);
-            if (courseStudentDetail.size() == 0) {
+            if (courseStudentDetail == null) {
                 model.addAttribute("courseStudentDetail", null);
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);
@@ -78,7 +78,7 @@ public class MyInfoController {
             Map<String, Object> courseStudentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
             model.addAttribute("memberInfo", memberInfo);
             model.addAttribute("exList", exList);
-            if (courseStudentDetail.size() == 0) {
+            if (courseStudentDetail == null) {
                 model.addAttribute("courseStudentDetail", null);
             } else {
                 model.addAttribute("courseStudentDetail", courseStudentDetail);

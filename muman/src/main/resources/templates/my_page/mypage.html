@@ -9,9 +9,7 @@
 <div class="col-12 wrapper">
     <header th:replace="common/header"></header>
     <div class="sub_main col-12">
-        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');">
-    </div>
-
+        <div class="col-12 sub_visual_back type2" style="background-image: url('img/water2.jpg');"></div>
         <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
             <div class="col-12 mb30">
                 <div class="col-12 tc mb10">
@@ -43,9 +41,20 @@
                         <img src="img/tab2.png">
                     </div>
                     <div class="tab-font">
-                        <a href="/exInfo">
-                            운동 정보
-                        </a>
+                        <th:block>
+                            <div th:if="${courseStudentDetail} == null">
+                                <a href="/exInfo">
+                                    신청 정보
+                                </a>
+                            </div>
+
+                            <div th:if="${courseStudentDetail} != null">
+                                <a href="/exInfo">
+                                    운동 정보
+                                </a>
+                            </div>
+                        </th:block>
+
                     </div>
                 </div>
 

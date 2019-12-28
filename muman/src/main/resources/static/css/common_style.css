@@ -7,8 +7,10 @@
 
 .mw-980{max-width: 980px;}
 /* .point_color{color:#fef200} */
+
 .point_color{color:rgb(38,75,57);}
 .point_color2{color:#0B1761;}
+.point_color3{color:rgb(228,101,56);}
 .bold{font-weight: bold;}
 .point_white{color:white !important;}
 
@@ -22,6 +24,8 @@
 .table_style1{color:black; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem;   font-weight: bold;  text-align: center; border:1px solid black; width: 100%;}
 .table_style1 th {border:1px solid black;}
 .table_style1 td {border:1px solid black; padding:5px 0px;}
+.table_style1 td.active{background-color: rgb(38,75,57); color: white;}
+.table_style1.reg td {cursor: pointer;}
 
 .table_style2{color:black; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem;   font-weight: bold;  text-align: center; border:1px solid black; width: 100%;}
 .table_style2 th {border:1px solid black;}

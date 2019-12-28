@@ -57,7 +57,7 @@ public class MemberController {
 			) {
 		String encPass = commonService.encryptSHA256(pass);
 		service.insertMember(name, id, encPass, branch, member_etc, pnum);
-		return "redirect:veiw_member";
+		return "sign/success";
 	}
 	
 	//회원등록
@@ -72,18 +72,15 @@ public class MemberController {
 			RedirectAttributes model
 			) 
 	{
+		String encPass = commonService.encryptSHA256(pass);
 		int sucess = 0;
-		sucess = service.insertMember(name, id, pass, branch, member_etc, pnum);
+		sucess = service.insertMember(name, id, encPass, branch, member_etc, pnum);
 		if(sucess == 1) {
-			model.addAttribute("error", "1");
-			return "redirect:admin/member/success";
+			return "sign/success";
 		} else {
-			model.addAttribute("error", "1");
-			return "redirect:/sign_up";
+			return "sign/sign_up";
 		}
-		
 	}
-
 
 	//관리자 회원 리스트 페이지
 	@GetMapping("/admin/veiw_member")

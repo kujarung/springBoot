@@ -7,7 +7,6 @@
     <body>
         <div class="col-12 wrapper">
             <header th:replace="common/header"></header>
-            
             <div class="col-12 sub_main login_wrap" style="background-image: url('img/login_img.jpg')">
             	<div class="login_dim"></div>
             	<div class="col-12 login-form">
@@ -43,8 +42,9 @@
             </div>
         </div>
     </body>
-    <script>
 
+    <script>
+		$('[href="/sign_in"]').parent().addClass("active");
 		$(document).keydown(function(key) {
 			if (key.keyCode === 13) {
 				login();

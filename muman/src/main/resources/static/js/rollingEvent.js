@@ -16,19 +16,14 @@ window.onload = function() {
         , speed: 500
         , slidesPerView: 1 // 한번에 보이는 슬라이드 갯수
     });
-    
-    swiper1.on('slideChange', function() {
-    	if(swiper1.realIndex == 0) {
-    		$(".intro_teacher_con").css("background-image", "url(img/side_img.jpg)").animate({
-    			
-    		 });
-    	} else if(swiper1.realIndex == 1) {
-    		$(".intro_teacher_con").css("background-image", "url(img/side_img2.jpg)").animate({
-    			
-    		});
-    	}
-    });
 
+    var swiper3 = new Swiper('.slide_img_con2', {
+        direction: 'horizontal' // 슬라이드 진행방향은 수평(vertical하면 수직으로 움직임)
+        , loop: true
+        , speed: 500
+        , slidesPerView: 1 // 한번에 보이는 슬라이드 갯수
+    });
+    
     var swiper2 = new Swiper('.review_swiper', {
         direction: 'horizontal' // 슬라이드 진행방향은 수평(vertical하면 수직으로 움직임)
         , loop: true
