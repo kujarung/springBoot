@@ -21,7 +21,7 @@ public class MemberService {
     CommonDao commonDao;
 
     @Transactional
-	public int insertMember(String name, String id, String pass, String branch, String member_etc, String pnum) {
+	public int insertMember(String name, String id, String pass, int branch, String member_etc, String pnum) {
 		try {
 			dao.insertMember(name, id, pass, branch, member_etc, pnum);
 			commonDao.nextMemberSeq();

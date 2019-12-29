@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="">
     <head> 
-        <title>수업 소개</title> 
+        <title>선생님 소개</title>
         <head th:replace="common/sub/head"></head>
     </head> 
     <body>
@@ -16,7 +16,7 @@
                             <div class="col-12 fn show-tablecell vm tl">
                                 <div class="col-12">
                                     <div class="col-12 sub_text pb10 pt90 bold">
-                                        강사 소개
+                                        선생님 소개
                                     </div>
                                     <div class="col-12 sub_content">
                                         <span class="bold">최고의 선생님들을 소개 합니다.</span>
@@ -54,34 +54,15 @@
                                                 <div class="col-12 swiper-wrapper">
                                                     <div class="col-12 swiper-slide">
                                                         <div class="col-12 mb40 teacher_img_con">
-                                                            <img class="op" src="img/person1.jpg" alt="">
-                                                        </div>
-                                                        <div class="col-12 mb30">
-                                                            <div class="sub_title_font_1" style="color: #fff; font-weight:bold;">
-                                                                교장 박영하
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="desc_font_1" style="color: #fff; font-weight:bold;">
-                                                                고려대학교 지리교육과 졸업<br>
-                                                                * IPF Korea Powerlifting 2급<br>
-                                                                * 탈잉 프리랜서 트레이너 : 2017년 베스트 수업 선정<br>
-                                                                * 근력학교 코치 2019년 1월 ~<br>
-                                                                * 2019 IPF Korea IKAN 컵 파워리프팅 대회 -105급 동메달<br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 swiper-slide">
-                                                        <div class="col-12 mb40 teacher_img_con">
                                                             <img class="op" src="img/people1.jpg" alt="">
                                                         </div>
                                                         <div class="col-12 mb30">
-                                                            <div class="sub_title_font_1 fontweight700" style="color: #fff;">
+                                                            <div class="sub_title_font_1 fontweight700" style="">
                                                                 관장 백승덕
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
-                                                            <div class="desc_font_1 fontweight700" style="color: #fff;">
+                                                            <div class="desc_font_1 fontweight700" style="">
                                                                 고려대학교 지리교육과<br>
                                                                 * Flexible Steel Level 1 Instructor Certification<br>
                                                                 * IPF(International Powerlifting Federation) Class 2 Instructor Certification
@@ -94,40 +75,23 @@
 
                                             <div class="col-12 swiper-container slide_img_con2 han-content">
                                                 <div class="col-12 swiper-wrapper">
+
                                                     <div class="col-12 swiper-slide">
                                                         <div class="col-12 mb40 teacher_img_con">
                                                             <img class="op" src="img/person1.jpg" alt="">
                                                         </div>
                                                         <div class="col-12 mb30">
-                                                            <div class="sub_title_font_1" style="color: #fff; font-weight:bold;">
+                                                            <div class="sub_title_font_1" style=" font-weight:bold;">
                                                                 교장 박영하
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
-                                                            <div class="desc_font_1" style="color: #fff; font-weight:bold;">
+                                                            <div class="desc_font_1" style="font-weight:bold;">
                                                                 고려대학교 지리교육과 졸업<br>
                                                                 * IPF Korea Powerlifting 2급<br>
                                                                 * 탈잉 프리랜서 트레이너 : 2017년 베스트 수업 선정<br>
                                                                 * 근력학교 코치 2019년 1월 ~<br>
                                                                 * 2019 IPF Korea IKAN 컵 파워리프팅 대회 -105급 동메달<br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 swiper-slide">
-                                                        <div class="col-12 mb40 teacher_img_con">
-                                                            <img class="op" src="img/people1.jpg" alt="">
-                                                        </div>
-                                                        <div class="col-12 mb30">
-                                                            <div class="sub_title_font_1 fontweight700" style="color: #fff;">
-                                                                관장 백승덕
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="desc_font_1 fontweight700" style="color: #fff;">
-                                                                고려대학교 지리교육과<br>
-                                                                * Flexible Steel Level 1 Instructor Certification<br>
-                                                                * IPF(International Powerlifting Federation) Class 2 Instructor Certification
-                                                                등<br>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,18 +114,25 @@
 
 <script>
     $('[href="/intro_teacher"]').parent().addClass("active");
-    $(".han-content").hide();
-    $(".tab").on("click", function () {
-        var _this = $(this);
-        $(".tab").removeClass("active");
-        _this.addClass("active");
-        if(_this.hasClass("kor")) {
-            $(".kor-content").show();
-            $(".han-content").hide();
-        } else {
-            $(".kor-content").hide();
-            $(".han-content").show();
-        }
+    $(function () {
+        $(".han-content").css("opacity" ,"0");
+        $(".han-content").css("height" ,"0");
+        $(".tab").on("click", function () {
+            var _this = $(this);
+            $(".tab").removeClass("active");
+            _this.addClass("active");
+            if(_this.hasClass("kor")) {
+                $(".kor-content").css("opacity" ,"1");
+                $(".kor-content").css("height" ,"auto");
+                $(".han-content").css("opacity" ,"0");
+                $(".han-content").css("height" ,"0");
+            } else {
+                $(".kor-content").css("opacity" ,"0");
+                $(".kor-content").css("height" ,"0");
+                $(".han-content").css("opacity" ,"1");
+                $(".han-content").css("height" ,"auto");
+            }
+        })
     })
-</script>
+
 </script>

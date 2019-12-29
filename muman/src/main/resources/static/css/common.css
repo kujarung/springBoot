@@ -34,6 +34,9 @@ i {line-height: 0.8em !important;}  /* 아이콘 vertical middle 위해 */
 
 .sub-vedio {height: 100vh; width: auto; position: absolute;}
 .point-red {color:red;}
+.f-center {display: flex; justify-content: center; align-items: center;}
+.vh-100 {height: 100vh;}
+
 
 /* 회원가입 및 등록 */
 .reg_member_con {border-top:2px solid black; border-bottom:2px solid black; padding:30px 100px; margin-bottom: 30px;}

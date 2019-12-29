@@ -1,6 +1,7 @@
 package muscle.school.muman.course_master.service;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -79,6 +80,10 @@ public class CourseMasterService {
 		try {
 			Map<String, Object> studentDetail = courseStudentService.getCourseStudentDetail(memberSeq);
 			String aliasList[] = studentDetail.get("aliasList").toString().split("\\|");
+			int tempList[] = new int[aliasList.length];
+			for(int i=0;i<aliasList.length;i++) { tempList[i] = Integer.parseInt(aliasList[i]); }
+			Arrays.sort(tempList);
+			for(int i=0;i<aliasList.length;i++) { aliasList[i] = Integer.toString(tempList[i]); }
 			//수강이 끝나는 마지막 일
 			String endDate = studentDetail.get("end_date").toString();
 			int day = commonSerivce.getDayOfWeek(endDate);
@@ -148,6 +153,9 @@ public class CourseMasterService {
 		} catch (Exception e) {
 			return 0;
 		}
+	}
+
+	public void updateDeay(int delayYn, String delayDate) {
 
 	}
 

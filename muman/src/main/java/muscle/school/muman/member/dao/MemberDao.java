@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface MemberDao {
 	List<Map<String, Object>> selectMemberList(int currentPage, String member_name);
 
-	void insertMember(String name, String id, String pass, String branch, String member_etc, String pnum);
+	void insertMember(String name, String id, String pass, int branch, String member_etc, String pnum);
 
 	Map<String, Object> getMember(int memberSeq);
 

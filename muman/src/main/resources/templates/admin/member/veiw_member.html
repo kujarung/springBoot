@@ -4,94 +4,144 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <head th:replace="common/admin/admin_head"></head>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
-
 	<div th:replace="common/admin/admin_gnb"></div>
-	
 	<div class="col-12 right_body">
 	   <div class="col-12 inner_con" id="first_con">
-				<div class="step_title">
-	                	회원 확인
-	            </div>
-				
-				<input name="member_name" class="col-12 hidden" readonly>
-				<input name="member_seq" class="hidden">			
-				<div class="col-12">
-					<table class="table_style_3 mb30">
-		               <colgroup>
-		                   <col width = "10%">
-		                   <col width = "15%">
-		                   <col width = "15%">
-		                   <col width = "auto">
-		                   <col width = "10%">
-		                   <col width = "10%">
-		               </colgroup>
-		               <thead>
-		                   <th>번호</th>
-		                   <th>이름</th>
-		                   <th>아이디</th>
-		                   <th>특이사항</th>
-		                   <th>지점</th>
-		                   <th>핸드폰 번호</th>
-		               </thead>
-		
-		               <tbody>
-							<tr th:each="memberList : ${memberList}" th:object="${memberList}">
-								<td th:text="${memberList.no}"></td>
-								<td th:text="${memberList.name}"></td>
-								<td th:text="${memberList.member_id}"></td>
-								<td th:text="${memberList.member_etc}"></td>
-								<td th:if="${memberList.branch} == 1">
-									안암점
-								</td>
-								<td th:if="${memberList.branch} == 2">
-									한양대점
-								</td>
-								<td th:text="${memberList.pnum}"></td>
-							</tr>
-		               </tbody>
-		           </table>
-		           
-		           <div class="col-12 paging_con">
-						<div class="before_btn">
-							<a th:href="@{/admin/veiw_member(currentPage=${pagingInfo.prev})}">
-								이전
-							</a>
-						</div>
+			<div class="step_title">
+					회원 확인
+			</div>
+			<input name="member_name" class="col-12 hidden" readonly>
+			<input name="member_seq" class="hidden">
+			<div class="col-12">
+				<table class="table_style_3 mb30">
+				   <colgroup>
+					   <col width = "10%">
+					   <col width = "15%">
+					   <col width = "15%">
+					   <col width = "auto">
+					   <col width = "10%">
+					   <col width = "10%">
+				   </colgroup>
+				   <thead>
+					   <th>번호</th>
+					   <th>이름</th>
+					   <th>아이디</th>
+					   <th>특이사항</th>
+					   <th>지점</th>
+					   <th>핸드폰 번호</th>
+				   </thead>
 
-						<div class="paging">
-							<th:block th:each="num: ${#numbers.sequence( {pagingInfo.firstPage}, {pagingInfo.lastPage})}">
-								<th:block th:if= "${num} == ${currentPage}">
-									<a class="paging_cnt current" th:text="${num}" th:href="@{/admin/veiw_member(currentPage=${num} ) }">
-									</a>
-								</th:block>
-								
-								<th:block th:unless= "${num} == ${currentPage}">
-									<a class="paging_cnt" th:text="${num}" th:href="@{/admin/veiw_member(currentPage=${num} ) }">
-									</a>
-								</th:block>
-								
+				   <tbody>
+						<tr th:each="memberList : ${memberList}" th:object="${memberList}">
+							<td th:text="${memberList.no}"></td>
+							<td th:text="${memberList.name}"></td>
+							<td th:text="${memberList.member_id}"></td>
+							<td th:text="${memberList.member_etc}"></td>
+							<td th:if="${memberList.branch} == 1">
+								안암점
+							</td>
+							<td th:if="${memberList.branch} == 2">
+								한양대점
+							</td>
+							<td th:text="${memberList.pnum}"></td>
+						</tr>
+				   </tbody>
+			   </table>
+
+			   <div class="col-12 paging_con">
+					<div class="before_btn">
+						<a th:href="@{/admin/veiw_member(currentPage=${pagingInfo.prev})}">
+							이전
+						</a>
+					</div>
+
+					<div class="paging">
+						<th:block th:each="num: ${#numbers.sequence( {pagingInfo.firstPage}, {pagingInfo.lastPage})}">
+							<th:block th:if= "${num} == ${currentPage}">
+								<a class="paging_cnt current" th:text="${num}" th:href="@{/admin/veiw_member(currentPage=${num} ) }">
+								</a>
 							</th:block>
-						</div>
-						
-						<div class="next_btn">
-							<a th:href="@{/admin/veiw_member(currentPage=${pagingInfo.next})}">
-								다음
-							</a>
-						</div>
+
+							<th:block th:unless= "${num} == ${currentPage}">
+								<a class="paging_cnt" th:text="${num}" th:href="@{/admin/veiw_member(currentPage=${num} ) }">
+								</a>
+							</th:block>
+
+						</th:block>
+					</div>
+
+					<div class="next_btn">
+						<a th:href="@{/admin/veiw_member(currentPage=${pagingInfo.next})}">
+							다음
+						</a>
 					</div>
 				</div>
 			</div>
-			
-			<div class="step_btn_con right">
-                <div class="step_btn left go_step2" id="insert">
-                    	추가하기
-                </div>
-            </div>
-	</div>
+		</div>
 
+		<div class="step_btn_con right">
+			<div class="step_btn left go_step2" id="insert">
+					추가하기
+			</div>
+		</div>
+		<div class="" style="position: absolute; bottom:0px;">
+			<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post"  action= "/excelUploadAjax">
+				<div class="contents">
+					<dl class="vm_name">
+						<dt class="down w90">엑셀 업로드</dt>
+						<dd><input id="excelFile" type="file" name="excelFile" /></dd>
+					</dl>
+				</div>
+
+				<div class="right">
+					<div class="step_btn bottom">
+						<button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()" ><span>추가</span></button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
 <script>
+	function checkFileType(filePath) {
+		var fileFormat = filePath.split(".");
+		if (fileFormat.indexOf("xlsx") > -1) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	function check() {
+		var file = $("#excelFile").val();
+		if (file == "" || file == null) {
+			alert("파일을 선택해주세요.");
+			return false;
+		} else if (!checkFileType(file)) {
+			alert("엑셀 파일만 업로드 가능합니다.");
+			return false;
+		}
+
+		if (confirm("업로드 하시겠습니까?")) {
+			var options = {
+				beforeSend: function () {
+					Progress.on();
+				},
+				success : function(data) {
+					alert("모든 데이터가 업로드 되었습니다.");
+					location.reload();
+				},
+				type : "POST"
+			};
+			$("#excelUploadForm").ajaxSubmit(options);
+
+		}
+	}
+
 	$("#reg_insert").on("click", function(){
 		$("#mbmer_insert").submit();
 	})

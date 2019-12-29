@@ -21,9 +21,6 @@ public class CourseStudentService {
 	CommonDao commonDao;
 	@Autowired
 	CommonService commonService;
-	public void insertMember() {
-		
-	}
 
 	public void insertStudent(int memberSeq, String startDate, String endDate, int timesWeek, String aliasList,
 			String price, String price_date, String price_type, int paymentYn

@@ -1,6 +1,7 @@
 package muscle.school.muman.commom.service;
 
 import muscle.school.muman.course_master.service.CourseMasterService;
+import muscle.school.muman.holiday.service.HolidayService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,17 +10,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @MapperScan(basePackages = "muscle.school.muman.commom.dao")
 public class CommonService {
-	
+
 	@Autowired
 	CourseMasterService courseMasterService;
+	@Autowired
+	HolidayService holidayService;
 
 	//월요일과 금요일 날을 리턴 하는 함수
 	public String[] todayWeek(String standardDate) {
@@ -448,6 +448,275 @@ public class CommonService {
 		}
 		return result;
 	}
+
+	public Map<String, Object> getAlias(String dayName, int branch) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		if(branch == 1) {
+			if(dayName.equals("월1")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",1);
+			}
+			if(dayName.equals("월2")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",2);
+			}
+			if(dayName.equals("월3")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",3);
+			}
+			if(dayName.equals("월4")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",4);
+			}
+			if(dayName.equals("월5")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",5);
+			}
+			if(dayName.equals("월6")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",6);
+			}
+			if(dayName.equals("화1")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",7);
+			}
+			if(dayName.equals("화2")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",8);
+			}
+			if(dayName.equals("화3")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",9);
+			}
+			if(dayName.equals("화4")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",10);
+			}
+			if(dayName.equals("화5")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",11);
+			}
+			if(dayName.equals("화6")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",12);
+			}
+			if(dayName.equals("수1")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",13);
+			}
+			if(dayName.equals("수2")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",14);
+			}
+			if(dayName.equals("수3")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",15);
+			}
+			if(dayName.equals("수4")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",16);
+			}
+			if(dayName.equals("수5")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",17);
+			}
+			if(dayName.equals("수6")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",18);
+			}
+			if(dayName.equals("목1")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",19);
+			}
+			if(dayName.equals("목2")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",20);
+			}
+			if(dayName.equals("목3")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",21);
+			}
+			if(dayName.equals("목4")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",22);
+			}
+			if(dayName.equals("목5")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",23);
+			}
+			if(dayName.equals("목6")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",24);
+			}
+			if(dayName.equals("금1")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",25);
+			}
+			if(dayName.equals("금2")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",26);
+			}
+			if(dayName.equals("금3")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",27);
+			}
+			if(dayName.equals("금4")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",28);
+			}
+			if(dayName.equals("금5")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",29);
+			}
+			if(dayName.equals("금6")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",30);
+			}
+		}
+		else if(branch == 2) {
+			if(dayName.equals("월1")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",31);
+			}
+			if(dayName.equals("월2")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",32);
+			}
+			if(dayName.equals("월3")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",33);
+			}
+			if(dayName.equals("월4")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",34);
+			}
+			if(dayName.equals("월5")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",35);
+			}
+			if(dayName.equals("월6")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",36);
+			}
+			if(dayName.equals("월7")) {
+				result.put("dayOfWeek",2);
+				result.put("dayAlias",37);
+			}
+			if(dayName.equals("화1")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",38);
+			}
+			if(dayName.equals("화2")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",39);
+			}
+			if(dayName.equals("화3")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",40);
+			}
+			if(dayName.equals("화4")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",41);
+			}
+			if(dayName.equals("화5")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",42);
+			}
+			if(dayName.equals("화6")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",43);
+			}
+			if(dayName.equals("화7")) {
+				result.put("dayOfWeek",3);
+				result.put("dayAlias",44);
+			}
+			if(dayName.equals("수1")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",45);
+			}
+			if(dayName.equals("수2")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",46);
+			}
+			if(dayName.equals("수3")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",47);
+			}
+			if(dayName.equals("수4")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",48);
+			}
+			if(dayName.equals("수5")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",49);
+			}
+			if(dayName.equals("수6")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",50);
+			}
+			if(dayName.equals("수7")) {
+				result.put("dayOfWeek",4);
+				result.put("dayAlias",51);
+			}
+			if(dayName.equals("목1")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",52);
+			}
+			if(dayName.equals("목2")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",53);
+			}
+			if(dayName.equals("목3")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",54);
+			}
+			if(dayName.equals("목4")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",55);
+			}
+			if(dayName.equals("목5")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",56);
+			}
+			if(dayName.equals("목6")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",57);
+			}
+			if(dayName.equals("목7")) {
+				result.put("dayOfWeek",5);
+				result.put("dayAlias",58);
+			}
+			if(dayName.equals("금1")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",59);
+			}
+			if(dayName.equals("금2")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",60);
+			}
+			if(dayName.equals("금3")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",61);
+			}
+			if(dayName.equals("금4")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",62);
+			}
+			if(dayName.equals("금5")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",63);
+			}
+			if(dayName.equals("금6")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",64);
+			}
+			if(dayName.equals("금7")) {
+				result.put("dayOfWeek",6);
+				result.put("dayAlias",65);
+			}
+		}
+		return result;
+	}
 	
 	//alias 번호를 풀 네임으로 변환 시키는 함수
 	public String getAliasToFullName(int alias) {
@@ -681,10 +950,7 @@ public class CommonService {
 		cal.set( Calendar.YEAR, endDateYear );
 		cal.set( Calendar.MONTH, endDateMonth );
 		cal.set( Calendar.DATE, endDateDate );
-		
-		String result = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE);
-		return result;
-		
+		return cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE);
 	}
 
 	public Calendar changeCal(String day) {
@@ -694,6 +960,10 @@ public class CommonService {
 		cal.set(Calendar.DATE, Integer.parseInt(day.split("-")[2]));
 
 		return cal;
+	}
+
+	public String changeFormat(String day) {
+		return  "20" + day.substring(0,2) + "-" + day.substring(2,4) + "-" + day.substring(4,6);
 	}
 
 	public String showCalDetail(Calendar cal) {
@@ -718,4 +988,81 @@ public class CommonService {
 		return sha;
 	}
 
+	public Map<String, Object> findList(String startDate, String endDate, String timeAndDay, int branch, int times) {
+
+		try {
+			Map<String, Object> result = new HashMap<String, Object>();
+			String[] tempChange = timeAndDay.split("\\|");
+			String dayList = "";
+			String tempAliasList = "";
+			String[] timeList = new String[times*4];
+			for (String s : tempChange) {
+				if(dayList.equals("")) {
+					dayList = dayList + (Integer.parseInt(getAlias(s, branch).get("dayOfWeek").toString()) - 1);
+				} else {
+					dayList = dayList + "|" + (Integer.parseInt(getAlias(s, branch).get("dayOfWeek").toString()) - 1);
+				}
+				if(tempAliasList == "") {
+					tempAliasList = tempAliasList + getAlias(s, branch).get("dayAlias");
+				} else {
+					tempAliasList = tempAliasList + "|" + getAlias(s, branch).get("dayAlias");
+				}
+			}
+			String aliasList[] = tempAliasList.split("\\|");
+			int tempList[] = new int[aliasList.length];
+			for(int i=0;i<aliasList.length;i++) { tempList[i] = Integer.parseInt(aliasList[i]); }
+			Arrays.sort(tempList);
+			for(int i=0;i<aliasList.length;i++) { aliasList[i] = Integer.toString(tempList[i]); }
+			//수강이 끝나는 마지막 일
+			int day = getDayOfWeek(startDate);
+			//끝나는 날을 받음
+			//끝나는 날의 요일을 구함
+			timeList[0] = startDate;
+			for(int j=1; j< times*4; j++) {
+				int intEndDay = getDayOfWeek(startDate);
+				//그 요일 보다 큰 수를 alias리스트에서 찾음
+				//없을 시 첫번 째 요일이 구하는 수
+				int searchIntDay = Integer.parseInt(aliasToDetail(aliasList[0]).get("week_of_day").toString() );
+				for (String s : aliasList) {
+					int targetDay =
+							Integer.parseInt(aliasToDetail(s).get("week_of_day").toString());
+					if (intEndDay < targetDay) {
+						searchIntDay = targetDay;
+						break;
+					}
+				}
+				//내가 수요일, 화요일이 타깃 요일이라면?
+				//화요일 = 3
+				//수요일 = 4
+				//결과 = 7 - 절대값(4 - 3)
+				//오늘 부터 결과 값 만큼 +
+				int resultDay = searchIntDay - intEndDay;
+				if(searchIntDay - intEndDay <= 0) {
+					resultDay = 7 - Math.abs(searchIntDay - intEndDay);
+				}
+				String updateDay = afterDay(startDate, resultDay);
+				boolean updateDayIsHoliday = holidayService.searchHoliday(updateDay);
+				if( updateDayIsHoliday ) {
+					j--;
+					startDate = updateDay;
+				} else {
+					if( Integer.parseInt( updateDay.split("-")[1] )< 10 ) {
+						updateDay = updateDay.split("-")[0] + "-0" + updateDay.split("-")[1] + "-" + updateDay.split("-")[2];
+					}
+					if( Integer.parseInt(updateDay.split("-")[2])< 10 ) {
+						updateDay = updateDay.split("-")[0] + "-" + updateDay.split("-")[1] + "-0" + updateDay.split("-")[2];
+					}
+
+					timeList[j] = updateDay;
+					startDate = updateDay;
+				}
+			}
+			result.put("dayList", dayList);
+			result.put("timeList", timeList);
+			result.put("aliasList", tempAliasList);
+			return result;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

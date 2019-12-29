@@ -51,7 +51,7 @@ public class MemberController {
 			@RequestParam(required=false) String name,
 			@RequestParam(required=false) String id,
 			@RequestParam(required=false) String pass,
-			@RequestParam(required=false) String branch,
+			@RequestParam(required=false) int branch,
 			@RequestParam(required=false) String member_etc,
 			@RequestParam(required=false) String pnum
 			) {
@@ -66,7 +66,7 @@ public class MemberController {
 			@RequestParam(required=false) String name,
 			@RequestParam(required=false) String id,
 			@RequestParam(required=false) String pass,
-			@RequestParam(required=false) String branch,
+			@RequestParam(required=false) int branch,
 			@RequestParam(required=false) String member_etc,
 			@RequestParam(required=false) String pnum,
 			RedirectAttributes model

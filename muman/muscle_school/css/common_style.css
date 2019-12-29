@@ -12,6 +12,8 @@
 .table_style1 th {border:1px solid white;}
 .table_style1 td {border:1px solid white; padding:5px 0px;}
 
+.table_style1.type2 th {}
+
 @media all and (min-width:992px){
     .table_style1{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }
     .table_style1 td {border:1px solid white; padding:10px;}
