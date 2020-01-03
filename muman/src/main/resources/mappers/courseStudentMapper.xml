@@ -93,4 +93,12 @@
 		where
 			MEMBER_SEQ = #{memberSeq}
 	</update>
+
+	<update id="updateDealy">
+		update COURSE_STUDENT set
+			delay_date = #{delayDate},
+			IS_DELAY = 1
+		where
+			MEMBER_SEQ = #{memberSeq}
+	</update>
 </mapper>

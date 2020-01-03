@@ -56,4 +56,8 @@ public class MemberService {
 	public void updateInfo(int memberSeq, String pnum, String etc) {
     	dao.updateInfo(memberSeq, pnum, etc);
 	}
+
+	public void updateDelay(String delayDate) {
+    	dao.updateDelay(delayDate);
+	}
 }

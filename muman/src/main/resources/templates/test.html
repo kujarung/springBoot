@@ -1,2 +1,72 @@
+<head>
+    <title>근력학교</title>
+    <head th:replace="common/main/head"></head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<div class="" style="position: absolute; bottom:0px;">
+    <form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post"  action= "/excelUploadAjax">
+        <div class="contents">
+            <dl class="vm_name">
+                <dt class="down w90">엑셀 업로드</dt>
+                <dd><input id="excelFile" type="file" name="excelFile" /></dd>
+            </dl>
+        </div>
+
+        <div class="right">
+            <div class="step_btn bottom">
+                <button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()" ><span>추가</span></button>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 
+<script>
+    function checkFileType(filePath) {
+        var fileFormat = filePath.split(".");
+        if (fileFormat.indexOf("xlsx") > -1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    function check() {
+        var file = $("#excelFile").val();
+        if (file == "" || file == null) {
+            alert("파일을 선택해주세요.");
+            return false;
+        } else if (!checkFileType(file)) {
+            alert("엑셀 파일만 업로드 가능합니다.");
+            return false;
+        }
+
+        if (confirm("업로드 하시겠습니까?")) {
+            var options = {
+                beforeSend: function () {
+                    Progress.on();
+                },
+                success : function(data) {
+                    alert("모든 데이터가 업로드 되었습니다.");
+                    location.reload();
+                },
+                type : "POST"
+            };
+            $("#excelUploadForm").ajaxSubmit(options);
+
+        }
+    }
+
+    $("#reg_insert").on("click", function(){
+        $("#mbmer_insert").submit();
+    })
+
+    $("#insert").on("click", function(){
+        location.href = "/admin/reg_member"
+    })
+
+    $('[href="/admin/veiw_member"]').parent().addClass("active");
+</script>

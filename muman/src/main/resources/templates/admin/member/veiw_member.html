@@ -7,6 +7,36 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
+	<div class="col-12" style="height: 100vh; background-color: rgba(0,0,0,0.6); z-index: 20; width: 100%; position: absolute;" id="excel">
+	<div class="col-12 col-center mw-768" style="height: 100vh; display: flex; justify-content: center; align-items: center; width: 100%;">
+		<form class="col-12 tc" id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post"  action= "/excelUploadAjax">
+			<div class="col-12">
+				<div class="fr mb50" style="color: white; cursor: pointer;" id="remove">
+					<img src="../img/x_btn.png" style="width: 50px; height: 50px;">
+				</div>
+			</div>
+
+			<div class="col-12 contents mb50">
+				<dl class="vm_name">
+					<dt class="down w90" style="color: white; margin-bottom: 20px; font-size: 22px; font-weight: bold;">엑셀 업로드</dt>
+					<dd>
+						<label for="excelFile">
+
+						</label>
+						<input id="excelFile" type="file" name="excelFile" style="font-size: 15px; color: white;"/>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="col-12 right">
+				<div class="step_btn bottom">
+					<button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()" ><span>추가</span></button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
 	<div th:replace="common/admin/admin_gnb"></div>
 	<div class="col-12 right_body">
 	   <div class="col-12 inner_con" id="first_con">
@@ -87,25 +117,23 @@
 					추가하기
 			</div>
 		</div>
-		<div class="" style="position: absolute; bottom:0px;">
-			<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post"  action= "/excelUploadAjax">
-				<div class="contents">
-					<dl class="vm_name">
-						<dt class="down w90">엑셀 업로드</dt>
-						<dd><input id="excelFile" type="file" name="excelFile" /></dd>
-					</dl>
-				</div>
 
-				<div class="right">
-					<div class="step_btn bottom">
-						<button type="button" id="addExcelImpoartBtn" class="btn" onclick="check()" ><span>추가</span></button>
-					</div>
-				</div>
-
-			</form>
+		<div class="step_btn_con right" style="left:50px; width: 170px;">
+			<div class="step_btn left go_step2" id="excelBtn">
+				엑셀 일괄 업로드
+			</div>
 		</div>
 	</div>
+
+
 <script>
+	$("#excel").hide();
+	$("#excelBtn").on("click",function () {
+		$("#excel").show();
+	});
+	$("#remove").on("click",function () {
+		$("#excel").hide();
+	});
 	function checkFileType(filePath) {
 		var fileFormat = filePath.split(".");
 		if (fileFormat.indexOf("xlsx") > -1) {
@@ -113,7 +141,6 @@
 		} else {
 			return false;
 		}
-
 	}
 
 	function check() {
@@ -144,12 +171,11 @@
 
 	$("#reg_insert").on("click", function(){
 		$("#mbmer_insert").submit();
-	})
+	});
 	
 	$("#insert").on("click", function(){
 		location.href = "/admin/reg_member"
-	})
-
+	});
 	$('[href="/admin/veiw_member"]').parent().addClass("active");
 </script>
 </body>

@@ -18,6 +18,7 @@
                 </div>
                 <div class="col-12 tc">
                     <p style="font-size: 50px;" th:text="${memberInfo.name}"></p>
+                    <input type="hidden" th:value="${memberInfo.branch}" id="branch">
                 </div>
             </div>
 
@@ -41,10 +42,46 @@
                     </div>
                     <div class="tab-font">
                         <th:block th:if="${courseStudentDetail} == null">
-                            <a href="/reg_course">
+                            <a href="/reg_course" id="regPath">
                                 수업 신청하기
                             </a>
                         </th:block>
+
+                        <script>
+                            var currentDay = new Date();
+                            currentDay = dateForm(currentDay);
+                            var setStartDate = today(currentDay);
+                            var setEndDate;
+
+                            //월요일일 떄
+                            if(setStartDate.getDay() === 1) {
+                                setStartDate = today(currentDay);
+                                setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+                                //일요일 일 때
+                            } else if(setStartDate.getDay() === 0 ) {
+                                setStartDate = today(currentDay);
+                                setStartDate.setDate(setStartDate.getDate() + 1);
+                                setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+                                //토요일에 경우
+                            } else if(setStartDate.getDay() === 6 ) {
+                                setStartDate = today(currentDay);
+                                setStartDate.setDate(setStartDate.getDate() + 2);
+                                setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+                                //그 외
+                            }
+                            else {
+                                for(var j=1; j<7;j++) {
+                                    if( ( setStartDate.getDay() - j) === 1  ) {
+                                        setStartDate.setDate( (setStartDate.getDate()-j));
+                                        setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+                                    }
+                                }
+                            }
+
+                            var branch = $("#branch").val();
+                            var path = "/reg_course" + "?branch=" + branch + "&standardDate=" + dateForm(setEndDate);
+                            $("#regPath").attr("href",path);
+                        </script>
 
                         <th:block th:if="${courseStudentDetail} != null">
                             <a href="/exInfo">

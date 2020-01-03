@@ -20,4 +20,6 @@ public interface CourseStudentDao {
 	void insertStudent(int memberSeq, String startDate, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
 
 	void updateCourseStudent(int memberSeq, String endDate, int timesWeek, String aliasListFullName, String aliasList, String price, String priceType, String priceDate, int paymentYn);
+
+    void updateDealy(int memberSeq, String delayDate);
 }

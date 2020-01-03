@@ -109,6 +109,9 @@ public class HolidayService {
                 String showTarget = commonService.showCalDetail(targetCal);
                 String showStart= commonService.showCalDetail(startCal);
 
+                System.out.println(showTarget);
+                System.out.println(showStart);
+                System.out.println(showTarget.equals(showStart) );
                 if(showTarget.equals(showStart)) {
                     return true;
                 }

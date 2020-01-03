@@ -72,4 +72,8 @@ public class CourseStudentService {
 		aliasListFullName = "(" + aliasListFullName + ")";
 		dao.updateCourseStudent(memberSeq, endDate, timesWeek, aliasListFullName, aliasList, price, priceType, priceDate, paymentYn);
 	}
+
+    public void updateDealy(int memberSeq, String delayDate) {
+		dao.updateDealy(memberSeq, delayDate);
+    }
 }

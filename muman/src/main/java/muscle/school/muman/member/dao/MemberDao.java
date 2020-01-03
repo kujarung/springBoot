@@ -18,4 +18,6 @@ public interface MemberDao {
 	List<Map<String, Object>> searchIdAndPass(String loginId, String encPass);
 
     void updateInfo(int memberSeq, String pnum, String etc);
+
+    void updateDelay(String delayDate);
 }

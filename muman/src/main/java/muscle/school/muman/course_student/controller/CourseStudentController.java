@@ -124,4 +124,7 @@ public class CourseStudentController {
 		return "/admin/student/detail_student";
 	}
 
+	public void updateDealy(int memberSeq, String delayDate) {
+		service.updateDealy(memberSeq, delayDate);
+	}
 }

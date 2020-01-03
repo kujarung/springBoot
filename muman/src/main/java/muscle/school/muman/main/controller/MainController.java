@@ -127,34 +127,47 @@ public class MainController {
                 int paymentYn = (int)Float.parseFloat(article.get("J").toString().trim());
                 String priceType = article.get("K").toString();
                 int delayYn = (int)Float.parseFloat(article.get("L").toString().trim());
-                String delayDate = article.get("M");
+                String delayDate =  article.get("M");
                 int branch = (int)Float.parseFloat(article.get("N").toString().trim());
                 String id = article.get("O");
                 String pass = article.get("P");
                 String pnum = article.get("Q");
 
+                String insertDate;
+
                 List<Map<String, Object>> memberInfo = memberService.searchIdAndPass(id, commonService.encryptSHA256(pass));
                 if(memberInfo == null ) {
+                    if(delayDate != "") {
+                        delayDate = commonService.changeFormat(delayDate);
+                    }
+
                     startDate   = commonService.changeFormat(startDate);
+                    if(priceDate.trim().equals("")) {
+                        insertDate = startDate;
+                    } else {
+                        insertDate = commonService.changeFormat(priceDate);;
+                    }
                     endDate     = commonService.changeFormat(endDate);
 
                     memberService.insertMember(name, id, commonService.encryptSHA256(pass), branch, memberEtc, pnum);
                     List<Map<String, Object>> searchMemberInfo = memberService.searchIdAndPass(id, commonService.encryptSHA256(pass) );
 
                     int memberSeq = Integer.parseInt(searchMemberInfo.get(0).get("member_seq").toString());
-                    Map<String, Object> result = commonService.findList(startDate, endDate, timeAndDay, branch, times);
-
+                    Map<String, Object> result = commonService.findList(insertDate, endDate, timeAndDay, branch, times, delayYn, delayDate);
                     String dayList = result.get("dayList").toString();
                     String[] timeList = (String[]) result.get("timeList");
                     String aliasList = result.get("aliasList").toString();
-
-                    courseStudentController.insertCourseStudent(request, memberSeq, startDate, times, endDate, timeList, dayList, aliasList, priceDate, price, priceType , branch, paymentYn);
+                    String aa = courseStudentController.insertCourseStudent(request, memberSeq, startDate, times, endDate, timeList, dayList, aliasList, priceDate, price, priceType , branch, paymentYn);
+                    if(delayYn == 1) {
+                        courseStudentController.updateDealy(memberSeq, delayDate);
+                    }
                 }
             }
         } catch (Exception e) {
 
         }
-        return "index";
+
+        return "admin/member/veiw_member";
     }
 
 

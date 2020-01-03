@@ -41,8 +41,8 @@ public class CommonService {
 	        int mMonth = Integer.parseInt( standardDate.split("-")[1].toString()) - 1;
 	        int mDate = Integer.parseInt( standardDate.split("-")[2].toString());
 	        newCal.set ( mYear, mMonth, mDate);
-	        newCal.getTime();
-		    //이번주 첫째 날짜  
+			newCal.getTime();
+		    //이번주 첫째 날짜
 			newCal.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
 	    	startDate = dateFmt.format(newCal.getTime());
 	    	//이번주 마지막 날짜  
@@ -988,8 +988,7 @@ public class CommonService {
 		return sha;
 	}
 
-	public Map<String, Object> findList(String startDate, String endDate, String timeAndDay, int branch, int times) {
-
+	public Map<String, Object> findList(String startDate, String endDate, String timeAndDay, int branch, int times, int delayYn, String delayDate) {
 		try {
 			Map<String, Object> result = new HashMap<String, Object>();
 			String[] tempChange = timeAndDay.split("\\|");
@@ -1041,20 +1040,31 @@ public class CommonService {
 					resultDay = 7 - Math.abs(searchIntDay - intEndDay);
 				}
 				String updateDay = afterDay(startDate, resultDay);
+				if( Integer.parseInt( updateDay.split("-")[1] )< 10 ) {
+					updateDay = updateDay.split("-")[0] + "-0" + updateDay.split("-")[1] + "-" + updateDay.split("-")[2];
+				}
+				if( Integer.parseInt(updateDay.split("-")[2])< 10 ) {
+					updateDay = updateDay.split("-")[0] + "-" + updateDay.split("-")[1] + "-0" + updateDay.split("-")[2];
+				}
 				boolean updateDayIsHoliday = holidayService.searchHoliday(updateDay);
 				if( updateDayIsHoliday ) {
 					j--;
 					startDate = updateDay;
 				} else {
-					if( Integer.parseInt( updateDay.split("-")[1] )< 10 ) {
-						updateDay = updateDay.split("-")[0] + "-0" + updateDay.split("-")[1] + "-" + updateDay.split("-")[2];
-					}
-					if( Integer.parseInt(updateDay.split("-")[2])< 10 ) {
-						updateDay = updateDay.split("-")[0] + "-" + updateDay.split("-")[1] + "-0" + updateDay.split("-")[2];
-					}
+					if(delayYn == 1) {
+						if(updateDay.equals(delayDate)) {
+							j--;
+							delayYn = 0;
+							startDate = updateDay;
+						} else {
 
-					timeList[j] = updateDay;
-					startDate = updateDay;
+							timeList[j] = updateDay;
+							startDate = updateDay;
+						}
+					} else {
+						timeList[j] = updateDay;
+						startDate = updateDay;
+					}
 				}
 			}
 			result.put("dayList", dayList);

@@ -27,7 +27,7 @@
 			</div>
 		</div>
 
-		<div class="col-12 mw-1200 col-center content_con pt80 pb80">
+		<div class="col-12 mw-1200 col-center content_con pt-sm-80 pb-sm-80 pt0 pb0">
 			<form id="course" action="/insertCourse" method="post">
 				<input type="hidden" name="dayList" id="dayList">
 				<input type="hidden" name="aliasList" id="aliasList">
@@ -55,12 +55,12 @@
 								<table class="table_style1 reg" id="courseTimeTable">
 								<colgroup>
 								</colgroup>
-								<col width="20%" />
-								<col width="16%" />
-								<col width="16%" />
-								<col width="16%" />
-								<col width="16%" />
-								<col width="16%" />
+									<col width="16%" />
+									<col width="16%" />
+									<col width="16%" />
+									<col width="16%" />
+									<col width="16%" />
+									<col width="16%" />
 								<thead></thead>
 								<tbody>
 								<tr>
@@ -72,9 +72,11 @@
 										 <span th:if="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 											<span class="use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 										 </span>
+
 										 <span th:unless="${courseRegNumList.CURRENT_NUM} < ${courseRegNumList.max_people}">
 											<span class="un_use" th:text=" '(' + ${courseRegNumList.CURRENT_NUM} + '/' + ${courseRegNumList.max_people} + ')'"></span>
 										 </span>
+
 										 <span class="alias_num hidden" th:text="${courseRegNumList.alias_number}"></span>
 									   </span>
 										<span class="un_use"  th:unless="${courseRegNumList.is_use_yn} == 1">
@@ -560,8 +562,14 @@
 				setStartDate = today(currentDay);
 				setStartDate.setDate(setStartDate.getDate() + 1);
 				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
+				//토요일에 경우
+			} else if(setStartDate.getDay() === 6 ) {
+				setStartDate = today(currentDay);
+				setStartDate.setDate(setStartDate.getDate() + 2);
+				setEndDate = new Date(setStartDate.getFullYear(), setStartDate.getMonth(), setStartDate.getDate() + 4);
 				//그 외
-			} else {
+			}
+			else {
 				for(var j=1; j<7;j++) {
 					if( ( setStartDate.getDay() - j) === 1  ) {
 						setStartDate.setDate( (setStartDate.getDate()-j));
@@ -578,10 +586,10 @@
 				var kDay = korDay(headDay.getDay() );
 				var fullDay = dateForm(headDay);
 				if(fullDay == nowDay() ) {
-					theadTd = "<td class='today'>" + kDay +"(" + fullDay + ")</td>";
+					theadTd = "<td class='today'>" + kDay +"<br>(" + fullDay + ")</td>";
 					theadTdTotal = theadTdTotal + theadTd;
 				} else {
-					theadTd = "<td>" + kDay +"(" + fullDay + ")</td>";
+					theadTd = "<td>" + kDay +"<br>(" + fullDay + ")</td>";
 					theadTdTotal = theadTdTotal + theadTd;
 				}
 			}
@@ -611,6 +619,10 @@
 
 			//강의 선택 validation
 			$("#courseTimeTable tbody td").on("click", function(){
+				if($(this).find(".un_use").length != 0) {
+					alert("수강 신청이 불가능합니다.");
+					return false;
+				}
 				if( $("#courseTimeTable tbody td.active").length > 3) {
 					alert("최대 4개의 강좌 까지 선택 가능 합니다.");
 					$("#courseTimeTable tbody td").each(function () {
