@@ -1046,7 +1046,9 @@ public class CommonService {
 				if( Integer.parseInt(updateDay.split("-")[2])< 10 ) {
 					updateDay = updateDay.split("-")[0] + "-" + updateDay.split("-")[1] + "-0" + updateDay.split("-")[2];
 				}
+
 				boolean updateDayIsHoliday = holidayService.searchHoliday(updateDay);
+
 				if( updateDayIsHoliday ) {
 					j--;
 					startDate = updateDay;

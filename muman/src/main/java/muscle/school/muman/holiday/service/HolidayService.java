@@ -85,7 +85,7 @@ public class HolidayService {
 
 
     public boolean searchHoliday(String day) throws ParseException {
-        Map<String, Object> param = new HashMap<String, Object>();
+        Map<String, Object> param = new HashMap<>();
         param.put("branch", "");
         List<Map<String, Object>> holidayList = dao.selectHolidayList(param);
         Calendar targetCal = commonService.changeCal(day);
@@ -96,7 +96,7 @@ public class HolidayService {
             Calendar startCal = commonService.changeCal(start);
             Calendar endCal = commonService.changeCal(end);
 
-            while(startCal.compareTo(endCal) < 0) {
+            while(startCal.compareTo(endCal) <= 0) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 String whileStart = format.format(startCal.getTime() );
                 // 휴일의 시작일이 수강 중인 날짜의 중간인 멤버를 찾음
@@ -105,13 +105,9 @@ public class HolidayService {
                 //제어 할 멥버의 정보값을 가져옴
                 // 정보 값 중 멤버가 수강하고 있는 날의 aliasList에 있는 값 중 휴일과 일치하는 날이 있는 지 찾아봄
                 // 있다면 딜레이 없다면 스킵
-                int result = targetCal.compareTo(startCal);
                 String showTarget = commonService.showCalDetail(targetCal);
                 String showStart= commonService.showCalDetail(startCal);
 
-                System.out.println(showTarget);
-                System.out.println(showStart);
-                System.out.println(showTarget.equals(showStart) );
                 if(showTarget.equals(showStart)) {
                     return true;
                 }

@@ -98,13 +98,26 @@ public class MainController {
     @RequestMapping(value = "/excelUploadAjax", method = RequestMethod.POST)
     public String excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{
         MultipartFile excelFile =request.getFile("excelFile");
-        System.out.println("엑셀 파일 업로드 컨트롤러");
         if(excelFile==null || excelFile.isEmpty()){
             throw new RuntimeException("엑셀파일을 선택 해 주세요.");
         }
+        String path = "";
+        String fileName = "";
+//        File destFile = new File("/Users/gujalyong/Desktop/"+excelFile.getOriginalFilename());
+//        try{
+//            excelFile.transferTo(destFile);
+//        }catch(IllegalStateException | IOException e){
+//            throw new RuntimeException(e.getMessage(),e);
+//        }
 
-        File destFile = new File("/Users/gujalyong/Desktop/"+excelFile.getOriginalFilename());
 
+
+        File destFile = new File("/rnwkfydwkd/tomcat/webapps/upload/" + excelFile.getOriginalFilename());
+        try{
+            excelFile.transferTo(destFile);
+        }catch(IllegalStateException | IOException e){
+            throw new RuntimeException(e.getMessage(),e);
+        }
         //Service 단에서 가져온 코드
         ExcelReadOption excelReadOption = new ExcelReadOption();
         excelReadOption.setFilePath(destFile.getAbsolutePath());
