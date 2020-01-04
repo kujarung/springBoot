@@ -5,7 +5,7 @@
 .wrapper {height: auto;}
 html *, body * {transition: color, background-color, border-color .3s;}
 
-.mw-450{max-width:450px;}
+.mw-550{max-width:550px;}
 
 .fontsize0 { font-size:  0px; line-height:  0px; font-size:   0rem; line-height:   0rem; }
 .fontsize8 { font-size:  8px; line-height: 14px; font-size: 0.8rem; line-height: 1.4rem; }

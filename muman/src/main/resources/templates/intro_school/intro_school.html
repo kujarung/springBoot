@@ -16,7 +16,7 @@
                             <span class="point_color">가장</span> 똑똑한<br>
               				<span class="point_color">피티샵</span>
               			</div>
-						
+
 						<div class="btn_bottom">
 							<img src="img/down-arrow.png">
 						</div>
@@ -28,10 +28,10 @@
 
 
 			<div class="col-12 page_con" id="differExp">
-				<div class="col-12 h-100 visual_bck" style='background-image: url("img/excer.jpg");'></div>
+				<div class="col-12 h-100 visual_bck backgrade"></div>
 				<div class="page_con_dim"></div>
 				<div class="col-12 col-center mw-1200 pr15 pl15">
-					<div class="col-12 mw-450">
+					<div class="col-12 mw-550">
 						<div class="fontsize42 point_white mb60" id="leftFont">
 							근력학교의 목표는<br>
 							여러분의<br>
@@ -50,7 +50,7 @@
 								<br>
 								그 여정에 겪기 쉬운 시행착오는 근력학교가 최소화해드리겠습니다.<br>
 								<br>
-								오십시오, 근력학교로.<br>
+								<span class="fontweight_bold">오십시오, 근력학교로.<br></span>
 							</div>
 						</div>
 					</div>
@@ -180,93 +180,7 @@
 				</div>
 
 			</div>
-            <!-- 운동 시설 굿  -->
-<!--		 	<div class="col-12 page_con" id="goodCurri">-->
-<!--            	<div class="col-12 h-100 visual_bck"></div>-->
-<!--            	<div class="col-12 col-center mw-1200">-->
-<!--            		<div class="col-12 col-center tc">-->
-<!--	            		<div class="fontsize42 point_color fontweight700 mb40">-->
-<!--	            			최고의 시설로<br>-->
-<!--	            			최고의 운동을 하세요-->
-<!--	            		</div>-->
 
-<!--	            	    <div class="fontsize15 lineheight25 point_white mb80">-->
-<!--							<div style="color: black;">-->
-<!--								고급 운동 기구로 차원이 다른 경험을 하세요.<br>-->
-<!--								0.5kg 까지 모두 준비 되어있습니다.<br>-->
-<!--								바벨 훈련이 있으면 케틀벨 훈련도 있고, 클럽벨 훈련이 있으면 맨몸 훈련도 있습니다.<br>-->
-<!--								케틀벨은 기술 향상/ 바벨은 기록 향상의 재미가 있습니다.<br>-->
-<!--							</div>-->
-<!--	            		</div>-->
-
-<!--	            		<div class="col-12">-->
-<!--	            			<div class="col-12 mb50">-->
-<!--		            			<div class="col-6 pr20">-->
-<!--		            				<div class="col-12 img_con">-->
-<!--		            					<div class="img_dim"></div>-->
-<!--		            					<img src="img/12.jpg">-->
-<!--		            				</div>-->
-<!--									<div class="">-->
-
-<!--									</div>-->
-<!--		            			</div>-->
-
-<!--		            			<div class="col-6 pl20">-->
-<!--		            				<div class="col-12 img_con">-->
-<!--		            					<div class="img_dim"></div>-->
-<!--		            					<img src="img/34.png">-->
-<!--		            				</div>-->
-<!--		            			</div>-->
-<!--	            			</div>-->
-<!--	            		</div>-->
-<!--	            	</div>-->
-
-<!--					&lt;!&ndash;       차별화 된 커리 큘럼         &ndash;&gt;-->
-<!--					<div class="col-12">-->
-<!--						<div class="">-->
-<!--							근력 학교 만의 차별화 된 시스템-->
-<!--						</div>-->
-
-<!--						<div class="">-->
-<!--							<div class="">-->
-<!--								1. 학년 제도-->
-<!--							</div>-->
-<!--							<div class="">-->
-
-<!--							</div>-->
-
-<!--						</div>-->
-
-<!--						<div class="">-->
-<!--							<div class="">-->
-<!--								2. 매번 새로운 커리큘럼-->
-<!--							</div>-->
-
-<!--							<div class="">-->
-
-<!--							</div>-->
-<!--						</div>-->
-
-<!--						<div class="">-->
-<!--							<div class="">-->
-<!--								3. 수강생 맞춤 수업-->
-<!--							</div>-->
-<!--							<div class="">-->
-
-<!--							</div>-->
-<!--						</div>-->
-
-<!--						<div class="">-->
-<!--							<div class="">-->
-<!--								4. 개인 운동 기록-->
-<!--							</div>-->
-<!--							<div class="">-->
-
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--            	</div>-->
-<!--            </div>-->
 			<!--	찾아 오시는 길		-->
 			<div class="col-12 mb99">
 				<div class="col-12 mw-1200 col-center content_con">
@@ -359,18 +273,10 @@
         	$("#visual_font").animate( {
                 opacity : 1,
                 transform: 'translateY(0)',
-            }, 600, "linear" );
+            }, 600, "linear", function () {
+				$(".btn_bottom").css("opacity",1);
+			} );
 
-        	(function upDown() {
-        		$('.btn_bottom').animate({
-                    opacity : 1,
-                    transform: 'translateY(-30px)',
-                    transform: 'scale(1)',
-        		}, "slow").animate({
-        			opacity : 0.3,
-        			transform: 'translateY(20px)'
-        		}, "slow", function() { upDown(); });
-        	})();
 
         	var firstCon = document.querySelector("#differExp").offsetTop;
         	var goodCurri = document.querySelector("#goodCurri").offsetTop;

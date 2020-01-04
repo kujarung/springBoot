@@ -41,9 +41,9 @@ i {line-height: 0.8em !important;}  /* 아이콘 vertical middle 위해 */
 /* 회원가입 및 등록 */
 .reg_member_con {border-top:2px solid black; border-bottom:2px solid black; padding:30px 100px; margin-bottom: 30px;}
 .reg_con{margin-bottom: 15px; box-sizing: border-box; display: flex; justify-content: center; align-items: center;}
-.reg_con .reg_title{ float:left;
-    width: 80px; font-size:16px; font-size:1.6rem; line-height:26px; line-height:2.6rem; display: inline-block; vertical-align: middle; text-align: left;}
-.reg_con .reg_left_input{width:calc(100% - 85px); display: inline-block; vertical-align: middle; border:1px solid rgb(38,75,57);}
+.reg_con .reg_title{ float:left; width: 80px; font-size:13px; font-size:1.3rem; line-height:26px; line-height:2.6rem;
+    display: inline-block; vertical-align: middle; text-align: left;}
+.reg_con .reg_left_input{width:calc(100% - 85px); display: inline-block; vertical-align: middle;}
 .reg_con .reg_left_input input{width: 100%; padding:12px; outline: none; box-sizing: border-box; border:none; text-align: left; font-size: 15px;}
 .reg_con .reg_left_input input.type_2{width: calc(100% - 120px);  outline: none;}
 .reg_con .reg_left_input .check_btn {padding-top: 13px; padding-bottom: 13px; padding-right: 30px; padding-left: 30px;
