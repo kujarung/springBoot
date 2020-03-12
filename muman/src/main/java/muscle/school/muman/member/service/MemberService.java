@@ -41,6 +41,8 @@ public class MemberService {
 		return dao.getMember(memberSeq);
 	}
 
+	public List<Map<String, Object>> getTotalMember() {return dao.getTotalMember(); }
+
     public int isExistId(String id) {
     	return dao.isExistId(id);
     }

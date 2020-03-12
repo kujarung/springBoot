@@ -20,4 +20,6 @@ public interface MemberDao {
     void updateInfo(int memberSeq, String pnum, String etc);
 
     void updateDelay(String delayDate);
+
+	List<Map<String, Object>> getTotalMember();
 }

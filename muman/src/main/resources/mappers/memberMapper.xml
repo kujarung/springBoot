@@ -13,8 +13,16 @@
     	WHERE 
 	 		MEMBER_SEQ = #{memberSeq}
     </select>
-        
-    <select id="selectMemberList" resultType="map">        	
+
+	<select id="getTotalMember" resultType="map">
+    	SELECT
+    		*
+    	FROM
+    		MEMBER
+    </select>
+
+
+	<select id="selectMemberList" resultType="map">
          SELECT TBL.*
 		 FROM 
 		 (

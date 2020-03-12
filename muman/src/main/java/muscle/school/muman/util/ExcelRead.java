@@ -90,6 +90,7 @@ public class ExcelRead {
                     /*
                      * map객체의 Cell의 이름을 키(Key)로 데이터를 담는다.
                      */
+
                     map.put(cellName, ExcelCellRef.getValue(cell));
                 }
                 /*

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+ <head th:replace="common/admin/admin_head"></head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="common/admin/admin_gnb"></div>
+
+<div class="col-12 right_body">
+	<div class="col-12 inner_con">
+		<div class="col-12 mb30 step_title">
+			운동 일지 테이블 생성
+		</div>
+
+		<div class="col-12">
+			<div class="col-12">
+				<form action="/exSave">
+					<table class="table_style_3 mb50" id="musTable">
+						<colgroup>
+							<col width="200px" />
+							<col width="100px" />
+							<col width="auto" />
+						</colgroup>
+						<thead>
+						<tr>
+							<th>운동 이름</th>
+							<th>사용 여부</th>
+							<th>상세 설명</th>
+						</tr>
+						</thead>
+						<tbody>
+						<th:block th:each="exNameList : ${exNameList}" th:object="${exNameList}">
+							<tr>
+								<td>
+									<input th:value="${exNameList.EX_NAME}" name="EX_NAME">
+									<input th:value="${exNameList.EX_SEQ}" name="EX_SEQ" type="hidden">
+								</td>
+								<td>
+									<th:block th:if="${exNameList.EX_HIDE} == 'false'">
+										<input type="checkbox" name="EX_HIDE">
+									</th:block>
+
+									<th:block th:if="${exNameList.EX_HIDE} == 'true' ">
+										<input type="checkbox" checked name="EX_HIDE">
+									</th:block>
+								</td>
+								<td>
+									<input th:value="${exNameList.EX_DESC}" style="width: 100%; text-align: left; padding-left: 20px; padding-right: 20px; box-sizing: border-box;"
+										   name="EX_DESC">
+								</td>
+							</tr>
+						</th:block>
+						</tbody>
+					</table>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="step_btn_con right">
+    	<a class="step_btn left go_step2" onclick="exSave();" style="display:block">
+			저장 하기
+        </a>
+    </div>
+
+</div>
+<script>
+	function exSave() {
+		var errorCnt = 0;
+		for(var i=0;i<$("tbody tr").length;i++) {
+			var input = $($("tbody tr")[i]).find("input")
+			var obj = {}
+			for(var j=0;j<input.length;j++) {
+				var key, value;
+				if($(input[j])[0].name == "EX_HIDE") {
+					key = $(input[j])[0].name;
+					value = $(input[j])[0].checked;
+				} else {
+					key = $(input[j])[0].name;
+					value = $(input[j])[0].value;
+				}
+				obj[key] = value
+			}
+			$.ajax({
+				url:'/exSave',
+				dataType: "json",
+				async: false,
+				data : obj,
+				success: function(result){
+					if(result == 1) {
+						errorCnt++;
+					}
+				}
+			});
+		}
+		if(errorCnt === 0) {
+			alert("성공 했습니다.");
+			location.reload();
+		} else {
+			alert("실패 했습니다.");
+			location.reload();
+		}
+	}
+</script>
+</body>
+</html>

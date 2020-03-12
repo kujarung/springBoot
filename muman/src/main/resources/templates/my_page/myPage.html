@@ -77,7 +77,6 @@
                                     }
                                 }
                             }
-
                             var branch = $("#branch").val();
                             var path = "/reg_course" + "?branch=" + branch + "&standardDate=" + dateForm(setEndDate);
                             $("#regPath").attr("href",path);
@@ -96,20 +95,12 @@
                         <img src="img/tab3.png">
                     </div>
                     <div class="tab-font">
-                        <a id="soon">
-                            운동 기록표
-                            <br>
-                            (추가 예정)
+                        <a href="/exRecord">
+                            운동 일지
                         </a>
                     </div>
                 </div>
 
-                <script>
-                    $("#soon").on("click",function () {
-                        alert("준비 중입니다.");
-                        return ;
-                    })
-                </script>
             </div>
         </div>
     </div>

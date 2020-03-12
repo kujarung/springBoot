@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>수업 소개</title>
+    <head th:replace="common/sub/head"></head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div class="col-12 wrapper">
+    <header th:replace="common/header"></header>
+    <div class="sub_main col-12">
+        <div class="col-12 sub_visual_back" style="background-image: url('img/water2.jpg');">
+            <div class="col-12 sub_dim"></div>
+            <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                <div class="col-12 h-100 fn show-table">
+                    <div class="col-12 fn show-tablecell vm tl">
+                        <div class="col-12">
+                            <div class="col-12 sub_text pb10 pt90 bold">
+                                운동 일지 확인
+                            </div>
+                            <div class="col-12 sub_content">
+                                <span class="point_color bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 sub-content">
+            <div class="lnb">
+                <div class="lnb-title">
+                    운동 일지
+                </div>
+                <ul>
+                    <li>
+                        <a href="/exCreate">일지 기록</a>
+                    </li>
+                    <li class="active">
+                        <a href="/exView">일지 확인</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="inner-content">
+                <div class="col-12 tab_con mb50">
+                    <div class="col-6 tab active" id="one">일일 기록</div>
+                    <div class="col-6 tab" id="total">기간 기록</div>
+                </div>
+
+                <div id="date">
+                    <div class="mb10">
+                        <div class="fontsize20 fontweight_bold tc">날짜 선택</div>
+                    </div>
+
+                    <div class="col-12 tc mb50">
+                        <input class="date" readonly id="selectDay"/>
+                    </div>
+                </div>
+
+                <th:block th:if="${exNameList}">
+                    <div class="col-12 chkbox-wrap mb30">
+                        <div class="chkbox-con">
+                            <input id="All" type="checkbox">
+                            <span>All</span>
+                        </div>
+
+                        <th:block th:each="exNameList : ${exNameList}" th:object="${exNameList}">
+                            <th:block th:if="${exNameList.EX_HIDE} != 'false' ">
+                                <div class="chkbox-con">
+                                    <input th:id="${exNameList.EX_NUM_NAME}" type="checkbox" checked>
+                                    <span th:text="${exNameList.EX_NAME}"></span>
+                                </div>
+                            </th:block>
+                        </th:block>
+                    </div>
+
+                    <div class="col-12">
+                        <div id="errorTxt">
+                            <div class="col-12 tc">
+                                <div class="d-flex " style="font-size: 20px; height: 500px; justify-content: center; align-items: center;">
+                                    해달 날의 운동 기록이 없습니다.
+                                    <br>
+                                    운동을 기록해 주세요.
+                                </div>
+                            </div>
+                        </div>
+                        <div id="graphDiv"></div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="common/footer"></footer>
+<th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var memberExRecord = [[${memberExRecord}]];
+        var exNameList = [[${exNameList}]];
+        var today = [[${today}]];
+        var memberExTotal = [[${memberExRecordTotal}]];
+        /*]]>*/
+        var filter = [];
+        var layout = {
+            title: '운동일지',
+            uirevision:'true',
+            xaxis: {autorange: true},
+            yaxis: {autorange: true}
+        };
+        var color = ["antiquewhite", "blueviolet", "tomato", "yellowgreen", "chartreuse", "skyblue", "red", "blue", "brown", "gold"];
+
+        $(function () {
+            $("#errorTxt").hide();
+
+            if(memberExRecord) {
+                grapShow.init("bar");
+            } else {
+                $("#errorTxt").show();
+            }
+            $("#selectDay").datepicker( { dateFormat: 'yy-mm-dd'  });
+            $("#selectDay")[0].value = today;
+        });
+
+        var grapShow = {
+            init : function (mode) {
+                var myPlot = document.getElementById('graphDiv');
+                var mode = mode;
+                var data = [];
+                for(var i=0;i<exNameList.length;i++) {
+                    var insertData = {
+                        type: mode,
+                        line: {},
+                        y: [ ],
+                        x : []
+                    };
+                    insertData["line"] = {color: color[i] };
+                    if( exNameList[i].EX_HIDE == "true") {
+                        filter.push(exNameList[i].EX_NUM_NAME);
+                        insertData["name"] = exNameList[i].EX_NAME;
+                        var itemName = exNameList[i].EX_NUM_NAME;
+                        var weight = memberExRecord[itemName];
+                        var date = memberExRecord["EX_DATE"];
+                        insertData["y"].push(weight);
+                        insertData["x"].push(date + ".")
+                    }
+                    data.push(insertData)
+                }
+                Plotly.react(myPlot, data, layout);
+            },
+            
+            one : function () {
+                var myPlot = document.getElementById('graphDiv');
+                var mode = "bar";
+                var data = [];
+                for(var i=0;i<exNameList.length;i++) {
+                    var insertData = {
+                        type: mode,
+                        line: {},
+                        y: [ ],
+                        x : []
+                    };
+                    insertData["line"] = {color: color[i] };
+                    if( exNameList[i].EX_HIDE == "true") {
+                        for( var j=0;j<filter.length;j++) {
+                            if( filter[j]  === exNameList[i].EX_NUM_NAME ) {
+                                insertData["name"] = exNameList[i].EX_NAME;
+                                var itemName = exNameList[i].EX_NUM_NAME;
+                                var weight = memberExRecord[itemName];
+                                var date = memberExRecord["EX_DATE"];
+                                insertData["y"].push(weight);
+                                insertData["x"].push(date + ".")
+                            }
+                        }
+                    }
+                    data.push(insertData)
+                }
+                Plotly.react(myPlot, data, layout);
+            },
+            
+            total : function () {
+                var myPlot = document.getElementById('graphDiv');
+                var mode = "lines";
+                var data = [];
+                for(var i=0;i<exNameList.length;i++) {
+                    var insertData = {
+                        type: mode,
+                        line: {},
+                        y: [ ],
+                        x : []
+                    };
+                    insertData["line"] = {color: color[i] };
+                    if( exNameList[i].EX_HIDE == "true") {
+                        for(var j=0;j<memberExTotal.length;j++) {
+                            for( var m=0;m<filter.length;m++) {
+                                if( filter[m]  === exNameList[i].EX_NUM_NAME ) {
+                                    insertData["name"] = exNameList[i].EX_NAME;
+                                    var itemName = exNameList[i].EX_NUM_NAME;
+                                    var weight = memberExTotal[j][itemName];
+                                    var date = memberExTotal[j]["EX_DATE"];
+                                    insertData["y"].push(weight);
+                                    insertData["x"].push(date + ".")
+                                }
+                            }
+
+                        }
+                        data.push(insertData)
+                    }
+                }
+                Plotly.react(myPlot, data, layout);
+            }
+        };
+        
+        $("#selectDay").on("change",function () {
+            var date = $(this)[0].value;
+            location.href="/exView?date=" + date;
+        });
+
+        $(".chkbox-con input").on("click", function () {
+            var selectInput = $(this)[0];
+            var isOne;
+            if( $($(".tab.active")[0]).text() === "일일 기록" ) {
+                isOne = true
+            } else {
+                isOne = false
+            }
+            if(selectInput.id == "All") {
+                if(selectInput.checked) {
+                    filter = [];
+                    for(var i=0;i<exNameList.length;i++) {
+                        if( exNameList[i].EX_HIDE == "true") {
+                            filter.push(exNameList[i].EX_NUM_NAME);
+                        }
+                    }
+                    allCheck(true);
+                    if(isOne) {
+                        grapShow.one();
+                    } else {
+                        grapShow.total();
+                    }
+                } else {
+                    filter = [];
+                    allCheck(false);
+                    if(isOne) {
+                        grapShow.one();
+                    } else {
+                        grapShow.total();
+                    }
+                }
+            } else {
+                if(selectInput.checked) {
+                    filter.push(selectInput.id);
+                    if(isOne) {
+                        grapShow.one();
+                    } else {
+                        grapShow.total();
+                    }
+                } else {
+                    var idx = filter.indexOf(selectInput.id);
+                    filter.splice(idx, 1);
+                    if(isOne) {
+                        grapShow.one();
+                    } else {
+                        grapShow.total();
+                    }
+                }
+            }
+            console.log(filter)
+        });
+
+        $(function () {
+            $(".tab").on("click", function () {
+                var _this = $(this);
+                $(".tab").removeClass("active");
+                _this.addClass("active");
+                if($("#one").hasClass("active")) {
+                    if(memberExRecord) {
+                        $("#graphDiv").show();
+                        grapShow.one();
+                        $("#errorTxt").hide();
+                        $("#date").show();
+                    } else {
+                        $("#graphDiv").hide();
+                        $("#errorTxt").show();
+                        $("#date").show();
+                    }
+                } else {
+                    $("#graphDiv").show();
+                    grapShow.total();
+                    $("#errorTxt").hide()
+                    $("#date").hide();
+                }
+            })
+        })
+
+        function allCheck(YN) {
+            var checkBox = $(".chkbox-con");
+            if(YN) {
+                for(var i=0;i<checkBox.length;i++) {
+                    $($(".chkbox-con")[i]).find("[type='checkbox']")[0].checked = true
+                }
+            } else {
+                for(var i=0;i<checkBox.length;i++) {
+                    $($(".chkbox-con")[i]).find("[type='checkbox']")[0].checked = false
+                }
+            }
+        }
+    </script>
+</th:block>
+
+</body>
+</html>

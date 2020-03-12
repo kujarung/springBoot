@@ -1,7 +1,9 @@
 package muscle.school.muman.main.controller;
 
 import muscle.school.muman.commom.service.CommonService;
+import muscle.school.muman.course_master.service.CourseMasterService;
 import muscle.school.muman.course_student.controller.CourseStudentController;
+import muscle.school.muman.holiday.service.HolidayService;
 import muscle.school.muman.member.service.MemberService;
 import muscle.school.muman.util.ExcelRead;
 import muscle.school.muman.util.ExcelReadOption;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import muscle.school.muman.main.service.MainService;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,13 +27,17 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 @EnableAutoConfiguration
 public class MainController {
+    @Autowired
+    CourseMasterService courseMasterService;
 
+    HolidayService holidayService;
     @Autowired
     MainService service;
     @Autowired
@@ -63,7 +70,22 @@ public class MainController {
     
     //강좌 소개 페이지로 이동
     @RequestMapping(value = "/intro_course", method=RequestMethod.GET)
-    public String intro_course() {
+    public String intro_course(
+            Model model, @RequestParam(required=false) String standardDate
+            ,@RequestParam(required=false, defaultValue= "1") int branch
+    ) {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("branch", branch);
+        //시작일과 끝일을 리턴 받음
+        String[] dateList   = commonService.todayWeek(standardDate);
+        String startDate 	= dateList[0];
+        String endDate 		= dateList[1];
+        List<Map<String,Object>> courseNumList 	= courseMasterService.selectRegMemberList(startDate, endDate, branch);
+        model.addAttribute("courseNumList", courseNumList);
+        model.addAttribute("dateList", dateList);
+        model.addAttribute("today", commonService.currentDay(standardDate));
+        model.addAttribute("branch", branch);
+
         return "intro_course/intro_course";
     }
 
@@ -111,8 +133,8 @@ public class MainController {
 //        }
 
 
-
-        File destFile = new File("/rnwkfydwkd/tomcat/webapps/upload/" + excelFile.getOriginalFilename());
+        File destFile = new File("/Users/gujalyong/Desktop/"+excelFile.getOriginalFilename());
+//        File destFile = new File("/rnwkfydwkd/tomcat/webapps/upload/" + excelFile.getOriginalFilename());
         try{
             excelFile.transferTo(destFile);
         }catch(IllegalStateException | IOException e){
@@ -126,9 +148,9 @@ public class MainController {
 
 
         List<Map<String, String>> excelContent = ExcelRead.read(excelReadOption);
-
         try {
             for (Map<String, String> article : excelContent) {
+                System.out.println(article);
                 String name = article.get("B");
                 int times = (int)Float.parseFloat(article.get("C"));
                 String timeAndDay = article.get("D");
@@ -154,7 +176,12 @@ public class MainController {
                         delayDate = commonService.changeFormat(delayDate);
                     }
 
+                    System.out.println(delayDate);
+
                     startDate   = commonService.changeFormat(startDate);
+
+                    System.out.println(startDate);
+
                     if(priceDate.trim().equals("")) {
                         insertDate = startDate;
                     } else {
@@ -177,7 +204,7 @@ public class MainController {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         return "admin/member/veiw_member";

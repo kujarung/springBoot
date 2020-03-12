@@ -45,9 +45,6 @@ public class AdminController {
 	public String adminMain() {
 		return "admin/index";
 	}
-	
-
-
 
 	/**
 	 * @param response
@@ -67,8 +64,5 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-	
-
 }

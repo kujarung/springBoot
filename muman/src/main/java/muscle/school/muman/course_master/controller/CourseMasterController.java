@@ -148,6 +148,7 @@ public class CourseMasterController {
 	@GetMapping("/admin/course_manage_detail")
 	public String course_detail(Model model, int alias) {
 		List<Map<String,Object>> courseDetail = service.selectCourseMasterList(alias);
+		System.out.println(courseDetail);
 		model.addAttribute("alias", alias);
 		model.addAttribute("courseDetail", courseDetail);
 		return "admin/course/course_manage_detail";

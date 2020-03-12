@@ -31,6 +31,11 @@ function dateForm (setStartDate){
     return setStartDate.getFullYear() + "-" + ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2);
 }
 
+//yyy-mm-dd 형태로 변환
+function dateFormNotFull (setStartDate){
+    return ("00" + (setStartDate.getMonth() + 1)).slice(-2) + "-" + ("00" + setStartDate.getDate()).slice(-2);
+}
+
 //오늘 날짜를 구하는 포멧터
 function today(currentDay) {
     return new Date(currentDay.split("-")[0], currentDay.split("-")[1] - 1, currentDay.split("-")[2]);

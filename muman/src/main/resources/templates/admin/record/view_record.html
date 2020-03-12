@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="">
+<head>
+ <head th:replace="common/admin/admin_head"></head>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="common/admin/admin_gnb"></div>
+
+<div class="col-12 right_body">
+	<div class="col-12 inner_con no100vh">
+		<div class="col-12 mb30 step_title">
+			운동 일지 확인
+		</div>
+
+		<div class="col-12">
+			<div class="col-12">
+				<div class="col-12">
+					<div class="col-12 mt30 tc">
+						<div class="col-12" id="date">
+							<div class="mb10">
+								<div class="fontsize20 fontweight_bold tc">날짜 선택</div>
+							</div>
+
+							<div class="col-12 tc mb50">
+								<input class="date" readonly id="selectDay"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 mb50">
+						<table class=" table_style_3">
+							<thead>
+							<th>이름</th>
+							<th:block th:each="exNameList : ${exNameList}" th:object="${exNameList}">
+								<th:block th:if="${exNameList.EX_HIDE} != 'false' ">
+									<th th:text="${exNameList.EX_NAME} + '(kg)'"></th>
+								</th:block>
+							</th:block>
+							</thead>
+							<tbody>
+							<th:block th:each="memberTotal : ${memberTotal}" th:object="${memberTotal}">
+								<th:block th:if="${memberExList.size()} > 0">
+									<th:block th:each="memberExList : ${memberExList}" th:object="${memberExList}">
+										<th:block th:if="${memberTotal.member_seq} == ${memberExList.member_seq}">
+											<tr>
+												<td class="hidden"><input class="MEMBER_SEQ" type="hidden" th:value="${memberExList.member_seq}"></td>
+												<td class="name" th:text="${memberExList.name}"></td>
+												<td>
+													<input class="EX_WEIGHT1" th:value="${memberExList.EX_WEIGHT1}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT2" th:value="${memberExList.EX_WEIGHT2}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT3" th:value="${memberExList.EX_WEIGHT3}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT4" th:value="${memberExList.EX_WEIGHT4}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT5" th:value="${memberExList.EX_WEIGHT5}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT6" th:value="${memberExList.EX_WEIGHT6}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT7" th:value="${memberExList.EX_WEIGHT7}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT8" th:value="${memberExList.EX_WEIGHT8}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT9" th:value="${memberExList.EX_WEIGHT9}" type="number">
+												</td>
+												<td>
+													<input class="EX_WEIGHT10" th:value="${memberExList.EX_WEIGHT10}" type="number">
+												</td>
+											</tr>
+										</th:block>
+									</th:block>
+								</th:block>
+
+								<th:block th:if="${memberExList.size()} == 0">
+									<tr>
+										<td class="hidden"><input class="MEMBER_SEQ" type="hidden" th:value="${memberTotal.member_seq}"></td>
+										<td class="name" th:text="${memberTotal.name}"></td>
+										<td>
+											<input class="EX_WEIGHT1" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT2" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT3" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT4" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT5" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT6" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT7" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT8" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT9" th:value="0" type="number">
+										</td>
+										<td>
+											<input class="EX_WEIGHT10" th:value="0" type="number">
+										</td>
+									</tr>
+								</th:block>
+
+							</th:block>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="step_btn_con right col-12" style=" position: static; width: 150px; height: 50px; display: flex; align-items: center; justify-content: center; float:right;;">
+						<a class="step_btn left go_step2" id="save">
+							저장하기
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+</body>
+
+<th:block>
+<script th:inline="javascript">
+
+	/*<![CDATA[*/
+	var exList = [[${exNameList}]];
+	var today = [[${today}]];
+	/*]]>*/
+	$("#selectDay").datepicker( { dateFormat: 'yy-mm-dd'  });
+	$("#selectDay")[0].value = today;
+
+	var result = {};
+	for(var i=0;i <exList.length;i++) {
+		result[exList[i].EX_NUM_NAME] = exList[i].EX_HIDE;
+	}
+	var keys = Object.keys(result);
+	for(i=0;i<keys.length;i++) {
+		var key = keys[i];
+		var isHide = result[key];
+		if( isHide !== "true") {
+			$("." + key).parent().hide();
+		}
+	}
+
+	$("#save").on("click", function () {
+		var row = $("tbody tr");
+		var saveData = {};
+		for(var i=0;i<row.length;i++) {
+			var saveRow = $(row[i]).find("input");
+			for(var j=0;j<saveRow.length;j++) {
+				var saveRowVal = saveRow[j]
+				var key = saveRowVal.className;
+				var value = saveRowVal.value;
+				saveData[key] = value
+			}
+			saveData["EX_DATE"] = $("#selectDay")[0].value
+			console.log(saveData);
+			$.ajax({
+				url : "/exUpdate",
+				data : saveData,
+				success: function(result){
+
+				}
+			})
+		}
+	});
+	
+	$("#selectDay").on("change",function () {
+		var date = $(this)[0].value;
+		location.href="/admin/view_record?date=" + date;
+	})
+</script>
+</th:block>
+</html>

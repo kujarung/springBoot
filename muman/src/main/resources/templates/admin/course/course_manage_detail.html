@@ -13,62 +13,60 @@
 			강좌 상세 정보
 		</div>
 		<div class="col-12 col-center mw-768">
+			<div class="detail_table mb50">
+				<th:block th:object="${courseDetail}">
+					<table style="width: 100%;">
+						<colgroup>
+							<col width="20%" />
+							<col width="30%" />
+							<col width="20%" />
+							<col width="30%" />
+						</colgroup>
+						<tbody>
+						<tr>
+							<th>지점</th>
+							<td th:text="${courseDetail[0].branch}"></td>
 
-				<div class="detail_table mb50">
-					<th:block th:object="${courseDetail}">
-						<table style="width: 100%;">
-							<colgroup>
-								<col width="20%" />
-								<col width="30%" />
-								<col width="20%" />
-								<col width="30%" />
-							</colgroup>
-							<tbody>
-							<tr>
-								<th>지점</th>
-								<td th:text="${courseDetail[0].branch}"></td>
+							<th>시작 시간</th>
+							<td th:text="${courseDetail[0].course_start_time}"></td>
+						</tr>
+						<tr>
+							<th>요일</th>
+							<td th:text="${courseDetail[0].week_of_day}" id="day"></td>
+							<th>사용 여부</th>
+							<td>
+								<select id="useYn">
+									<option value="1" th:selected="${courseDetail[0].is_use_yn} == 1">사용</option>
+									<option value="2" th:selected="${courseDetail[0].is_use_yn} == 2">미사용</option>
+								</select>
+							</td>
 
-								<th>시작 시간</th>
-								<td th:text="${courseDetail[0].course_start_time}"></td>
-							</tr>
-							<tr>
-								<th>요일</th>
-								<td th:text="${courseDetail[0].week_of_day}" id="day"></td>
-								<th>사용 여부</th>
-								<td>
-									<select id="useYn">
-										<option value="1" th:selected="${courseDetail[0].is_use_yn} == 1">사용</option>
-										<option value="2" th:selected="${courseDetail[0].is_use_yn} == 2">미사용</option>
-									</select>
-								</td>
+						</tr>
 
-							</tr>
+						<tr>
+							<th>최대 수용인원</th>
+							<td>
+								<input th:value="${courseDetail[0].max_people}" id="maxPeople"/>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</th:block>
+			</div>
 
-							<tr>
-								<th>최대 수용인원</th>
-								<td>
-									<input th:value="${courseDetail[0].max_people}" id="maxPeople"/>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-					</th:block>
-				</div>
-
-				<div class="col-12 tc">
-					<div class="serch_btn_con">
-						<div class="serch_btn" onclick="location.href='/admin/course_manage'">
-							이전으로
-						</div>
-					</div>
-
-					<div class="serch_btn_con">
-						<div class="serch_btn" id="reviseBtn">
-							수정
-						</div>
+			<div class="col-12 tc">
+				<div class="serch_btn_con">
+					<div class="serch_btn" onclick="location.href='/admin/course_manage'">
+						이전으로
 					</div>
 				</div>
 
+				<div class="serch_btn_con">
+					<div class="serch_btn" id="reviseBtn">
+						수정
+					</div>
+				</div>
+			</div>
 		</div>
 		<input type="hidden" th:value="${alias}" id="alias">
 	</div>
@@ -92,6 +90,7 @@
 				success : function(result) {
 					if(result == 1) {
 						Progress.off("수정이 완료 되었습니다.");
+						location.href = "/admin/course_manage"
 					} else {
 						Progress.off("수정 오류 입니다.");
 					}

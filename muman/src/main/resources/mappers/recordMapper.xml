@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="muscle.school.muman.record.dao.RecordDao">
+	<select id="getExNameList" resultType="map">
+		SELECT EX_NAME, EX_SEQ, EX_HIDE, EX_DESC, EX_SEQ, EX_NUM_NAME
+		FROM EX_TABLE
+	</select>
+
+	<select id="getExRecord" resultType="map">
+		SELECT MEMBER_SEQ, EX_WEIGHT, EX_SEQ, EX_DATE
+		FROM EX_RECORD
+	</select>
+
+	<select id="getExMemberList" resultType="map">
+		select m.member_seq, m.name, ex.EX_DATE,
+				if(ex.EX_WEIGHT1 is null,0, ex.EX_WEIGHT1) EX_WEIGHT1,
+		       if(ex.EX_WEIGHT2 is null,0, ex.EX_WEIGHT2) EX_WEIGHT2,
+		       if(ex.EX_WEIGHT3 is null,0, ex.EX_WEIGHT3) EX_WEIGHT3,
+		       if(ex.EX_WEIGHT4 is null,0, ex.EX_WEIGHT4) EX_WEIGHT4,
+		       if(ex.EX_WEIGHT5 is null,0, ex.EX_WEIGHT5) EX_WEIGHT5,
+		       if(ex.EX_WEIGHT6 is null,0, ex.EX_WEIGHT6) EX_WEIGHT6,
+		       if(ex.EX_WEIGHT7 is null,0, ex.EX_WEIGHT7) EX_WEIGHT7,
+		       if(ex.EX_WEIGHT8 is null,0, ex.EX_WEIGHT8) EX_WEIGHT8,
+		       if(ex.EX_WEIGHT9 is null,0, ex.EX_WEIGHT9) EX_WEIGHT9,
+		       if(ex.EX_WEIGHT10 is null,0, ex.EX_WEIGHT10) EX_WEIGHT10
+		from MEMBER m
+    	left join EX_RECORD ex on ex.MEMBER_SEQ = m.member_seq
+
+		where 1 = 1
+		<if test=" member_seq != '' and  member_seq != 'null' ">
+			and m.member_seq = #{member_seq}
+		</if>
+		<if test=" date != '' and  date != 'null' ">
+			and ex.EX_DATE = #{date}
+		</if>
+    	order by ex.EX_DATE
+	</select>
+
+	<select id="getExMember" resultType="map">
+		select m.member_seq, m.name, ex.EX_DATE,
+				if(ex.EX_WEIGHT1 is null,0, ex.EX_WEIGHT1) EX_WEIGHT1,
+		       if(ex.EX_WEIGHT2 is null,0, ex.EX_WEIGHT2) EX_WEIGHT2,
+		       if(ex.EX_WEIGHT3 is null,0, ex.EX_WEIGHT3) EX_WEIGHT3,
+		       if(ex.EX_WEIGHT4 is null,0, ex.EX_WEIGHT4) EX_WEIGHT4,
+		       if(ex.EX_WEIGHT5 is null,0, ex.EX_WEIGHT5) EX_WEIGHT5,
+		       if(ex.EX_WEIGHT6 is null,0, ex.EX_WEIGHT6) EX_WEIGHT6,
+		       if(ex.EX_WEIGHT7 is null,0, ex.EX_WEIGHT7) EX_WEIGHT7,
+		       if(ex.EX_WEIGHT8 is null,0, ex.EX_WEIGHT8) EX_WEIGHT8,
+		       if(ex.EX_WEIGHT9 is null,0, ex.EX_WEIGHT9) EX_WEIGHT9,
+		       if(ex.EX_WEIGHT10 is null,0, ex.EX_WEIGHT10) EX_WEIGHT10
+		from MEMBER m
+    	left join EX_RECORD ex on ex.MEMBER_SEQ = m.member_seq
+    	where m.member_seq = #{member_seq} and ex.EX_DATE = #{date}
+    	order by ex.EX_DATE
+	</select>
+
+	<update id="updateExRecor">
+		UPDATE EX_TABLE SET
+			EX_NAME = #{ex_name},
+			EX_DESC = #{ex_desc},
+			EX_HIDE = #{ex_hide}
+    	WHERE
+    		EX_SEQ = #{ex_seq}
+	</update>
+
+	<select id="hasRecord" resultType="boolean">
+		select if(count(*) > 0 , true, false)
+		from EX_RECORD
+		where MEMBER_SEQ = #{member_seq} and EX_DATE = #{date};
+	</select>
+
+	<insert id="insertRecord">
+		insert into EX_RECORD
+		values (
+			#{member_seq},
+			#{ex_date},
+			"admin",
+			#{ex_weight1},
+			#{ex_weight2},
+			#{ex_weight3},
+			#{ex_weight4},
+			#{ex_weight5},
+			#{ex_weight6},
+			#{ex_weight7},
+			#{ex_weight8},
+			#{ex_weight9},
+			#{ex_weight10}
+		)
+	</insert>
+
+	<update id="updateRecord">
+		update EX_RECORD
+		set
+			EX_DATE = #{ex_date},
+			MAKER = "admin",
+			EX_WEIGHT1 = #{ex_weight1},
+			EX_WEIGHT2 = #{ex_weight2},
+			EX_WEIGHT3 = #{ex_weight3},
+			EX_WEIGHT4 = #{ex_weight4},
+			EX_WEIGHT5 = #{ex_weight5},
+			EX_WEIGHT6 = #{ex_weight6},
+			EX_WEIGHT7 = #{ex_weight7},
+			EX_WEIGHT8 = #{ex_weight8},
+			EX_WEIGHT9 = #{ex_weight9},
+			EX_WEIGHT10 = #{ex_weight10}
+		where
+			MEMBER_SEQ = #{member_seq} and EX_DATE = #{ex_date}
+	</update>
+</mapper>

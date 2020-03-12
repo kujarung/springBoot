@@ -5,6 +5,7 @@
 .btn_style_3_con .btn_style_3{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; letter-spacing: -0.025em; font-weight: 500; color: white; -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
     border-radius:30px; background-color:rgb(38,75,57);; padding-top: 14px; padding-bottom: 16px; padding-left: 33px; padding-right: 30px; overflow:hidden; display: inline-block;}
 
+.btn_style_3_con .btn_style_3.type2 {width: 150px; text-align: center; cursor: pointer;}
 .mw-980{max-width: 980px;}
 /* .point_color{color:#fef200} */
 
@@ -24,6 +25,7 @@
 .table_style1{color:black; font-size:10px; font-size:1.0rem; line-height:16px; line-height:1.6rem; font-weight: bold;  text-align: center; border:1px solid black; width: 100%;}
 .table_style1 th {border:1px solid black;}
 .table_style1 td {border:1px solid black; padding:5px 0px;}
+.table_style1 td.today{background-color: rgb(38,75,57); color: white;}
 .table_style1 td.active{background-color: rgb(38,75,57); color: white;}
 .table_style1.reg {font-size: 10px;}
 .table_style1.reg tbody td {cursor: pointer;}
@@ -42,4 +44,8 @@
     .table_style1 td {border:1px solid black; padding:10px;}
     .table_style1 {font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem;}
     .table_style1.reg {font-size: 13px;}
+}
+
+@media all and (min-width:780px) {
+    .btn_style_3_con .btn_style_3.type2 {width: 250px; }
 }

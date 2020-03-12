@@ -57,7 +57,7 @@ public class MemberController {
 			) {
 		String encPass = commonService.encryptSHA256(pass);
 		service.insertMember(name, id, encPass, branch, member_etc, pnum);
-		return "sign/success";
+		return "admin/index";
 	}
 	
 	//회원등록

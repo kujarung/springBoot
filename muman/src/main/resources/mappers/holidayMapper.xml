@@ -15,7 +15,6 @@
     		<if test="branch != ''">
 				and branch = #{branch}
 			</if>
-
     </select>
 
 	<insert id="insertHoliday">

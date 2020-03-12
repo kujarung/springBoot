@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>수업 소개</title>
+    <head th:replace="common/sub/head"></head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div class="col-12 wrapper">
+    <header th:replace="common/header"></header>
+    <div class="sub_main col-12" style="background-color: #fffcf8">
+        <div class="col-12 sub_visual_back" style="background-image: url('img/water2.jpg');">
+            <div class="col-12 sub_dim"></div>
+            <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+                <div class="col-12 h-100 fn show-table">
+                    <div class="col-12 fn show-tablecell vm tl">
+                        <div class="col-12">
+                            <div class="col-12 sub_text pb10 pt90 bold">
+                                운동 일지 생성
+                            </div>
+                            <div class="col-12 sub_content">
+                                <span class="point_color bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 h-100 col-center mw-1200 pr15 pl15">
+            <div>
+                <div>
+                    <input id="all" type="checkbox">
+                    <label for="all">전체</label>
+                    <th:block th:each="exNameList : ${exNameList}" th:object="${exNameList}">
+                        <th:block th:if="${exNameList.EX_HIDE} != 'false' ">
+                            <input id="${exNameList.EX_SEQ}" type="checkbox">
+                            <label for="${exNameList.EX_SEQ}" th:text="${exNameList.EX_NAME}"></label>
+                        </th:block>
+                    </th:block>
+                </div>
+                <div id="graphDiv"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="common/footer"></footer>
+<th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var memberExRecord = [[${memberExRecord}]];
+        var exNameList = [[${exNameList}]];
+        /*]]>*/
+        var mode = "bar"
+        var data = [];
+        var color = ["antiquewhite", "blueviolet", "tomato", "yellowgreen", "chartreuse", "skyblue", "red", "blue", "brown", "gold"];
+        for(var i=0;i<exNameList.length;i++) {
+            var insertData = {
+                type: 'bar',
+                line: {color: color[i]},
+                y: [ ],
+                x : []
+            };
+            if( exNameList[i].EX_HIDE == "true") {
+                insertData["name"] = exNameList[i].EX_NAME
+                var itemName = exNameList[i].EX_NUM_NAME
+                for(var j=0;j<memberExRecord.length;j++) {
+                    var weight = memberExRecord[j][itemName]
+                    var date = memberExRecord[j]["EX_DATE"]
+                    insertData["y"].push(weight)
+                    insertData["x"].push(date + ".")
+                }
+            }
+            data.push(insertData)
+        }
+
+        var layout = {
+            title: '운동일지',
+            uirevision:'true',
+            xaxis: {autorange: true},
+            yaxis: {autorange: true}
+        };
+        Plotly.react(graphDiv, data, layout);
+    </script>
+</th:block>
+
+</body>
+</html>

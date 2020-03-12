@@ -38,6 +38,10 @@ i {line-height: 0.8em !important;}  /* 아이콘 vertical middle 위해 */
 .vh-100 {height: 100vh;}
 
 
+.d-flex {display: flex;}
+.d-center {align-items: center; justify-content: center;}
+.wi120 {width: 120px;}
+.wi120 input:read-only {background-color: gainsboro}
 /* 회원가입 및 등록 */
 .reg_member_con {border-top:2px solid black; border-bottom:2px solid black; padding:30px 100px; margin-bottom: 30px;}
 .reg_con{margin-bottom: 15px; box-sizing: border-box; display: flex; justify-content: center; align-items: center;}
@@ -75,10 +79,103 @@ line-height:21px; line-height:2.1rem; outline: none; border:1px solid black;}
 .login_submit:hover {background-color: rgba(38,75,57, 0.6);}
 .login_submit .login_submit_style {color:white; padding:15px; font-size: 25px; font-weight: 400;}
 
+.table_style_4 {width:300px; margin:0 auto; background-color:white;}
+.table_style_4 tr{cursor: pointer;}
+.table_style_4 tr.active{background-color:rgb(38,75,57);}
+.table_style_4 tr.active td{color:white;}
+.table_style_4 thead th:last-child{border-right:none;}
+.table_style_4 tbody td {text-align: center; padding:10px 5px;
+    font-size: 12px; line-height: 24px; border:1px solid #e8ecef;
+}
+.table_style_4 tbody td input {border: none; outline: none; width: 100%;}
+.table_style_4 tbody th {text-align: center; padding:10px 5px;
+    font-size: 13px; line-height: 24px;
+    background-color:rgb(38,75,57); color: white !important;
+}
+
+.ui-datepicker {background-color:white; padding:10px;     box-shadow: 0 1px 2px 0 #efe4e0;}
+.ui-datepicker .ui-datepicker-current-day {background-color: rgb(38,75,57); color: white;}
+.ui-datepicker-today {background-color: rgb(38,75,57); color: white; opacity: 0.7;}
+.ui-datepicker-calendar th {font-size: 12px; padding:17px 9px 12px 9px; text-align: center;;}
+[data-handler="selectDay"] {padding:12px 14px; font-size: 16px; border: solid 1px #9a9a9a;
+    text-align: center;;
+    -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+[data-handler="selectDay"]:hover {background-color: rgb(38,75,57); color: white;}
+.ui-datepicker-title {text-align: center; display: flex; font-size: 16px; line-height: 24px; color: #333333}
+.ui-datepicker-title {margin:0 110px;}
+.ui-datepicker-header {position: relative; padding-top: 12px; margin-bottom: 8px;}
+.ui-datepicker-prev {position: absolute; background-image: url('../img/right.svg'); cursor: pointer;
+    width: 24px; height: 24px; top: calc(50% - 12px); left: 12px;}
+.ui-datepicker-next {position: absolute; background-image: url('../img/left.svg'); cursor: pointer;
+    width: 24px; height: 24px; top: calc(50% - 12px); right: 12px;}
+.ui-datepicker-next > span {display: none;}
+.ui-datepicker-prev > span {display: none;}
+
+.sub-content {
+    position: relative;
+    padding-left: 0px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: -80px;
+    background-color: white;
+    padding-bottom: 100px;
+    padding-top:100px;
+}
+.sub-content:after {position: absolute; content:""; left:0; top:0;
+width: 200px; height: 50px; background-color: transparent;}
+
+.lnb {width: 300px; float:left; display: none;}
+.lnb-title {font-size: 30px; font-weight: bold; margin-bottom: 30px;}
+.lnb ul > li {font-size: 18px; color:#96a3b5; margin-bottom: 10px; cursor: pointer;}
+.lnb ul > li:hover {color:rgb(38,75,57); transition: 0.3s;}
+.lnb ul > li.active {color:rgb(38,75,57); position: relative; font-weight: bold;}
+.lnb ul > li.active:after {content:""; position: absolute; border-bottom: 2px solid rgb(38,75,57);
+right:0; top:50%; width: calc(100% - 120px); }
+.inner-content {width:100%; margin-left: 0; float:left;}
+
+#selectDay {border: none; outline: none; font-size: 18px;}
+
+/* checkbox */
+#searchFrom .chkbox-con {min-width: 125px;}
+.chkbox-wrap {margin-bottom: 41px; display: flex; align-items: center; justify-content: center;}
+.chkbox-wrap.type2 .chkbox-con{ min-width: 120px;}
+.chkbox-wrap.block.type1 {height: 125px; overflow: hidden;}
+.chkbox-wrap.block .chkbox-con {display:block;}
+.chkbox-wrap.no-margin {margin-bottom: 0;}
+.chkbox-wrap:last-child {margin-bottom: 0;}
+.chkbox-con { font-size: 0; margin-bottom: 16px; color: black; margin-right: 10px; display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;}
+.chkbox-con span {font-size: 15px; margin-left: 5px;}
+.chkbox-con.no-margin{margin-bottom: 0;}
+.chkbox-con input[type="checkbox"] { width: 20px; height: 20px; border-radius: 1px; box-shadow: 0 1px 2px 0 #efe4e0;
+    border: solid 1px #959595; background-color: #ffffff; -webkit-appearance: none; outline: none; cursor: pointer;
+    margin:0; display: inline-block; vertical-align: middle;}
+.chkbox-con input[type="checkbox"] + label {font-size:14px; cursor: pointer; display: inline-block; vertical-align: middle;
+    margin-left:8px;}
+#searchFrom .chkbox-con input[type="checkbox"] + label {margin-right: 20px;}
+.chkbox-con input[type="checkbox"]:checked { box-shadow: 0 1px 2px 0 #efe4e0; background-color: #333333;
+    background-image: url("../img/check-img.png"); background-size: 10px 8px;
+    background-repeat: no-repeat; background-position: center center; border: 1px solid #333333;}
+.chkbox-con input[type="checkbox"]:checked + label { cursor: pointer; position: relative;}
+
+
 @media all and (min-width: 768px) {
     .main-vedio {height: auto; width: 100%; position: static;}
     .sub-vedio {height: auto; width: 100%;}
     .reg_con .reg_title{width: 150px; font-size:20px; font-size:2.0rem; line-height:26px; line-height:2.6rem; }
     .reg_con .reg_left_input{width:calc(100% - 160px);}
     .reg_con .reg_left_select {width:calc(100% - 160px);}
+
+    .lnb {display:block;}
+    .sub-content {
+        width: calc(100% - 200px) !important;
+        margin-left: 200px;
+        padding-left: 50px;
+        padding-bottom: 200px;
+        padding-top: 100px;
+    }
+    .table_style_4 {width:600px;}
+    .inner-content {width: calc(100% - 500px); margin:0 100px; }
 }
