@@ -50,6 +50,7 @@ public class CourseStudentController {
 	) throws ParseException {
 
 		courseMasterService.insertCourse(memberSeq, dayList, timeList, aliasList, branch);
+		System.out.println(aliasList);
 		courseStudentService.insertStudent(memberSeq, startDate, endDate, times, aliasList, price, priceDate, priceType, paymentYn);
 		return "admin/common/success";
 	}

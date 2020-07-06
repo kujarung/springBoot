@@ -173,15 +173,13 @@
 				saveData[key] = value
 			}
 			saveData["EX_DATE"] = $("#selectDay")[0].value
-			console.log(saveData);
 			$.ajax({
 				url : "/exUpdate",
 				data : saveData,
-				success: function(result){
-
-				}
+				success: function(result){}
 			})
 		}
+		alert("저장 되었습니다.")
 	});
 	
 	$("#selectDay").on("change",function () {

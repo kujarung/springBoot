@@ -1,22 +1,21 @@
-package muscle.school.muman.course_student.service;
+package muscle.school.muman.board.service;
 
-import java.util.List;
-import java.util.Map;
-
+import muscle.school.muman.board.dao.BoardDao;
+import muscle.school.muman.commom.dao.CommonDao;
+import muscle.school.muman.commom.service.CommonService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import muscle.school.muman.commom.dao.CommonDao;
-import muscle.school.muman.commom.service.CommonService;
-import muscle.school.muman.course_student.dao.CourseStudentDao;
+import java.util.List;
+import java.util.Map;
 
 @Service
-@MapperScan(basePackages = "muscle.school.muman.course_student.dao")
-public class CourseStudentService {
+@MapperScan(basePackages = "muscle.school.muman.board.dao")
+public class BoardtService {
 	
 	@Autowired
-	CourseStudentDao dao;
+	BoardDao dao;
 	@Autowired
 	CommonDao commonDao;
 	@Autowired
@@ -37,7 +36,6 @@ public class CourseStudentService {
 			}
 		}
 		aliasListFullFame = "(" + aliasListFullFame + ")";
-		System.out.println(aliasListFullFame);
 		dao.insertStudent(memberSeq, startDate, endDate, timesWeek, aliasListFullFame, aliasList, price, price_type, price_date, paymentYn);
 		commonDao.nextCourseStudentSeq();
 	}

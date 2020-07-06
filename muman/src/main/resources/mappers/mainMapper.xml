@@ -5,8 +5,12 @@
     
 <mapper namespace="muscle.school.muman.main.dao.MainDao">
         
-    <select id="selectMemberList" parameterType="muscle.school.muman.main.vo.MemberVO" resultType="muscle.school.muman.main.vo.MemberVO">
-        SELECT * FROM MEMBER
+    <insert id="insertReview">
+        INSERT INTO REVIEW(name, content)
+        values (#{name}, #{content})
+    </insert>
+
+    <select id="getReview" resultType="map">
+        SELECT * FROM REVIEW
     </select>
-    
 </mapper>

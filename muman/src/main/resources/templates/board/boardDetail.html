@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/froala_editor.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="detail-con">
+        <div class="title-con">
+            <div class="title">
+                개발 스터디
+            </div>
+            <div class="user-info">
+                <div class="info">
+                    <div class="name">
+                        kim
+                    </div>
+                    <div class="">
+                        <span class="date">2020.01.01</span><span class="view">조회수 : 50</span>
+                    </div>
+                </div>
+                <div class="mod-con">
+                    <div class="mod-txt" onclick="location.href='./mod.html'">
+                        수정
+                    </div>
+                    <div class="mod-txt" onclick="location.href='./mod.html'">
+                        삭제
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-con">
+            <div class="content">
+                나랏말싸미<br>
+                듕귁에 달아<br>
+                문짱와로 서르 사맛디 아니할쌔<br>
+                이런젼차로 어린백성이 니르고져 홇배이셔도<br>
+                마참내 제 뜨들 시러 펴디 몯핧노미<br>
+                내 이를 윙하야 어엿비 너겨<br>
+                새로 스믈여듧짱랄 맹가노니<br>
+                사람마다 해여 수븨 니겨 날로 쑤메 뼌한킈 하고져 핧 싸라미니라<br>
+            </div>
+            <div class="comment-con">
+                <div class="comment-title">
+                    댓글 (<span class="comment-cnt">5</span>)
+                </div>
+                <div class="comment-write-con">
+                    <div class="comment-write">
+                        <div class="title-con">
+                            <div class="title-txt">
+                                댓쓴이
+                            </div>
+                            <div class="right-btn-con">
+                                <div class="btn-txt">수정</div>
+                                <div class="btn-txt">삭제</div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            댓글 내용<br>
+                            댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>
+                            댓글 내용<br>
+                            댓글 내용<br>
+                            댓글 내용<br>
+                        </div>
+                        <div class="date">
+                            2020.05.31. 11:12
+                        </div>
+                    </div>
+                    <div class="comment-write">
+                        <div class="title-con">
+                            <div class="title-txt">
+                                댓쓴이
+                            </div>
+                            <div class="right-btn-con">
+                                <div class="btn-txt">수정</div>
+                                <div class="btn-txt">삭제</div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            댓글 내용<br>
+                            댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>
+                            댓글 내용<br>
+                            댓글 내용<br>
+                            댓글 내용<br>
+                        </div>
+                        <div class="date">
+                            2020.05.31. 11:12
+                        </div>
+                    </div>
+                    <div class="comment-write">
+                        <div class="title-con">
+                            <div class="title-txt">
+                                댓쓴이
+                            </div>
+                            <div class="right-btn-con">
+                                <div class="btn-txt">수정</div>
+                                <div class="btn-txt">삭제</div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            댓글 내용<br>
+                            댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>댓글 내용<br>
+                            댓글 내용<br>
+                            댓글 내용<br>
+                            댓글 내용<br>
+                        </div>
+                        <div class="date">
+                            2020.05.31. 11:12
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <textarea class="comment-input" placeholder="댓글을 남겨보세요."></textarea>
+                    <button class="comment-reg-btn">등록</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-con">
+        <div class="" onclick="location.href='./table.html'">
+        <span class="go-list-txt">
+          목록으로
+        </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<style>
+    body {
+        margin: 0 !important;
+    }
+    .container {
+        max-width: 980px;
+        margin: 50px auto;
+    }
+    .paging-con {
+        display: flex;
+        justify-content: center;
+    }
+    .paging-con .num-con{
+        display: flex;
+    }
+    .paging-con .num-con span {
+        font-size: 15px;
+        margin-left:10px;
+        margin-right:10px;
+        display: block;
+        padding:5px;
+    }
+    .paging-con .num-con span.active {
+        background-color :#f2f2f2;
+        text-decoration: underline;
+    }
+    .paging-con .num-con span:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .table-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    .table-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        align-items: center;
+    }
+    .table-info .total-cnt{
+        font-size: 20px;
+    }
+    .custom-table {
+        width: 100%;
+        margin-bottom: 50px;
+        border-collapse: collapse;
+        border-top : 2px solid black;
+        border-bottom : 2px solid black;
+    }
+    .custom-table thead {
+        border-bottom: 1px solid #f2f2f2;
+    }
+    .custom-table th {
+        text-align: center;
+        padding : 10px;
+    }
+    .custom-table tbody tr:hover {
+        background-color: #f9f9f8;
+        cursor: pointer;
+    }
+    .custom-table tbody td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f2f2f2;
+        text-align: center;
+    }
+    .custom-table tbody td:nth-child(2) {
+        text-align: left;
+    }
+    .info-right {
+        display: flex;
+    }
+    .info-right select {
+        margin-right: 10px;
+    }
+    .arr {
+        cursor: pointer;
+        font-size: 15px;
+        padding: 5px;
+    }
+    .arr:hover {
+        text-decoration: underline;
+    }
+    .arr.first {
+        margin-right: 10px;;
+    }
+    .arr.end {
+        margin-left: 10px;;
+    }
+    .search-input {
+        font-size: 15px;
+        width: 200px;
+        height: 34px;
+        box-sizing: border-box;
+        padding: 0 12px;
+        border: 1px solid #ddd;
+        outline: none;;
+        appearance: none;
+    }
+
+    .search-con {
+        display: flex;
+    }
+
+    .search-btn {
+        font-size: 15px;
+        width: 40px;
+        background-color: #E0E0E0;
+        border:none;
+        outline: none;;
+        appearance: none;
+        cursor: pointer;
+        color: black;
+    }
+
+    .select-num {
+        width: 120px;
+        height: 34px;
+        font-size: 15px;
+        background-image: url(../img/select.png);
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        border: 1px solid #bfbfbf;
+        padding-left: 15px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        outline: none;
+        border-radius: 0px;
+    }
+    .has-comment {
+        margin-left: 10px;
+        color: red;
+    }
+
+    .detail-con {
+        padding : 30px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+    }
+
+    .detail-con .title-con {
+        margin-bottom: 30px;;
+    }
+    .detail-con .title-con .title {
+        font-size: 30px;
+        margin-bottom: 10px;;
+    }
+
+    .detail-con .title-con .user-info {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .user-info .name {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .user-info .date {
+        font-size: 13px;
+        color : gainsboro;
+        margin-right: 10px;
+    }
+
+    .user-info  .view {
+        font-size: 13px;
+    }
+
+    .content-con .content {
+        font-size: 15px;
+        line-height: 30px;
+    }
+
+    .content-con .content:read-only {
+        border: none;
+        outline: none;
+        min-height: 100%;
+    }
+
+    .comment-con {
+        margin-top: 30px;
+        padding-top:20px;
+        border-top:1px solid #E0E0E0;
+        position: relative;
+    }
+
+    .comment-title {
+        margin-bottom: 20px;
+    }
+
+    .comment-input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        font-size: 13px;
+        resize: none;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+
+    .comment-cnt {
+        color: red;
+    }
+
+    .comment-reg-btn {
+        position: absolute;
+        bottom: 10px;
+        right: -10px;
+        font-size: 15px;
+        width: 80px;
+        background-color: transparent;
+        border:none;
+        outline: none;;
+        appearance: none;
+        cursor: pointer;
+        color: #b7b7b7;
+    }
+
+    .bottom-con {
+        margin-top: 20px;
+        padding :10px;
+        display: inline-block;
+        cursor: pointer;
+        background-color: #eff0f2;
+        border-radius: 6px;
+    }
+
+    .mod-con {
+        display: flex;
+        align-items: center;
+    }
+    .mod-con .mod-txt {
+        font-size: 13px;
+        line-height: 13px;;
+        cursor: pointer;
+        padding :10px;
+        display: inline-block;
+        cursor: pointer;
+        background-color: #eff0f2;
+        display: flex;
+        align-items: center;
+        height: 33px;
+        box-sizing: border-box;
+        border-radius: 6px;
+    }
+    .mod-con .mod-txt:first-child {
+        margin-right: 10px;
+    }
+
+    .comment-write {
+        border-bottom: 1px solid #E0E0E0;
+        margin-bottom: 20px;
+    }
+    .comment-write:last-child {
+        border-bottom: none;
+    }
+
+    .comment-write .title {
+        margin-bottom: 10px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .comment-write .content {
+        font-size: 13px;
+        line-height: 18px;;
+    }
+
+    .comment-write .date {
+        margin : 10px 0px;
+        font-size: 12px;;
+        color: #b7b7b7;
+    }
+
+    .bottom-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mod-input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 40px;
+        font-size: 15px;
+        outline: none;
+        border: 1px solid #ddd;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .mod-txtarea {
+        outline: none;
+        font-size: 15px;
+        width: 100%;
+        resize: none;
+        height: 500px;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+    }
+
+    .comment-write .title-con {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+
+    .comment-write .title-con .title-txt{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .right-btn-con {
+        display: flex;
+    }
+
+    .btn-txt {
+        font-size: 13px;
+        line-height: 13px;;
+        cursor: pointer;
+        padding :10px;
+        display: inline-block;
+        cursor: pointer;
+        background-color: #eff0f2;
+        display: flex;
+        align-items: center;
+        border-radius: 6px;
+    }
+
+    .btn-txt:first-child {
+        margin-right: 10px;
+    }
+
+    .login-con {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .login-con .inner {
+        width: 480px;
+    }
+
+    .logo-con {
+        margin-bottom: 20px;
+    }
+
+    .logo-con .logo {
+        text-align: center;
+    }
+
+    .logo-con .logo img{
+        width: 50%;
+        height: 50%;
+    }
+
+    .login-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .login-row label {
+        font-size: 15px;
+        width: 80px;
+        margin-right: 10px;
+        text-align: right;
+        display: inline-block;
+    }
+
+    .login-input {
+        font-size: 15px;
+        width: 100%;
+        height: 50px;
+        box-sizing: border-box;
+        padding: 0 12px;
+        border: 1px solid #ddd;
+        outline: none;;
+        appearance: none;
+    }
+
+    .login-btn {
+        background-color: #eff0f2;
+        display: block;
+        width: 100%;
+        height: 61px;
+        margin: 30px 0 14px;
+        padding-top: 1px;
+        border-radius: 0;
+        cursor: pointer;
+        text-align: center;
+        color: black;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 61px;
+        border: none;
+        appearance: none;
+        outline: none;
+    }
+
+    .login-btn:hover {
+        opacity: 0.4;
+    }
+</style>

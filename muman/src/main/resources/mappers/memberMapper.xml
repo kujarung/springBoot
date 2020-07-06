@@ -71,7 +71,7 @@
 	</select>
 
 	<select id="searchIdAndPass" resultType="map">
-		select * from MEMBER where member_id = #{loginId} and member_pass = #{encPass}
+		select * from MEMBER where member_id = #{loginId}
 	</select>
 
 	<update id="updateInfo">

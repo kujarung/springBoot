@@ -34,7 +34,7 @@ public class CourseMasterController {
 	@Autowired
 	HolidayService holidayService;
 
-//	미루기 기능
+	//	미루기 기능
 	@RequestMapping("/couseMaster/delayCourse")
 	@ResponseBody
 	public void delayCourse(HttpServletResponse response, 

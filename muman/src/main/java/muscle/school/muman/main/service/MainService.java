@@ -1,6 +1,7 @@
 package muscle.school.muman.main.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,12 @@ public class MainService {
     @Autowired
     MainDao dao;
 
-	public List<MemberVO> selectMemberList() throws Exception {
-		return dao.selectMemberList();
-	}
+    public void insertReview(String name, String content) {
+	    dao.insertReview(name, content);
+    }
 
+    public List<Map<String, Object>> reviewList() {
+        return dao.getReview();
+    }
 }
 

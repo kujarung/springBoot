@@ -83,6 +83,10 @@ var Progress = {
             '\t\t</div>\n' +
             '\t</div>';
         $("body").append(html);
+        window.setTimeout(function () {
+            $("#progressCon").remove();
+            alert("에러가 발생 했습니다.")
+        }, 3000)
     },
     off : function(text) {
         window.setTimeout(function () {

@@ -55,6 +55,7 @@ public class MemberService {
     	return result;
 	}
 
+
 	public void updateInfo(int memberSeq, String pnum, String etc) {
     	dao.updateInfo(memberSeq, pnum, etc);
 	}

@@ -9,10 +9,9 @@
 .sub_back{background-color:#000; color:#fff; padding-top: 50px;}
 
 .table_style1{color:white; font-size:13px; font-size:1.3rem; line-height:19px; line-height:1.9rem;   font-weight: bold;  text-align: center; border:1px solid white; width: 100%;}
-.table_style1 th {border:1px solid white;}
+.table_style1 th {border:1px solid white; height: 50px; font-size: 18px;}
 .table_style1 td {border:1px solid white; padding:5px 0px;}
 
-.table_style1.type2 th {}
 
 @media all and (min-width:992px){
     .table_style1{font-size:15px; font-size:1.5rem; line-height:21px; line-height:2.1rem; }

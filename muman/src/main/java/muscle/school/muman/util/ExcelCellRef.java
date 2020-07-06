@@ -25,7 +25,7 @@ public class ExcelCellRef {
 
     public static String getValue(Cell cell) {
         String value = "";
-
+        System.out.println(cell);
         if(cell == null) {
             value = "";
         }
